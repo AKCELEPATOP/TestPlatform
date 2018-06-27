@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace TestModels
 {
     [DataContract]
-    public class Pattern
+    public class UserGroup
     {
         [DataMember]
         public int Id { get; set; }
@@ -17,13 +17,7 @@ namespace TestModels
         [DataMember]
         public string Name { get; set; }
 
-        [ForeignKey("PatternId")]
-        public virtual List<PatternCategory> PatternCategories { get; set; }
-
-        [ForeignKey("PatternId")]
-        public virtual List<Stat> Stats { get; set; }
-
-        [ForeignKey("PatternId")]
-        public virtual List<PatternQuestion> PatternQuestions { get; set; }
+        [ForeignKey("GroupId")]
+        public virtual List<UserGroup> Groups { get; set; }
     }
 }

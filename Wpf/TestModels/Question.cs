@@ -19,6 +19,14 @@ namespace TestModels
         [MaxLength(1000)]
         public string Text { get; set; }
 
+        [DataMember]
+        [Required]
+        public QuestionComplexity Complexity { get; set; }
+
+        [DataMember]
+        [Required]
+        public bool Active { get; set; }
+
         [ForeignKey("QuestionId")]
         public virtual List<Answer> Answers { get; set; }
 
@@ -26,5 +34,8 @@ namespace TestModels
         public int CategoryId { get; set; }
 
         public virtual Category Category { get; set; }
+
+        [ForeignKey("QuestionId")]
+        public virtual List<PatternQuestion> PatternQuestions { get; set; }
     }
 }

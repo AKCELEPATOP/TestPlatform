@@ -23,6 +23,9 @@ namespace TestModels
         public double Easy { get; set; }
 
         [DataMember]
+        public int Count { get; set; }
+
+        [DataMember]
         public int PatternId { get; set; }
 
         [DataMember]

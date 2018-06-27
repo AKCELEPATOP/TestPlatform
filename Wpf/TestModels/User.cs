@@ -31,6 +31,12 @@ namespace TestModels
         [DataMember]
         public override string SecurityStamp { get; set; }
 
+        [DataMember]
+        public int GroupId { get; set; }
+
+        [DataMember]
+        public virtual UserGroup Group { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {
             // Обратите внимание, что authenticationType должен совпадать с типом, определенным в CookieAuthenticationOptions.AuthenticationType
