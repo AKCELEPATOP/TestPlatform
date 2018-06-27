@@ -54,6 +54,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
+    <Compile Include="Migrations\201806271641389_FirstMigration.cs" />
+    <Compile Include="Migrations\201806271641389_FirstMigration.Designer.cs">
+      <DependentUpon>201806271641389_FirstMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -65,6 +70,11 @@
       <Project>{39c94e8f-08d1-4af0-85b8-6b216872ed74}</Project>
       <Name>TestModels</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201806271641389_FirstMigration.resx">
+      <DependentUpon>201806271641389_FirstMigration.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
