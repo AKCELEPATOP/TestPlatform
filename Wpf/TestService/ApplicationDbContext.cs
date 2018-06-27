@@ -16,6 +16,11 @@ namespace TestService
 
         }
 
+        public ApplicationDbContext Create()
+        {
+            return new ApplicationDbContext();
+        }
+
         public virtual DbSet<Question> Questions { get; set; }
 
         public virtual DbSet<Answer> Answers { get; set; }
@@ -25,6 +30,33 @@ namespace TestService
         public virtual DbSet<Pattern> Patterns { get; set; }
 
         public virtual DbSet<PatternCategory> PatternCategories { get; set; }
+
+        public override Task<int> SaveChangesAsync()
+        {
+            try
+            {
+                return base.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                foreach (var entry in ChangeTracker.Entries())
+                {
+                    switch (entry.State)
+                    {
+                        case EntityState.Modified:
+                            entry.State = EntityState.Unchanged;
+                            break;
+                        case EntityState.Deleted:
+                            entry.Reload();
+                            break;
+                        case EntityState.Added:
+                            entry.State = EntityState.Detached;
+                            break;
+                    }
+                }
+                throw;
+            }
+        }
 
     }
 }
