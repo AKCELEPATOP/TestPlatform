@@ -11,6 +11,8 @@ namespace TestService.Interfaces
     public interface ICategory
     {
         Task<List<CategoryViewModel>> GetList();
+ 
+        Task<CategoryViewModel> GetElement(int id);
 
         Task AddElement(CategoryBindingModel model);
 

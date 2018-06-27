@@ -31,17 +31,17 @@ namespace TestService.Implementations
 
             context.Categories.Add(new Category
             {
-               Name=model.Name
+                Name = model.Name
             });
 
             await context.SaveChangesAsync();
         }
 
-   /*     public async Task AddQuestions(QuestionViewModel model)
-        {
-            
-        }
-        */
+        /*     public async Task AddQuestions(QuestionViewModel model)
+             {
+
+             }
+             */
         public async Task DelElement(int id)
         {
             Category element = await context.Categories.FirstOrDefaultAsync(rec => rec.Id == id);
@@ -54,28 +54,64 @@ namespace TestService.Implementations
             {
                 throw new Exception("Элемент не найден");
             }
-        } 
+        }
+
+        public async Task<CategoryViewModel> GetElement(int id)
+        {
+            Category result = await context.Categories.FirstOrDefaultAsync(rec => rec.Id == id);
+            {
+                if (result == null)
+                {
+                    throw new Exception("Элемент не найден");
+                }
+                else
+                {
+                    CategoryViewModel element = new CategoryViewModel
+                     ({
+                        Id = result.Id,
+                        Name = result.Name,
+                        Questions = result.Questions.Select(recQ => new QuestionViewModel
+                        ({
+                            Id = recQ.Id,
+                            Active = recQ.Active,
+                            Answers = recQ.Answers.Select(recA => new AnswerViewModel
+                              ({
+                                // Тут чё-то будет
+                            }).ToList(),
+                            Complexity = recQ.Complexity.ToString(),
+                            Text = recQ.Text
+                        }).ToList()
+                    });
+                    return element;
+                }
+
+
+            }
+        }
+
+
 
         public async Task<List<CategoryViewModel>> GetList()
         {
-            List<CategoryViewModel> result =await context.Categories.Select(rec => new CategoryViewModel
+            List<CategoryViewModel> result = await context.Categories.Select(rec => new CategoryViewModel
             {
                 Id = rec.Id,
-                Name=rec.Name
+                Name = rec.Name
             }).ToListAsync();
             return result;
         }
 
         public async Task<List<QuestionViewModel>> GetListQuestions(int id)
         {
-            Category element=await context.Categories.FirstOrDefaultAsync(rec => rec.Id == id);
-            
-            List<QuestionViewModel> result=new List<QuestionViewModel>();
-            foreach (var questions in element.Questions) {
+            Category element = await context.Categories.FirstOrDefaultAsync(rec => rec.Id == id);
+
+            List<QuestionViewModel> result = new List<QuestionViewModel>();
+            foreach (var questions in element.Questions)
+            {
                 result.Add(new QuestionViewModel
                 {
-                    Id=questions.Id,
-                    Text=questions.Text
+                    Id = questions.Id,
+                    Text = questions.Text
                 });
 
             }

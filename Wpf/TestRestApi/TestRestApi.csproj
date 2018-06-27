@@ -226,6 +226,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -311,6 +312,20 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TestModels\TestModels.csproj">
+      <Project>{39c94e8f-08d1-4af0-85b8-6b216872ed74}</Project>
+      <Name>TestModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestService\TestService.csproj">
+      <Project>{c5a966f6-0932-4691-b1d5-3e7f0f21932f}</Project>
+      <Name>TestService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestView\TestView.csproj">
+      <Project>{6f3527b7-03b4-4f91-be58-cb634270f091}</Project>
+      <Name>TestView</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
