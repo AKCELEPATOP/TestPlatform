@@ -16,21 +16,6 @@ namespace TestService
 
         }
 
-        public ApplicationDbContext Create()
-        {
-            return new ApplicationDbContext();
-        }
-
-        public virtual DbSet<Question> Questions { get; set; }
-
-        public virtual DbSet<Answer> Answers { get; set; }
-
-        public virtual DbSet<Category> Categories { get; set; }
-
-        public virtual DbSet<Pattern> Patterns { get; set; }
-
-        public virtual DbSet<PatternCategory> PatternCategories { get; set; }
-
         public override Task<int> SaveChangesAsync()
         {
             try
@@ -57,6 +42,16 @@ namespace TestService
                 throw;
             }
         }
+
+        public virtual DbSet<Question> Questions { get; set; }
+
+        public virtual DbSet<Answer> Answers { get; set; }
+
+        public virtual DbSet<Category> Categories { get; set; }
+
+        public virtual DbSet<Pattern> Patterns { get; set; }
+
+        public virtual DbSet<PatternCategory> PatternCategories { get; set; }
 
     }
 }
