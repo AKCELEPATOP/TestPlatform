@@ -1,18 +1,21 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity.Owin;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
-using TestService.Interfaces;
-using TestService.BindingModels;
 using TestService;
-using Microsoft.AspNet.Identity.Owin;
+using TestService.BindingModels;
 using TestService.Implementations;
+using TestService.Interfaces;
 
 namespace TestRestApi.Controllers
 {
     [Authorize(Roles = ApplicationRoles.SuperAdmin + "," + ApplicationRoles.Admin)]
-    public class CategoryController : ApiController
+    public class QuestionController : ApiController
     {
         #region global
         private ApplicationDbContext _context;
@@ -29,13 +32,13 @@ namespace TestRestApi.Controllers
             }
         }
 
-        private ICategory _service;
+        private IQuestion _service;
 
-        public ICategory Service
+        public IQuestion Service
         {
             get
             {
-                return _service ?? CategoryService.Create(Context);
+                return _service ?? QuestionService.Create(Context);
             }
             private set
             {
@@ -45,9 +48,9 @@ namespace TestRestApi.Controllers
         #endregion
 
         [HttpGet]
-        public IHttpActionResult GetList()
+        public async Task<IHttpActionResult> GetList()
         {
-            var list = Service.GetList();
+            var list = await Service.GetList();
             if (list == null)
             {
                 InternalServerError(new Exception("Нет данных"));
@@ -55,10 +58,16 @@ namespace TestRestApi.Controllers
             return Ok(list);
         }
 
-        [HttpGet]
-        public IHttpActionResult Get(int id)
+        [HttpPost]
+        public async Task AddElement(QuestionBindingModel model)
         {
-            var element = Service.GetElement(id);
+            await Service.AddElement(model);
+        }
+
+        [HttpGet]
+        public async Task<IHttpActionResult> Get(int id)
+        {
+            var element = await Service.GetElement(id);
             if (element == null)
             {
                 InternalServerError(new Exception("Нет данных"));
@@ -67,21 +76,15 @@ namespace TestRestApi.Controllers
         }
 
         [HttpPost]
-        public void AddElement(CategoryBindingModel model)
+        public async Task UpdElement(QuestionBindingModel model)
         {
-            Service.AddElement(model);
+            await Service.UpdElement(model);
         }
 
         [HttpPost]
-        public void UpdElement(CategoryBindingModel model)
+        public async Task DelElement(int id)
         {
-            Service.UpdElement(model);
-        }
-
-        [HttpPost]
-        public void DelElement(CategoryBindingModel model)
-        {
-            Service.DelElement(model.Id);
+            await Service.DelElement(id);
         }
     }
 }

@@ -21,6 +21,11 @@ namespace TestService.Implementations
 
         }
 
+        public static CategoryService Create(ApplicationDbContext context)
+        {
+            return new CategoryService(context);
+        }
+
         public async Task AddElement(CategoryBindingModel model)
         {
             Category element = await context.Categories.FirstOrDefaultAsync(rec => rec.Name == model.Name);

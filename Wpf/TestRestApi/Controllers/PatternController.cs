@@ -62,6 +62,12 @@ namespace TestRestApi.Controllers
             return Ok(list);
         }
 
+        [HttpPost]
+        public async Task AddElement(PatternBindingModel model)
+        {
+            await Service.Add(model);
+        }
+
         [HttpGet]
         [Route("Get")]
         public async Task<IHttpActionResult> Get(int id)
