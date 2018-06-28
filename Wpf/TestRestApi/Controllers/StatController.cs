@@ -16,10 +16,9 @@ using TestService.Interfaces;
 namespace TestRestApi.Controllers
 {
     [Authorize]
-    [RoutePrefix("api/Pattern")]
-    public class PatternController : ApiController
+    [RoutePrefix("api/Stat")]
+    public class StatController : ApiController
     {
-
         #region global
         private ApplicationDbContext _context;
 
@@ -35,13 +34,13 @@ namespace TestRestApi.Controllers
             }
         }
 
-        private IPatternService _service;
+        private IStatService _service;
 
-        public IPatternService Service
+        public IStatService Service
         {
             get
             {
-                return _service ?? PatternService.Create(Context);
+                return _service ?? StatService.Create(Context);
             }
             private set
             {
@@ -50,11 +49,25 @@ namespace TestRestApi.Controllers
         }
         #endregion
 
-        [HttpGet]
+        [HttpPost]
+        [Authorize(Roles = ApplicationRoles.SuperAdmin + "," + ApplicationRoles.Admin)]
         [Route("GetList")]
-        public async Task<IHttpActionResult> GetList()
+        public async Task<IHttpActionResult> GetList(GetListModel model)
         {
-            var list = await Service.GetList();
+            var list = await Service.GetList(model);
+            if (list == null)
+            {
+                InternalServerError(new Exception("Нет данных"));
+            }
+            return Ok(list);
+        }
+         
+        [HttpPost]
+        [Route("GetUserList")]
+        public async Task<IHttpActionResult> GetUserList(GetListModel model)
+        {
+            model.UserId = User.Identity.GetUserId();
+            var list = await Service.GetUserList(model);
             if (list == null)
             {
                 InternalServerError(new Exception("Нет данных"));
@@ -62,51 +75,13 @@ namespace TestRestApi.Controllers
             return Ok(list);
         }
 
-        [HttpGet]
-        [Route("Get")]
-        public async Task<IHttpActionResult> Get(int id)
-        {
-            var element = await Service.Get(id);
-            if (element == null)
-            {
-                InternalServerError(new Exception("Нет данных"));
-            }
-            return Ok(element);
-        }
-
         [HttpPost]
-        [Route("UpdElement")]
-        public async Task UpdElement(PatternBindingModel model)
-        {
-            await Service.Upd(model);
-        }
-
-        [HttpPost]
-        [Route("DelElement")]
-        public async Task DelElement(int id)
-        {
-            await Service.Del(id);
-        }
-
-        [HttpGet]
-        [Route("CreateTest")]
-        public async Task<IHttpActionResult> CreateTest(int patternId)
-        {
-            var element = await Service.CreateTest(patternId);
-            if (element == null)
-            {
-                InternalServerError(new Exception("Нет данных"));
-            }
-            return Ok(element);
-        }
-
-        [HttpPost]
-        [Route("CheakTest")]
-        public async Task<IHttpActionResult> CheakTest(TestResponseModel model)
+        [Route("GetUserChart")]
+        public async Task<IHttpActionResult> GetUserChart(GetListModel model)
         {
             model.UserId = User.Identity.GetUserId();
-            var element = await Service.CheakTest(model);
-            if (element == null)
+            var element = await Service.GetUserChart(model);
+            if (element == null || element.Results == null)
             {
                 InternalServerError(new Exception("Нет данных"));
             }

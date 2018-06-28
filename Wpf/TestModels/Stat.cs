@@ -20,7 +20,11 @@ namespace TestModels
 
         [DataMember]
         [Required]
-        public int Result { get; set; }
+        public int Right { get; set; }
+
+        [Required]
+        [DataMember]
+        public int Total { get; set; }
 
         [DataMember]
         public int PatternId { get; set; }

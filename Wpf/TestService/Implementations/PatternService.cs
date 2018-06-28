@@ -418,6 +418,16 @@ namespace TestService.Implementations
             result.Total = questionCount;
             result.Right = result.StatCategories.SelectMany(rec => rec.Questions).Where(rec => rec.Right).Count();
 
+            context.Stats.Add(new Stat
+            {
+                PatternId = model.PatternId,
+                DateCreate = DateTime.Now,
+                UserId = model.UserId,
+                Right = result.Right,
+                Total = result.Total
+            });
+            await context.SaveChangesAsync();
+
             return result;
         }
 

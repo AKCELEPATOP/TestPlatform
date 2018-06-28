@@ -14,6 +14,9 @@ namespace TestService.BindingModels
         public int PatternId { get; set; }
 
         [DataMember]
+        public string UserId { get; set; }
+
+        [DataMember]
         public List<QuestionResponseModel> QuestionResponses { get; set; }
     }
 }
