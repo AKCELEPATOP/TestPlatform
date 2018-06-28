@@ -41,10 +41,13 @@ namespace TestService.Implementations
         public async Task DelElement(int id)
         {
             UserGroup element = await context.UserGroups.FirstOrDefaultAsync(rec => rec.Id == id);
-            if (element != null)
+            if (element != null && element.Users.Count == 0)
             {
                 context.UserGroups.Remove(element);
                 await context.SaveChangesAsync();
+            }
+            else if(element.Users.Count != 0)  {
+                throw new Exception("Удалите всех пользователей из группы");
             }
             else
             {
