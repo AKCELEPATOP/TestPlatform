@@ -31,7 +31,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TestingForm));
             this.questionList = new System.Windows.Forms.DataGridView();
             this.question = new System.Windows.Forms.Label();
-            this.questionGroupBoxCheckButtons = new System.Windows.Forms.GroupBox();
+            this.answerGroupBoxCheckButtons = new System.Windows.Forms.GroupBox();
+            this.answerGroupBoxRadioButtons = new System.Windows.Forms.GroupBox();
+            this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.answer4 = new System.Windows.Forms.CheckBox();
             this.answer3 = new System.Windows.Forms.CheckBox();
             this.answer2 = new System.Windows.Forms.CheckBox();
@@ -43,15 +48,10 @@
             this.endTest = new System.Windows.Forms.Button();
             this.time = new System.Windows.Forms.Label();
             this.appendixForQestion = new System.Windows.Forms.Button();
-            this.answerGroupBoxRadioButtons = new System.Windows.Forms.GroupBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.questionList)).BeginInit();
-            this.questionGroupBoxCheckButtons.SuspendLayout();
-            this.questionGroupBox.SuspendLayout();
+            this.answerGroupBoxCheckButtons.SuspendLayout();
             this.answerGroupBoxRadioButtons.SuspendLayout();
+            this.questionGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // questionList
@@ -62,6 +62,7 @@
             this.questionList.Name = "questionList";
             this.questionList.Size = new System.Drawing.Size(190, 374);
             this.questionList.TabIndex = 0;
+            this.questionList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.questionList_CellContentClick);
             // 
             // question
             // 
@@ -71,19 +72,80 @@
             this.question.TabIndex = 2;
             this.question.Text = resources.GetString("question.Text");
             // 
-            // questionGroupBoxCheckButtons
+            // answerGroupBoxCheckButtons
             // 
-            this.questionGroupBoxCheckButtons.Controls.Add(this.answerGroupBoxRadioButtons);
-            this.questionGroupBoxCheckButtons.Controls.Add(this.answer4);
-            this.questionGroupBoxCheckButtons.Controls.Add(this.answer3);
-            this.questionGroupBoxCheckButtons.Controls.Add(this.answer2);
-            this.questionGroupBoxCheckButtons.Controls.Add(this.answer1);
-            this.questionGroupBoxCheckButtons.Location = new System.Drawing.Point(43, 151);
-            this.questionGroupBoxCheckButtons.Name = "questionGroupBoxCheckButtons";
-            this.questionGroupBoxCheckButtons.Size = new System.Drawing.Size(708, 165);
-            this.questionGroupBoxCheckButtons.TabIndex = 3;
-            this.questionGroupBoxCheckButtons.TabStop = false;
-            this.questionGroupBoxCheckButtons.Text = "Варианты ответов:";
+            this.answerGroupBoxCheckButtons.Controls.Add(this.answerGroupBoxRadioButtons);
+            this.answerGroupBoxCheckButtons.Controls.Add(this.answer4);
+            this.answerGroupBoxCheckButtons.Controls.Add(this.answer3);
+            this.answerGroupBoxCheckButtons.Controls.Add(this.answer2);
+            this.answerGroupBoxCheckButtons.Controls.Add(this.answer1);
+            this.answerGroupBoxCheckButtons.Enabled = false;
+            this.answerGroupBoxCheckButtons.Location = new System.Drawing.Point(43, 151);
+            this.answerGroupBoxCheckButtons.Name = "answerGroupBoxCheckButtons";
+            this.answerGroupBoxCheckButtons.Size = new System.Drawing.Size(708, 165);
+            this.answerGroupBoxCheckButtons.TabIndex = 3;
+            this.answerGroupBoxCheckButtons.TabStop = false;
+            this.answerGroupBoxCheckButtons.Text = "Варианты ответов:";
+            this.answerGroupBoxCheckButtons.Visible = false;
+            // 
+            // answerGroupBoxRadioButtons
+            // 
+            this.answerGroupBoxRadioButtons.Controls.Add(this.radioButton4);
+            this.answerGroupBoxRadioButtons.Controls.Add(this.radioButton3);
+            this.answerGroupBoxRadioButtons.Controls.Add(this.radioButton2);
+            this.answerGroupBoxRadioButtons.Controls.Add(this.radioButton1);
+            this.answerGroupBoxRadioButtons.Enabled = false;
+            this.answerGroupBoxRadioButtons.Location = new System.Drawing.Point(0, 0);
+            this.answerGroupBoxRadioButtons.Name = "answerGroupBoxRadioButtons";
+            this.answerGroupBoxRadioButtons.Size = new System.Drawing.Size(708, 165);
+            this.answerGroupBoxRadioButtons.TabIndex = 4;
+            this.answerGroupBoxRadioButtons.TabStop = false;
+            this.answerGroupBoxRadioButtons.Text = "Варианты ответов:";
+            this.answerGroupBoxRadioButtons.Visible = false;
+            // 
+            // radioButton4
+            // 
+            this.radioButton4.AutoSize = true;
+            this.radioButton4.Location = new System.Drawing.Point(27, 127);
+            this.radioButton4.Name = "radioButton4";
+            this.radioButton4.Size = new System.Drawing.Size(113, 17);
+            this.radioButton4.TabIndex = 7;
+            this.radioButton4.TabStop = true;
+            this.radioButton4.Text = "Вариант ответа 4";
+            this.radioButton4.UseVisualStyleBackColor = true;
+            // 
+            // radioButton3
+            // 
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Location = new System.Drawing.Point(27, 92);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(113, 17);
+            this.radioButton3.TabIndex = 6;
+            this.radioButton3.TabStop = true;
+            this.radioButton3.Text = "Вариант ответа 3";
+            this.radioButton3.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(27, 60);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(113, 17);
+            this.radioButton2.TabIndex = 5;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "Вариант ответа 2";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(27, 29);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(113, 17);
+            this.radioButton1.TabIndex = 4;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Вариант ответа 1";
+            this.radioButton1.UseVisualStyleBackColor = true;
             // 
             // answer4
             // 
@@ -143,6 +205,7 @@
             this.nextQuestion.TabIndex = 5;
             this.nextQuestion.Text = "Следующий вопрос";
             this.nextQuestion.UseVisualStyleBackColor = true;
+            this.nextQuestion.Click += new System.EventHandler(this.nextQuestion_Click);
             // 
             // questionGroupBox
             // 
@@ -172,6 +235,7 @@
             this.endTest.TabIndex = 7;
             this.endTest.Text = "Завершить тест";
             this.endTest.UseVisualStyleBackColor = true;
+            this.endTest.Click += new System.EventHandler(this.endTest_Click);
             // 
             // time
             // 
@@ -190,63 +254,7 @@
             this.appendixForQestion.TabIndex = 9;
             this.appendixForQestion.Text = "Приложения к вопросу";
             this.appendixForQestion.UseVisualStyleBackColor = true;
-            // 
-            // answerGroupBoxRadioButtons
-            // 
-            this.answerGroupBoxRadioButtons.Controls.Add(this.radioButton4);
-            this.answerGroupBoxRadioButtons.Controls.Add(this.radioButton3);
-            this.answerGroupBoxRadioButtons.Controls.Add(this.radioButton2);
-            this.answerGroupBoxRadioButtons.Controls.Add(this.radioButton1);
-            this.answerGroupBoxRadioButtons.Location = new System.Drawing.Point(0, 0);
-            this.answerGroupBoxRadioButtons.Name = "answerGroupBoxRadioButtons";
-            this.answerGroupBoxRadioButtons.Size = new System.Drawing.Size(708, 165);
-            this.answerGroupBoxRadioButtons.TabIndex = 4;
-            this.answerGroupBoxRadioButtons.TabStop = false;
-            this.answerGroupBoxRadioButtons.Text = "Варианты ответов:";
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(27, 29);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(113, 17);
-            this.radioButton1.TabIndex = 4;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Вариант ответа 1";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(27, 60);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(113, 17);
-            this.radioButton2.TabIndex = 5;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Вариант ответа 2";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            // 
-            // radioButton3
-            // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(27, 92);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(113, 17);
-            this.radioButton3.TabIndex = 6;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "Вариант ответа 3";
-            this.radioButton3.UseVisualStyleBackColor = true;
-            // 
-            // radioButton4
-            // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(27, 127);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(113, 17);
-            this.radioButton4.TabIndex = 7;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "Вариант ответа 4";
-            this.radioButton4.UseVisualStyleBackColor = true;
+            this.appendixForQestion.Click += new System.EventHandler(this.appendixForQestion_Click);
             // 
             // TestingForm
             // 
@@ -255,21 +263,21 @@
             this.ClientSize = new System.Drawing.Size(984, 375);
             this.Controls.Add(this.appendixForQestion);
             this.Controls.Add(this.time);
+            this.Controls.Add(this.answerGroupBoxCheckButtons);
             this.Controls.Add(this.endTest);
             this.Controls.Add(this.questionGroupBox);
             this.Controls.Add(this.nextQuestion);
             this.Controls.Add(this.giveAnswer);
-            this.Controls.Add(this.questionGroupBoxCheckButtons);
             this.Controls.Add(this.questionList);
             this.Name = "TestingForm";
             this.Text = "Форма тестирования";
             ((System.ComponentModel.ISupportInitialize)(this.questionList)).EndInit();
-            this.questionGroupBoxCheckButtons.ResumeLayout(false);
-            this.questionGroupBoxCheckButtons.PerformLayout();
-            this.questionGroupBox.ResumeLayout(false);
-            this.questionGroupBox.PerformLayout();
+            this.answerGroupBoxCheckButtons.ResumeLayout(false);
+            this.answerGroupBoxCheckButtons.PerformLayout();
             this.answerGroupBoxRadioButtons.ResumeLayout(false);
             this.answerGroupBoxRadioButtons.PerformLayout();
+            this.questionGroupBox.ResumeLayout(false);
+            this.questionGroupBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -279,7 +287,7 @@
 
         private System.Windows.Forms.DataGridView questionList;
         private System.Windows.Forms.Label question;
-        private System.Windows.Forms.GroupBox questionGroupBoxCheckButtons;
+        private System.Windows.Forms.GroupBox answerGroupBoxCheckButtons;
         private System.Windows.Forms.CheckBox answer4;
         private System.Windows.Forms.CheckBox answer3;
         private System.Windows.Forms.CheckBox answer2;
