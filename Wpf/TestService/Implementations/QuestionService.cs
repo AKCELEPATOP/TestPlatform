@@ -75,7 +75,7 @@ namespace TestService.Implementations
                             Text=recQ.Text
                             
                         }).ToList(),
-                        Complexity=element.Complexity.ToString(),
+                        Complexity=element.Complexity,
                         CategoryName=element.Category.Name
 
 

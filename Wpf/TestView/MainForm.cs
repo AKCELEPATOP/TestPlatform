@@ -36,11 +36,11 @@ namespace TestView
                     dataGridViewAvailablePatterns.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
 
-                List<TestsViewModel> list =
-                    Task.Run(() => ApiClient.GetRequestData<List<TestsViewModel>>("api/PassedTests/GetList")).Result;
-                if (list != null)
+                List<TestViewModel> listС =
+                    Task.Run(() => ApiClient.GetRequestData<List<TestViewModel>>("api/PassedTests/GetList")).Result;
+                if (listС != null)
                 {
-                    dataGridViewPassedTests.DataSource = list;
+                    dataGridViewPassedTests.DataSource = listС;
                     dataGridViewPassedTests.Columns[0].Visible = false;
                     dataGridViewPassedTests.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }

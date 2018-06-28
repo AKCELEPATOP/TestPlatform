@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
+    <Compile Include="ApplicationRoles.cs" />
     <Compile Include="BindingModels\AnswerBindingModel.cs" />
     <Compile Include="BindingModels\CategoryBindingModel.cs" />
     <Compile Include="BindingModels\GroupBindingModel.cs" />
@@ -66,7 +67,7 @@
     <Compile Include="Implementations\QuestionService.cs" />
     <Compile Include="Interfaces\ICategory.cs" />
     <Compile Include="Interfaces\IGroup.cs" />
-	<Compile Include="BindingModels\PatternBindingModel.cs" />
+    <Compile Include="BindingModels\PatternBindingModel.cs" />
     <Compile Include="BindingModels\PatternCategoriesBindingModel.cs" />
     <Compile Include="BindingModels\PatternQuestionsBindingModel.cs" />
     <Compile Include="BindingModels\QuestionResponseModel.cs" />
@@ -88,16 +89,16 @@
     <Compile Include="ViewModels\CategoryViewModel.cs" />
     <Compile Include="ViewModels\GroupViewModel.cs" />
     <Compile Include="ViewModels\QuestionViewModel.cs" />
+    <Compile Include="ViewModels\ResultOfTestViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
-	<Compile Include="ViewModels\PatternCategoryViewModel.cs" />
+    <Compile Include="ViewModels\PatternCategoryViewModel.cs" />
     <Compile Include="ViewModels\PatternQuestionViewModel.cs" />
     <Compile Include="ViewModels\PatternUsingModel.cs" />
     <Compile Include="ViewModels\PatternViewModel.cs" />
-	<Compile Include="ViewModels\StatCategoryViewModel.cs" />
+    <Compile Include="ViewModels\StatCategoryViewModel.cs" />
     <Compile Include="ViewModels\StatQuestionViewModel.cs" />
     <Compile Include="ViewModels\StatViewModel.cs" />
     <Compile Include="ViewModels\TestViewModel.cs" />
-    <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

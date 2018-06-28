@@ -34,5 +34,6 @@ namespace TestService.ViewModels
 
         [DataMember]
         public List<AnswerViewModel> Answers { get; set; }
+        public string CategoryName { get;  set; }
     }
 }

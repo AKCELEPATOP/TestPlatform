@@ -10,6 +10,7 @@ using Microsoft.Owin.Security.OAuth;
 using Owin;
 using TestRestApi.Providers;
 using TestRestApi.Models;
+using TestService;
 
 namespace TestRestApi
 {
@@ -35,7 +36,7 @@ namespace TestRestApi
             PublicClientId = "self";
             OAuthOptions = new OAuthAuthorizationServerOptions
             {
-                TokenEndpointPath = new PathString("/Token"),
+                TokenEndpointPath = new PathString("/token"),
                 Provider = new ApplicationOAuthProvider(PublicClientId),
                 AuthorizeEndpointPath = new PathString("/api/Account/ExternalLogin"),
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(14),
@@ -44,7 +45,8 @@ namespace TestRestApi
             };
 
             // Включение использования приложением маркера-носителя для аутентификации пользователей
-            app.UseOAuthBearerTokens(OAuthOptions);
+            app.UseOAuthAuthorizationServer(OAuthOptions);
+            app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
 
             // Раскомментируйте приведенные далее строки, чтобы включить вход с помощью сторонних поставщиков входа
             //app.UseMicrosoftAccountAuthentication(

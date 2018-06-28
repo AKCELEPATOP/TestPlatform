@@ -9,11 +9,16 @@ using TestModels;
 
 namespace TestService
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : IdentityDbContext<User>
     {
         public ApplicationDbContext() : base("TestPlatform")
         {
 
+        }
+
+        public static ApplicationDbContext Create()
+        {
+            return new ApplicationDbContext();
         }
 
         public override Task<int> SaveChangesAsync()
@@ -54,6 +59,10 @@ namespace TestService
         public virtual DbSet<UserGroup> UserGroups { get; set; }
 
         public virtual DbSet<PatternCategory> PatternCategories { get; set; }
+
+        public virtual DbSet<Stat> Stats { get; set; }
+
+        public virtual DbSet<PatternQuestion> PatternQuestions { get; set; }
 
     }
 }

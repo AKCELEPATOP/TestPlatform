@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
+using TestModels;
 using TestRestApi.Models;
 
 namespace TestRestApi.Providers
@@ -31,7 +32,7 @@ namespace TestRestApi.Providers
         {
             var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
 
-            ApplicationUser user = await userManager.FindAsync(context.UserName, context.Password);
+            User user = await userManager.FindAsync(context.UserName, context.Password);
 
             if (user == null)
             {
@@ -44,7 +45,7 @@ namespace TestRestApi.Providers
             ClaimsIdentity cookiesIdentity = await user.GenerateUserIdentityAsync(userManager,
                 CookieAuthenticationDefaults.AuthenticationType);
 
-            AuthenticationProperties properties = CreateProperties(user.UserName);
+            AuthenticationProperties properties = CreateProperties(user.UserName, userManager.GetRoles(user.Id).FirstOrDefault());//возможна ошибка получения роли
             AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);
             context.Validated(ticket);
             context.Request.Context.Authentication.SignIn(cookiesIdentity);
@@ -86,11 +87,12 @@ namespace TestRestApi.Providers
             return Task.FromResult<object>(null);
         }
 
-        public static AuthenticationProperties CreateProperties(string userName)
+        public static AuthenticationProperties CreateProperties(string userName, string userRole)
         {
             IDictionary<string, string> data = new Dictionary<string, string>
             {
-                { "userName", userName }
+                { "userName", userName },
+                { "userRole", userRole }
             };
             return new AuthenticationProperties(data);
         }

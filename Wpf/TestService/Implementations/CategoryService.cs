@@ -78,7 +78,7 @@ namespace TestService.Implementations
                             {
                                 Text=recA.Text
                             }).ToList(),
-                            Complexity = recQ.Complexity.ToString(),
+                            Complexity = recQ.Complexity,
                             Text = recQ.Text
                         }).ToList()
                     };

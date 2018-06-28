@@ -18,6 +18,6 @@ namespace TestService.BindingModels
         public string Name { get; set; }
 
         [DataMember]
-        public  List<ApplicationUser> Users { get; set; }
+        public  List<User> Users { get; set; }
     }
 }

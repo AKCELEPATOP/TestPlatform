@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity.Owin;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -103,6 +104,7 @@ namespace TestRestApi.Controllers
         [Route("CheakTest")]
         public async Task<IHttpActionResult> CheakTest(TestResponseModel model)
         {
+            model.UserId = User.Identity.GetUserId();
             var element = await Service.CheakTest(model);
             if (element == null)
             {
