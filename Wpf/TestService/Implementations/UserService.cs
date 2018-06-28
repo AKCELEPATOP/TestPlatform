@@ -16,14 +16,16 @@ namespace TestService.Implementations
     {
         private ApplicationDbContext context;
 
-        public UserService(ApplicationDbContext context)
+        private UserManager<User> userManager;
+
+        public UserService(ApplicationDbContext context, UserManager<User> userManager)
         {
             this.context = context;
         }
 
-        public static UserService Create(ApplicationDbContext context)
+        public static UserService Create(ApplicationDbContext context, UserManager<User> userManager)
         {
-            return new UserService(context);
+            return new UserService(context, userManager);
         }
 
         public async Task AddElement(UserBindingModel model, UserManager<User> manager)
@@ -45,7 +47,7 @@ namespace TestService.Implementations
             {
                 throw new Exception("Элемент не найден");
             }
-            if (!element.Roles.Select(rec => rec.RoleId).Contains(ApplicationRoles.User))
+            if (!userManager.GetRoles(element.Id).FirstOrDefault().Equals(ApplicationRoles.User))
             {
                 throw new Exception("Элемент не является Пользователем");
             }
@@ -77,7 +79,7 @@ namespace TestService.Implementations
             {
                 throw new Exception("Нет данных");
             }
-            if (!userOld.Roles.Select(rec => rec.RoleId).Contains(ApplicationRoles.User))
+            if (!userManager.GetRoles(userOld.Id).FirstOrDefault().Equals(ApplicationRoles.User))
             {
                 throw new Exception("Элемент не является Пользователем");
             }
@@ -89,7 +91,7 @@ namespace TestService.Implementations
 
         public async Task<List<UserViewModel>> GetList()
         {
-            return await context.Users/*.Where(rec => rec.Roles.Select(r => r.RoleId).Contains(ApplicationRoles.User))*/.Include(r => r.UserGroup)
+            return await context.Users.Where(rec => userManager.GetRoles(rec.Id).FirstOrDefault().Equals(ApplicationRoles.User)).Include(r => r.UserGroup)
                 .Select(rec => new UserViewModel
             {
                 Id = rec.Id,
@@ -106,7 +108,7 @@ namespace TestService.Implementations
             {
                 throw new Exception("Элемент не найден");
             }
-            if (!user.Roles.Select(rec => rec.RoleId).Contains(ApplicationRoles.User))
+            if (!userManager.GetRoles(user.Id).FirstOrDefault().Equals(ApplicationRoles.User))
             {
                 throw new Exception("Элемент не является Пользователем");
             }

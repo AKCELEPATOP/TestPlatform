@@ -56,7 +56,7 @@ namespace TestRestApi.Controllers
         {
             get
             {
-                return _service ?? AdminService.Create(Context);
+                return _service ?? AdminService.Create(Context, UserManager);
             }
             private set
             {

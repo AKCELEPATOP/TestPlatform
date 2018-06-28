@@ -53,7 +53,7 @@ namespace TestRestApi.Controllers
         {
             get
             {
-                return _service ?? UserService.Create(Context);
+                return _service ?? UserService.Create(Context, UserManager);
             }
             private set
             {

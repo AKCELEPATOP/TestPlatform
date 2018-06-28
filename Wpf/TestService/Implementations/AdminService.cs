@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -15,14 +16,17 @@ namespace TestService.Implementations
     {
         private ApplicationDbContext context;
 
-        public AdminService(ApplicationDbContext context)
+        private UserManager<User> userManager;
+
+        public AdminService(ApplicationDbContext context, UserManager<User> userManager)
         {
             this.context = context;
+            this.userManager = userManager;
         }
 
-        public static AdminService Create(ApplicationDbContext context)
+        public static AdminService Create(ApplicationDbContext context, UserManager<User> userManager)
         {
-            return new AdminService(context);
+            return new AdminService(context, userManager);
         }
 
         public async Task DelElement(string id)
@@ -32,7 +36,7 @@ namespace TestService.Implementations
             {
                 throw new Exception("Элемент не найден");
             }
-            if (!element.Roles.Select(rec => rec.RoleId).Contains(ApplicationRoles.Admin))
+            if (!userManager.GetRoles(element.Id).FirstOrDefault().Equals(ApplicationRoles.Admin))
             {
                 throw new Exception("Элемент не является Администратором");
             }
@@ -48,7 +52,7 @@ namespace TestService.Implementations
             {
                 throw new Exception("Элемент не найден");
             }
-            if (!element.Roles.Select(rec => rec.RoleId).Contains(ApplicationRoles.Admin))
+            if (!userManager.GetRoles(element.Id).FirstOrDefault().Equals(ApplicationRoles.Admin))
             {
                 throw new Exception("Элемент не является Администратором");
             }
@@ -63,7 +67,7 @@ namespace TestService.Implementations
 
         public async Task<List<UserViewModel>> GetList()
         {
-            List<UserViewModel> result = await context.Users/*.Where(rec => rec.Roles.Select(r => r.RoleId).Contains(ApplicationRoles.Admin))*/
+            List<UserViewModel> result = await context.Users.Where(rec => userManager.GetRoles(rec.Id).FirstOrDefault().Equals(ApplicationRoles.Admin))
                 .Select(rec => new UserViewModel
                 {
                     Id = rec.Id,
@@ -82,7 +86,7 @@ namespace TestService.Implementations
             {
                 throw new Exception("Нет данных");
             }
-            if (!userOld.Roles.Select(rec => rec.RoleId).Contains(ApplicationRoles.Admin))
+            if (!userManager.GetRoles(userOld.Id).FirstOrDefault().Equals(ApplicationRoles.Admin))
             {
                 throw new Exception("Элемент не является Пользователем");
             }
