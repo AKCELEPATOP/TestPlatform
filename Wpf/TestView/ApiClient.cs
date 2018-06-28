@@ -56,6 +56,11 @@ namespace TestView
             return await client.PostAsJsonAsync(requestUrl, model);
         }
 
+        public async static Task<HttpResponseMessage> DelRequest(string requestUrl)
+        {
+            return await client.DeleteAsync(requestUrl);
+        }
+
         public static async Task<T> GetRequestData<T>(string requestUrl)
         {
             HttpResponseMessage response = Task.Run(() => GetRequest(requestUrl)).Result;
@@ -70,7 +75,22 @@ namespace TestView
             }
         }
 
-    
+        public static void PutRequestData<T>(string requestUrl, T model)
+        {
+            HttpResponseMessage response = Task.Run(() => PutRequest(requestUrl, model)).Result;
+            if (!response.IsSuccessStatusCode)
+            {
+                string error = response.Content.ReadAsStringAsync().Result;
+                var errorMessage = JsonConvert.DeserializeObject<HttpErrorMessage>(error);
+                throw new Exception(errorMessage.Message + " " + (errorMessage.MessageDetail ?? "") +
+                    " " + (errorMessage.ExceptionMessage ?? ""));
+            }
+        }
+
+        public async static Task<HttpResponseMessage> PutRequest<T>(string requestUrl, T model)
+        {
+            return await client.PutAsJsonAsync(requestUrl, model);
+        }
 
         public static async Task<U> PostRequestData<T, U>(string requestUrl, T model)
         {

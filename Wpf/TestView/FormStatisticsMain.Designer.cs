@@ -1,4 +1,4 @@
-﻿namespace SummerIntensiveInterface
+﻿namespace TestView
 {
     partial class FormStatisticsMain
     {

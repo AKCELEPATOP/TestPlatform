@@ -16,5 +16,18 @@ namespace TestView
         {
             InitializeComponent();
         }
+
+        private void registrate_Click(object sender, EventArgs e)
+        {          
+            if (textBoxPassword1.Text == textBoxPassword2.Text)
+            {
+                string UserPassword = textBoxLogin.Text;
+                string UserLogin = textBoxLogin.Text;
+            }
+            else
+            {
+                DialogResult result = MessageBox.Show("Пароли не совпадают", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

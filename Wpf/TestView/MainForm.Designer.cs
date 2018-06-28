@@ -1,6 +1,6 @@
 ﻿namespace TestView
 {
-    partial class Главный_экран
+    partial class FormMain
     {
         /// <summary>
         /// Required designer variable.
@@ -58,6 +58,7 @@
             this.dataGridViewAvailablePatterns.Name = "dataGridViewAvailablePatterns";
             this.dataGridViewAvailablePatterns.Size = new System.Drawing.Size(303, 279);
             this.dataGridViewAvailablePatterns.TabIndex = 0;
+            this.dataGridViewAvailablePatterns.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewAvailablePatterns_CellContentClick);
             // 
             // label1
             // 
@@ -93,11 +94,12 @@
             this.buttonChangeUser.TabIndex = 12;
             this.buttonChangeUser.Text = "Сменить";
             this.buttonChangeUser.UseVisualStyleBackColor = true;
+            this.buttonChangeUser.Click += new System.EventHandler(this.buttonChangeUser_Click);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(207, 9);
+            this.label4.Location = new System.Drawing.Point(222, 9);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(132, 13);
             this.label4.TabIndex = 11;
@@ -162,6 +164,7 @@
             this.buttonExit.TabIndex = 19;
             this.buttonExit.Text = "Выход";
             this.buttonExit.UseVisualStyleBackColor = true;
+            this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);
             // 
             // dataGridViewPassedTests
             // 
@@ -170,6 +173,7 @@
             this.dataGridViewPassedTests.Name = "dataGridViewPassedTests";
             this.dataGridViewPassedTests.Size = new System.Drawing.Size(232, 279);
             this.dataGridViewPassedTests.TabIndex = 23;
+            this.dataGridViewPassedTests.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPassedTests_CellContentClick);
             // 
             // label2
             // 
@@ -213,11 +217,13 @@
             this.buttonStatistic.TabIndex = 28;
             this.buttonStatistic.Text = "Общая статистика";
             this.buttonStatistic.UseVisualStyleBackColor = true;
+            this.buttonStatistic.Click += new System.EventHandler(this.buttonStatistic_Click);
             // 
-            // Главный_экран
+            // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(781, 378);
             this.Controls.Add(this.buttonStatistic);
             this.Controls.Add(this.buttonResultOfTest);
@@ -233,8 +239,9 @@
             this.Controls.Add(this.buttonBeginTest);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridViewAvailablePatterns);
-            this.Name = "Главный_экран";
+            this.Name = "FormMain";
             this.Text = "Главный экран";
+            this.Load += new System.EventHandler(this.FormMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAvailablePatterns)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();

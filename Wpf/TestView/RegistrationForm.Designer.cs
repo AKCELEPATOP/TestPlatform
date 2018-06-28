@@ -64,6 +64,7 @@
             this.registrate.TabIndex = 3;
             this.registrate.Text = "Зарегистрировать";
             this.registrate.UseVisualStyleBackColor = true;
+            this.registrate.Click += new System.EventHandler(this.registrate_Click);
             // 
             // textBoxLogin
             // 

@@ -56,6 +56,7 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http" />
@@ -258,6 +259,16 @@
     <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TestModels\TestModels.csproj">
+      <Project>{39C94E8F-08D1-4AF0-85B8-6B216872ED74}</Project>
+      <Name>TestModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestService\TestService.csproj">
+      <Project>{C5A966F6-0932-4691-B1D5-3E7F0F21932F}</Project>
+      <Name>TestService</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

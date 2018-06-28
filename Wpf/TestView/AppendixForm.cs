@@ -15,6 +15,12 @@ namespace TestView
         public AppendixForm()
         {
             InitializeComponent();
+            Initialize();
+        }
+
+        private void Initialize()
+        {
+            //pictureBox1=
         }
     }
 }
