@@ -5,31 +5,28 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestModels
+namespace TestService.ViewModels
 {
     [DataContract]
-    public class PatternCategory
+    public class PatternViewModel
     {
         [DataMember]
         public int Id { get; set; }
 
         [DataMember]
-        public double Complex { get; set; }
-
-        [DataMember]
-        public double Middle { get; set; }
+        public string Name { get; set; }
 
         [DataMember]
         public int Count { get; set; }
 
         [DataMember]
-        public int PatternId { get; set; }
+        public int UserGroupId { get; set; }
 
         [DataMember]
-        public int CategoryId { get; set; }
+        public string UserGroupName { get; set; }
 
-        public virtual Pattern Pattern  { get; set; }
+        [DataMember]
+        public List<PatternCategoryViewModel> PatternCategories { get; set; }
 
-        public virtual Category Category { get; set; }
     }
 }

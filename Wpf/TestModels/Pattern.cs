@@ -17,6 +17,11 @@ namespace TestModels
         [DataMember]
         public string Name { get; set; }
 
+        [DataMember]
+        public int? UserGroupId { get; set; }
+
+        public virtual UserGroup UserGroup { get; set; }
+
         [ForeignKey("PatternId")]
         public virtual List<PatternCategory> PatternCategories { get; set; }
 
