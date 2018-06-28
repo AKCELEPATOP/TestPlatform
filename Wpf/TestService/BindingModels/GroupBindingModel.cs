@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using TestModels;
 
 namespace TestService.BindingModels
 {
@@ -15,5 +16,8 @@ namespace TestService.BindingModels
 
         [DataMember]
         public string Name { get; set; }
+
+        [DataMember]
+        public  List<ApplicationUser> Users { get; set; }
     }
 }

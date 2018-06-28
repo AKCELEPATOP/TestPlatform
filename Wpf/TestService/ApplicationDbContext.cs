@@ -50,6 +50,8 @@ namespace TestService
         public virtual DbSet<Category> Categories { get; set; }
 
         public virtual DbSet<Pattern> Patterns { get; set; }
+                                
+        public virtual DbSet<UserGroup> UserGroups { get; set; }
 
         public virtual DbSet<PatternCategory> PatternCategories { get; set; }
 
