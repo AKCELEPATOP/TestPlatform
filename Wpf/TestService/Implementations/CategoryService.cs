@@ -67,21 +67,21 @@ namespace TestService.Implementations
                 else
                 {
                     CategoryViewModel element = new CategoryViewModel
-                     ({
+                    {
                         Id = result.Id,
                         Name = result.Name,
                         Questions = result.Questions.Select(recQ => new QuestionViewModel
-                        ({
+                        {
                             Id = recQ.Id,
                             Active = recQ.Active,
                             Answers = recQ.Answers.Select(recA => new AnswerViewModel
-                              ({
+                            {
                                 // Тут чё-то будет
                             }).ToList(),
                             Complexity = recQ.Complexity.ToString(),
                             Text = recQ.Text
                         }).ToList()
-                    });
+                    };
                     return element;
                 }
 
