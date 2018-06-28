@@ -19,5 +19,9 @@ namespace TestService.Interfaces
         Task<PatternViewModel> Get(int id);
 
         Task<List<PatternViewModel>> GetList();
+
+        Task<TestViewModel> CreateTest(int patternId);
+
+        Task<StatViewModel> CheakTest(TestResponseModel model);
     }
 }

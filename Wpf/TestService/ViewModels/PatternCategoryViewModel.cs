@@ -20,6 +20,9 @@ namespace TestService.ViewModels
         public int CategoryId { get; set; }
 
         [DataMember]
+        public int Count { get; set; }
+
+        [DataMember]
         public double Complex { get; set; }
 
         [DataMember]

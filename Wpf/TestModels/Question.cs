@@ -20,6 +20,9 @@ namespace TestModels
         public string Text { get; set; }
 
         [DataMember]
+        public long Time { get; set; }
+
+        [DataMember]
         [Required]
         public QuestionComplexity Complexity { get; set; }
 

@@ -23,9 +23,6 @@ namespace TestService.ViewModels
         public string QuestionText { get; set; }
 
         [DataMember]
-        public string CategoryName { get; set; }
-
-        [DataMember]
         public string Complexity { get; set; }
     }
 }
