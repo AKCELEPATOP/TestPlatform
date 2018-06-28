@@ -59,9 +59,12 @@
     <Compile Include="BindingModels\AnswerBindingModel.cs" />
     <Compile Include="BindingModels\CategoryBindingModel.cs" />
     <Compile Include="BindingModels\GroupBindingModel.cs" />
+    <Compile Include="BindingModels\QuestionBindingModel.cs" />
     <Compile Include="BindingModels\UserBindingModel.cs" />
     <Compile Include="Implementations\CategoryService.cs" />
+    <Compile Include="Implementations\QuestionService.cs" />
     <Compile Include="Interfaces\ICategory.cs" />
+    <Compile Include="Interfaces\IQuestion.cs" />
     <Compile Include="Migrations\201806271641389_FirstMigration.cs" />
     <Compile Include="Migrations\201806271641389_FirstMigration.Designer.cs">
       <DependentUpon>201806271641389_FirstMigration.cs</DependentUpon>

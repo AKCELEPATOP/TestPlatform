@@ -76,7 +76,7 @@ namespace TestService.Implementations
                             Active = recQ.Active,
                             Answers = recQ.Answers.Select(recA => new AnswerViewModel
                             {
-                                // Тут чё-то будет
+                                Text=recA.Text
                             }).ToList(),
                             Complexity = recQ.Complexity.ToString(),
                             Text = recQ.Text

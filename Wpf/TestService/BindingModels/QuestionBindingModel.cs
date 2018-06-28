@@ -4,11 +4,12 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using TestModels;
 
-namespace TestService.ViewModels
+namespace TestService.BindingModels
 {
     [DataContract]
-    public class QuestionViewModel
+    public class QuestionBindingModel
     {
         [DataMember]
         public int Id { get; set; }
@@ -17,15 +18,17 @@ namespace TestService.ViewModels
         public string Text { get; set; }
 
         [DataMember]
-        public string Complexity { get; set; }
+        public long Time { get; set; }
 
         [DataMember]
-        public string CategoryName { get; set; }
+        public QuestionComplexity Complexity { get; set; }
 
         [DataMember]
         public bool Active { get; set; }
 
+        public virtual List<Answer> Answers { get; set; }
+
         [DataMember]
-        public List<AnswerViewModel> Answers { get; set; }
+        public int CategoryId { get; set; }
     }
 }
