@@ -18,6 +18,6 @@ namespace TestModels
         public string Name { get; set; }
 
         [ForeignKey("GroupId")]
-        public virtual List<ApplicationUser> Users { get; set; }
+        public virtual List<User> Users { get; set; }
     }
 }

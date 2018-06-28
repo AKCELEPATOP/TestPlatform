@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace TestModels
 {
     [DataContract]
-    public class ApplicationUser : IdentityUser
+    public class User : IdentityUser
     {
         [DataMember]
         public override string Id { get; set; }
@@ -37,7 +37,7 @@ namespace TestModels
         [DataMember]
         public virtual UserGroup Group { get; set; }
 
-        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
+        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager, string authenticationType)
         {
             // Обратите внимание, что authenticationType должен совпадать с типом, определенным в CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync(this, authenticationType);

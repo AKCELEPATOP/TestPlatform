@@ -9,14 +9,14 @@ using TestModels;
 
 namespace TestService
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : IdentityDbContext<User>
     {
         public ApplicationDbContext() : base("TestPlatform")
         {
 
         }
 
-        public ApplicationDbContext Create()
+        public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
