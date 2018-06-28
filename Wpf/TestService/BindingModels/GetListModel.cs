@@ -5,22 +5,21 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestService.ViewModels
+namespace TestService.BindingModels
 {
     [DataContract]
-    public class StatViewModel
+    public class GetListModel
     {
         [DataMember]
-        public List<StatCategoryViewModel> StatCategories { get; set; }
+        public int Skip { get; set; }
 
         [DataMember]
-        public int Total { get; set; }
+        public int Take { get; set; }
 
         [DataMember]
-        public int Right { get; set; }
+        public string UserId { get; set; }
 
         [DataMember]
-        public string PatternName { get; set; }
-
+        public int Id { get; set; }
     }
 }

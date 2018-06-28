@@ -59,12 +59,14 @@
     <Compile Include="ApplicationRoles.cs" />
     <Compile Include="BindingModels\AnswerBindingModel.cs" />
     <Compile Include="BindingModels\CategoryBindingModel.cs" />
+    <Compile Include="BindingModels\GetListModel.cs" />
     <Compile Include="BindingModels\GroupBindingModel.cs" />
     <Compile Include="BindingModels\QuestionBindingModel.cs" />
     <Compile Include="BindingModels\UserBindingModel.cs" />
     <Compile Include="Implementations\CategoryService.cs" />
     <Compile Include="Implementations\GroupService.cs" />
     <Compile Include="Implementations\QuestionService.cs" />
+    <Compile Include="Implementations\StatService.cs" />
     <Compile Include="Interfaces\ICategory.cs" />
     <Compile Include="Interfaces\IGroup.cs" />
     <Compile Include="BindingModels\PatternBindingModel.cs" />
@@ -77,6 +79,7 @@
     <Compile Include="Implementations\UserService.cs" />
     <Compile Include="Interfaces\IAdminService.cs" />
     <Compile Include="Interfaces\IPatternService.cs" />
+    <Compile Include="Interfaces\IStatService.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="Interfaces\IQuestion.cs" />
     <Compile Include="Migrations\201806271641389_FirstMigration.cs" />
@@ -90,6 +93,7 @@
     <Compile Include="ViewModels\GroupViewModel.cs" />
     <Compile Include="ViewModels\QuestionViewModel.cs" />
     <Compile Include="ViewModels\ResultOfTestViewModel.cs" />
+    <Compile Include="ViewModels\StatChartViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
     <Compile Include="ViewModels\PatternCategoryViewModel.cs" />
     <Compile Include="ViewModels\PatternQuestionViewModel.cs" />
