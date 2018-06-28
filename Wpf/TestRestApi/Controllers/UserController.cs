@@ -73,7 +73,7 @@ namespace TestRestApi.Controllers
         [Route("GetList")]
         public async Task<IHttpActionResult> GetList()
         {
-            var list = await Service.GetUsers();
+            var list = await Service.GetList();
             if (list == null)
             {
                 InternalServerError(new Exception("Нет данных"));

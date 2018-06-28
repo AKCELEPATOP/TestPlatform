@@ -22,7 +22,7 @@ namespace TestService.ViewModels
         [DataMember]
         public bool Active { get; set; }
 
-        [DataMember]
-        public List<AnswerViewModel> Answers { get; set; }
+        //[DataMember]
+        //public List<AnswerViewModel> Answers { get; set; }
     }
 }
