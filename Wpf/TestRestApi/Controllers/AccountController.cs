@@ -17,6 +17,7 @@ using TestModels;
 using TestRestApi.Models;
 using TestRestApi.Providers;
 using TestRestApi.Results;
+using TestService;
 using TestService.BindingModels;
 
 namespace TestRestApi.Controllers
@@ -205,7 +206,7 @@ namespace TestRestApi.Controllers
 
             if (result.Succeeded)
             {
-                await UserManager.AddToRoleAsync(user.Id, ApplicationRoles.User.ToString());
+                await UserManager.AddToRoleAsync(user.Id, ApplicationRoles.User);
                 return Ok();
             }
 

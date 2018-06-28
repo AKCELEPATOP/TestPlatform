@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -25,23 +26,31 @@ namespace TestService.Implementations
             return new UserService(context);
         }
 
-        public Task AddElement(UserBindingModel model)
+        public async Task AddElement(UserBindingModel model, UserManager<User> manager)
         {
-            throw new NotImplementedException();
+            User user = new User
+            {
+                FIO = model.FIO,
+                GroupId = model.GroupId,
+                UserName = model.UserName,
+                PasswordHash = model.PasswordHash
+            };
+            await manager.CreateAsync(user, user.PasswordHash);
         }
 
         public async Task DelElement(string id)
         {
             User element = await context.Users.FirstOrDefaultAsync(rec => rec.Id == id);
-            if(element != null)
-            {
-                context.Users.Remove(element);
-                await context.SaveChangesAsync();
-            }
-            else
+            if(element == null)
             {
                 throw new Exception("Элемент не найден");
             }
+            if (!element.Roles.Select(rec => rec.RoleId).Contains(ApplicationRoles.User))
+            {
+                throw new Exception("Элемент не является Пользователем");
+            }
+            context.Users.Remove(element);
+            await context.SaveChangesAsync();
         }
 
         public async Task<UserViewModel> Get(string id)
@@ -61,22 +70,48 @@ namespace TestService.Implementations
             throw new Exception("Элемент не найден");
         }
 
+        public async Task UpdElement(UserBindingModel model)
+        {
+            var userOld = await context.Users.FirstOrDefaultAsync(rec => rec.Id == model.Id);
+            if (userOld == null)
+            {
+                throw new Exception("Нет данных");
+            }
+            if (!userOld.Roles.Select(rec => rec.RoleId).Contains(ApplicationRoles.User))
+            {
+                throw new Exception("Элемент не является Пользователем");
+            }
+            userOld.FIO = model.FIO;
+            userOld.UserName = model.UserName;
+            userOld.GroupId = model.GroupId;
+            await context.SaveChangesAsync();
+        }
+
         public async Task<List<UserViewModel>> GetList()
         {
-            List<UserViewModel> result = await context.Users.Include(r => r.Group).Select(rec => new UserViewModel
+            return await context.Users.Where(rec => rec.Roles.Select(r => r.RoleId).Contains(ApplicationRoles.User)).Include(r => r.Group)
+                .Select(rec => new UserViewModel
             {
                 Id = rec.Id,
                 FIO = rec.FIO,
                 GroupName = rec.Group.Name,
                 UserName = rec.UserName
-            })
-                .ToListAsync();
-            return result;
+            }).ToListAsync();
         }
 
-        public Task UpdElement(UserBindingModel model)
+        public async Task SetGroup(string userId, int groupId)
         {
-            throw new NotImplementedException();
+            User user = await context.Users.FirstOrDefaultAsync(rec => rec.Id == userId);
+            if(user == null)
+            {
+                throw new Exception("Элемент не найден");
+            }
+            if (!user.Roles.Select(rec => rec.RoleId).Contains(ApplicationRoles.User))
+            {
+                throw new Exception("Элемент не является Пользователем");
+            }
+            user.GroupId = groupId;
+            await context.SaveChangesAsync();
         }
     }
 }

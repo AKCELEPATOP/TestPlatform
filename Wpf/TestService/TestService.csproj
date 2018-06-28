@@ -58,7 +58,9 @@
     <Compile Include="ApplicationRoles.cs" />
     <Compile Include="BindingModels\CategoryBindingModel.cs" />
     <Compile Include="BindingModels\UserBindingModel.cs" />
+    <Compile Include="Implementations\AdminService.cs" />
     <Compile Include="Implementations\UserService.cs" />
+    <Compile Include="Interfaces\IAdminService.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="Migrations\201806271641389_FirstMigration.cs" />
     <Compile Include="Migrations\201806271641389_FirstMigration.Designer.cs">
