@@ -62,9 +62,9 @@
     <Compile Include="Implementations\UserService.cs" />
     <Compile Include="Interfaces\IAdminService.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
-    <Compile Include="Migrations\201806271641389_FirstMigration.cs" />
-    <Compile Include="Migrations\201806271641389_FirstMigration.Designer.cs">
-      <DependentUpon>201806271641389_FirstMigration.cs</DependentUpon>
+    <Compile Include="Migrations\201806280748126_firstMigration.cs" />
+    <Compile Include="Migrations\201806280748126_firstMigration.Designer.cs">
+      <DependentUpon>201806280748126_firstMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -83,10 +83,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201806271641389_FirstMigration.resx">
-      <DependentUpon>201806271641389_FirstMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201806280748126_firstMigration.resx">
+      <DependentUpon>201806280748126_firstMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

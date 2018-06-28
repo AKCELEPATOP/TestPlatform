@@ -16,7 +16,7 @@ using TestService.Interfaces;
 
 namespace TestRestApi.Controllers
 {
-    [Authorize(Roles = ApplicationRoles.SuperAdmin)]
+    //[Authorize(Roles = ApplicationRoles.SuperAdmin)]
     [RoutePrefix("api/Admin")]
     public class AdminController : ApiController
     {

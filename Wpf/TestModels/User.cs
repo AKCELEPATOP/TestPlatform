@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Security.Claims;
@@ -32,10 +33,12 @@ namespace TestModels
         public override string SecurityStamp { get; set; }
 
         [DataMember]
-        public int GroupId { get; set; }
+        public int? UserGroupId { get; set; }
 
-        [DataMember]
-        public virtual UserGroup Group { get; set; }
+        public virtual UserGroup UserGroup { get; set; }
+
+        [ForeignKey("UserId")]
+        public virtual List<Stat> Stats { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager, string authenticationType)
         {

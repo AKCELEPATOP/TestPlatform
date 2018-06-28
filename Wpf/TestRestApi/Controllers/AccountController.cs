@@ -200,7 +200,7 @@ namespace TestRestApi.Controllers
                 FIO = model.FIO,
                 UserName = model.UserName,
                 PasswordHash = model.PasswordHash,
-                GroupId = model.GroupId,
+                UserGroupId = model.GroupId,
             };
             IdentityResult result = await UserManager.CreateAsync(user, user.PasswordHash);
 

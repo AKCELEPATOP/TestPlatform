@@ -30,7 +30,7 @@ namespace TestService.Migrations
             {
                 FIO = "Default",
                 UserName = "Admin",
-                PasswordHash = "Admin"
+                PasswordHash = "Admin777"
             };
 
             manager.Create(user, user.PasswordHash);

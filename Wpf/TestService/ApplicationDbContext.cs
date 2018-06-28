@@ -31,6 +31,12 @@ namespace TestService
 
         public virtual DbSet<PatternCategory> PatternCategories { get; set; }
 
+        public virtual DbSet<UserGroup> UserGroups { get; set; }
+
+        public virtual DbSet<Stat> Stats { get; set; }
+
+        public virtual DbSet<PatternQuestion> PatternQuestions{ get; set; }
+
         public override Task<int> SaveChangesAsync()
         {
             try

@@ -17,7 +17,7 @@ namespace TestModels
         [DataMember]
         public string Name { get; set; }
 
-        [ForeignKey("GroupId")]
+        [ForeignKey("UserGroupId")]
         public virtual List<User> Users { get; set; }
     }
 }

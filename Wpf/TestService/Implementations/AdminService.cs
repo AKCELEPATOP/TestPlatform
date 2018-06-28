@@ -42,7 +42,7 @@ namespace TestService.Implementations
 
         public async Task<UserViewModel> Get(string id)
         {
-            User element = await context.Users.Include(rec => rec.Group).FirstOrDefaultAsync(rec => rec.Id == id);
+            User element = await context.Users.Include(rec => rec.UserGroup).FirstOrDefaultAsync(rec => rec.Id == id);
 
             if (element == null)
             {
@@ -57,18 +57,18 @@ namespace TestService.Implementations
                 Id = element.Id,
                 FIO = element.FIO,
                 UserName = element.UserName,
-                GroupName = element.Group.Name
+                GroupName = element.UserGroup.Name
             };
         }
 
         public async Task<List<UserViewModel>> GetList()
         {
-            List<UserViewModel> result = await context.Users.Where(rec => rec.Roles.Select(r => r.RoleId).Contains(ApplicationRoles.Admin))
+            List<UserViewModel> result = await context.Users/*.Where(rec => rec.Roles.Select(r => r.RoleId).Contains(ApplicationRoles.Admin))*/
                 .Select(rec => new UserViewModel
                 {
                     Id = rec.Id,
                     FIO = rec.FIO,
-                    GroupName = rec.Group.Name,
+                    GroupName = rec.UserGroup.Name,
                     UserName = rec.UserName
                 })
                 .ToListAsync();
@@ -88,7 +88,7 @@ namespace TestService.Implementations
             }
             userOld.FIO = model.FIO;
             userOld.UserName = model.UserName;
-            userOld.GroupId = model.GroupId;
+            userOld.UserGroupId = model.GroupId;
             await context.SaveChangesAsync();
         }
     }

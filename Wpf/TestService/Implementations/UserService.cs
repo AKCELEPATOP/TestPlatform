@@ -31,7 +31,7 @@ namespace TestService.Implementations
             User user = new User
             {
                 FIO = model.FIO,
-                GroupId = model.GroupId,
+                UserGroupId = model.GroupId,
                 UserName = model.UserName,
                 PasswordHash = model.PasswordHash
             };
@@ -55,7 +55,7 @@ namespace TestService.Implementations
 
         public async Task<UserViewModel> Get(string id)
         {
-            User element = await context.Users.Include(rec=>rec.Group).FirstOrDefaultAsync(rec => rec.Id == id);
+            User element = await context.Users.Include(rec=>rec.UserGroup).FirstOrDefaultAsync(rec => rec.Id == id);
 
             if (element != null)
             {
@@ -64,7 +64,7 @@ namespace TestService.Implementations
                     Id = element.Id,
                     FIO = element.FIO,
                     UserName = element.UserName,
-                    GroupName = element.Group.Name
+                    GroupName = element.UserGroup.Name
                 };
             }
             throw new Exception("Элемент не найден");
@@ -83,18 +83,18 @@ namespace TestService.Implementations
             }
             userOld.FIO = model.FIO;
             userOld.UserName = model.UserName;
-            userOld.GroupId = model.GroupId;
+            userOld.UserGroupId = model.GroupId;
             await context.SaveChangesAsync();
         }
 
         public async Task<List<UserViewModel>> GetList()
         {
-            return await context.Users.Where(rec => rec.Roles.Select(r => r.RoleId).Contains(ApplicationRoles.User)).Include(r => r.Group)
+            return await context.Users/*.Where(rec => rec.Roles.Select(r => r.RoleId).Contains(ApplicationRoles.User))*/.Include(r => r.UserGroup)
                 .Select(rec => new UserViewModel
             {
                 Id = rec.Id,
                 FIO = rec.FIO,
-                GroupName = rec.Group.Name,
+                GroupName = rec.UserGroup.Name,
                 UserName = rec.UserName
             }).ToListAsync();
         }
@@ -110,7 +110,7 @@ namespace TestService.Implementations
             {
                 throw new Exception("Элемент не является Пользователем");
             }
-            user.GroupId = groupId;
+            user.UserGroupId = groupId;
             await context.SaveChangesAsync();
         }
     }

@@ -23,5 +23,6 @@ namespace TestService.Interfaces
         Task<List<UserViewModel>> GetList();
 
         Task SetGroup(string userId, int groupId);
+
     }
 }
