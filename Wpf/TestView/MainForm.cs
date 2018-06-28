@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Набросок_дизайна;
+using TestView;
 using TestService.ViewModels;
 
 namespace TestView

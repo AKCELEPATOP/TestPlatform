@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TestView;
 
-namespace Набросок_дизайна
+namespace TestView
 {
     public partial class FormAuthorization : Form
     {

@@ -1,4 +1,4 @@
-﻿namespace Набросок_дизайна
+﻿namespace TestView
 {
     partial class FormAuthorization
     {
