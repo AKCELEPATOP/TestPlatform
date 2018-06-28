@@ -4,35 +4,37 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
-using TestModels;
 
 namespace TestService.ViewModels
 {
     [DataContract]
-    public class QuestionViewModel
+    public class PatternCategoryViewModel
     {
         [DataMember]
         public int Id { get; set; }
 
         [DataMember]
+        public int PatternId { get; set; }
+
+        [DataMember]
         public int CategoryId { get; set; }
 
         [DataMember]
-        public string Text { get; set; }
+        public int Count { get; set; }
 
         [DataMember]
-        public QuestionComplexity Complexity { get; set; }
+        public double Complex { get; set; }
 
         [DataMember]
-        public string ComplexityName { get; set; }
+        public double Middle { get; set; }
 
         [DataMember]
-        public long Time { get; set; }
+        public double Easy { get; set; }
 
         [DataMember]
-        public bool Active { get; set; }
+        public string CategoryName { get; set; }
 
         [DataMember]
-        public List<AnswerViewModel> Answers { get; set; }
+        public List<PatternQuestionViewModel> PatternQuestions { get; set; }
     }
 }

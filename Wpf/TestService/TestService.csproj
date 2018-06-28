@@ -66,6 +66,17 @@
     <Compile Include="Implementations\QuestionService.cs" />
     <Compile Include="Interfaces\ICategory.cs" />
     <Compile Include="Interfaces\IGroup.cs" />
+	<Compile Include="BindingModels\PatternBindingModel.cs" />
+    <Compile Include="BindingModels\PatternCategoriesBindingModel.cs" />
+    <Compile Include="BindingModels\PatternQuestionsBindingModel.cs" />
+    <Compile Include="BindingModels\QuestionResponseModel.cs" />
+    <Compile Include="BindingModels\TestResponseModel.cs" />
+    <Compile Include="Implementations\AdminService.cs" />
+    <Compile Include="Implementations\PatternService.cs" />
+    <Compile Include="Implementations\UserService.cs" />
+    <Compile Include="Interfaces\IAdminService.cs" />
+    <Compile Include="Interfaces\IPatternService.cs" />
+    <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="Interfaces\IQuestion.cs" />
     <Compile Include="Migrations\201806271641389_FirstMigration.cs" />
     <Compile Include="Migrations\201806271641389_FirstMigration.Designer.cs">
@@ -77,6 +88,15 @@
     <Compile Include="ViewModels\CategoryViewModel.cs" />
     <Compile Include="ViewModels\GroupViewModel.cs" />
     <Compile Include="ViewModels\QuestionViewModel.cs" />
+    <Compile Include="ViewModels\UserViewModel.cs" />
+	<Compile Include="ViewModels\PatternCategoryViewModel.cs" />
+    <Compile Include="ViewModels\PatternQuestionViewModel.cs" />
+    <Compile Include="ViewModels\PatternUsingModel.cs" />
+    <Compile Include="ViewModels\PatternViewModel.cs" />
+	<Compile Include="ViewModels\StatCategoryViewModel.cs" />
+    <Compile Include="ViewModels\StatQuestionViewModel.cs" />
+    <Compile Include="ViewModels\StatViewModel.cs" />
+    <Compile Include="ViewModels\TestViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

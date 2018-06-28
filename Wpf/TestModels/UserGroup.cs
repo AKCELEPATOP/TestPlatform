@@ -17,7 +17,10 @@ namespace TestModels
         [DataMember]
         public string Name { get; set; }
 
-        [ForeignKey("GroupId")]
-        public virtual List<ApplicationUser> Users { get; set; }
+        [ForeignKey("UserGroupId")]
+        public virtual List<Pattern> Patterns { get; set; }
+
+        [ForeignKey("UserGroupId")]
+        public virtual List<User> Users { get; set; }
     }
 }

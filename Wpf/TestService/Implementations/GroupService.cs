@@ -98,7 +98,7 @@ namespace TestService.Implementations
                                    rec.Name == model.Name && rec.Id != model.Id);
             if (element != null)
             {
-                throw new Exception("Уже есть категория с таким названием");
+                throw new Exception("Уже есть группа с таким названием");
             }
             element = context.UserGroups.FirstOrDefault(rec => rec.Id == model.Id);
             if (element == null)

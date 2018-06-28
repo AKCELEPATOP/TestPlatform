@@ -5,18 +5,18 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestService.ViewModels
+namespace TestService.BindingModels
 {
     [DataContract]
-    public class AnswerViewModel
+    public class PatternQuestionsBindingModel
     {
         [DataMember]
         public int Id { get; set; }
 
         [DataMember]
-        public string Text { get; set; }
+        public int QuestionId { get; set; }
 
         [DataMember]
-        public bool True { get; set; }
+        public int PatternId { get; set; }
     }
 }

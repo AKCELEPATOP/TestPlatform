@@ -8,15 +8,21 @@ using System.Threading.Tasks;
 namespace TestService.ViewModels
 {
     [DataContract]
-    public class AnswerViewModel
+    public class PatternQuestionViewModel
     {
         [DataMember]
         public int Id { get; set; }
 
         [DataMember]
-        public string Text { get; set; }
+        public int PatternId { get; set; }
 
         [DataMember]
-        public bool True { get; set; }
+        public int QuestionId { get; set; }
+
+        [DataMember]
+        public string QuestionText { get; set; }
+
+        [DataMember]
+        public string Complexity { get; set; }
     }
 }

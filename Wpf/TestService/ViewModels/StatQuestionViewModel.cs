@@ -8,15 +8,12 @@ using System.Threading.Tasks;
 namespace TestService.ViewModels
 {
     [DataContract]
-    public class AnswerViewModel
+    public class StatQuestionViewModel
     {
-        [DataMember]
-        public int Id { get; set; }
-
         [DataMember]
         public string Text { get; set; }
 
         [DataMember]
-        public bool True { get; set; }
+        public bool Right { get; set; }
     }
 }

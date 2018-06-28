@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Security.Claims;
@@ -12,7 +13,7 @@ using System.Threading.Tasks;
 namespace TestModels
 {
     [DataContract]
-    public class ApplicationUser : IdentityUser
+    public class User : IdentityUser
     {
         [DataMember]
         public override string Id { get; set; }
@@ -32,12 +33,14 @@ namespace TestModels
         public override string SecurityStamp { get; set; }
 
         [DataMember]
-        public int GroupId { get; set; }
+        public int? UserGroupId { get; set; }
 
-        [DataMember]
-        public virtual UserGroup Group { get; set; }
+        public virtual UserGroup UserGroup { get; set; }
 
-        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
+        [ForeignKey("UserId")]
+        public virtual List<Stat> Stats { get; set; }
+
+        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager, string authenticationType)
         {
             // Обратите внимание, что authenticationType должен совпадать с типом, определенным в CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync(this, authenticationType);

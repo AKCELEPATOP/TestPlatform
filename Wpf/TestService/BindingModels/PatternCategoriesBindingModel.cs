@@ -5,16 +5,16 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestModels
+namespace TestService.BindingModels
 {
     [DataContract]
-    public class PatternCategory
+    public class PatternCategoriesBindingModel
     {
         [DataMember]
         public int Id { get; set; }
 
         [DataMember]
-        public double Complex { get; set; }
+        public double Copmlex { get; set; }
 
         [DataMember]
         public double Middle { get; set; }
@@ -27,9 +27,5 @@ namespace TestModels
 
         [DataMember]
         public int CategoryId { get; set; }
-
-        public virtual Pattern Pattern  { get; set; }
-
-        public virtual Category Category { get; set; }
     }
 }
