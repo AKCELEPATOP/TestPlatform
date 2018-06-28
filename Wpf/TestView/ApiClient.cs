@@ -21,7 +21,28 @@ namespace TestView
                 new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        
+
+        public static void Login(string userName, string password)
+        {
+            var pairs = new List<KeyValuePair<string, string>>
+                    {
+                        new KeyValuePair<string, string>( "grant_type", "password" ),
+                        new KeyValuePair<string, string>( "username", userName ),
+                        new KeyValuePair<string, string> ( "password", password )
+                    };
+            TokenResponse tokenResponse = null;
+            try
+            {
+                tokenResponse = PostFormUrlEncoded<TokenResponse>("token", pairs);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", tokenResponse.Access_token);
+            //сделайте что-то с tokenResponse.UserRole для выбора интерфейса
+        }
+
         private static async Task<HttpResponseMessage> GetRequest(string requestUrl)
         {
             return await client.GetAsync(requestUrl);
@@ -106,6 +127,17 @@ namespace TestView
                 throw new Exception(errorMessage.Message + " " + errorMessage.MessageDetail ?? "" +
                     " " + errorMessage.ExceptionMessage ?? "");
             }
+        }
+
+        public async static Task<HttpResponseMessage> PostRequest(string requestUrl)
+        {
+            return await client.PostAsync(requestUrl, null);
+        }
+
+        public async static void Logout()
+        {
+            HttpResponseMessage response = await PostRequest("api/account/logout");
+
         }
     }
 }

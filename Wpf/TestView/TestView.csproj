@@ -171,6 +171,7 @@
     <Compile Include="TestingForm.designer.cs">
       <DependentUpon>TestingForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TokenResponse.cs" />
     <EmbeddedResource Include="AppendixForm.resx">
       <DependentUpon>AppendixForm.cs</DependentUpon>
     </EmbeddedResource>
