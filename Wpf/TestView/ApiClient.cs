@@ -5,14 +5,14 @@ using System.Configuration;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
-
+using System.Windows.Forms;
 
 namespace TestView
 {
     public class ApiClient
     {
         private static HttpClient client = new HttpClient();
-
+        public static string role;
         public static void Connect()
         {
             client.BaseAddress = new Uri(ConfigurationManager.AppSettings["IPAddress"]);
@@ -37,10 +37,11 @@ namespace TestView
             }
             catch (Exception ex)
             {
-                throw ex;
+                DialogResult result = MessageBox.Show(ex.ToString(), "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", tokenResponse.Access_token);
             //сделайте что-то с tokenResponse.UserRole для выбора интерфейса
+            role = tokenResponse.UserRole;
         }
 
         private static async Task<HttpResponseMessage> GetRequest(string requestUrl)

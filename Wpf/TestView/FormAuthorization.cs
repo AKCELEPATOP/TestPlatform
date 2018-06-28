@@ -26,8 +26,19 @@ namespace TestView
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form formMain = new RegistrationForm();
-            formMain.Show();
+            ApiClient.Login(textBoxLogin.Text, textBoxPassword.Text);
+            if (ApiClient.role == "admin")
+            {
+                FormStatisticsMain formMainAdmin = new FormStatisticsMain();
+                formMainAdmin.Show();
+                Hide();
+            }
+            else if (ApiClient.role == "user")
+            {
+                FormMain formMainUser = new FormMain();
+                formMainUser.Show();
+                Hide();
+            }
         }
     }
 }
