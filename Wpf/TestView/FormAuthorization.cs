@@ -36,7 +36,7 @@ namespace TestView
             }
             else if (ApiClient.Role.Equals(ApplicationRoles.User))
             {
-                FormMain formMainUser = new FormMain();
+                FormMain formMainUser = new FormMain(this);
                 formMainUser.Show();
                 Hide();
             }

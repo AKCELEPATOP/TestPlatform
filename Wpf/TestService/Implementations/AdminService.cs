@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -67,7 +68,9 @@ namespace TestService.Implementations
 
         public async Task<List<UserViewModel>> GetList()
         {
-            List<UserViewModel> result = await context.Users.Where(rec => userManager.GetRoles(rec.Id).FirstOrDefault().Equals(ApplicationRoles.Admin))
+            var manager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+            var role = (await manager.FindByNameAsync(ApplicationRoles.Admin)).Id;
+            List<UserViewModel> result = await context.Users.Where(rec => rec.Roles.FirstOrDefault().RoleId.Equals(role))
                 .Select(rec => new UserViewModel
                 {
                     Id = rec.Id,
