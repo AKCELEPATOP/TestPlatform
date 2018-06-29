@@ -34,6 +34,9 @@ namespace TestView
                 if (listC != null)
                 {
                     comboBox1.DataSource = listC;
+                    comboBox1.DisplayMember = "Name";
+                    comboBox1.ValueMember = "Id";
+                    comboBox1.SelectedItem = null;
                 }
             }
             catch (Exception ex)
@@ -74,7 +77,7 @@ namespace TestView
                 {
                     int id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
 
-                    Task task = Task.Run(() => ApiClient.DelRequest("api/User/DelElement/" + id));
+                    Task task = Task.Run(() => ApiClient.PostRequest("api/User/DelElement/" + id));
                     task.ContinueWith((prevTask) => MessageBox.Show("Запись удалена. Обновите список", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information),
                 TaskContinuationOptions.OnlyOnRanToCompletion);
 
@@ -105,7 +108,26 @@ namespace TestView
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //дописать доавление в группу
+            if (dataGridView1.SelectedRows.Count == 1 && comboBox1.SelectedValue !=null)
+            { 
+                int user_id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
+                int Grou_id = Convert.ToInt32(comboBox1.SelectedValue);
+                string value = user_id + "/" + Grou_id;
+                Task task = Task.Run(() => ApiClient.PostRequestData("api/User/SetGroup", value));
+                task.ContinueWith((prevTask) => MessageBox.Show("Запись удалена. Обновите список", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information),
+                TaskContinuationOptions.OnlyOnRanToCompletion);
+
+                task.ContinueWith((prevTask) =>
+                {
+                    var ex = (Exception)prevTask.Exception;
+                    while (ex.InnerException != null)
+                    {
+                        ex = ex.InnerException;
+                    }
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }, TaskContinuationOptions.OnlyOnFaulted);
+
+            }
         }
     }
 }

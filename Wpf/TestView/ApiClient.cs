@@ -5,14 +5,16 @@ using System.Configuration;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
-
+using System.Windows.Forms;
+using TestService;
 
 namespace TestView
 {
     public class ApiClient
     {
         private static HttpClient client = new HttpClient();
-
+        //public static string role;
+        public static string Role { get; set; }
         public static void Connect()
         {
             client.BaseAddress = new Uri(ConfigurationManager.AppSettings["IPAddress"]);
@@ -21,10 +23,27 @@ namespace TestView
                 new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        
-        private static async Task<HttpResponseMessage> GetRequest(string requestUrl)
+
+        public static void Login(string userName, string password)
         {
-            return await client.GetAsync(requestUrl);
+            var pairs = new List<KeyValuePair<string, string>>
+                    {
+                        new KeyValuePair<string, string>( "grant_type", "password" ),
+                        new KeyValuePair<string, string>( "username", userName ),
+                        new KeyValuePair<string, string> ( "password", password )
+                    };
+            TokenResponse tokenResponse = null;
+            try
+            {
+                tokenResponse = PostFormUrlEncoded<TokenResponse>("token", pairs);
+            }
+            catch (Exception ex)
+            {
+                DialogResult result = MessageBox.Show(ex.ToString(), "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", tokenResponse.Access_token);
+            //сделайте что-то с tokenResponse.UserRole для выбора интерфейса
+            Role = tokenResponse.UserRole;
         }
 
         public static U PostFormUrlEncoded<U>(string requestUrl, IEnumerable<KeyValuePair<string, string>> postData)
@@ -51,14 +70,14 @@ namespace TestView
             }
 
         }
+        private static async Task<HttpResponseMessage> GetRequest(string requestUrl)
+        {
+            return await client.GetAsync(requestUrl);
+        }
+
         private static async Task<HttpResponseMessage> PostRequest<T>(string requestUrl, T model)
         {
             return await client.PostAsJsonAsync(requestUrl, model);
-        }
-
-        public async static Task<HttpResponseMessage> DelRequest(string requestUrl)
-        {
-            return await client.DeleteAsync(requestUrl);
         }
 
         public static async Task<T> GetRequestData<T>(string requestUrl)
@@ -75,9 +94,9 @@ namespace TestView
             }
         }
 
-        public static void PutRequestData<T>(string requestUrl, T model)
+        public static void PostRequestData<T>(string requestUrl, T model)
         {
-            HttpResponseMessage response = Task.Run(() => PutRequest(requestUrl, model)).Result;
+            HttpResponseMessage response = Task.Run(() => PostRequest(requestUrl, model)).Result;
             if (!response.IsSuccessStatusCode)
             {
                 string error = response.Content.ReadAsStringAsync().Result;
@@ -85,11 +104,6 @@ namespace TestView
                 throw new Exception(errorMessage.Message + " " + (errorMessage.MessageDetail ?? "") +
                     " " + (errorMessage.ExceptionMessage ?? ""));
             }
-        }
-
-        public async static Task<HttpResponseMessage> PutRequest<T>(string requestUrl, T model)
-        {
-            return await client.PutAsJsonAsync(requestUrl, model);
         }
 
         public static async Task<U> PostRequestData<T, U>(string requestUrl, T model)
@@ -106,6 +120,17 @@ namespace TestView
                 throw new Exception(errorMessage.Message + " " + errorMessage.MessageDetail ?? "" +
                     " " + errorMessage.ExceptionMessage ?? "");
             }
+        }
+
+        public async static Task<HttpResponseMessage> PostRequest(string requestUrl)
+        {
+            return await client.PostAsync(requestUrl, null);
+        }
+
+        public async static void Logout()
+        {
+            HttpResponseMessage response = await PostRequest("api/account/logout");
+
         }
     }
 }

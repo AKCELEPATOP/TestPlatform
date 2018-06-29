@@ -443,5 +443,36 @@ namespace TestService.Implementations
             }
             return true;
         }
+
+        public async Task<List<PatternViewModel>> GetUserList(string id)
+        {
+            int groupId = (await context.Users.FirstOrDefaultAsync(rec => rec.Id == id)).UserGroupId ?? -1;
+            return await GetGroupList(groupId);
+        }
+
+        public async Task<List<PatternViewModel>> GetGroupList(int id)
+        {
+            if (id != -1)
+            {
+                return await context.Patterns.Where(rec => rec.UserGroupId == id).Select(rec => new PatternViewModel
+                {
+                    Id = rec.Id,
+                    Name = rec.Name,
+                    UserGroupId = rec.UserGroupId.Value,
+                    UserGroupName = rec.UserGroup.Name
+                }).ToListAsync();
+            }
+            else
+            {
+                //не знаю будет ли работать
+                return await context.Patterns.Where(rec => rec.UserGroup == null).Select(rec => new PatternViewModel
+                {
+                    Id = rec.Id,
+                    Name = rec.Name,
+                    UserGroupId = rec.UserGroupId.Value,
+                    UserGroupName = rec.UserGroup.Name
+                }).ToListAsync();
+            }
+        }
     }
 }

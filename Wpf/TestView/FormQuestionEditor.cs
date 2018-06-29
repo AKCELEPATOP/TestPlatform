@@ -128,7 +128,7 @@ namespace TestView
             } 
             if (id.HasValue)
             {
-                task = Task.Run(() => ApiClient.PutRequestData("api/Question/UpdElement", new QuestionBindingModel
+                task = Task.Run(() => ApiClient.PostRequestData("api/Question/UpdElement", new QuestionBindingModel
                 {
                     Id = id.Value,
                     Text= text,
@@ -143,7 +143,7 @@ namespace TestView
             }
             else
             {
-                task = Task.Run(() => ApiClient.PutRequestData("api/Question/AddElement", new QuestionBindingModel
+                task = Task.Run(() => ApiClient.PostRequestData("api/Question/AddElement", new QuestionBindingModel
                 {
 
                     Text = text,

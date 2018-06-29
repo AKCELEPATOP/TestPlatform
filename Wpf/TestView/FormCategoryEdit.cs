@@ -57,7 +57,7 @@ namespace TestView
                 
              
                 
-                    task = Task.Run(() => ApiClient.PutRequestData("api/Category/UpdElement", new CategoryBindingModel
+                    task = Task.Run(() => ApiClient.PostRequestData("api/Category/UpdElement", new CategoryBindingModel
                     {
                         Id = id.Value,
                         Name=name
@@ -66,7 +66,7 @@ namespace TestView
                 
 
             } else {
-                task = Task.Run(() => ApiClient.PutRequestData("api/Category/AddElement", new CategoryBindingModel
+                task = Task.Run(() => ApiClient.PostRequestData("api/Category/AddElement", new CategoryBindingModel
                 {
                     Name = name
 

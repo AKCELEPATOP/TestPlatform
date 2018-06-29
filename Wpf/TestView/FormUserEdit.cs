@@ -67,7 +67,7 @@ namespace TestView
 
 
 
-                task = Task.Run(() => ApiClient.PutRequestData("api/User/UpdElement", new UserBindingModel
+                task = Task.Run(() => ApiClient.PostRequestData("api/User/UpdElement", new UserBindingModel
                 {
                     Id = id.Value.ToString(),
                     UserName=username,
@@ -79,7 +79,7 @@ namespace TestView
             }
             else
             {
-                task = Task.Run(() => ApiClient.PutRequestData("api/User/AddElement", new UserBindingModel
+                task = Task.Run(() => ApiClient.PostRequestData("api/User/AddElement", new UserBindingModel
                 {
                     
                     UserName = username,

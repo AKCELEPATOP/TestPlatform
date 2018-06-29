@@ -36,12 +36,14 @@
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxPassword2 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.textBoxFIO = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(24, 43);
+            this.label1.Location = new System.Drawing.Point(24, 73);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 13);
             this.label1.TabIndex = 0;
@@ -50,7 +52,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(20, 76);
+            this.label2.Location = new System.Drawing.Point(17, 99);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(48, 13);
             this.label2.TabIndex = 1;
@@ -58,7 +60,7 @@
             // 
             // registrate
             // 
-            this.registrate.Location = new System.Drawing.Point(81, 159);
+            this.registrate.Location = new System.Drawing.Point(80, 159);
             this.registrate.Name = "registrate";
             this.registrate.Size = new System.Drawing.Size(115, 23);
             this.registrate.TabIndex = 3;
@@ -68,14 +70,14 @@
             // 
             // textBoxLogin
             // 
-            this.textBoxLogin.Location = new System.Drawing.Point(109, 40);
+            this.textBoxLogin.Location = new System.Drawing.Point(109, 70);
             this.textBoxLogin.Name = "textBoxLogin";
             this.textBoxLogin.Size = new System.Drawing.Size(167, 20);
             this.textBoxLogin.TabIndex = 4;
             // 
             // textBoxPassword1
             // 
-            this.textBoxPassword1.Location = new System.Drawing.Point(109, 73);
+            this.textBoxPassword1.Location = new System.Drawing.Point(109, 96);
             this.textBoxPassword1.Name = "textBoxPassword1";
             this.textBoxPassword1.Size = new System.Drawing.Size(167, 20);
             this.textBoxPassword1.TabIndex = 5;
@@ -93,7 +95,7 @@
             // 
             // textBoxPassword2
             // 
-            this.textBoxPassword2.Location = new System.Drawing.Point(109, 111);
+            this.textBoxPassword2.Location = new System.Drawing.Point(109, 122);
             this.textBoxPassword2.Name = "textBoxPassword2";
             this.textBoxPassword2.Size = new System.Drawing.Size(167, 20);
             this.textBoxPassword2.TabIndex = 7;
@@ -102,17 +104,35 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 114);
+            this.label4.Location = new System.Drawing.Point(0, 125);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(103, 13);
             this.label4.TabIndex = 8;
             this.label4.Text = "Повторите пароль:";
+            // 
+            // textBoxFIO
+            // 
+            this.textBoxFIO.Location = new System.Drawing.Point(109, 44);
+            this.textBoxFIO.Name = "textBoxFIO";
+            this.textBoxFIO.Size = new System.Drawing.Size(167, 20);
+            this.textBoxFIO.TabIndex = 9;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(24, 47);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(37, 13);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "ФИО:";
             // 
             // RegistrationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(288, 194);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.textBoxFIO);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.textBoxPassword2);
             this.Controls.Add(this.label3);
@@ -139,5 +159,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBoxPassword2;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox textBoxFIO;
+        private System.Windows.Forms.Label label5;
     }
 }

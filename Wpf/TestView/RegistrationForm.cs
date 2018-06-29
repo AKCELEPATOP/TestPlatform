@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TestService.BindingModels;
 
 namespace TestView
 {
@@ -23,6 +24,15 @@ namespace TestView
             {
                 string UserPassword = textBoxLogin.Text;
                 string UserLogin = textBoxLogin.Text;
+
+                UserBindingModel newUser = new UserBindingModel();
+                newUser.FIO = textBoxFIO.Text;
+                newUser.PasswordHash = UserPassword;
+                newUser.UserName = UserLogin;
+
+                Task task = Task.Run(() => ApiClient.PostRequestData<UserBindingModel>("api/Account/Register", newUser));
+                task.ContinueWith((prevTask) => MessageBox.Show("Пользователь зарегистрирован.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information),
+              TaskContinuationOptions.OnlyOnRanToCompletion);
             }
             else
             {

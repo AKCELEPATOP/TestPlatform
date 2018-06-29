@@ -85,7 +85,7 @@ namespace TestView
                 {
                     int id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
 
-                    Task task = Task.Run(() => ApiClient.DelRequest("api/Category/DelElement/" + id));
+                    Task task = Task.Run(() => ApiClient.PostRequest("api/Category/DelElement/" + id));
                     task.ContinueWith((prevTask) => MessageBox.Show("Запись удалена. Обновите список", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information),
                 TaskContinuationOptions.OnlyOnRanToCompletion);
 
@@ -132,7 +132,7 @@ namespace TestView
                 {
                     int id = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells[0].Value);
 
-                    Task task = Task.Run(() => ApiClient.DelRequest("api/Question/DelElement/" + id));
+                    Task task = Task.Run(() => ApiClient.PostRequest("api/Question/DelElement/" + id));
                     task.ContinueWith((prevTask) => MessageBox.Show("Запись удалена. Обновите список", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information),
                 TaskContinuationOptions.OnlyOnRanToCompletion);
 

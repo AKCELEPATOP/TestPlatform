@@ -62,6 +62,7 @@
     <Compile Include="BindingModels\GetListModel.cs" />
     <Compile Include="BindingModels\GroupBindingModel.cs" />
     <Compile Include="BindingModels\QuestionBindingModel.cs" />
+    <Compile Include="BindingModels\ReportBindingModel.cs" />
     <Compile Include="BindingModels\UserBindingModel.cs" />
     <Compile Include="Implementations\CategoryService.cs" />
     <Compile Include="Implementations\GroupService.cs" />

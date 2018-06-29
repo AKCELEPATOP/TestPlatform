@@ -58,7 +58,7 @@ namespace TestView
 
 
 
-                task = Task.Run(() => ApiClient.PutRequestData("api/Group/UpdElement", new GroupBindingModel
+                task = Task.Run(() => ApiClient.PostRequestData("api/Group/UpdElement", new GroupBindingModel
                 {
                     Id = id.Value,
                     Name = name
@@ -69,7 +69,7 @@ namespace TestView
             }
             else
             {
-                task = Task.Run(() => ApiClient.PutRequestData("api/Group/AddElement", new CategoryBindingModel
+                task = Task.Run(() => ApiClient.PostRequestData("api/Group/AddElement", new CategoryBindingModel
                 {
                     Name = name
 
