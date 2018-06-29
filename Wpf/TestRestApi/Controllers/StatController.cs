@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -45,6 +46,20 @@ namespace TestRestApi.Controllers
             private set
             {
                 _service = value;
+            }
+        }
+
+        private string resourcesPath;
+
+        public string ResourcesPath
+        {
+            get
+            {
+                return resourcesPath ?? System.Web.Hosting.HostingEnvironment.MapPath("~/Resources/");
+            }
+            private set
+            {
+                resourcesPath = value;
             }
         }
         #endregion
@@ -91,6 +106,11 @@ namespace TestRestApi.Controllers
         [HttpPost]
         public async Task SaveToPdf(ReportBindingModel model)
         {
+            model.FontPath = ResourcesPath + "TIMCYR.TTF";
+            if (!File.Exists(model.FontPath))
+            {
+                File.WriteAllBytes(model.FontPath, Properties.Resources.TIMCYR);
+            }
             await Service.SaveToPdf(model);
         }
     }
