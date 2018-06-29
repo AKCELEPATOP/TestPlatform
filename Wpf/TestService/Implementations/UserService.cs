@@ -45,7 +45,8 @@ namespace TestService.Implementations
                 FIO = model.FIO,
                 UserGroupId = model.GroupId,
                 UserName = model.UserName,
-                PasswordHash = model.PasswordHash
+                PasswordHash = model.PasswordHash,
+                Email = model.Email
             };
             await manager.CreateAsync(user, user.PasswordHash);
         }

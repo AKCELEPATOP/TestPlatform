@@ -18,7 +18,9 @@
                 components.Dispose();
             }
             base.Dispose(disposing);
-            parent.DisposeForm();
+            ApiClient.Logout();
+            if (parent != null)
+                parent.DisposeForm();
         }
 
         #region Windows Form Designer generated code
