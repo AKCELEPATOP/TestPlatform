@@ -21,6 +21,11 @@ namespace TestService.Implementations
 
         }
 
+        public static GroupService Create(ApplicationDbContext context)
+        {
+            return new GroupService(context);
+        }
+
         public async Task AddElement(GroupBindingModel model)
         {
             UserGroup element = await context.UserGroups.FirstOrDefaultAsync(rec => rec.Name == model.Name);

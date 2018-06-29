@@ -21,5 +21,11 @@ namespace TestService.BindingModels
 
         [DataMember]
         public int Id { get; set; }
+
+        [DataMember]
+        public DateTime? DateFrom { get; set; }
+
+        [DataMember]
+        public DateTime? DateTo { get; set; }
     }
 }

@@ -20,7 +20,13 @@ namespace TestService.ViewModels
         public int Right { get; set; }
 
         [DataMember]
+        public int Mark { get; set; }
+
+        [DataMember]
         public string PatternName { get; set; }
+
+        [DataMember]
+        public string DateCreate { get; set; }
 
     }
 }

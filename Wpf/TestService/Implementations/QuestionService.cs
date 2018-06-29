@@ -22,6 +22,11 @@ namespace TestService.Implementations
 
         }
 
+        public static QuestionService Create(ApplicationDbContext context)
+        {
+            return new QuestionService(context);
+        }
+
         public async Task AddElement(QuestionBindingModel model)
         {
             Question element = await context.Questions.FirstOrDefaultAsync(rec => rec.Text == model.Text);
