@@ -106,9 +106,9 @@ namespace TestView
 
         private void buttonChangeUser_Click(object sender, EventArgs e)
         {
-            FormAuthorization Authorization = new FormAuthorization();
+            parent.Show();
+            parent = null;
             Close();
-            Authorization.Show();
         }
 
         private void FormMain_Load(object sender, EventArgs e)

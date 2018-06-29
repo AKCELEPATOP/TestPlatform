@@ -18,7 +18,8 @@
                 components.Dispose();
             }
             base.Dispose(disposing);
-            parent.DisposeForm();
+            if (parent != null)
+                parent.DisposeForm();
         }
 
         #region Windows Form Designer generated code

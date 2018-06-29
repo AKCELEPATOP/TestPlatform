@@ -15,19 +15,43 @@ namespace TestService.Implementations
 {
     public class AdminService : IAdminService
     {
-        private ApplicationDbContext context;
+        private static ApplicationDbContext context;
 
         private UserManager<User> userManager;
 
+        private string roleId;
+
+        private string RoleId
+        {
+            get
+            {
+                return roleId ?? GetRoleId();
+            }
+        }
+
+       /* private Lazy<string> RoleId = new Lazy<string>(() =>
+        {
+            var manager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+            return 
+        });*/
+
+
         public AdminService(ApplicationDbContext context, UserManager<User> userManager)
         {
-            this.context = context;
+            AdminService.context = context;
             this.userManager = userManager;
         }
 
         public static AdminService Create(ApplicationDbContext context, UserManager<User> userManager)
         {
             return new AdminService(context, userManager);
+        }
+
+        private string GetRoleId()
+        {
+            var manager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+            roleId = manager.FindByName(ApplicationRoles.Admin).Id;
+            return roleId;
         }
 
         public async Task DelElement(string id)
@@ -68,9 +92,7 @@ namespace TestService.Implementations
 
         public async Task<List<UserViewModel>> GetList()
         {
-            var manager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
-            var role = (await manager.FindByNameAsync(ApplicationRoles.Admin)).Id;
-            List<UserViewModel> result = await context.Users.Where(rec => rec.Roles.FirstOrDefault().RoleId.Equals(role))
+            List<UserViewModel> result = await context.Users.Where(rec => rec.Roles.FirstOrDefault().RoleId.Equals(RoleId))
                 .Select(rec => new UserViewModel
                 {
                     Id = rec.Id,
