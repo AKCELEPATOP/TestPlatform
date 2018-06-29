@@ -37,6 +37,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13\lib\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
@@ -62,6 +65,7 @@
     <Compile Include="BindingModels\GetListModel.cs" />
     <Compile Include="BindingModels\GroupBindingModel.cs" />
     <Compile Include="BindingModels\QuestionBindingModel.cs" />
+    <Compile Include="BindingModels\ReportBindingModel.cs" />
     <Compile Include="BindingModels\UserBindingModel.cs" />
     <Compile Include="Implementations\CategoryService.cs" />
     <Compile Include="Implementations\GroupService.cs" />

@@ -8,24 +8,21 @@ using System.Threading.Tasks;
 namespace TestService.BindingModels
 {
     [DataContract]
-    public class GetListModel
+    public class ReportBindingModel
     {
         [DataMember]
-        public int Skip { get; set; }
+        public string FilePath { get; set; }
 
         [DataMember]
-        public int Take { get; set; }
-
-        [DataMember]
-        public string UserId { get; set; }
-
-        [DataMember]
-        public int Id { get; set; }
+        public string FontPath { get; set; }
 
         [DataMember]
         public DateTime? DateFrom { get; set; }
 
         [DataMember]
         public DateTime? DateTo { get; set; }
+
+        [DataMember]
+        public string UserId { get; set; }
     }
 }
