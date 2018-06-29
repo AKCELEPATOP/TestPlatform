@@ -30,7 +30,7 @@ namespace TestView
             ApiClient.Login(textBoxLogin.Text, textBoxPassword.Text);
             if (ApiClient.Role.Equals(ApplicationRoles.Admin) || ApiClient.Role.Equals(ApplicationRoles.SuperAdmin))
             {
-                FormStatisticsMain formMainAdmin = new FormStatisticsMain();
+                FormStatisticsMain formMainAdmin = new FormStatisticsMain(this);
                 formMainAdmin.Show();
                 Hide();
             }

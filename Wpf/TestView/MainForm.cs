@@ -18,8 +18,11 @@ namespace TestView
         public Color colorBack;
         public Color colorFont;
 
-        public FormMain()
+        private FormAuthorization parent;
+
+        public FormMain(FormAuthorization parent)
         {
+            this.parent = parent;
             InitializeComponent();
             Initialize();
         }

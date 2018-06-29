@@ -14,8 +14,11 @@ namespace TestView
 {
     public partial class FormStatisticsMain : Form
     {
-        public FormStatisticsMain()
+        private FormAuthorization parent;
+
+        public FormStatisticsMain(FormAuthorization parent)
         {
+            this.parent = parent;
             InitializeComponent();
             Initialize();
         }
