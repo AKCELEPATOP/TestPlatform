@@ -6,13 +6,15 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TestService;
 
 namespace TestView
 {
     public class ApiClient
     {
         private static HttpClient client = new HttpClient();
-        public static string role;
+        //public static string role;
+        public static ApplicationRoles Role { get; set; }
         public static void Connect()
         {
             client.BaseAddress = new Uri(ConfigurationManager.AppSettings["IPAddress"]);
@@ -41,7 +43,7 @@ namespace TestView
             }
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", tokenResponse.Access_token);
             //сделайте что-то с tokenResponse.UserRole для выбора интерфейса
-            role = tokenResponse.UserRole;
+            Role = (ApplicationRoles)Enum.Parse(typeof(ApplicationRoles), tokenResponse.UserRole);
         }
 
         private static async Task<HttpResponseMessage> GetRequest(string requestUrl)
