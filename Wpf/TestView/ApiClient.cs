@@ -46,11 +46,6 @@ namespace TestView
             Role = tokenResponse.UserRole;
         }
 
-        private static async Task<HttpResponseMessage> GetRequest(string requestUrl)
-        {
-            return await client.GetAsync(requestUrl);
-        }
-
         public static U PostFormUrlEncoded<U>(string requestUrl, IEnumerable<KeyValuePair<string, string>> postData)
         {
 
@@ -75,14 +70,14 @@ namespace TestView
             }
 
         }
+        private static async Task<HttpResponseMessage> GetRequest(string requestUrl)
+        {
+            return await client.GetAsync(requestUrl);
+        }
+
         private static async Task<HttpResponseMessage> PostRequest<T>(string requestUrl, T model)
         {
             return await client.PostAsJsonAsync(requestUrl, model);
-        }
-
-        public async static Task<HttpResponseMessage> DelRequest(string requestUrl)
-        {
-            return await client.DeleteAsync(requestUrl);
         }
 
         public static async Task<T> GetRequestData<T>(string requestUrl)
@@ -99,9 +94,9 @@ namespace TestView
             }
         }
 
-        public static void PutRequestData<T>(string requestUrl, T model)
+        public static void PostRequestData<T>(string requestUrl, T model)
         {
-            HttpResponseMessage response = Task.Run(() => PutRequest(requestUrl, model)).Result;
+            HttpResponseMessage response = Task.Run(() => PostRequest(requestUrl, model)).Result;
             if (!response.IsSuccessStatusCode)
             {
                 string error = response.Content.ReadAsStringAsync().Result;
@@ -109,11 +104,6 @@ namespace TestView
                 throw new Exception(errorMessage.Message + " " + (errorMessage.MessageDetail ?? "") +
                     " " + (errorMessage.ExceptionMessage ?? ""));
             }
-        }
-
-        public async static Task<HttpResponseMessage> PutRequest<T>(string requestUrl, T model)
-        {
-            return await client.PutAsJsonAsync(requestUrl, model);
         }
 
         public static async Task<U> PostRequestData<T, U>(string requestUrl, T model)
