@@ -106,11 +106,9 @@ namespace TestView
         private void button7_Click(object sender, EventArgs e)
         {
             var form = new FormAuthorization();
-
-            if (form.ShowDialog() == DialogResult.OK)
-            {
-                Close();
-            }
+            ApiClient.Logout();
+            Close();
+            form.Show();
         }
         //категории вопросы
         private void button2_Click(object sender, EventArgs e)
