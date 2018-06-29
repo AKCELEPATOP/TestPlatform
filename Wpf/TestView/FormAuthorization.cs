@@ -27,18 +27,25 @@ namespace TestView
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ApiClient.Login(textBoxLogin.Text, textBoxPassword.Text);
-            if (ApiClient.Role.Equals(ApplicationRoles.Admin) || ApiClient.Role.Equals(ApplicationRoles.SuperAdmin))
+            try
             {
-                FormStatisticsMain formMainAdmin = new FormStatisticsMain(this);
-                formMainAdmin.Show();
-                Hide();
+                ApiClient.Login(textBoxLogin.Text, textBoxPassword.Text);
+                if (ApiClient.Role.Equals(ApplicationRoles.Admin) || ApiClient.Role.Equals(ApplicationRoles.SuperAdmin))
+                {
+                    FormStatisticsMain formMainAdmin = new FormStatisticsMain(this);
+                    formMainAdmin.Show();
+                    Hide();
+                }
+                else if (ApiClient.Role.Equals(ApplicationRoles.User))
+                {
+                    FormMain formMainUser = new FormMain(this);
+                    formMainUser.Show();
+                    Hide();
+                }
             }
-            else if (ApiClient.Role.Equals(ApplicationRoles.User))
+            catch (Exception ex)
             {
-                FormMain formMainUser = new FormMain(this);
-                formMainUser.Show();
-                Hide();
+                DialogResult result = MessageBox.Show("Произошла ошибка авторизации\nОшибка:" + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
