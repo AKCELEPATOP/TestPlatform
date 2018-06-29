@@ -62,6 +62,29 @@ namespace TestRestApi.Controllers
             return Ok(list);
         }
 
+        [HttpGet]
+        public async Task<IHttpActionResult> GetUserList()
+        {
+            var list = await Service.GetUserList(User.Identity.GetUserId());
+            if (list == null)
+            {
+                InternalServerError(new Exception("Нет данных"));
+            }
+            return Ok(list);
+        }
+
+        [HttpGet]
+        [Authorize(Roles = ApplicationRoles.SuperAdmin + "," + ApplicationRoles.Admin)]
+        public async Task<IHttpActionResult> GetGroupList(int id)
+        {
+            var list = await Service.GetGroupList(id);
+            if (list == null)
+            {
+                InternalServerError(new Exception("Нет данных"));
+            }
+            return Ok(list);
+        }
+
         [HttpPost]
         public async Task AddElement(PatternBindingModel model)
         {
