@@ -87,5 +87,11 @@ namespace TestRestApi.Controllers
             }
             return Ok(element);
         }
+
+        [HttpPost]
+        public async Task SaveToPdf(ReportBindingModel model)
+        {
+            await Service.SaveToPdf(model);
+        }
     }
 }
