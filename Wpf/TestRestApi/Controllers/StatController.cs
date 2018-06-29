@@ -108,9 +108,21 @@ namespace TestRestApi.Controllers
             model.FontPath = ResourcesPath + "TIMCYR.TTF";
             if (!File.Exists(model.FontPath))
             {
-                File.WriteAllBytes(model.FontPath, Properties.Resources.TIMCYR1);
+                File.WriteAllBytes(model.FontPath, Properties.Resources.TIMCYR);
             }
             await Service.SaveToPdf(model);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = ApplicationRoles.SuperAdmin + "," + ApplicationRoles.Admin)]
+        public async Task SaveToPdfAdmin(ReportBindingModel model)
+        {
+            model.FontPath = ResourcesPath + "TIMCYR.TTF";
+            if (!File.Exists(model.FontPath))
+            {
+                File.WriteAllBytes(model.FontPath, Properties.Resources.TIMCYR);
+            }
+            await Service.SaveToPdfAdmin(model);
         }
     }
 }

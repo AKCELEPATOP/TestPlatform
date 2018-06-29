@@ -25,5 +25,8 @@ namespace TestService.BindingModels
 
         [DataMember]
         public int GroupId { get; set; }
+
+        [DataMember]
+        public override string Email { get; set; }
     }
 }

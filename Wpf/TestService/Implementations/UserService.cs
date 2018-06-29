@@ -82,7 +82,8 @@ namespace TestService.Implementations
                     Id = element.Id,
                     FIO = element.FIO,
                     UserName = element.UserName,
-                    GroupName = element.UserGroup.Name
+                    GroupName = element.UserGroup.Name,
+                    Email = element.Email
                 };
             }
             throw new Exception("Элемент не найден");
