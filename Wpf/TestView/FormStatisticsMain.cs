@@ -105,10 +105,9 @@ namespace TestView
         //сменить пользователя
         private void button7_Click(object sender, EventArgs e)
         {
-            var form = new FormAuthorization();
-            ApiClient.Logout();
+            TestingForm Testing = new TestingForm();
             Close();
-            form.Show();
+            Testing.Show();
         }
         //категории вопросы
         private void button2_Click(object sender, EventArgs e)
