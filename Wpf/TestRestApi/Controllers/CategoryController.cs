@@ -8,6 +8,7 @@ using TestService.BindingModels;
 using TestService;
 using Microsoft.AspNet.Identity.Owin;
 using TestService.Implementations;
+using System.Threading.Tasks;
 
 namespace TestRestApi.Controllers
 {
@@ -45,9 +46,9 @@ namespace TestRestApi.Controllers
         #endregion
 
         [HttpGet]
-        public IHttpActionResult GetList()
+        public async Task<IHttpActionResult> GetList()
         {
-            var list = Service.GetList();
+            var list =await Service.GetList();
             if (list == null)
             {
                 InternalServerError(new Exception("Нет данных"));
@@ -56,9 +57,9 @@ namespace TestRestApi.Controllers
         }
 
         [HttpGet]
-        public IHttpActionResult Get(int id)
+        public async Task<IHttpActionResult> Get(int id)
         {
-            var element = Service.GetElement(id);
+            var element = await Service.GetElement(id);
             if (element == null)
             {
                 InternalServerError(new Exception("Нет данных"));
@@ -67,21 +68,21 @@ namespace TestRestApi.Controllers
         }
 
         [HttpPost]
-        public void AddElement(CategoryBindingModel model)
+        public async Task AddElement(CategoryBindingModel model)
         {
-            Service.AddElement(model);
+            await Service.AddElement(model);
         }
 
         [HttpPost]
-        public void UpdElement(CategoryBindingModel model)
+        public async Task UpdElement(CategoryBindingModel model)
         {
-            Service.UpdElement(model);
+            await Service.UpdElement(model);
         }
 
         [HttpPost]
-        public void DelElement(CategoryBindingModel model)
+        public async Task DelElement(CategoryBindingModel model)
         {
-            Service.DelElement(model.Id);
+            await Service.DelElement(model.Id);
         }
     }
 }

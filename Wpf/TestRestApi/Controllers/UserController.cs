@@ -63,14 +63,12 @@ namespace TestRestApi.Controllers
         #endregion
 
         [HttpPost]
-        [Route("AddElement")]
         public async Task AddElement(UserBindingModel model)
         {
             await Service.AddElement(model, UserManager);
         }
 
         [HttpGet]
-        [Route("GetList")]
         public async Task<IHttpActionResult> GetList()
         {
             var list = await Service.GetList();

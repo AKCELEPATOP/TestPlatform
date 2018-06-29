@@ -51,7 +51,6 @@ namespace TestRestApi.Controllers
         #endregion
 
         [HttpGet]
-        [Route("GetList")]
         public async Task<IHttpActionResult> GetList()
         {
             var list = await Service.GetList();

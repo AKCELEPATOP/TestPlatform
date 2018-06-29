@@ -66,7 +66,6 @@ namespace TestRestApi.Controllers
 
         [HttpPost]
         [Authorize(Roles = ApplicationRoles.SuperAdmin + "," + ApplicationRoles.Admin)]
-        [Route("GetList")]
         public async Task<IHttpActionResult> GetList(GetListModel model)
         {
             var list = await Service.GetList(model);

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TestService.BindingModels;
 using TestService.ViewModels;
 
 namespace TestView
@@ -31,7 +32,10 @@ namespace TestView
                     dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
                 List<StatViewModel> listC =
-                    Task.Run(() => ApiClient.GetRequestData<List<StatViewModel>>("api/Stat/GetList")).Result;
+                    Task.Run(() => ApiClient.PostRequestData<GetListModel,List<StatViewModel>>("api/Stat/GetList",new GetListModel {
+                        Skip = 0,
+                        Take = 20
+                    })).Result;
                 if (list != null)
                 {
                     dataGridView2.DataSource = listC;

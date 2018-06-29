@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TestView;
 using TestService.ViewModels;
+using TestService.BindingModels;
 
 namespace TestView
 {
@@ -28,7 +29,7 @@ namespace TestView
             try
             {
                 List<PatternViewModel> list =
-                    Task.Run(() => ApiClient.GetRequestData<List<PatternViewModel>>("api/Patterns/GetList")).Result;
+                    Task.Run(() => ApiClient.GetRequestData<List<PatternViewModel>>("api/Pattern/GetList")).Result;
                 if (list != null)
                 {
                     dataGridViewAvailablePatterns.DataSource = list;
@@ -37,7 +38,11 @@ namespace TestView
                 }
 
                 List<TestViewModel> listС =
-                    Task.Run(() => ApiClient.GetRequestData<List<TestViewModel>>("api/PassedTests/GetList")).Result;
+                    Task.Run(() => ApiClient.PostRequestData<GetListModel,List<TestViewModel>>("api/Stat/GetUserList",new GetListModel
+                    {
+                        Skip = 0,
+                        Take = 20
+                    })).Result;
                 if (listС != null)
                 {
                     dataGridViewPassedTests.DataSource = listС;
@@ -124,7 +129,7 @@ namespace TestView
             {
                 int Id = Convert.ToInt32(dataGridViewAvailablePatterns.SelectedRows[0].Cells[0].Value);
                 List<PatternViewModel> list =
-                Task.Run(() => ApiClient.GetRequestData<List<PatternViewModel>>("api/Patterns/GetList/" + Id)).Result;
+                Task.Run(() => ApiClient.GetRequestData<List<PatternViewModel>>("api/Pattern/GetList/" + Id)).Result;
                 if (list != null)
                 {
                     dataGridViewAvailablePatterns.DataSource = list;
@@ -140,7 +145,7 @@ namespace TestView
             {
                 int Id = Convert.ToInt32(dataGridViewPassedTests.SelectedRows[0].Cells[0].Value);
                 List<TestViewModel> list =
-                Task.Run(() => ApiClient.GetRequestData<List<TestViewModel>>("api/PassedTests/GetList/" + Id)).Result;
+                Task.Run(() => ApiClient.GetRequestData<List<TestViewModel>>("api/Stat/GetList/" + Id)).Result;
                 if (list != null)
                 {
                     dataGridViewPassedTests.DataSource = list;

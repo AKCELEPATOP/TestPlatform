@@ -30,7 +30,7 @@ namespace TestService.Implementations
 
         public async Task<List<StatViewModel>> GetList(GetListModel model)
         {
-            return await context.Stats.Skip(model.Skip).Take(model.Take).Include(rec => rec.Pattern).Select(rec => new StatViewModel
+            return await context.Stats/*.Skip(model.Skip).Take(model.Take)*/.Include(rec => rec.Pattern).Select(rec => new StatViewModel
             {
                 Total = rec.Total,
                 Right = rec.Right,
@@ -83,7 +83,7 @@ namespace TestService.Implementations
                                             SqlFunctions.DateName("yyyy", rec.DateCreate)
                     }).ToListAsync();
             }
-            return await context.Stats.Where(rec => rec.UserId == model.UserId).Skip(model.Skip).Take(model.Take).Include(rec => rec.Pattern).Select(rec => new StatViewModel
+            return await context.Stats.Where(rec => rec.UserId == model.UserId)/*.Skip(model.Skip).Take(model.Take)*/.Include(rec => rec.Pattern).Select(rec => new StatViewModel
             {
                 PatternName = rec.Pattern.Name,
                 Right = rec.Right,
