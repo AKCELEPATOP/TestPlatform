@@ -3,7 +3,7 @@ namespace TestService.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class FirstMigration : DbMigration
+    public partial class firstMigration : DbMigration
     {
         public override void Up()
         {
@@ -26,6 +26,7 @@ namespace TestService.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Text = c.String(maxLength: 1000),
+                        Time = c.Long(nullable: false),
                         Complexity = c.Int(nullable: false),
                         Active = c.Boolean(nullable: false),
                         CategoryId = c.Int(nullable: false),
@@ -50,7 +51,6 @@ namespace TestService.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         Complex = c.Double(nullable: false),
                         Middle = c.Double(nullable: false),
-                        Easy = c.Double(nullable: false),
                         Count = c.Int(nullable: false),
                         PatternId = c.Int(nullable: false),
                         CategoryId = c.Int(nullable: false),
@@ -67,8 +67,11 @@ namespace TestService.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(),
+                        UserGroupId = c.Int(),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.UserGroups", t => t.UserGroupId)
+                .Index(t => t.UserGroupId);
             
             CreateTable(
                 "dbo.PatternQuestions",
@@ -90,7 +93,8 @@ namespace TestService.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         DateCreate = c.DateTime(nullable: false),
-                        Result = c.Int(nullable: false),
+                        Right = c.Int(nullable: false),
+                        Total = c.Int(nullable: false),
                         PatternId = c.Int(nullable: false),
                         UserId = c.String(maxLength: 128),
                     })
@@ -109,7 +113,7 @@ namespace TestService.Migrations
                         UserName = c.String(nullable: false, maxLength: 256),
                         PasswordHash = c.String(nullable: false),
                         SecurityStamp = c.String(),
-                        GroupId = c.Int(nullable: false),
+                        UserGroupId = c.Int(),
                         Email = c.String(maxLength: 256),
                         EmailConfirmed = c.Boolean(nullable: false),
                         PhoneNumber = c.String(),
@@ -120,9 +124,9 @@ namespace TestService.Migrations
                         AccessFailedCount = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.UserGroups", t => t.GroupId, cascadeDelete: true)
+                .ForeignKey("dbo.UserGroups", t => t.UserGroupId)
                 .Index(t => t.UserName, unique: true, name: "UserNameIndex")
-                .Index(t => t.GroupId);
+                .Index(t => t.UserGroupId);
             
             CreateTable(
                 "dbo.AspNetUserClaims",
@@ -136,15 +140,6 @@ namespace TestService.Migrations
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId);
-            
-            CreateTable(
-                "dbo.UserGroups",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
-                    })
-                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.AspNetUserLogins",
@@ -172,6 +167,15 @@ namespace TestService.Migrations
                 .Index(t => t.RoleId);
             
             CreateTable(
+                "dbo.UserGroups",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
                 "dbo.AspNetRoles",
                 c => new
                     {
@@ -187,10 +191,11 @@ namespace TestService.Migrations
         {
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
             DropForeignKey("dbo.Questions", "CategoryId", "dbo.Categories");
+            DropForeignKey("dbo.AspNetUsers", "UserGroupId", "dbo.UserGroups");
+            DropForeignKey("dbo.Patterns", "UserGroupId", "dbo.UserGroups");
             DropForeignKey("dbo.Stats", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
-            DropForeignKey("dbo.AspNetUsers", "GroupId", "dbo.UserGroups");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.Stats", "PatternId", "dbo.Patterns");
             DropForeignKey("dbo.PatternQuestions", "QuestionId", "dbo.Questions");
@@ -203,20 +208,21 @@ namespace TestService.Migrations
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
-            DropIndex("dbo.AspNetUsers", new[] { "GroupId" });
+            DropIndex("dbo.AspNetUsers", new[] { "UserGroupId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.Stats", new[] { "UserId" });
             DropIndex("dbo.Stats", new[] { "PatternId" });
             DropIndex("dbo.PatternQuestions", new[] { "QuestionId" });
             DropIndex("dbo.PatternQuestions", new[] { "PatternId" });
+            DropIndex("dbo.Patterns", new[] { "UserGroupId" });
             DropIndex("dbo.PatternCategories", new[] { "CategoryId" });
             DropIndex("dbo.PatternCategories", new[] { "PatternId" });
             DropIndex("dbo.Questions", new[] { "CategoryId" });
             DropIndex("dbo.Answers", new[] { "QuestionId" });
             DropTable("dbo.AspNetRoles");
+            DropTable("dbo.UserGroups");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetUserLogins");
-            DropTable("dbo.UserGroups");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.Stats");

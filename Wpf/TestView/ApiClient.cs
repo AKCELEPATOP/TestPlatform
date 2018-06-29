@@ -14,7 +14,7 @@ namespace TestView
     {
         private static HttpClient client = new HttpClient();
         //public static string role;
-        public static ApplicationRoles Role { get; set; }
+        public static string Role { get; set; }
         public static void Connect()
         {
             client.BaseAddress = new Uri(ConfigurationManager.AppSettings["IPAddress"]);
@@ -43,7 +43,7 @@ namespace TestView
             }
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", tokenResponse.Access_token);
             //сделайте что-то с tokenResponse.UserRole для выбора интерфейса
-            Role = (ApplicationRoles)Enum.Parse(typeof(ApplicationRoles), tokenResponse.UserRole);
+            Role = tokenResponse.UserRole;
         }
 
         private static async Task<HttpResponseMessage> GetRequest(string requestUrl)

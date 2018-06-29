@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TestService;
 using TestView;
 
 namespace TestView
@@ -27,13 +28,13 @@ namespace TestView
         private void button1_Click(object sender, EventArgs e)
         {
             ApiClient.Login(textBoxLogin.Text, textBoxPassword.Text);
-            if (ApiClient.role == "admin")
+            if (ApiClient.Role.Equals(ApplicationRoles.Admin) || ApiClient.Role.Equals(ApplicationRoles.SuperAdmin))
             {
                 FormStatisticsMain formMainAdmin = new FormStatisticsMain();
                 formMainAdmin.Show();
                 Hide();
             }
-            else if (ApiClient.role == "user")
+            else if (ApiClient.Role.Equals(ApplicationRoles.User))
             {
                 FormMain formMainUser = new FormMain();
                 formMainUser.Show();
