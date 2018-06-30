@@ -1,10 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TestService.ViewModels;
@@ -31,6 +26,16 @@ namespace TestView
                     dataGridView1.Columns[0].Visible = false;
                     dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
+
+                List<QuestionViewModel> listQuestions =
+                  Task.Run(() => ApiClient.GetRequestData<List<QuestionViewModel>>("api/Category/GetListQuestions/" + 1)).Result;
+                if (list != null)
+                {
+                    dataGridView2.DataSource = list;
+                    dataGridView2.Columns[0].Visible = false;
+                    dataGridView2.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                }
+
             }
             catch (Exception ex)
             {

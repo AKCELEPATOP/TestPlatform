@@ -482,7 +482,7 @@ namespace TestService.Implementations
                 mailMessage.BodyEncoding = System.Text.Encoding.UTF8;
                 if (path != null)
                 {
-                    mailMessage.Attachments.Add(new Attachment(path));
+                    mailMessage.Attachments.Add(new System.Net.Mail.Attachment(path));
                 }
 
                 stmpClient = new SmtpClient("smtp.gmail.com", 587)

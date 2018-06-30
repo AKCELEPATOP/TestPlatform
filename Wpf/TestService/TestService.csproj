@@ -91,6 +91,10 @@
     <Compile Include="Migrations\201806301234044_firstMigration.Designer.cs">
       <DependentUpon>201806301234044_firstMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806301520315_huimigration.cs" />
+    <Compile Include="Migrations\201806301520315_huimigration.Designer.cs">
+      <DependentUpon>201806301520315_huimigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\AnswerViewModel.cs" />
@@ -122,6 +126,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201806301234044_firstMigration.resx">
       <DependentUpon>201806301234044_firstMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806301520315_huimigration.resx">
+      <DependentUpon>201806301520315_huimigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
