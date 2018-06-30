@@ -13,7 +13,6 @@ namespace TestView
     public class ApiClient
     {
         private static HttpClient client = new HttpClient();
-        //public static string role;
         public static string Role { get; set; }
         public static void Connect()
         {
@@ -129,7 +128,6 @@ namespace TestView
         public async static void Logout()
         {
             HttpResponseMessage response = await PostRequest("api/account/logout");
-
         }
     }
 }
