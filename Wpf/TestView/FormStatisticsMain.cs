@@ -16,6 +16,8 @@ namespace TestView
     {
         private FormAuthorization parent;
 
+        public string UserLogin;
+
         public FormStatisticsMain(FormAuthorization parent)
         {
             this.parent = parent;
@@ -45,6 +47,8 @@ namespace TestView
                     dataGridView2.Columns[0].Visible = false;
                     dataGridView2.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
+
+                textBox1.Text = UserLogin;
             }
             catch (Exception ex)
             {

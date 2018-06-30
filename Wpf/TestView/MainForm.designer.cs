@@ -263,7 +263,6 @@
             this.Controls.Add(this.dataGridViewAvailablePatterns);
             this.Name = "FormMain";
             this.Text = "Главный экран";
-            this.Load += new System.EventHandler(this.FormMain_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAvailablePatterns)).EndInit();
             this.groupBox2.ResumeLayout(false);
