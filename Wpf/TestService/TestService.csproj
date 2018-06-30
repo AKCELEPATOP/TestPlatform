@@ -63,6 +63,7 @@
     <Compile Include="ApplicationDbContext.cs" />
     <Compile Include="ApplicationRoles.cs" />
     <Compile Include="BindingModels\AnswerBindingModel.cs" />
+    <Compile Include="BindingModels\AttachmentBindingModel.cs" />
     <Compile Include="BindingModels\CategoryBindingModel.cs" />
     <Compile Include="BindingModels\GetListModel.cs" />
     <Compile Include="BindingModels\GroupBindingModel.cs" />
@@ -100,6 +101,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\AnswerViewModel.cs" />
+    <Compile Include="ViewModels\AttachmentViewModel.cs" />
     <Compile Include="ViewModels\CategoryViewModel.cs" />
     <Compile Include="ViewModels\GroupViewModel.cs" />
     <Compile Include="ViewModels\QuestionViewModel.cs" />

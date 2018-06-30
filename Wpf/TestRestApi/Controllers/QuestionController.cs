@@ -45,11 +45,35 @@ namespace TestRestApi.Controllers
                 _service = value;
             }
         }
+
+        private string imagesPath;
+
+        public string ImagesPath
+        {
+            get
+            {
+                return imagesPath ?? GetImagePath();
+            }
+        }
+
+        private string GetImagePath()
+        {
+            imagesPath = System.Web.Hosting.HostingEnvironment.MapPath("~/Images");
+
+            if (!System.IO.File.Exists(imagesPath))
+            {
+                System.IO.File.Create(imagesPath);
+            }
+            imagesPath += "/";
+            return imagesPath;
+        }
+
         #endregion
 
         [HttpPost]
         public async Task AddElement(QuestionBindingModel model)
         {
+            model.ImagesPath = ImagesPath;
             await Service.AddElement(model);
         }
 
@@ -67,6 +91,7 @@ namespace TestRestApi.Controllers
         [HttpPost]
         public async Task UpdElement(QuestionBindingModel model)
         {
+            model.ImagesPath = ImagesPath;
             await Service.UpdElement(model);
         }
 

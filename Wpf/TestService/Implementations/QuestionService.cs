@@ -60,11 +60,11 @@ namespace TestService.Implementations
                         });
                     }
                     await context.SaveChangesAsync();
-                    if (model.Images != null)
+                    if (model.Attachments != null)
                     {
-                        foreach (var image in model.Images)
+                        foreach (var attachment in model.Attachments)
                         {
-                            var buffer = Convert.FromBase64String(image);
+                            var buffer = Convert.FromBase64String(attachment.Image);
 
                             HttpPostedFileBase objFile = (HttpPostedFileBase)new MemoryPostedFile(buffer);
 
@@ -146,15 +146,19 @@ namespace TestService.Implementations
             }
             else
             {
-                List<string> images = new List<string>();
+                List<AttachmentViewModel> attachments = new List<AttachmentViewModel>();
 
-                List<string> list = await context.Attachments.Where(rec => rec.QuestionId == element.Id).Select(rec => rec.Path).ToListAsync();
+                var list = await context.Attachments.Where(rec => rec.QuestionId == element.Id).ToListAsync();
 
                 foreach (var el in list)
                 {
-                    byte[] bytes = System.IO.File.ReadAllBytes(el);
+                    byte[] bytes = System.IO.File.ReadAllBytes(el.Path);
 
-                    images.Add(Convert.ToBase64String(bytes));
+                    attachments.Add(new AttachmentViewModel
+                    {
+                        Image = Convert.ToBase64String(bytes),
+                        Id = el.Id
+                    });
                 }
 
                 QuestionViewModel result = new QuestionViewModel
@@ -173,7 +177,7 @@ namespace TestService.Implementations
                     CategoryId = element.CategoryId,
                     ComplexityName = element.Complexity.ToString(),
                     Time = element.Time,
-                    Images = images
+                    Images = attachments
                 };
                 return result;
             }
@@ -231,6 +235,74 @@ namespace TestService.Implementations
                             True = answer.True,
                         });
                         await context.SaveChangesAsync();
+                    }
+
+                    //обновление приложений
+                    if (model.Attachments != null)
+                    {
+                        var attachIds = model.Attachments.Select(rec => rec.Id).Distinct();
+
+                        var updateAttachments = context.Attachments.Where(rec => rec.QuestionId == model.Id && answersId.Contains(rec.Id));
+
+                        foreach (var updateAttach in updateAttachments)
+                        {
+                            var buffer = Convert.FromBase64String(model.Attachments.FirstOrDefault(rec => rec.Id == updateAttach.Id).Image);
+
+                            HttpPostedFileBase objFile = (HttpPostedFileBase)new MemoryPostedFile(buffer);
+
+                            try
+                            {
+                                if (objFile != null && objFile.ContentLength > 0)
+                                {
+                                    string path = updateAttach.Path;//возможна ошибка
+
+                                    objFile.SaveAs(path);
+
+                                    await context.SaveChangesAsync();
+                                }
+                            }
+                            catch
+                            {
+                                throw new Exception("Не удалось обновить изображение");
+                            }
+                        }
+
+                        context.Attachments.RemoveRange(context.Attachments.Where(rec => rec.QuestionId == model.Id && !attachIds.Contains(rec.Id)));
+
+                        await context.SaveChangesAsync();
+
+                        var attachments = model.Attachments
+                            .Where(rec => rec.Id == 0);
+
+                        foreach (var attach in attachments)
+                        {
+
+                            var buffer = Convert.FromBase64String(attach.Image);
+
+                            HttpPostedFileBase objFile = (HttpPostedFileBase)new MemoryPostedFile(buffer);
+
+                            try
+                            {
+                                if (objFile != null && objFile.ContentLength > 0)
+                                {
+                                    string path = model.ImagesPath + ((string.IsNullOrEmpty(objFile.FileName)) ? string.Format("{0}.{1}.png", element.Id, 1) : objFile.FileName);
+
+                                    objFile.SaveAs(path);
+
+                                    context.Attachments.Add(new Attachment
+                                    {
+                                        Path = path,
+                                        QuestionId = element.Id
+                                    });
+                                    await context.SaveChangesAsync();
+                                }
+                            }
+                            catch
+                            {
+                                throw new Exception("Не удалось добавить изображение");
+                            }
+                            await context.SaveChangesAsync();
+                        }
                     }
                     transaction.Commit();
                 }

@@ -24,7 +24,7 @@ namespace TestService.BindingModels
         public string ImagesPath { get; set; }
 
         [DataMember]
-        public List<string> Images { get; set; }
+        public List<AttachmentBindingModel> Attachments { get; set; }
 
         [DataMember]
         public QuestionComplexity Complexity { get; set; }
