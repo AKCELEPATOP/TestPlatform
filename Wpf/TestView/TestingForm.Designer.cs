@@ -41,13 +41,13 @@
             this.answer3 = new System.Windows.Forms.CheckBox();
             this.answer2 = new System.Windows.Forms.CheckBox();
             this.answer1 = new System.Windows.Forms.CheckBox();
-            this.giveAnswer = new System.Windows.Forms.Button();
             this.nextQuestion = new System.Windows.Forms.Button();
             this.questionGroupBox = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.endTest = new System.Windows.Forms.Button();
-            this.time = new System.Windows.Forms.Label();
+            this.labelTime = new System.Windows.Forms.Label();
             this.appendixForQestion = new System.Windows.Forms.Button();
+            this.textBoxTime = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.questionList)).BeginInit();
             this.answerGroupBoxCheckButtons.SuspendLayout();
             this.answerGroupBoxRadioButtons.SuspendLayout();
@@ -187,19 +187,9 @@
             this.answer1.Text = "Вариант ответа 1";
             this.answer1.UseVisualStyleBackColor = true;
             // 
-            // giveAnswer
-            // 
-            this.giveAnswer.Location = new System.Drawing.Point(52, 335);
-            this.giveAnswer.Name = "giveAnswer";
-            this.giveAnswer.Size = new System.Drawing.Size(134, 28);
-            this.giveAnswer.TabIndex = 4;
-            this.giveAnswer.Text = "Ответить";
-            this.giveAnswer.UseVisualStyleBackColor = true;
-            this.giveAnswer.Click += new System.EventHandler(this.answering_Click);
-            // 
             // nextQuestion
             // 
-            this.nextQuestion.Location = new System.Drawing.Point(416, 336);
+            this.nextQuestion.Location = new System.Drawing.Point(329, 336);
             this.nextQuestion.Name = "nextQuestion";
             this.nextQuestion.Size = new System.Drawing.Size(134, 27);
             this.nextQuestion.TabIndex = 5;
@@ -216,20 +206,20 @@
             this.questionGroupBox.Size = new System.Drawing.Size(708, 111);
             this.questionGroupBox.TabIndex = 6;
             this.questionGroupBox.TabStop = false;
-            this.questionGroupBox.Text = "Вопрос № #";
+            this.questionGroupBox.Text = "Вопрос №";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(509, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(73, 13);
+            this.label1.Size = new System.Drawing.Size(66, 13);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Категория: #";
+            this.label1.Text = "Категория: ";
             // 
             // endTest
             // 
-            this.endTest.Location = new System.Drawing.Point(593, 336);
+            this.endTest.Location = new System.Drawing.Point(588, 336);
             this.endTest.Name = "endTest";
             this.endTest.Size = new System.Drawing.Size(134, 27);
             this.endTest.TabIndex = 7;
@@ -237,18 +227,18 @@
             this.endTest.UseVisualStyleBackColor = true;
             this.endTest.Click += new System.EventHandler(this.endTest_Click);
             // 
-            // time
+            // labelTime
             // 
-            this.time.AutoSize = true;
-            this.time.Location = new System.Drawing.Point(16, 6);
-            this.time.Name = "time";
-            this.time.Size = new System.Drawing.Size(53, 13);
-            this.time.TabIndex = 8;
-            this.time.Text = "Время: #";
+            this.labelTime.AutoSize = true;
+            this.labelTime.Location = new System.Drawing.Point(16, 6);
+            this.labelTime.Name = "labelTime";
+            this.labelTime.Size = new System.Drawing.Size(43, 13);
+            this.labelTime.TabIndex = 8;
+            this.labelTime.Text = "Время:";
             // 
             // appendixForQestion
             // 
-            this.appendixForQestion.Location = new System.Drawing.Point(240, 335);
+            this.appendixForQestion.Location = new System.Drawing.Point(85, 335);
             this.appendixForQestion.Name = "appendixForQestion";
             this.appendixForQestion.Size = new System.Drawing.Size(134, 28);
             this.appendixForQestion.TabIndex = 9;
@@ -256,18 +246,25 @@
             this.appendixForQestion.UseVisualStyleBackColor = true;
             this.appendixForQestion.Click += new System.EventHandler(this.appendixForQestion_Click);
             // 
+            // textBoxTime
+            // 
+            this.textBoxTime.Location = new System.Drawing.Point(65, 3);
+            this.textBoxTime.Name = "textBoxTime";
+            this.textBoxTime.Size = new System.Drawing.Size(68, 20);
+            this.textBoxTime.TabIndex = 10;
+            // 
             // TestingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 375);
+            this.Controls.Add(this.textBoxTime);
             this.Controls.Add(this.appendixForQestion);
-            this.Controls.Add(this.time);
+            this.Controls.Add(this.labelTime);
             this.Controls.Add(this.answerGroupBoxCheckButtons);
             this.Controls.Add(this.endTest);
             this.Controls.Add(this.questionGroupBox);
             this.Controls.Add(this.nextQuestion);
-            this.Controls.Add(this.giveAnswer);
             this.Controls.Add(this.questionList);
             this.Name = "TestingForm";
             this.Text = "Форма тестирования";
@@ -292,18 +289,18 @@
         private System.Windows.Forms.CheckBox answer3;
         private System.Windows.Forms.CheckBox answer2;
         private System.Windows.Forms.CheckBox answer1;
-        private System.Windows.Forms.Button giveAnswer;
         private System.Windows.Forms.Button nextQuestion;
         private System.Windows.Forms.GroupBox questionGroupBox;
         private System.Windows.Forms.Button endTest;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label time;
+        private System.Windows.Forms.Label labelTime;
         private System.Windows.Forms.Button appendixForQestion;
         private System.Windows.Forms.GroupBox answerGroupBoxRadioButtons;
         private System.Windows.Forms.RadioButton radioButton4;
         private System.Windows.Forms.RadioButton radioButton3;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.TextBox textBoxTime;
     }
 }
 
