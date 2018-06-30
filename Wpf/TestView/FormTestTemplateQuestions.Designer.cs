@@ -174,6 +174,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Name = "FormTestTemplateQuestions";
             this.Text = "Выбор вопросов";
+            this.Load += new System.EventHandler(this.Form_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

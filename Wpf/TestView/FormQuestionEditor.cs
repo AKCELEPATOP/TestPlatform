@@ -168,5 +168,10 @@ namespace TestView
         {
             Close();
         }
+
+        private void Form_Load(object sender, EventArgs e)
+        {
+            Initialize();
+        }
     }
 }

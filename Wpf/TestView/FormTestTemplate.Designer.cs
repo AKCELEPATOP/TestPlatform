@@ -337,6 +337,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "FormTestTemplate";
             this.Text = "Шаблон теста";
+            this.Load += new System.EventHandler(this.Form_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

@@ -161,5 +161,20 @@ namespace TestView
         {
             Close();
         }
+
+        private void Form_Load(object sender, EventArgs e)
+        {
+            Initialize();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
