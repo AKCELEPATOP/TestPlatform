@@ -13,8 +13,11 @@ namespace TestView
     public class ApiClient
     {
         private static HttpClient client = new HttpClient();
-        //public static string role;
+
         public static string Role { get; set; }
+
+        public static string UserName { get; set; }
+
         public static void Connect()
         {
             client.BaseAddress = new Uri(ConfigurationManager.AppSettings["IPAddress"]);
@@ -43,6 +46,7 @@ namespace TestView
             }
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", tokenResponse.Access_token);
             Role = tokenResponse.UserRole;
+            UserName = tokenResponse.UserName;
         }
 
         public static U PostFormUrlEncoded<U>(string requestUrl, IEnumerable<KeyValuePair<string, string>> postData)
