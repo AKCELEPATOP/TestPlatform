@@ -48,7 +48,7 @@ namespace TestView
             {
                 int Id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
                 List<QuestionViewModel> list =
-                Task.Run(() => ApiClient.GetRequestData<List<QuestionViewModel>>("api/Category/GetList/" + Id)).Result;
+                Task.Run(() => ApiClient.GetRequestData<List<QuestionViewModel>>("api/Category/GetListQuestions/" + Id)).Result;
                 if (list != null)
                 {
                     dataGridView2.DataSource = list;
