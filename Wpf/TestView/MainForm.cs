@@ -18,7 +18,7 @@ namespace TestView
         public Color colorBack;
         public Color colorFont;
 
-        public string UserLogin;
+        public string UserLogin { get; set; }
 
         private FormAuthorization parent;
 
@@ -54,9 +54,6 @@ namespace TestView
                     dataGridViewPassedTests.Columns[0].Visible = false;
                     dataGridViewPassedTests.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
-
-                textBoxCurrentUser.Text = UserLogin;
-
             }
                      
             catch (Exception ex)
@@ -67,9 +64,6 @@ namespace TestView
                 }
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            this.ForeColor = colorFont;
-            this.BackColor = colorBack;
 
         }
 
@@ -90,18 +84,18 @@ namespace TestView
             if (cd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 colorBack = cd.Color;
+
+                buttonChangeColorFont.BackColor = colorBack;
+
             }
             this.BackColor = colorBack;
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            if (dataGridViewAvailablePatterns.SelectedRows.Count == 1)
-            {
-                TestingForm Testing = new TestingForm();
-                Close();
-                Testing.Show();
-            }
+            TestingForm Testing = new TestingForm();
+            Close();
+            Testing.Show();
         }
 
         private void buttonExit_Click(object sender, EventArgs e)
@@ -116,6 +110,14 @@ namespace TestView
             Close();
         }
 
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+            //textBoxCurrentUser.Text = ;
+            //textBoxGroupUser.Text = ;
+            Initialize();
+            this.ForeColor = colorFont;
+            this.BackColor = colorBack;
+        }
 
         private void buttonStatistic_Click(object sender, EventArgs e)
         {
