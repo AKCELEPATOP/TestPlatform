@@ -13,8 +13,11 @@ namespace TestView
     public class ApiClient
     {
         private static HttpClient client = new HttpClient();
+      
         public static string Role { get; set; }
+
         public static string UserName { get; set; }
+
         public static void Connect()
         {
             client.BaseAddress = new Uri(ConfigurationManager.AppSettings["IPAddress"]);

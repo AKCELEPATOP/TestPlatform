@@ -23,19 +23,22 @@ namespace TestService.Migrations
             roleManager.Create(new IdentityRole { Name = ApplicationRoles.Admin });
             roleManager.Create(new IdentityRole { Name = ApplicationRoles.User });
 
-            var store = new UserStore<User>(context);
-            var manager = new UserManager<User>(store);
-
-            var user = new User
+            if (!context.Users.Select(rec => rec.UserName).Contains("Admin"))
             {
-                FIO = "Default",
-                UserName = "Admin",
-                PasswordHash = "Admin777"
-            };
+                var store = new UserStore<User>(context);
+                var manager = new UserManager<User>(store);
 
-            manager.Create(user, user.PasswordHash);
-            manager.AddToRole(user.Id, ApplicationRoles.SuperAdmin);
+                var user = new User
+                {
+                    FIO = "Default",
+                    UserName = "Admin",
+                    PasswordHash = "Admin777"
+                };
 
+                manager.Create(user, user.PasswordHash);
+                manager.AddToRole(user.Id, ApplicationRoles.SuperAdmin);
+
+            }
             context.SaveChangesAsync();
             //  This method will be called after migrating to the latest version.
 

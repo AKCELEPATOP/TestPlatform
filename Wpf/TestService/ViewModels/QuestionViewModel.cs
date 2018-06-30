@@ -27,6 +27,9 @@ namespace TestService.ViewModels
         public string ComplexityName { get; set; }
 
         [DataMember]
+        public string Image { get; set; }
+
+        [DataMember]
         public long Time { get; set; }
 
         [DataMember]
