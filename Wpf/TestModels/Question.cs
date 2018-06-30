@@ -41,5 +41,8 @@ namespace TestModels
 
         [ForeignKey("QuestionId")]
         public virtual List<PatternQuestion> PatternQuestions { get; set; }
+
+        [ForeignKey("QuestionId")]
+        public virtual List<Attachment> Attachments { get; set; }
     }
 }
