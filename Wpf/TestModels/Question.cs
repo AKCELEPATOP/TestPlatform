@@ -34,6 +34,7 @@ namespace TestModels
         public virtual List<Answer> Answers { get; set; }
 
         [DataMember]
+        [Required]
         public int CategoryId { get; set; }
 
         public virtual Category Category { get; set; }

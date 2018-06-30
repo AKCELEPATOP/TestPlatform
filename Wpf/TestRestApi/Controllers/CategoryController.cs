@@ -95,16 +95,5 @@ namespace TestRestApi.Controllers
             }
             return Ok(list);
         }
-
-        [HttpGet]
-        public async Task<IHttpActionResult> GetListQuestions(int id)
-        {
-            var list = await Service.GetListQuestions(id);
-            if (list == null)
-            {
-                InternalServerError(new Exception("Нет данных"));
-            }
-            return Ok(list);
-        }
     }
 }

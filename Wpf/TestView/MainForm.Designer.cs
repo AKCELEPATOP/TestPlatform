@@ -31,6 +31,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.dataGridViewAvailablePatterns = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonBeginTest = new System.Windows.Forms.Button();
@@ -49,9 +50,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.buttonResultOfTest = new System.Windows.Forms.Button();
             this.buttonStatistic = new System.Windows.Forms.Button();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.обновитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAvailablePatterns)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPassedTests)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridViewAvailablePatterns
@@ -62,6 +66,7 @@
             this.dataGridViewAvailablePatterns.Size = new System.Drawing.Size(303, 279);
             this.dataGridViewAvailablePatterns.TabIndex = 0;
             this.dataGridViewAvailablePatterns.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewAvailablePatterns_CellContentClick);
+            this.dataGridViewAvailablePatterns.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
             // 
             // label1
             // 
@@ -135,7 +140,6 @@
             this.label6.Size = new System.Drawing.Size(119, 13);
             this.label6.TabIndex = 17;
             this.label6.Text = "Настроить цвет фона:";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // buttonChangeColorBack
             // 
@@ -177,6 +181,7 @@
             this.dataGridViewPassedTests.Size = new System.Drawing.Size(232, 279);
             this.dataGridViewPassedTests.TabIndex = 23;
             this.dataGridViewPassedTests.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPassedTests_CellContentClick);
+            this.dataGridViewPassedTests.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
             // 
             // label2
             // 
@@ -222,6 +227,20 @@
             this.buttonStatistic.UseVisualStyleBackColor = true;
             this.buttonStatistic.Click += new System.EventHandler(this.buttonStatistic_Click);
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.обновитьToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(129, 26);
+            // 
+            // обновитьToolStripMenuItem
+            // 
+            this.обновитьToolStripMenuItem.Name = "обновитьToolStripMenuItem";
+            this.обновитьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.обновитьToolStripMenuItem.Text = "Обновить";
+            this.обновитьToolStripMenuItem.Click += new System.EventHandler(this.обновитьToolStripMenuItem_Click_1);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -245,10 +264,12 @@
             this.Name = "FormMain";
             this.Text = "Главный экран";
             this.Load += new System.EventHandler(this.FormMain_Load);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAvailablePatterns)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPassedTests)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -274,5 +295,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button buttonResultOfTest;
         private System.Windows.Forms.Button buttonStatistic;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem обновитьToolStripMenuItem;
     }
 }
