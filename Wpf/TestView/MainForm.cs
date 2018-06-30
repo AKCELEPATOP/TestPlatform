@@ -162,10 +162,10 @@ namespace TestView
                 contextMenuStrip1.Show(MousePosition);
             }
         }
-        private void обновитьToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void обновитьToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             Initialize();
         }
-
     }
 }

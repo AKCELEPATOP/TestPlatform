@@ -83,7 +83,7 @@
             // textBox5
             // 
             this.textBox5.Location = new System.Drawing.Point(194, 77);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox5.Margin = new System.Windows.Forms.Padding(2);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(112, 20);
             this.textBox5.TabIndex = 20;
@@ -100,7 +100,7 @@
             // button8
             // 
             this.button8.Location = new System.Drawing.Point(194, 110);
-            this.button8.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button8.Margin = new System.Windows.Forms.Padding(2);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(111, 36);
             this.button8.TabIndex = 13;
@@ -167,6 +167,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(240, 174);
             this.dataGridView1.TabIndex = 5;
+            this.dataGridView1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
             // 
             // dataGridView2
             // 
@@ -177,6 +178,7 @@
             this.dataGridView2.Size = new System.Drawing.Size(240, 188);
             this.dataGridView2.TabIndex = 6;
             this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
+            this.dataGridView2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
             // 
             // button1
             // 
@@ -304,12 +306,12 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.обновитьToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(129, 26);
             // 
             // обновитьToolStripMenuItem
             // 
             this.обновитьToolStripMenuItem.Name = "обновитьToolStripMenuItem";
-            this.обновитьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.обновитьToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.обновитьToolStripMenuItem.Text = "Обновить";
             // 
             // FormTestTemplate
@@ -335,6 +337,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "FormTestTemplate";
             this.Text = "Шаблон теста";
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

@@ -66,6 +66,7 @@
             this.dataGridViewAvailablePatterns.Size = new System.Drawing.Size(303, 279);
             this.dataGridViewAvailablePatterns.TabIndex = 0;
             this.dataGridViewAvailablePatterns.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewAvailablePatterns_CellContentClick);
+            this.dataGridViewAvailablePatterns.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
             // 
             // label1
             // 
@@ -180,6 +181,7 @@
             this.dataGridViewPassedTests.Size = new System.Drawing.Size(232, 279);
             this.dataGridViewPassedTests.TabIndex = 23;
             this.dataGridViewPassedTests.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPassedTests_CellContentClick);
+            this.dataGridViewPassedTests.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
             // 
             // label2
             // 
@@ -230,13 +232,14 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.обновитьToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(129, 26);
             // 
             // обновитьToolStripMenuItem
             // 
             this.обновитьToolStripMenuItem.Name = "обновитьToolStripMenuItem";
             this.обновитьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.обновитьToolStripMenuItem.Text = "Обновить";
+            this.обновитьToolStripMenuItem.Click += new System.EventHandler(this.обновитьToolStripMenuItem_Click_1);
             // 
             // FormMain
             // 
@@ -261,6 +264,7 @@
             this.Name = "FormMain";
             this.Text = "Главный экран";
             this.Load += new System.EventHandler(this.FormMain_Load);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAvailablePatterns)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();

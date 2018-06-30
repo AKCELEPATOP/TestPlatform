@@ -67,6 +67,7 @@
             this.questionList.Size = new System.Drawing.Size(190, 374);
             this.questionList.TabIndex = 0;
             this.questionList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.questionList_CellContentClick);
+            this.questionList.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
             // 
             // question
             // 
@@ -285,6 +286,7 @@
             this.Controls.Add(this.questionList);
             this.Name = "TestingForm";
             this.Text = "Форма тестирования";
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
             ((System.ComponentModel.ISupportInitialize)(this.questionList)).EndInit();
             this.answerGroupBoxCheckButtons.ResumeLayout(false);
             this.answerGroupBoxCheckButtons.PerformLayout();
