@@ -94,6 +94,11 @@ namespace TestView
 
         }
 
+        private void Form_Load(object sender, EventArgs e)
+        {
+            Initialize();
+        }
+
         private void back_Click(object sender, EventArgs e)
         {
             Close();

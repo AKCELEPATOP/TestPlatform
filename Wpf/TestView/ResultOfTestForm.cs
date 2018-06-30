@@ -69,5 +69,10 @@ namespace TestView
                 }
             }
         }
+
+        private void Form_Load(object sender, EventArgs e)
+        {
+            Initialize();
+        }
     }
 }

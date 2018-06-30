@@ -159,6 +159,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "FormUserControl";
             this.Text = "Пользователи";
+            this.Load += new System.EventHandler(this.Form_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

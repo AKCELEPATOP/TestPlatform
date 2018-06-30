@@ -73,7 +73,6 @@ namespace TestView
             if (cd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 colorFont = cd.Color;
-                buttonChangeColorFont.BackColor = colorFont;
             }
             this.ForeColor = colorFont;
         }
@@ -85,7 +84,9 @@ namespace TestView
             if (cd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 colorBack = cd.Color;
+
                 buttonChangeColorFont.BackColor = colorBack;
+
             }
             this.BackColor = colorBack;
         }
@@ -166,6 +167,11 @@ namespace TestView
         }
 
         private void обновитьToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            Initialize();
+        }
+
+        private void Form_Load(object sender, EventArgs e)
         {
             Initialize();
         }
