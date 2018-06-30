@@ -23,6 +23,8 @@ namespace TestView
         int IdQuestions = 0;
         int Amount = 0;
         int Time;
+
+
         public TestingForm()
         {
             InitializeComponent();
@@ -46,10 +48,10 @@ namespace TestView
             tmrShow.Interval = 5000;
             tmrShow.Tick += tmrShow_Tick;
             tmrShow.Enabled = true;
-            label1.Text = "Категория "+ list[id.Value].Questions[IdQuestions].CategoryName;
+            label1.Text = "Категория " + list[id.Value].Questions[IdQuestions].CategoryName;
             questionGroupBox.Text = "Вопрос № " + IdQuestions;
-            
-            
+
+
         }
 
 
@@ -62,7 +64,7 @@ namespace TestView
             }
             else
             {
-                MessageBox.Show("Время вышло", "Конец", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Время вышло", "Тест завершён", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 FormResultOfTest resultsForm = new FormResultOfTest();
                 Close();
                 resultsForm.Show();
@@ -98,6 +100,8 @@ namespace TestView
                     radioButton4.Text = list[id.Value].Questions[IdQuestions].Answers[3].Text;
                 }
                 question.Text = list[id.Value].Questions[IdQuestions].Text;
+
+
             }
 
             catch (Exception ex)
@@ -110,10 +114,6 @@ namespace TestView
             }
         }
 
-        private void answering_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void appendixForQestion_Click(object sender, EventArgs e)
         {
@@ -129,10 +129,10 @@ namespace TestView
             resultsForm.Show();
         }
 
-        private void nextQuestion_Click(object sender, EventArgs e)
+        private void GetAnswer()
         {
-            bool[] idAnswers = { false, false, false, false };
-            if (IdQuestions != list.Count)
+            List<bool> idAnswers = new List<bool> { false, false, false, false };
+            if (IdQuestions < list.Count)
             {
                 if (Amount > 1)
                 {
@@ -153,27 +153,41 @@ namespace TestView
                 {
                     list[id.Value].Questions[IdQuestions].Answers[i].True = idAnswers[i];
                 }
+            }
 
-                IdQuestions++;
-                Initialize();
-
-                /* Добавить реализацию пройденных ответов
-                 
-             Если в idAnswers есть trueшный ответ, то выделить в листе цветом
-             */
-
+            if (idAnswers.FirstOrDefault(rec => rec.Equals(true)))
+            {
+               
+                questionList.Rows[IdQuestions].DefaultCellStyle.BackColor = Color.Blue;
+            }
+            else 
+            {
+                questionList.Rows[IdQuestions].DefaultCellStyle.BackColor = Color.Yellow;
             }
         }
+
+
+        private void nextQuestion_Click(object sender, EventArgs e)
+        {
+
+            if (IdQuestions < list.Count)
+            {
+                IdQuestions++;
+                GetAnswer();
+                Initialize();
+            }
+        }
+
 
         private void questionList_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (questionList.SelectedRows.Count == 1)
             {
                 IdQuestions = Convert.ToInt32(questionList.SelectedRows[0].Cells[0].Value);
+                GetAnswer();
                 Initialize();
             }
         }
-
 
     }
 }

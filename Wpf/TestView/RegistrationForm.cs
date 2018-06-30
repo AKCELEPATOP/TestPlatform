@@ -16,7 +16,7 @@ namespace TestView
             try
             {
                 if (textBoxFIO.TextLength != 0 || textBoxLogin.TextLength > 8 ||
-                    textBoxPassword1.TextLength != 0 || textBoxPassword2.TextLength != 0)
+                    textBoxPassword1.TextLength != 0 || textBoxPassword2.TextLength == 0)
                 {
                     if (textBoxPassword1.Text == textBoxPassword2.Text)
                     {
