@@ -121,21 +121,19 @@ namespace TestView
     
                 });
                 }
-            } 
+            }
             if (id.HasValue)
             {
                 task = Task.Run(() => ApiClient.PostRequestData("api/Question/UpdElement", new QuestionBindingModel
                 {
                     Id = id.Value,
-                    Text= text,
-                    Complexity=complexity,
-                    Active=active,
-                    Time= time,
-                    Answers=answers
-
+                    Text = text,
+                    Complexity = complexity,
+                    Active = active,
+                    Time = time,
+                    Answers = answers,
+                    CategoryId = idCat.Value
                 }));
-
-
             }
             else
             {

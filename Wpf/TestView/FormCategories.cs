@@ -60,12 +60,14 @@ namespace TestView
 
         private void button1_Click(object sender, EventArgs e)
         {
+
                 var form = new FormCategoryEdit();
 
                 if (form.ShowDialog() == DialogResult.OK)
                 {
                     Initialize();
-                }            
+                }
+            
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -103,7 +105,6 @@ namespace TestView
                         MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }, TaskContinuationOptions.OnlyOnFaulted);
                 }
-
                 Initialize();
             }
         }

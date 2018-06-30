@@ -62,7 +62,7 @@ namespace TestService.Implementations
 
                     transaction.Commit();
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     transaction.Rollback();
                     throw;

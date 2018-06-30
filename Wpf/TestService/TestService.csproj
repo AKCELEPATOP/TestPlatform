@@ -87,9 +87,9 @@
     <Compile Include="Interfaces\IStatService.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="Interfaces\IQuestion.cs" />
-    <Compile Include="Migrations\201806271641389_FirstMigration.cs" />
-    <Compile Include="Migrations\201806271641389_FirstMigration.Designer.cs">
-      <DependentUpon>201806271641389_FirstMigration.cs</DependentUpon>
+    <Compile Include="Migrations\201806301234044_firstMigration.cs" />
+    <Compile Include="Migrations\201806301234044_firstMigration.Designer.cs">
+      <DependentUpon>201806301234044_firstMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -120,10 +120,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201806271641389_FirstMigration.resx">
-      <DependentUpon>201806271641389_FirstMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201806301234044_firstMigration.resx">
+      <DependentUpon>201806301234044_firstMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
