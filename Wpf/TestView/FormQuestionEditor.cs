@@ -108,7 +108,7 @@ namespace TestView
             bool active = checkBox5.Checked;
             
             string[] timestr = maskedTextBox1.ToString().Split('/');
-            long time = Convert.ToInt32(timestr[0]) * 60 + Convert.ToInt32(timestr[1]);
+            long time = Convert.ToInt32(timestr[0]) / 60 + Convert.ToInt32(timestr[1]);
             QuestionComplexity complexity = (QuestionComplexity)Enum.Parse(typeof(QuestionComplexity), domainUpDown2.SelectedItem.ToString(), true);
             List<Answer> answers = new List<Answer>(4);
             for (int i = 0; i < 4; i++) {

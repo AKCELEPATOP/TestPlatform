@@ -32,7 +32,7 @@ namespace TestService.Implementations
             Question element = await context.Questions.FirstOrDefaultAsync(rec => rec.Text == model.Text);
             if (element != null)
             {
-                throw new Exception("Категория с таким названием уже существует");
+                throw new Exception("Такой вопрос уже существует");
             }
 
             context.Questions.Add(new Question
@@ -108,7 +108,7 @@ namespace TestService.Implementations
                                    rec.Text == model.Text && rec.Id != model.Id);
             if (element != null)
             {
-                throw new Exception("Уже есть категория с таким названием");
+                throw new Exception("Уже есть такой вопрос");
             }
             element = context.Questions.FirstOrDefault(rec => rec.Id == model.Id);
             if (element == null)
