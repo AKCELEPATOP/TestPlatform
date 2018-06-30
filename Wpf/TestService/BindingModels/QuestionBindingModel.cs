@@ -32,7 +32,8 @@ namespace TestService.BindingModels
         [DataMember]
         public bool Active { get; set; }
 
-        public virtual List<AnswerBindingModel> Answers { get; set; }
+        [DataMember]
+        public List<AnswerBindingModel> Answers { get; set; }
 
         [DataMember]
         public int CategoryId { get; set; }

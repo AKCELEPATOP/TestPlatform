@@ -71,58 +71,46 @@ namespace TestView
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(textBox2.Text)&& string.IsNullOrEmpty(textBox3.Text)&& string.IsNullOrEmpty(textBox4.Text)&& string.IsNullOrEmpty(textBox5.Text)
+            if (string.IsNullOrEmpty(textBox2.Text) && string.IsNullOrEmpty(textBox3.Text) && string.IsNullOrEmpty(textBox4.Text) && string.IsNullOrEmpty(textBox5.Text)
                 && string.IsNullOrEmpty(textBox6.Text))
             {
                 MessageBox.Show("Заполните все поля", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             Task task;
-            string text = textBox1.Text;
-            List<string> listanswer = new List<string>() {
-                textBox2.Text,textBox3.Text,textBox4.Text,textBox5.Text
+            string text = textBox6.Text;
+            List<bool> checkBoxes = new List<bool>
+            {
+                checkBox1.Checked,
+                checkBox2.Checked,
+                checkBox3.Checked,
+                checkBox4.Checked
             };
-            int idTrue=-1;
-            if (checkBox1.Checked)
+            List<string> answersString = new List<string>
             {
-                idTrue = 0;
-            }
-            else if (checkBox2.Checked)
+                textBox2.Text,
+                textBox3.Text,
+                textBox4.Text,
+                textBox5.Text
+            };
+            if (!checkBoxes.Contains(true))
             {
-                idTrue = 1;
-            }
-            else if (checkBox3.Checked)
-            {
-                idTrue = 2;
-            }
-            else if (checkBox4.Checked)
-            {
-                idTrue = 3;
-            }
-            else {
                 MessageBox.Show("Выберите верный ответ", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            bool active = checkBox5.Checked;
-            
+            bool active = !checkBox5.Checked;
+
             string[] timestr = maskedTextBox1.Text.ToString().Split('.');
             long time = Convert.ToInt32(timestr[0]) * 60 + Convert.ToInt32(timestr[1]);
             QuestionComplexity complexity = (QuestionComplexity)Enum.Parse(typeof(QuestionComplexity), domainUpDown2.SelectedItem.ToString(), true);
             List<AnswerBindingModel> answers = new List<AnswerBindingModel>(4);
-            for (int i = 0; i < 4; i++) {
-                if (i == idTrue) {
-                     answers.Add(new AnswerBindingModel
-                     {
-                         Text = listanswer[i],
-                         True =true
+            for (int i = 0; i < answersString.Count; i++)
+            {
+                answers.Add(new AnswerBindingModel
+                {
+                    //сохранять id вопросов при редактировании
+                    Text = answersString[i],
+                    True = checkBoxes[i],
                 });
-                } else {
-                    answers.Add(new AnswerBindingModel
-                    {
-                        Text = listanswer[i],
-                        True =false
-    
-                });
-                }
             }
             if (id.HasValue)
             {
@@ -141,11 +129,14 @@ namespace TestView
             {
                 task = Task.Run(() => ApiClient.PostRequestData("api/Question/AddElement", new QuestionBindingModel
                 {
+
                     Text = text,
                     Complexity = complexity,
                     Active = active,
                     Time = time,
-                    Answers = answers
+                    Answers = answers,
+                    CategoryId = idCat.Value
+
                 }));
 
             }

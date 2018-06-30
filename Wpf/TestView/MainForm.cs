@@ -18,6 +18,8 @@ namespace TestView
         public Color colorBack;
         public Color colorFont;
 
+        public string UserLogin { get; set; }
+
         private FormAuthorization parent;
 
         public FormMain(FormAuthorization parent)

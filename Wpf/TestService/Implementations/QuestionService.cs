@@ -56,35 +56,38 @@ namespace TestService.Implementations
                         {
                             QuestionId = element.Id,
                             Text = answer.Text,
-                            True = answer.True
+                            True = answer.True,
                         });
                     }
                     await context.SaveChangesAsync();
-                    foreach (var image in model.Images)
+                    if (model.Images != null)
                     {
-                        var buffer = Convert.FromBase64String(image);
-
-                        HttpPostedFileBase objFile = (HttpPostedFileBase)new MemoryPostedFile(buffer);
-
-                        try
+                        foreach (var image in model.Images)
                         {
-                            if (objFile != null && objFile.ContentLength > 0)
+                            var buffer = Convert.FromBase64String(image);
+
+                            HttpPostedFileBase objFile = (HttpPostedFileBase)new MemoryPostedFile(buffer);
+
+                            try
                             {
-                                string path = model.ImagesPath + ((string.IsNullOrEmpty(objFile.FileName)) ? string.Format("{0}.{1}.png", element.Id, 1) : objFile.FileName);
-
-                                objFile.SaveAs(path);
-
-                                context.Attachments.Add(new Attachment
+                                if (objFile != null && objFile.ContentLength > 0)
                                 {
-                                    Path = path,
-                                    QuestionId = element.Id
-                                });
-                                await context.SaveChangesAsync();
+                                    string path = model.ImagesPath + ((string.IsNullOrEmpty(objFile.FileName)) ? string.Format("{0}.{1}.png", element.Id, 1) : objFile.FileName);
+
+                                    objFile.SaveAs(path);
+
+                                    context.Attachments.Add(new Attachment
+                                    {
+                                        Path = path,
+                                        QuestionId = element.Id
+                                    });
+                                    await context.SaveChangesAsync();
+                                }
                             }
-                        }
-                        catch
-                        {
-                            throw new Exception("Не удалось добавить изображение");
+                            catch
+                            {
+                                throw new Exception("Не удалось добавить изображение");
+                            }
                         }
                     }
                     transaction.Commit();
@@ -110,7 +113,7 @@ namespace TestService.Implementations
 
                         var list = await context.Attachments.Where(rec => rec.QuestionId == element.Id).ToListAsync();
 
-                        foreach(var el in list)
+                        foreach (var el in list)
                         {
                             System.IO.File.Delete(el.Path);
                         }
@@ -145,9 +148,9 @@ namespace TestService.Implementations
             {
                 List<string> images = new List<string>();
 
-                List<string> list = await context.Attachments.Where(rec => rec.QuestionId == element.Id).Select(rec=>rec.Path).ToListAsync();
+                List<string> list = await context.Attachments.Where(rec => rec.QuestionId == element.Id).Select(rec => rec.Path).ToListAsync();
 
-                foreach(var el in list)
+                foreach (var el in list)
                 {
                     byte[] bytes = System.IO.File.ReadAllBytes(el);
 
