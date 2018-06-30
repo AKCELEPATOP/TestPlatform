@@ -38,6 +38,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.textBoxFIO = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -60,7 +62,7 @@
             // 
             // registrate
             // 
-            this.registrate.Location = new System.Drawing.Point(80, 159);
+            this.registrate.Location = new System.Drawing.Point(78, 189);
             this.registrate.Name = "registrate";
             this.registrate.Size = new System.Drawing.Size(115, 23);
             this.registrate.TabIndex = 3;
@@ -126,11 +128,30 @@
             this.label5.TabIndex = 10;
             this.label5.Text = "ФИО:";
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(109, 148);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(167, 20);
+            this.textBox1.TabIndex = 11;
+            this.textBox1.UseSystemPasswordChar = true;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(12, 151);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(79, 13);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "Введите email:";
+            // 
             // RegistrationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(288, 194);
+            this.ClientSize = new System.Drawing.Size(288, 224);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.textBoxFIO);
             this.Controls.Add(this.label4);
@@ -161,5 +182,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBoxFIO;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label6;
     }
 }

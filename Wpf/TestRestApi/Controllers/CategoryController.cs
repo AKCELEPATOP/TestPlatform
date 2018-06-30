@@ -80,20 +80,9 @@ namespace TestRestApi.Controllers
         }
 
         [HttpPost]
-        public async Task DelElement(int id)
+        public async Task DelElement(CategoryBindingModel model)
         {
-            await Service.DelElement(id);
-        }
-
-        [HttpGet]
-        public async Task<IHttpActionResult> GetListQuestions(int id)
-        {
-            var list = await Service.GetListQuestions(id);
-            if (list == null)
-            {
-                InternalServerError(new Exception("Нет данных"));
-            }
-            return Ok(list);
+            await Service.DelElement(model.Id);
         }
     }
 }
