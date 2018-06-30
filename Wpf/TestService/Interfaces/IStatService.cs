@@ -17,5 +17,7 @@ namespace TestService.Interfaces
         Task<StatChartViewModel> GetUserChart(GetListModel model);
 
         Task SaveToPdf(ReportBindingModel model);
+
+        Task SaveToPdfAdmin(ReportBindingModel model);
     }
 }

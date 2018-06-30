@@ -105,9 +105,9 @@ namespace TestView
         //сменить пользователя
         private void button7_Click(object sender, EventArgs e)
         {
-            TestingForm Testing = new TestingForm();
+            parent.Show();
+            parent = null;
             Close();
-            Testing.Show();
         }
         //категории вопросы
         private void button2_Click(object sender, EventArgs e)

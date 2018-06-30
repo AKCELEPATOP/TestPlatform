@@ -25,7 +25,7 @@ namespace TestRestApi
             manager.UserValidator = new UserValidator<User>(manager)
             {
                 AllowOnlyAlphanumericUserNames = false,
-                RequireUniqueEmail = false
+                RequireUniqueEmail = true
             };
             // Настройка логики проверки паролей
             manager.PasswordValidator = new PasswordValidator

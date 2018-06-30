@@ -30,6 +30,22 @@ namespace TestService.Implementations
 
         public async Task<List<StatViewModel>> GetList(GetListModel model)
         {
+            if (model.DateFrom.HasValue && model.DateTo.HasValue)
+            {
+                return await context.Stats.Where(rec => rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo)
+                    .Include(rec => rec.Pattern).Select(rec => new StatViewModel
+                    {
+                        UserName = rec.User.FIO,
+                        Total = rec.Total,
+                        Right = rec.Right,
+                        PatternName = rec.Pattern.Name,
+                        Mark = (int)((double)rec.Right / rec.Total * 100),
+                        DateCreate = SqlFunctions.DateName("dd", rec.DateCreate) + " " +
+                                            SqlFunctions.DateName("mm", rec.DateCreate) + " " +
+                                            SqlFunctions.DateName("yyyy", rec.DateCreate)
+                    }).ToListAsync();
+            }
+
             return await context.Stats/*.Skip(model.Skip).Take(model.Take)*/.Include(rec => rec.Pattern).Select(rec => new StatViewModel
             {
                 Total = rec.Total,
@@ -93,6 +109,122 @@ namespace TestService.Implementations
         }
 
 
+        public async Task SaveToPdfAdmin(ReportBindingModel model)
+        {
+            List<StatViewModel> list = null;
+
+            Task loadList = Task.Run(async () => list = await GetList(new GetListModel
+            {
+                DateFrom = model.DateFrom,
+                DateTo = model.DateTo,
+            }));
+
+            //открываем файл для работы
+            FileStream fs = new FileStream(model.FilePath, FileMode.OpenOrCreate, FileAccess.Write);
+            //создаем документ, задаем границы, связываем документ и поток
+            iTextSharp.text.Document doc = new iTextSharp.text.Document();
+            doc.SetMargins(0.5f, 0.5f, 0.5f, 0.5f);
+            PdfWriter writer = PdfWriter.GetInstance(doc, fs);
+
+            doc.Open();
+            BaseFont baseFont = (model.FontPath != null && model.FontPath != string.Empty) ?
+                BaseFont.CreateFont(model.FontPath, BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED) : BaseFont.CreateFont();
+
+            //вставляем заголовок
+            var phraseTitle = new Phrase("Отчет по тестам пользователей",
+                new iTextSharp.text.Font(baseFont, 16, iTextSharp.text.Font.BOLD));
+            iTextSharp.text.Paragraph paragraph = new iTextSharp.text.Paragraph(phraseTitle)
+            {
+                Alignment = Element.ALIGN_CENTER,
+                SpacingAfter = 12
+            };
+            doc.Add(paragraph);
+
+            if (model.DateFrom.HasValue && model.DateTo.HasValue)
+            {
+                var phrasePeriod = new Phrase("c " + model.DateFrom.Value.ToShortDateString() +
+                                        " по " + model.DateTo.Value.ToShortDateString(),
+                                        new iTextSharp.text.Font(baseFont, 14, iTextSharp.text.Font.BOLD));
+                paragraph = new iTextSharp.text.Paragraph(phrasePeriod)
+                {
+                    Alignment = Element.ALIGN_CENTER,
+                    SpacingAfter = 12
+                };
+                doc.Add(paragraph);
+            }
+            PdfPTable table = new PdfPTable(6)
+            {
+                TotalWidth = 800F
+            };
+            PdfPCell cell = new PdfPCell();
+            var fontForCellBold = new iTextSharp.text.Font(baseFont, 10, iTextSharp.text.Font.BOLD);
+            table.AddCell(new PdfPCell(new Phrase("ФИО", fontForCellBold))
+            {
+                HorizontalAlignment = Element.ALIGN_CENTER
+            });
+            table.AddCell(new PdfPCell(new Phrase("Шаблон", fontForCellBold))
+            {
+                HorizontalAlignment = Element.ALIGN_CENTER
+            });
+            table.AddCell(new PdfPCell(new Phrase("Дата", fontForCellBold))
+            {
+                HorizontalAlignment = Element.ALIGN_CENTER
+            });
+            table.AddCell(new PdfPCell(new Phrase("Всего вопросов", fontForCellBold))
+            {
+                HorizontalAlignment = Element.ALIGN_CENTER
+            });
+            table.AddCell(new PdfPCell(new Phrase("Правильных", fontForCellBold))
+            {
+                HorizontalAlignment = Element.ALIGN_CENTER
+            });
+            table.AddCell(new PdfPCell(new Phrase("Оценка", fontForCellBold))
+            {
+                HorizontalAlignment = Element.ALIGN_CENTER
+            });
+            var fontForCells = new iTextSharp.text.Font(baseFont, 10);
+
+            await loadList;
+
+            if (list == null)
+            {
+                throw new Exception("Нет данных");
+            }
+            for (int i = 0; i < list.Count; i++)
+            {
+                cell = new PdfPCell(new Phrase(list[i].UserName, fontForCells));
+                table.AddCell(cell);
+                cell = new PdfPCell(new Phrase(list[i].PatternName, fontForCells));
+                table.AddCell(cell);
+                cell = new PdfPCell(new Phrase(list[i].DateCreate, fontForCells));
+                table.AddCell(cell);
+                cell = new PdfPCell(new Phrase(list[i].Total.ToString(), fontForCells));
+                table.AddCell(cell);
+                cell = new PdfPCell(new Phrase(list[i].Right.ToString(), fontForCells));
+                table.AddCell(cell);
+                cell = new PdfPCell(new Phrase(list[i].Mark.ToString(), fontForCells));
+                table.AddCell(cell);
+            }
+            cell = new PdfPCell(new Phrase("Итого:", fontForCellBold))
+            {
+                HorizontalAlignment = Element.ALIGN_RIGHT,
+                Colspan = 3,
+                Border = 0
+            };
+            table.AddCell(cell);
+
+            cell = new PdfPCell(new Phrase(list.Select(rec => rec.Mark).DefaultIfEmpty(0).Average().ToString(), fontForCellBold))
+            {
+                HorizontalAlignment = Element.ALIGN_RIGHT,
+                Border = 0
+            };
+            table.AddCell(cell);
+
+            doc.Add(table);
+
+            doc.Close();
+        }
+
 
         public async Task SaveToPdf(ReportBindingModel model)
         {
@@ -119,7 +251,7 @@ namespace TestService.Implementations
                 BaseFont.CreateFont(model.FontPath, BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED) : BaseFont.CreateFont();
 
             //вставляем заголовок
-            var phraseTitle = new Phrase("Отчет по тестам",
+            var phraseTitle = new Phrase("Отчет по тестам пользователя" + context.Users.FirstOrDefault(rec => rec.Id.Equals(model.UserId)).FIO, // оптимизация
                 new iTextSharp.text.Font(baseFont, 16, iTextSharp.text.Font.BOLD));
             iTextSharp.text.Paragraph paragraph = new iTextSharp.text.Paragraph(phraseTitle)
             {

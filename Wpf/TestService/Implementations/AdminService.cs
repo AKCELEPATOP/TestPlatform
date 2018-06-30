@@ -19,22 +19,13 @@ namespace TestService.Implementations
 
         private UserManager<User> userManager;
 
-        private string roleId;
-
-        private string RoleId
-        {
-            get
-            {
-                return roleId ?? GetRoleId();
-            }
-        }
-
-       /* private Lazy<string> RoleId = new Lazy<string>(() =>
+        private Lazy<string> roleId = new Lazy<string>(() =>
         {
             var manager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
-            return 
-        });*/
+            return manager.FindByName(ApplicationRoles.Admin).Id;
+        });
 
+        private string RoleId => roleId.Value;
 
         public AdminService(ApplicationDbContext context, UserManager<User> userManager)
         {
@@ -47,23 +38,12 @@ namespace TestService.Implementations
             return new AdminService(context, userManager);
         }
 
-        private string GetRoleId()
-        {
-            var manager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
-            roleId = manager.FindByName(ApplicationRoles.Admin).Id;
-            return roleId;
-        }
-
         public async Task DelElement(string id)
         {
             User element = await context.Users.FirstOrDefaultAsync(rec => rec.Id == id);
             if (element == null)
             {
                 throw new Exception("Элемент не найден");
-            }
-            if (!userManager.GetRoles(element.Id).FirstOrDefault().Equals(ApplicationRoles.Admin))
-            {
-                throw new Exception("Элемент не является Администратором");
             }
             context.Users.Remove(element);
             await context.SaveChangesAsync();
@@ -77,10 +57,6 @@ namespace TestService.Implementations
             {
                 throw new Exception("Элемент не найден");
             }
-            if (!userManager.GetRoles(element.Id).FirstOrDefault().Equals(ApplicationRoles.Admin))
-            {
-                throw new Exception("Элемент не является Администратором");
-            }
             return new UserViewModel
             {
                 Id = element.Id,
@@ -92,6 +68,7 @@ namespace TestService.Implementations
 
         public async Task<List<UserViewModel>> GetList()
         {
+            string roleId = RoleId;
             List<UserViewModel> result = await context.Users.Where(rec => rec.Roles.FirstOrDefault().RoleId.Equals(RoleId))
                 .Select(rec => new UserViewModel
                 {
@@ -110,10 +87,6 @@ namespace TestService.Implementations
             if (userOld == null)
             {
                 throw new Exception("Нет данных");
-            }
-            if (!userManager.GetRoles(userOld.Id).FirstOrDefault().Equals(ApplicationRoles.Admin))
-            {
-                throw new Exception("Элемент не является Пользователем");
             }
             userOld.FIO = model.FIO;
             userOld.UserName = model.UserName;
