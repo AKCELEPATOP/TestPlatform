@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TestService.BindingModels;
 using TestService.ViewModels;
 
 namespace TestView
@@ -65,6 +66,22 @@ namespace TestView
             else
             {
                 MessageBox.Show("Время вышло", "Тест завершён", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                List<QuestionResponseModel> UserAnswers = new List<QuestionResponseModel>();
+                for (int i = 0; i < list[id.Value].Questions.Count; i++)
+                {
+                    UserAnswers.Add(new QuestionResponseModel
+                    {
+                        QuestionId = list[id.Value].Questions[i].Id,
+                        Answers = list[id.Value].Questions[i].Answers.Select(rec => rec.Id).ToList()
+                    });
+                }
+
+                Task task;
+                task = Task.Run(() => ApiClient.PostRequestData("api/Pattern/CheakTest", new TestResponseModel
+                {
+                    PatternId = list[id.Value].PatternId,
+                    QuestionResponses = UserAnswers
+                }));
                 FormResultOfTest resultsForm = new FormResultOfTest();
                 Close();
                 resultsForm.Show();
@@ -124,7 +141,24 @@ namespace TestView
 
         private void endTest_Click(object sender, EventArgs e)
         {
-            FormResultOfTest resultsForm = new FormResultOfTest();
+            List<QuestionResponseModel> UserAnswers= new List<QuestionResponseModel>();
+            for (int i=0; i<list[id.Value].Questions.Count; i++)
+            {
+                UserAnswers.Add(new QuestionResponseModel
+                {
+                    QuestionId= list[id.Value].Questions[i].Id,
+                    Answers = list[id.Value].Questions[i].Answers.Select(rec=> rec.Id).ToList()
+                });
+            }
+
+            Task task;
+            task = Task.Run(() => ApiClient.PostRequestData("api/Pattern/CheakTest", new TestResponseModel
+            {
+                PatternId = list[id.Value].PatternId,
+                QuestionResponses = UserAnswers
+            }));
+
+           FormResultOfTest resultsForm = new FormResultOfTest();
             Close();
             resultsForm.Show();
         }
