@@ -173,6 +173,7 @@
             this.button10.TabIndex = 5;
             this.button10.Text = "Выход";
             this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
             // contextMenuStrip1
             // 

@@ -448,8 +448,7 @@ namespace TestService.Implementations
             await context.SaveChangesAsync();
 
             await getUserData;
-
-            Task task = Task.Run(() => SendMail(result.Email, "Вы прошли тест", CreateMessage(result)));
+            //отправка
             return result;
         }
 
@@ -525,7 +524,7 @@ namespace TestService.Implementations
         "                  <tbody>\n" +
         "                    <tr>\n" +
         "                      <td style=\"width:58px;height:48px\">\n" +
-        "                        <img src=\"{2}\" width=\"64\" height=\"64\" style=\"border:none;display:block;outline:none;text-decoration:none\" alt=\"\" class=\"CToWUd\">\n" +
+        "                        <img src=\"{2}\" width=\"58\" height=\"48\" style=\"border:none;display:block;outline:none;text-decoration:none\" alt=\"\" class=\"CToWUd\">\n" +
         "                      </td>\n" +
         "                    </tr>\n" +
         "                  </tbody>\n" +
@@ -547,39 +546,13 @@ namespace TestService.Implementations
         "          <div style=\"color:#2d3136;font-size:16px;line-height:20px\">{4}</div>\n" +
         "          <div style=\"color:#737f8d;font-size:15px;line-height:17px;margin-top:3px\">\n" +
         "             <!-- таблица результата-->\n" +
-        "             <table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" style=\"font-size:13px;width:100%;background:#ffffff\" align=\"center\" border=\"0\">\n" +
-        "             \t<tbody>\n" +
-        "             \t\t<tr style=\"color: #0083BE;font-size: 16px; font-weight: bold;\">\n" +
-        "             \t\t\t<td>\n" +
-        "             \t\t\t\tКатегория\n" +
-        "             \t\t\t</td>\n" +
-        "             \t\t\t<td>\n" +
-        "             \t\t\t\tВсего\n" +
-        "             \t\t\t</td>\n" +
-        "             \t\t\t<td>\n" +
-        "             \t\t\t\tРезультат\n" +
-        "             \t\t\t</td>\n" +
-        "             \t\t</tr>\n" +
-        "             \t\t{5}\n" +
-        "             \t</tbody>\n" +
-        "             </table>\n" +
         "             {5}\n" +
         "          </div>\n" +
         "        </td>\n" +
         "      </tr>\n" +
         "    </tbody></table></td></tr></tbody></table></div></td></tr></tbody></table></div>\n" +
         "      <div style=\"margin:0px auto;max-width:640px;background:#ffffff\"><table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" style=\"font-size:0px;width:100%;background:#ffffff\" align=\"center\" border=\"0\"><tbody><tr><td style=\"text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:20px 40px 0px\"></td></tr></tbody></table></div>\n" +
-        "      </div>", model.UserName, "Вы только что прошли тест", "https://cdn2.iconfinder.com/data/icons/social-buttons-2/512/mail-512.png", model.PatternName, model.Mark,FillStatTable(model.StatCategories));
-        }
-
-        private string FillStatTable(List<StatCategoryViewModel> list)
-        {
-            StringBuilder builder = new StringBuilder();
-            foreach(var elem in list)
-            {
-                builder.AppendFormat("<tr>/n<td>/n{0}/n</td>/n<td>/n{1}/n</td>/n<td>/n{2}/n</td></tr>", elem.CategoryName, elem.Total, elem.Right);
-            }
-            return builder.ToString();
+        "      </div>", model.UserName, "Вы только что прошли тест","ссылка на картинку", model.PatternName, model.Mark,"");
         }
 
         public async Task<List<PatternViewModel>> GetUserList(string id)

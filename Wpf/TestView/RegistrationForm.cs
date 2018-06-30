@@ -16,27 +16,35 @@ namespace TestView
             try
             {
                 if (textBoxFIO.TextLength != 0 || textBoxLogin.TextLength > 8 ||
-                    textBoxPassword1.TextLength != 0 || textBoxPassword2.TextLength == 0)
+                    textBoxPassword1.TextLength != 0 || textBoxPassword2.TextLength != 0 || textBox1.TextLength != 0)
                 {
-                    if (textBoxPassword1.Text.Equals(textBoxPassword2.Text))
+                    if (textBoxPassword1.TextLength > 4)
                     {
-                        string UserPassword = textBoxPassword1.Text;
-                        string UserLogin = textBoxLogin.Text;
-
-                        UserBindingModel newUser = new UserBindingModel
+                        if (textBoxPassword1.Text.Equals(textBoxPassword2.Text))
                         {
-                            FIO = textBoxFIO.Text,
-                            PasswordHash = UserPassword,
-                            UserName = UserLogin
-                        };
-                        Task task = Task.Run(() => ApiClient.PostRequestData<UserBindingModel>("api/Account/Register", newUser));
-                        task.ContinueWith((prevTask) => MessageBox.Show("Пользователь зарегистрирован.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information),
-                      TaskContinuationOptions.OnlyOnRanToCompletion);
-                        this.Close();
+                            string UserPassword = textBoxPassword1.Text;
+                            string UserLogin = textBoxLogin.Text;
+
+                            UserBindingModel newUser = new UserBindingModel
+                            {
+                                FIO = textBoxFIO.Text,
+                                PasswordHash = UserPassword,
+                                UserName = UserLogin,
+                                Email = textBox1.Text
+                            };
+                            Task task = Task.Run(() => ApiClient.PostRequestData<UserBindingModel>("api/Account/Register", newUser));
+                            task.ContinueWith((prevTask) => MessageBox.Show("Пользователь зарегистрирован.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information),
+                          TaskContinuationOptions.OnlyOnRanToCompletion);
+                            this.Close();
+                        }
+                        else
+                        {
+                            DialogResult result = MessageBox.Show("Пароли не совпадают", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                     else
                     {
-                        DialogResult result = MessageBox.Show("Пароли не совпадают", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        DialogResult result = MessageBox.Show("Пароль должен быть не короче 5 символов", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else
