@@ -20,6 +20,9 @@ namespace TestService.ViewModels
         public int Right { get; set; }
 
         [DataMember]
+        public string CategoryName { get; set; }
+
+        [DataMember]
         public List<StatQuestionViewModel> Questions { get; set; }
     }
 }

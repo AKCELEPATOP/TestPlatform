@@ -135,7 +135,7 @@ namespace TestView
                     Complexity=complexity,
                     Active=active,
                     Time= time,
-                    Answers=answers
+                    //Answers=answers
 
                 }));
 
@@ -150,7 +150,7 @@ namespace TestView
                     Complexity = complexity,
                     Active = active,
                     Time = time,
-                    Answers = answers
+                    //Answers = answers
 
                 }));
 

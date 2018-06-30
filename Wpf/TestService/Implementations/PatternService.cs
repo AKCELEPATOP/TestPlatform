@@ -389,18 +389,18 @@ namespace TestService.Implementations
 
             var questionCount = context.Patterns.FirstOrDefault(rec => rec.Id == model.PatternId)
                 .PatternCategories.Select(rec => rec.Count).DefaultIfEmpty(0).Sum();
-            var pattern = await context.Patterns.FirstOrDefaultAsync(rec => rec.Id == model.PatternId);
-            foreach (var category in pattern.PatternCategories)
-            {
-                result.StatCategories.Add(new StatCategoryViewModel
-                {
-                    CategoryId = category.CategoryId
-                });
-            }
             if (model.QuestionResponses.Count != questionCount)
             {
                 throw new Exception("Не совпадает количество вопросов");
             }
+
+            result.StatCategories.AddRange(context.PatternCategories.Where(rec => rec.PatternId == model.PatternId).Include(rec => rec.Category)
+                .Select(rec => new StatCategoryViewModel
+                {
+                    CategoryId = rec.CategoryId,
+                    CategoryName = rec.Category.Name
+                }));
+            
             foreach (var questionResponce in model.QuestionResponses)
             {
                 var question = await context.Questions.Where(rec => rec.Id == questionResponce.QuestionId).Include(rec => rec.Answers).Select(rec => new QuestionViewModel
@@ -446,6 +446,9 @@ namespace TestService.Implementations
                 Total = result.Total
             });
             await context.SaveChangesAsync();
+
+            await getUserData;
+            //отправка
             return result;
         }
 
@@ -549,7 +552,7 @@ namespace TestService.Implementations
         "      </tr>\n" +
         "    </tbody></table></td></tr></tbody></table></div></td></tr></tbody></table></div>\n" +
         "      <div style=\"margin:0px auto;max-width:640px;background:#ffffff\"><table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" style=\"font-size:0px;width:100%;background:#ffffff\" align=\"center\" border=\"0\"><tbody><tr><td style=\"text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:20px 40px 0px\"></td></tr></tbody></table></div>\n" +
-        "      </div>", model.UserName, "Вы только что прошли тест","ссылка на картинку", model.PatternName, model.Mark,);
+        "      </div>", model.UserName, "Вы только что прошли тест","ссылка на картинку", model.PatternName, model.Mark,"");
         }
 
         public async Task<List<PatternViewModel>> GetUserList(string id)

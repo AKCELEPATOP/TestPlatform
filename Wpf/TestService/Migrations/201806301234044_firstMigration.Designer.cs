@@ -6,14 +6,14 @@ namespace TestService.Migrations
     using System.Data.Entity.Migrations.Infrastructure;
     using System.Resources;
     
-    [GeneratedCode("EntityFramework.Migrations", "6.1.0-30225")]
-    public sealed partial class FirstMigration : IMigrationMetadata
+    [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
+    public sealed partial class firstMigration : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(FirstMigration));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(firstMigration));
         
         string IMigrationMetadata.Id
         {
-            get { return "201806271641389_FirstMigration"; }
+            get { return "201806301234044_firstMigration"; }
         }
         
         string IMigrationMetadata.Source
