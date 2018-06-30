@@ -286,6 +286,7 @@
             this.Controls.Add(this.questionList);
             this.Name = "TestingForm";
             this.Text = "Форма тестирования";
+            this.Load += new System.EventHandler(this.Form_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
             ((System.ComponentModel.ISupportInitialize)(this.questionList)).EndInit();
             this.answerGroupBoxCheckButtons.ResumeLayout(false);

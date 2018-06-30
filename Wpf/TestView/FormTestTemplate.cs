@@ -377,5 +377,10 @@ namespace TestView
 
             idCat = -1;
         }
+
+        private void Form_Load(object sender, EventArgs e)
+        {
+            Initialize();
+        }
     }
 }

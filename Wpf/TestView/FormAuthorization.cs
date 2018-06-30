@@ -42,5 +42,11 @@ namespace TestView
                 DialogResult result = MessageBox.Show("Произошла ошибка авторизации\nОшибка:" + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void Form_Load(object sender, EventArgs e)
+        {
+            textBoxLogin.Text = "";
+            textBoxPassword.Text = "";
+        }
     }
 }

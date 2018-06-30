@@ -250,7 +250,9 @@
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(106, 33);
             this.button6.TabIndex = 1;
+            this.button6.Text = "Сменить";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button5
             // 
@@ -258,7 +260,9 @@
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(106, 33);
             this.button5.TabIndex = 0;
+            this.button5.Text = "Сменить";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // label4
             // 
@@ -273,6 +277,7 @@
             // 
             this.textBox1.Location = new System.Drawing.Point(618, 26);
             this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(143, 20);
             this.textBox1.TabIndex = 8;
             // 
@@ -325,6 +330,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "FormStatisticsMain";
             this.Text = "Главный экран";
+            this.Load += new System.EventHandler(this.Form_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
