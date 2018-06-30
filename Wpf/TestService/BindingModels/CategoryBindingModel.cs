@@ -15,5 +15,8 @@ namespace TestService.BindingModels
 
         [DataMember]
         public string Name { get; set; }
+
+        [DataMember]
+        public bool Active { get; set; }
     }
 }

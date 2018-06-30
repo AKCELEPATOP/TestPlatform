@@ -105,6 +105,7 @@ namespace TestService.Implementations
             userOld.FIO = model.FIO;
             userOld.UserName = model.UserName;
             userOld.UserGroupId = model.GroupId;
+            userOld.Email = model.Email;
             await context.SaveChangesAsync();
         }
 

@@ -17,6 +17,9 @@ namespace TestService.ViewModels
         public string Name { get; set; }
 
         [DataMember]
+        public bool Active { get; set; }
+
+        [DataMember]
         public List<QuestionViewModel> Questions { get; set; }
     }
 }

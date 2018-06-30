@@ -36,17 +36,13 @@ namespace TestService.Implementations
 
             context.Categories.Add(new Category
             {
-                Name = model.Name
+                Name = model.Name,
+                Active = model.Active
             });
 
             await context.SaveChangesAsync();
         }
 
-        /*     public async Task AddQuestions(QuestionViewModel model)
-             {
-
-             }
-             */
         public async Task DelElement(int id)
         {
             Category element = await context.Categories.FirstOrDefaultAsync(rec => rec.Id == id);
@@ -64,7 +60,7 @@ namespace TestService.Implementations
         public async Task<CategoryViewModel> GetElement(int id)
         {
             Category result = await context.Categories.FirstOrDefaultAsync(rec => rec.Id == id);
-            {
+            
                 if (result == null)
                 {
                     throw new Exception("Элемент не найден");
@@ -75,14 +71,15 @@ namespace TestService.Implementations
                     {
                         Id = result.Id,
                         Name = result.Name,
+                        Active = result.Active,
                         Questions = result.Questions.Select(recQ => new QuestionViewModel
                         {
                             Id = recQ.Id,
                             Active = recQ.Active,
-                            Answers = recQ.Answers.Select(recA => new AnswerViewModel
-                            {
-                                Text=recA.Text
-                            }).ToList(),
+                            //Answers = recQ.Answers.Select(recA => new AnswerViewModel
+                            //{
+                            //    Text=recA.Text
+                            //}).ToList(),
                             Complexity = recQ.Complexity,
                             Text = recQ.Text
                         }).ToList()
@@ -91,7 +88,7 @@ namespace TestService.Implementations
                 }
 
 
-            }
+            
         }
 
 
@@ -101,27 +98,24 @@ namespace TestService.Implementations
             List<CategoryViewModel> result = await context.Categories.Select(rec => new CategoryViewModel
             {
                 Id = rec.Id,
-                Name = rec.Name
+                Name = rec.Name,
+                Active = rec.Active
             }).ToListAsync();
             return result;
         }
 
         public async Task<List<QuestionViewModel>> GetListQuestions(int id)
         {
-            Category element = await context.Categories.FirstOrDefaultAsync(rec => rec.Id == id);
-
-            List<QuestionViewModel> result = new List<QuestionViewModel>();
-            foreach (var questions in element.Questions)
+            return await context.Categories.Where(rec => rec.Id == id).SelectMany(rec => rec.Questions).Select(rec => new QuestionViewModel
             {
-                result.Add(new QuestionViewModel
-                {
-                    Id = questions.Id,
-                    Text = questions.Text
-                });
-
-            }
-
-            return result;
+                Id = rec.Id,
+                Text = rec.Text,
+                CategoryId = rec.CategoryId,
+                Time = rec.Time,
+                Active = rec.Active,
+                Complexity = rec.Complexity,
+                ComplexityName = rec.Complexity.ToString(),
+            }).ToListAsync();
         }
 
         public async Task UpdElement(CategoryBindingModel model)
@@ -138,6 +132,7 @@ namespace TestService.Implementations
                 throw new Exception("Элемент не найден");
             }
             element.Name = model.Name;
+            element.Active = model.Active;
             context.SaveChanges();
         }
     }

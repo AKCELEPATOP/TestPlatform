@@ -1,10 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TestModels;
@@ -110,16 +105,17 @@ namespace TestView
             string[] timestr = maskedTextBox1.Text.ToString().Split('/');
             long time = Convert.ToInt32(timestr[0]) * 60 + Convert.ToInt32(timestr[1]);
             QuestionComplexity complexity = (QuestionComplexity)Enum.Parse(typeof(QuestionComplexity), domainUpDown2.SelectedItem.ToString(), true);
-            List<Answer> answers = new List<Answer>(4);
+            List<AnswerBindingModel> answers = new List<AnswerBindingModel>(4);
             for (int i = 0; i < 4; i++) {
                 if (i == idTrue) {
-                     answers.Add(new Answer
+                     answers.Add(new AnswerBindingModel
                      {
                          Text = listanswer[i],
                          True =true
                 });
                 } else {
-                    answers.Add(new Answer {
+                    answers.Add(new AnswerBindingModel
+                    {
                         Text = listanswer[i],
                         True =false
     

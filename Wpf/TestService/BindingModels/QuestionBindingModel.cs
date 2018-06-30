@@ -26,7 +26,7 @@ namespace TestService.BindingModels
         [DataMember]
         public bool Active { get; set; }
 
-        public virtual List<Answer> Answers { get; set; }
+        public virtual List<AnswerBindingModel> Answers { get; set; }
 
         [DataMember]
         public int CategoryId { get; set; }

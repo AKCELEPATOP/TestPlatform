@@ -8,6 +8,9 @@ using TestService.BindingModels;
 using TestService.Interfaces;
 using TestService.ViewModels;
 using System.Data.Entity;
+using System.Net.Mail;
+using System.Configuration;
+using System.Net;
 
 namespace TestService.Implementations
 {
@@ -321,7 +324,7 @@ namespace TestService.Implementations
                 //добавление сложных
                 int countComplex = (int)(patternCategory.Complex * patternCategory.Count) - list.Where(rec => rec.Complexity.Equals(QuestionComplexity.Difficult)).Count();
                 result.Questions.AddRange(context.Questions.Where(rec => rec.CategoryId == patternCategory.CategoryId &&
-                rec.Complexity == QuestionComplexity.Difficult).OrderBy(a => Guid.NewGuid())
+                rec.Complexity == QuestionComplexity.Difficult && rec.Active).OrderBy(a => Guid.NewGuid())
                     .Take(countComplex).Select(rec => new QuestionViewModel
                     {
                         Id = rec.Id,
@@ -335,7 +338,7 @@ namespace TestService.Implementations
                 //добавление средних
                 int countMiddle = (int)(patternCategory.Middle * patternCategory.Count) - list.Where(rec => rec.Complexity.Equals(QuestionComplexity.Middle)).Count();
                 result.Questions.AddRange(context.Questions.Where(rec => rec.CategoryId == patternCategory.CategoryId &&
-                rec.Complexity == QuestionComplexity.Middle).OrderBy(a => Guid.NewGuid())
+                rec.Complexity == QuestionComplexity.Middle && rec.Active).OrderBy(a => Guid.NewGuid())
                     .Take(countMiddle).Select(rec => new QuestionViewModel
                     {
                         Id = rec.Id,
@@ -353,7 +356,7 @@ namespace TestService.Implementations
                     list.Where(rec => rec.Complexity.Equals(QuestionComplexity.Easy)).Count();
 
                 result.Questions.AddRange(context.Questions.Where(rec => rec.CategoryId == patternCategory.CategoryId &&
-                rec.Complexity == QuestionComplexity.Easy).OrderBy(a => Guid.NewGuid())
+                rec.Complexity == QuestionComplexity.Easy && rec.Active).OrderBy(a => Guid.NewGuid())
                     .Take(countEasy).Select(rec => new QuestionViewModel
                     {
                         Id = rec.Id,
@@ -374,6 +377,15 @@ namespace TestService.Implementations
         {
             StatViewModel result = new StatViewModel();
 
+            Task getUserData = Task.Run(() => {
+                var user = context.Users.Where(rec => rec.Id == model.UserId).Select(rec => new UserViewModel
+                {
+                    FIO = rec.FIO,
+                    Email = rec.Email
+                }).FirstOrDefault();
+                result.UserName = user.FIO;
+                result.Email = user.Email;
+            });
 
             var questionCount = context.Patterns.FirstOrDefault(rec => rec.Id == model.PatternId)
                 .PatternCategories.Select(rec => rec.Count).DefaultIfEmpty(0).Sum();
@@ -400,7 +412,8 @@ namespace TestService.Implementations
                     {
                         Id = r.Id,
                         True = r.True
-                    }).ToList()
+                    }).ToList(),
+                    Complexity = rec.Complexity
                 }).FirstOrDefaultAsync();
 
                 var list = result.StatCategories.Find(rec => rec.CategoryId == question.CategoryId);
@@ -408,20 +421,28 @@ namespace TestService.Implementations
                 {
                     throw new Exception("В шаблоне отсутствует данная категория");
                 }
+                list.Total += (int)question.Complexity;
+                bool right = CheakAnswers(question.Answers, questionResponce.Answers);
+                if (right)
+                {
+                    list.Right+= (int)question.Complexity;
+                }
                 list.Questions.Add(new StatQuestionViewModel
                 {
                     Text = question.Text,
-                    Right = CheakAnswers(question.Answers, questionResponce.Answers)
+                    Right = right
                 });
             }
 
-            result.Total = questionCount;
-            result.Right = result.StatCategories.SelectMany(rec => rec.Questions).Where(rec => rec.Right).Count();
+            result.Total = result.StatCategories.Select(rec=>rec.Total).DefaultIfEmpty(0).Sum();
+            result.Right = result.StatCategories.Select(rec => rec.Right).DefaultIfEmpty(0).Sum();
+            result.Mark = (int)((double)result.Right / result.Total * 100);
             context.Stats.Add(new Stat
             {
                 PatternId = model.PatternId,
                 DateCreate = DateTime.Now,
-                UserId = model.UserId,Right = result.Right,
+                UserId = model.UserId,
+                Right = result.Right,
                 Total = result.Total
             });
             await context.SaveChangesAsync();
@@ -444,6 +465,93 @@ namespace TestService.Implementations
             return true;
         }
 
+        public async System.Threading.Tasks.Task SendMail(string mailto, string caption, string message, string path = null)
+        {
+            System.Net.Mail.MailMessage mailMessage = new System.Net.Mail.MailMessage();
+            SmtpClient stmpClient = null;
+            try
+            {
+                mailMessage.From = new MailAddress(ConfigurationManager.AppSettings["MailLogin"]);
+                mailMessage.To.Add(new MailAddress(mailto));
+                mailMessage.Subject = caption;
+                mailMessage.Body = message;
+                mailMessage.SubjectEncoding = System.Text.Encoding.UTF8;
+                mailMessage.BodyEncoding = System.Text.Encoding.UTF8;
+                if (path != null)
+                {
+                    mailMessage.Attachments.Add(new Attachment(path));
+                }
+
+                stmpClient = new SmtpClient("smtp.gmail.com", 587)
+                {
+                    UseDefaultCredentials = false,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    Credentials = new NetworkCredential(ConfigurationManager.AppSettings["MailLogin"].Split('@')[0],
+                    ConfigurationManager.AppSettings["MailPassword"])
+                };
+                await stmpClient.SendMailAsync(mailMessage);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                mailMessage.Dispose();
+                mailMessage = null;
+                stmpClient = null;
+            }
+        }
+
+        private string CreateMessage(StatViewModel model)
+        {
+            return string.Format("<div style=\"max-width:640px;margin:0 auto;border-radius:4px;overflow:hidden\"><div style=\"margin:0px auto;max-width:640px;background:#ffffff\"><table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" style=\"font-size:0px;width:100%;background:#ffffff\" align=\"center\" border=\"0\"><tbody><tr><td style=\"text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:40px 40px 0px\"><div aria-labelledby=\"mj-column-per-100\" class=\"m_-5457715721865842861mj-column-per-100 m_-5457715721865842861outlook-group-fix\" style=\"vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%\"><table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" border=\"0\"><tbody><tr><td style=\"word-break:break-word;font-size:0px;padding:0px\" align=\"left\"><table cellpadding=\"0\" cellspacing=\"0\" style=\"color:#000;font-family:Whitney,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;font-size:13px;line-height:22px;table-layout:auto\" width=\"100%\" border=\"0\">\n" +
+        "            <tbody><tr>\n" +
+        "              <td>\n" +
+        "                <div style=\"color:#4f545c;font-size:20px;line-height:24px\">\n" +
+        "                  <span style=\"font-weight:bold\">Привет {0},</span>\n" +
+        "                </div>\n" +
+        "                <div style=\"font-size:16px;line-height:22px;color:#737f8d;margin-top:12px\">\n" +
+        "                  {1}\n" +
+        "                </div>\n" +
+        "              </td>\n" +
+        "              <td width=\"78\" valign=\"top\" align=\"right\">\n" +
+        "                <table cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse:collapse;border-spacing:0px\" align=\"center\" border=\"0\">\n" +
+        "                  <tbody>\n" +
+        "                    <tr>\n" +
+        "                      <td style=\"width:58px;height:48px\">\n" +
+        "                        <img src=\"{2}\" width=\"58\" height=\"48\" style=\"border:none;display:block;outline:none;text-decoration:none\" alt=\"\" class=\"CToWUd\">\n" +
+        "                      </td>\n" +
+        "                    </tr>\n" +
+        "                  </tbody>\n" +
+        "                </table>\n" +
+        "              </td>\n" +
+        "            </tr>\n" +
+        "          </tbody></table></td></tr></tbody></table></div></td></tr></tbody></table></div>\n" +
+        "      <div style=\"margin:0px auto;max-width:640px;background:#ffffff\"><table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" style=\"font-size:0px;width:100%;background:#ffffff\" align=\"center\" border=\"0\"><tbody><tr><td style=\"text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:20px 40px 0px\"><div aria-labelledby=\"mj-column-per-100\" class=\"m_-5457715721865842861mj-column-per-100 m_-5457715721865842861outlook-group-fix\" style=\"vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%\"><table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" border=\"0\"><tbody><tr><td style=\"word-break:break-word;font-size:0px;padding:0px\"><p style=\"font-size:1px;margin:0px auto;border-top:1px solid #f0f2f4;width:100%\"></p></td></tr></tbody></table></div></td></tr></tbody></table></div>\n" +
+        "      <div style=\"margin:0px auto;max-width:640px;background:#ffffff\"><table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" style=\"font-size:0px;width:100%;background:#ffffff\" align=\"center\" border=\"0\"><tbody><tr><td style=\"text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:20px 40px 10px\"><div aria-labelledby=\"mj-column-per-100\" class=\"m_-5457715721865842861mj-column-per-100 m_-5457715721865842861outlook-group-fix\" style=\"vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%\"><table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" border=\"0\"><tbody><tr><td style=\"word-break:break-word;font-size:0px;padding:0px\" align=\"left\"><div style=\"color:#7289da;font-family:Whitney,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;font-size:16px;line-height:15px;text-align:left\">\n" +
+        "      <strong>\n" +
+        "       <span style=\"color:#7289da;font-size:14px\">{3}</span></strong>\n" +
+        "    </div></td></tr></tbody></table></div></td></tr></tbody></table></div>\n" +
+        "      <div style=\"margin:0px auto;max-width:640px;background:#ffffff\"><table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" style=\"font-size:0px;width:100%;background:#ffffff\" align=\"center\" border=\"0\"><tbody><tr><td style=\"text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:0px 40px 10px\"><div aria-labelledby=\"mj-column-per-100\" class=\"m_-5457715721865842861mj-column-per-100 m_-5457715721865842861outlook-group-fix\" style=\"vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%\"><table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" border=\"0\"><tbody><tr><td style=\"word-break:break-word;font-size:0px;padding:0px\" align=\"left\"><table cellpadding=\"0\" cellspacing=\"0\" style=\"color:#000;font-family:Whitney,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;font-size:13px;line-height:22px;table-layout:auto\" width=\"100%\" border=\"0\">\n" +
+        "      <tbody><tr>\n" +
+        "        <!--td width=\"20\">\n" +
+        "          &nbsp;\n" +
+        "        </td-->\n" +
+        "        <td valign=\"top\">\n" +
+        "          <div style=\"color:#2d3136;font-size:16px;line-height:20px\">{4}</div>\n" +
+        "          <div style=\"color:#737f8d;font-size:15px;line-height:17px;margin-top:3px\">\n" +
+        "             <!-- таблица результата-->\n" +
+        "             {5}\n" +
+        "          </div>\n" +
+        "        </td>\n" +
+        "      </tr>\n" +
+        "    </tbody></table></td></tr></tbody></table></div></td></tr></tbody></table></div>\n" +
+        "      <div style=\"margin:0px auto;max-width:640px;background:#ffffff\"><table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" style=\"font-size:0px;width:100%;background:#ffffff\" align=\"center\" border=\"0\"><tbody><tr><td style=\"text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:20px 40px 0px\"></td></tr></tbody></table></div>\n" +
+        "      </div>", model.UserName, "Вы только что прошли тест","ссылка на картинку", model.PatternName, model.Mark);
+        }
+
         public async Task<List<PatternViewModel>> GetUserList(string id)
         {
             int groupId = (await context.Users.FirstOrDefaultAsync(rec => rec.Id == id)).UserGroupId ?? -1;
@@ -454,7 +562,8 @@ namespace TestService.Implementations
         {
             if (id != -1)
             {
-                return await context.Patterns.Where(rec => rec.UserGroupId == id).Select(rec => new PatternViewModel
+                return await context.Patterns.Where(rec => rec.UserGroupId == id)
+                    .Where(rec=>!rec.PatternCategories.Select(r=>r.Category).Any(r=>!r.Active)).Select(rec => new PatternViewModel
                 {
                     Id = rec.Id,
                     Name = rec.Name,
@@ -465,7 +574,7 @@ namespace TestService.Implementations
             else
             {
                 //не знаю будет ли работать
-                return await context.Patterns.Where(rec => rec.UserGroup == null).Select(rec => new PatternViewModel
+                return await context.Patterns.Where(rec => !rec.UserGroupId.HasValue).Select(rec => new PatternViewModel
                 {
                     Id = rec.Id,
                     Name = rec.Name,
