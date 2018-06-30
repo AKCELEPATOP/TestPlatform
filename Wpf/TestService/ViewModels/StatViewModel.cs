@@ -31,5 +31,8 @@ namespace TestService.ViewModels
         [DataMember]
         public string UserName { get; set; }
 
+        [DataMember]
+        public string Email { get; set; }
+
     }
 }

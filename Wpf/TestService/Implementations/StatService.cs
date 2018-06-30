@@ -342,44 +342,5 @@ namespace TestService.Implementations
             doc.Close();
 
         }
-
-        public async System.Threading.Tasks.Task SendMail(string mailto, string caption, string message, string path = null)
-        {
-            System.Net.Mail.MailMessage mailMessage = new System.Net.Mail.MailMessage();
-            SmtpClient stmpClient = null;
-            try
-            {
-                mailMessage.From = new MailAddress(ConfigurationManager.AppSettings["MailLogin"]);
-                mailMessage.To.Add(new MailAddress(mailto));
-                mailMessage.Subject = caption;
-                mailMessage.Body = message;
-                mailMessage.SubjectEncoding = System.Text.Encoding.UTF8;
-                mailMessage.BodyEncoding = System.Text.Encoding.UTF8;
-                if (path != null)
-                {
-                    mailMessage.Attachments.Add(new Attachment(path));
-                }
-
-                stmpClient = new SmtpClient("smtp.gmail.com", 587)
-                {
-                    UseDefaultCredentials = false,
-                    EnableSsl = true,
-                    DeliveryMethod = SmtpDeliveryMethod.Network,
-                    Credentials = new NetworkCredential(ConfigurationManager.AppSettings["MailLogin"].Split('@')[0],
-                    ConfigurationManager.AppSettings["MailPassword"])
-                };
-                await stmpClient.SendMailAsync(mailMessage);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                mailMessage.Dispose();
-                mailMessage = null;
-                stmpClient = null;
-            }
-        }
     }
 }

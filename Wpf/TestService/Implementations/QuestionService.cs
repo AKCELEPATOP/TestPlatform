@@ -32,38 +32,75 @@ namespace TestService.Implementations
             Question element = await context.Questions.FirstOrDefaultAsync(rec => rec.Text == model.Text);
             if (element != null)
             {
-                throw new Exception("Категория с таким названием уже существует");
+                throw new Exception("Такой вопрос уже существует");
             }
-
-            context.Questions.Add(new Question
+            using (var transaction = context.Database.BeginTransaction())
             {
-                Text=model.Text,
-                Complexity=model.Complexity,
-                Active=model.Active,
-                Answers=model.Answers
-            });
+                try
+                {
+                    element = new Question
+                    {
+                        Text = model.Text,
+                        Complexity = model.Complexity,
+                        Active = model.Active,
+                        CategoryId = model.CategoryId,
+                        Time = model.Time
+                    };
+                    context.Questions.Add(element);
+                    await context.SaveChangesAsync();
+                    
+                    foreach(var answer in model.Answers)
+                    {
+                        context.Answers.Add(new Answer
+                        {
+                            QuestionId = element.Id,
+                            Text = answer.Text,
+                            True = answer.True
+                        });
+                    }
+                    await context.SaveChangesAsync();
 
-            await context.SaveChangesAsync();
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    transaction.Rollback();
+                    throw;
+                }
+            }
         }
 
         public async Task DelElement(int id)
         {
-            Question element = await context.Questions.FirstOrDefaultAsync(rec => rec.Id == id);
-            if (element != null)
+            using (var transaction = context.Database.BeginTransaction())
             {
-                context.Questions.Remove(element);
-                await context.SaveChangesAsync();
-            }
-            else
-            {
-                throw new Exception("Элемент не найден");
+                try
+                {
+                    Question element = await context.Questions.FirstOrDefaultAsync(rec => rec.Id == id);
+                    if (element != null)
+                    {
+                        context.Answers.RemoveRange(context.Answers.Where(rec => rec.QuestionId == element.Id));
+                        context.Questions.Remove(element);
+                        await context.SaveChangesAsync();
+                    }
+                    else
+                    {
+                        throw new Exception("Элемент не найден");
+                    }
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    transaction.Rollback();
+                    throw;
+                }
             }
         }
 
         public async Task<QuestionViewModel> GetElement(int id)
         {
             Question element = await context.Questions.FirstOrDefaultAsync(rec => rec.Id == id);
-            {
+            
                 if (element == null)
                 {
                     throw new Exception("Элемент не найден");
@@ -77,49 +114,82 @@ namespace TestService.Implementations
                         Answers = element.Answers.Select(recQ => new AnswerViewModel
                         {
                             Id = recQ.Id,
-                            Text=recQ.Text
-                            
+                            Text=recQ.Text,
+                            True = recQ.True
                         }).ToList(),
                         Complexity=element.Complexity,
-                        CategoryName=element.Category.Name
-
-
+                        CategoryName=element.Category.Name,
+                        Active = element.Active,
+                        CategoryId = element.CategoryId,
+                        ComplexityName = element.Complexity.ToString(),
+                        Time = element.Time
                     };
                     return result;
                 }
 
-            }
+            
         }
-
-        public async Task<List<QuestionViewModel>> GetList()
-        {
-            List<QuestionViewModel> result = await context.Questions.Select(rec => new QuestionViewModel
-            {
-                Id = rec.Id,
-                Text=rec.Text
-            }).ToListAsync();
-            return result;
-        }
-
 
         public async Task UpdElement(QuestionBindingModel model)
         {
-            Question element = await context.Questions.FirstOrDefaultAsync(rec =>
-                                   rec.Text == model.Text && rec.Id != model.Id);
-            if (element != null)
+            using (var transaction = context.Database.BeginTransaction())
             {
-                throw new Exception("Уже есть категория с таким названием");
+                try
+                {
+                    Question element = await context.Questions.FirstOrDefaultAsync(rec =>
+                                  rec.Text == model.Text && rec.Id != model.Id);
+                    if (element != null)
+                    {
+                        throw new Exception("Уже есть такой вопрос");
+                    }
+                    element = context.Questions.FirstOrDefault(rec => rec.Id == model.Id);
+                    if (element == null)
+                    {
+                        throw new Exception("Элемент не найден");
+                    }
+                    element.Text = model.Text;
+                    element.Complexity = model.Complexity;
+                    element.Active = model.Active;
+                    element.Time = model.Time;
+                    await context.SaveChangesAsync();
+
+                    var answersId = model.Answers.Select(rec => rec.Id).Distinct();
+
+                    //обновление вопросов
+                    var updateAnswers = context.Answers.Where(rec => rec.QuestionId == model.Id && answersId.Contains(rec.Id));
+
+                    foreach (var updateAnswer in updateAnswers)
+                    {
+                        updateAnswer.Text = model.Answers.FirstOrDefault(rec => rec.Id == updateAnswer.Id).Text;
+                        updateAnswer.True = model.Answers.FirstOrDefault(rec => rec.Id == updateAnswer.Id).True;
+                    }
+                    await context.SaveChangesAsync();
+                    //удаление вопросов
+                    context.Answers.RemoveRange(context.Answers.Where(rec => rec.QuestionId == model.Id && !answersId.Contains(rec.Id)));
+                    await context.SaveChangesAsync();
+
+                    var answers = model.Answers
+                        .Where(rec => rec.Id == 0);
+
+                    foreach(var answer in answers)
+                    {
+                        context.Answers.Add(new Answer
+                        {
+                            QuestionId = model.Id,
+                            Text = answer.Text,
+                            True = answer.True,
+                        });
+                        await context.SaveChangesAsync();
+                    }
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    transaction.Rollback();
+                    throw;
+                }
             }
-            element = context.Questions.FirstOrDefault(rec => rec.Id == model.Id);
-            if (element == null)
-            {
-                throw new Exception("Элемент не найден");
-            }
-            element.Text = model.Text;
-            element.Complexity = model.Complexity;
-            element.Active = model.Active;
-            element.Answers = model.Answers;
-            context.SaveChanges();
+           
         }
     }
 }

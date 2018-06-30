@@ -47,17 +47,6 @@ namespace TestRestApi.Controllers
         }
         #endregion
 
-        [HttpGet]
-        public async Task<IHttpActionResult> GetList()
-        {
-            var list = await Service.GetList();
-            if (list == null)
-            {
-                InternalServerError(new Exception("Нет данных"));
-            }
-            return Ok(list);
-        }
-
         [HttpPost]
         public async Task AddElement(QuestionBindingModel model)
         {

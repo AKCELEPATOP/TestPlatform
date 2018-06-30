@@ -10,8 +10,6 @@ namespace TestService.Interfaces
 {
     public  interface IQuestion
     {
-        Task<List<QuestionViewModel>> GetList();
-
         Task<QuestionViewModel> GetElement(int id);
 
         Task AddElement(QuestionBindingModel model);

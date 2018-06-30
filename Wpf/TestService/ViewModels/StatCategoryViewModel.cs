@@ -14,6 +14,12 @@ namespace TestService.ViewModels
         public int CategoryId { get; set; }
 
         [DataMember]
+        public int Total { get; set; }
+
+        [DataMember]
+        public int Right { get; set; }
+
+        [DataMember]
         public List<StatQuestionViewModel> Questions { get; set; }
     }
 }

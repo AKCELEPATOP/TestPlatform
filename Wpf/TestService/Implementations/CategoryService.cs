@@ -108,20 +108,16 @@ namespace TestService.Implementations
 
         public async Task<List<QuestionViewModel>> GetListQuestions(int id)
         {
-            Category element = await context.Categories.FirstOrDefaultAsync(rec => rec.Id == id);
-
-            List<QuestionViewModel> result = new List<QuestionViewModel>();
-            foreach (var questions in element.Questions)
+            return await context.Categories.Where(rec => rec.Id == id).SelectMany(rec => rec.Questions).Select(rec => new QuestionViewModel
             {
-                result.Add(new QuestionViewModel
-                {
-                    Id = questions.Id,
-                    Text = questions.Text
-                });
-
-            }
-
-            return result;
+                Id = rec.Id,
+                Text = rec.Text,
+                CategoryId = rec.CategoryId,
+                Time = rec.Time,
+                Active = rec.Active,
+                Complexity = rec.Complexity,
+                ComplexityName = rec.Complexity.ToString(),
+            }).ToListAsync();
         }
 
         public async Task UpdElement(CategoryBindingModel model)
