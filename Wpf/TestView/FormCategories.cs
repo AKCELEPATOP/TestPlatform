@@ -107,7 +107,7 @@ namespace TestView
         private void button3_Click(object sender, EventArgs e)
         {
             var form = new FormQuestionEditor();
-
+            form.IdCat = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
             if (form.ShowDialog() == DialogResult.OK)
             {
                 Initialize();
@@ -117,6 +117,7 @@ namespace TestView
         private void button4_Click(object sender, EventArgs e)
         {
             var form = new FormQuestionEditor();
+            form.IdCat = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
             form.Id = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells[0].Value);
             if (form.ShowDialog() == DialogResult.OK)
             {
@@ -150,5 +151,6 @@ namespace TestView
                 Initialize();
             }
         }
+
     }
 }

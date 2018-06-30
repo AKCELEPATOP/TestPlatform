@@ -64,7 +64,7 @@ namespace TestView
                 }
             }
             maskedTextBox1.Mask = "00 / 00";
-            maskedTextBox1.Text = "02/00";
+            maskedTextBox1.Text = "02 / 00";
             List<string> source = new List<string>
             {
             QuestionComplexity.Easy.ToString(), QuestionComplexity.Middle.ToString(), QuestionComplexity.Difficult.ToString()
