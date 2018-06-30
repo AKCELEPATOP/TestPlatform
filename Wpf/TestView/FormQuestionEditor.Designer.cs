@@ -45,8 +45,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox6 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.domainUpDown1 = new System.Windows.Forms.DomainUpDown();
             this.button1 = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.domainUpDown2 = new System.Windows.Forms.DomainUpDown();
@@ -216,23 +214,6 @@
             this.textBox6.Size = new System.Drawing.Size(607, 20);
             this.textBox6.TabIndex = 5;
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(13, 74);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(149, 13);
-            this.label7.TabIndex = 6;
-            this.label7.Text = "Количество верных ответов";
-            // 
-            // domainUpDown1
-            // 
-            this.domainUpDown1.Location = new System.Drawing.Point(172, 74);
-            this.domainUpDown1.Name = "domainUpDown1";
-            this.domainUpDown1.Size = new System.Drawing.Size(41, 20);
-            this.domainUpDown1.TabIndex = 7;
-            this.domainUpDown1.Text = "1";
-            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(16, 255);
@@ -246,15 +227,15 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(247, 74);
+            this.label8.Location = new System.Drawing.Point(137, 74);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(63, 13);
+            this.label8.Size = new System.Drawing.Size(66, 13);
             this.label8.TabIndex = 9;
-            this.label8.Text = "Сложность";
+            this.label8.Text = "Сложность:";
             // 
             // domainUpDown2
             // 
-            this.domainUpDown2.Location = new System.Drawing.Point(316, 74);
+            this.domainUpDown2.Location = new System.Drawing.Point(221, 72);
             this.domainUpDown2.Name = "domainUpDown2";
             this.domainUpDown2.Size = new System.Drawing.Size(77, 20);
             this.domainUpDown2.TabIndex = 10;
@@ -272,11 +253,11 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(426, 74);
+            this.label9.Location = new System.Drawing.Point(372, 74);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(102, 13);
+            this.label9.Size = new System.Drawing.Size(105, 13);
             this.label9.TabIndex = 12;
-            this.label9.Text = "Время на решение";
+            this.label9.Text = "Время на решение:";
             // 
             // button3
             // 
@@ -299,7 +280,7 @@
             // 
             // maskedTextBox1
             // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(534, 74);
+            this.maskedTextBox1.Location = new System.Drawing.Point(495, 71);
             this.maskedTextBox1.Margin = new System.Windows.Forms.Padding(2);
             this.maskedTextBox1.Name = "maskedTextBox1";
             this.maskedTextBox1.Size = new System.Drawing.Size(76, 20);
@@ -318,8 +299,6 @@
             this.Controls.Add(this.domainUpDown2);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.domainUpDown1);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.textBox6);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label2);
@@ -353,8 +332,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.DomainUpDown domainUpDown1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.DomainUpDown domainUpDown2;
