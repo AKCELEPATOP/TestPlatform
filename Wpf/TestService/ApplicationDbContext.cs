@@ -48,6 +48,33 @@ namespace TestService
             }
         }
 
+        public override int SaveChanges()
+        {
+            try
+            {
+                return base.SaveChanges();
+            }
+            catch (Exception)
+            {
+                foreach (var entry in ChangeTracker.Entries())
+                {
+                    switch (entry.State)
+                    {
+                        case EntityState.Modified:
+                            entry.State = EntityState.Unchanged;
+                            break;
+                        case EntityState.Deleted:
+                            entry.Reload();
+                            break;
+                        case EntityState.Added:
+                            entry.State = EntityState.Detached;
+                            break;
+                    }
+                }
+                throw;
+            }
+        }
+
         public virtual DbSet<Question> Questions { get; set; }
 
         public virtual DbSet<Answer> Answers { get; set; }

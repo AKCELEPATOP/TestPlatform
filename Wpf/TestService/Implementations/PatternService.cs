@@ -324,7 +324,7 @@ namespace TestService.Implementations
                 //добавление сложных
                 int countComplex = (int)(patternCategory.Complex * patternCategory.Count) - list.Where(rec => rec.Complexity.Equals(QuestionComplexity.Difficult)).Count();
                 result.Questions.AddRange(context.Questions.Where(rec => rec.CategoryId == patternCategory.CategoryId &&
-                rec.Complexity == QuestionComplexity.Difficult).OrderBy(a => Guid.NewGuid())
+                rec.Complexity == QuestionComplexity.Difficult && rec.Active).OrderBy(a => Guid.NewGuid())
                     .Take(countComplex).Select(rec => new QuestionViewModel
                     {
                         Id = rec.Id,
@@ -338,7 +338,7 @@ namespace TestService.Implementations
                 //добавление средних
                 int countMiddle = (int)(patternCategory.Middle * patternCategory.Count) - list.Where(rec => rec.Complexity.Equals(QuestionComplexity.Middle)).Count();
                 result.Questions.AddRange(context.Questions.Where(rec => rec.CategoryId == patternCategory.CategoryId &&
-                rec.Complexity == QuestionComplexity.Middle).OrderBy(a => Guid.NewGuid())
+                rec.Complexity == QuestionComplexity.Middle && rec.Active).OrderBy(a => Guid.NewGuid())
                     .Take(countMiddle).Select(rec => new QuestionViewModel
                     {
                         Id = rec.Id,
@@ -356,7 +356,7 @@ namespace TestService.Implementations
                     list.Where(rec => rec.Complexity.Equals(QuestionComplexity.Easy)).Count();
 
                 result.Questions.AddRange(context.Questions.Where(rec => rec.CategoryId == patternCategory.CategoryId &&
-                rec.Complexity == QuestionComplexity.Easy).OrderBy(a => Guid.NewGuid())
+                rec.Complexity == QuestionComplexity.Easy && rec.Active).OrderBy(a => Guid.NewGuid())
                     .Take(countEasy).Select(rec => new QuestionViewModel
                     {
                         Id = rec.Id,
@@ -562,7 +562,8 @@ namespace TestService.Implementations
         {
             if (id != -1)
             {
-                return await context.Patterns.Where(rec => rec.UserGroupId == id).Select(rec => new PatternViewModel
+                return await context.Patterns.Where(rec => rec.UserGroupId == id)
+                    .Where(rec=>!rec.PatternCategories.Select(r=>r.Category).Any(r=>!r.Active)).Select(rec => new PatternViewModel
                 {
                     Id = rec.Id,
                     Name = rec.Name,
@@ -573,7 +574,7 @@ namespace TestService.Implementations
             else
             {
                 //не знаю будет ли работать
-                return await context.Patterns.Where(rec => rec.UserGroup == null).Select(rec => new PatternViewModel
+                return await context.Patterns.Where(rec => !rec.UserGroupId.HasValue).Select(rec => new PatternViewModel
                 {
                     Id = rec.Id,
                     Name = rec.Name,

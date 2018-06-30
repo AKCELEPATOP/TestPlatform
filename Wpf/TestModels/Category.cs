@@ -19,6 +19,9 @@ namespace TestModels
         [StringLength(30, ErrorMessage = "Name length should be from 1 to 30", MinimumLength = 1)]
         public string Name { get; set; }
 
+        [DataMember]
+        public bool Active { get; set; }
+
         [ForeignKey("CategoryId")]
         public virtual List<Question> Questions { get; set; }
 
