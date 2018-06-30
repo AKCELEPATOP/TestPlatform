@@ -20,6 +20,9 @@ namespace TestService.ViewModels
         public string UserName { get; set; }
 
         [DataMember]
+        public string Email { get; set; }
+
+        [DataMember]
         public string GroupName { get; set; }
     }
 }

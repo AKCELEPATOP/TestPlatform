@@ -39,10 +39,9 @@ namespace TestView
             }
             catch (Exception ex)
             {
-                DialogResult result = MessageBox.Show(ex.ToString(), "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw ex;
             }
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", tokenResponse.Access_token);
-            //сделайте что-то с tokenResponse.UserRole для выбора интерфейса
             Role = tokenResponse.UserRole;
         }
 

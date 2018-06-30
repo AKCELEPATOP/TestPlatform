@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -14,13 +15,22 @@ namespace TestService.Implementations
 {
     public class UserService : IUserService
     {
-        private ApplicationDbContext context;
+        private static ApplicationDbContext context;
 
         private UserManager<User> userManager;
 
+        private Lazy<string> roleId = new Lazy<string>(() =>
+        {
+            var manager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+            return manager.FindByName(ApplicationRoles.User).Id;
+        });
+
+        private string RoleId => roleId.Value;
+
         public UserService(ApplicationDbContext context, UserManager<User> userManager)
         {
-            this.context = context;
+            UserService.context = context;
+            this.userManager = userManager;
         }
 
         public static UserService Create(ApplicationDbContext context, UserManager<User> userManager)
@@ -35,7 +45,8 @@ namespace TestService.Implementations
                 FIO = model.FIO,
                 UserGroupId = model.GroupId,
                 UserName = model.UserName,
-                PasswordHash = model.PasswordHash
+                PasswordHash = model.PasswordHash,
+                Email = model.Email
             };
             await manager.CreateAsync(user, user.PasswordHash);
         }
@@ -47,7 +58,8 @@ namespace TestService.Implementations
             {
                 throw new Exception("Элемент не найден");
             }
-            if (!userManager.GetRoles(element.Id).FirstOrDefault().Equals(ApplicationRoles.User))
+            string roleId = RoleId;
+            if (!element.Roles.FirstOrDefault().RoleId.Equals(roleId))
             {
                 throw new Exception("Элемент не является Пользователем");
             }
@@ -61,12 +73,18 @@ namespace TestService.Implementations
 
             if (element != null)
             {
+                string roleId = RoleId;
+                if (!element.Roles.FirstOrDefault().RoleId.Equals(roleId))
+                {
+                    throw new Exception("Элемент не является Пользователем");
+                }
                 return new UserViewModel
                 {
                     Id = element.Id,
                     FIO = element.FIO,
                     UserName = element.UserName,
-                    GroupName = element.UserGroup.Name
+                    GroupName = element.UserGroup.Name,
+                    Email = element.Email
                 };
             }
             throw new Exception("Элемент не найден");
@@ -79,7 +97,8 @@ namespace TestService.Implementations
             {
                 throw new Exception("Нет данных");
             }
-            if (!userManager.GetRoles(userOld.Id).FirstOrDefault().Equals(ApplicationRoles.User))
+            string roleId = RoleId;
+            if (!userOld.Roles.FirstOrDefault().RoleId.Equals(roleId))
             {
                 throw new Exception("Элемент не является Пользователем");
             }
@@ -91,7 +110,8 @@ namespace TestService.Implementations
 
         public async Task<List<UserViewModel>> GetList()
         {
-            return await context.Users.Where(rec => userManager.GetRoles(rec.Id).FirstOrDefault().Equals(ApplicationRoles.User)).Include(r => r.UserGroup)
+            string roleId = RoleId;
+            return await context.Users.Where(rec => rec.Roles.FirstOrDefault().RoleId.Equals(roleId)).Include(r => r.UserGroup)
                 .Select(rec => new UserViewModel
             {
                 Id = rec.Id,
@@ -108,7 +128,8 @@ namespace TestService.Implementations
             {
                 throw new Exception("Элемент не найден");
             }
-            if (!userManager.GetRoles(user.Id).FirstOrDefault().Equals(ApplicationRoles.User))
+            string roleId = RoleId;
+            if (!user.Roles.FirstOrDefault().RoleId.Equals(roleId))
             {
                 throw new Exception("Элемент не является Пользователем");
             }

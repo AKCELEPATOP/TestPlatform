@@ -33,6 +33,9 @@ namespace TestModels
         public override string SecurityStamp { get; set; }
 
         [DataMember]
+        public override string Email { get; set; }
+
+        [DataMember]
         public int? UserGroupId { get; set; }
 
         public virtual UserGroup UserGroup { get; set; }
