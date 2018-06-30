@@ -60,15 +60,12 @@ namespace TestView
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.SelectedRows.Count == 1)
-            {
                 var form = new FormCategoryEdit();
 
                 if (form.ShowDialog() == DialogResult.OK)
                 {
                     Initialize();
-                }
-            }
+                }            
         }
 
         private void button5_Click(object sender, EventArgs e)
