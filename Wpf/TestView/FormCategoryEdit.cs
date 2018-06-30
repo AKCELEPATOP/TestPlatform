@@ -54,24 +54,17 @@ namespace TestView
             Task task;
             string name = textBox1.Text;
             if (id.HasValue) {
-                
-             
-                
                     task = Task.Run(() => ApiClient.PostRequestData("api/Category/UpdElement", new CategoryBindingModel
                     {
                         Id = id.Value,
                         Name=name
                         
                     }));
-                
-
             } else {
                 task = Task.Run(() => ApiClient.PostRequestData("api/Category/AddElement", new CategoryBindingModel
                 {
                     Name = name
-
                 }));
-
             }
             task.ContinueWith((prevTask) => MessageBox.Show("Сохранение прошло успешно. Обновите список", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information),
                 TaskContinuationOptions.OnlyOnRanToCompletion);
@@ -84,7 +77,6 @@ namespace TestView
                 }
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }, TaskContinuationOptions.OnlyOnFaulted);
-
             Close();
         }
 

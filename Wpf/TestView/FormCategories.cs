@@ -60,21 +60,27 @@ namespace TestView
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var form = new FormCategoryEdit();
-
-            if (form.ShowDialog() == DialogResult.OK)
+            if (dataGridView1.SelectedRows.Count == 1)
             {
-                Initialize();
+                var form = new FormCategoryEdit();
+
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    Initialize();
+                }
             }
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            var form = new FormCategoryEdit();
-            form.Id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
-            if (form.ShowDialog() == DialogResult.OK)
+            if (dataGridView1.SelectedRows.Count == 1)
             {
-                Initialize();
+                var form = new FormCategoryEdit();
+                form.Id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    Initialize();
+                }
             }
         }
 
@@ -107,11 +113,15 @@ namespace TestView
 
         private void button3_Click(object sender, EventArgs e)
         {
-            var form = new FormQuestionEditor();
-            form.IdCat = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
-            if (form.ShowDialog() == DialogResult.OK)
+            if (dataGridView1.SelectedRows.Count == 1)
             {
-                Initialize();
+                var form = new FormQuestionEditor();
+                form.IdCat = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
+                form.Initialize();
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    Initialize();
+                }
             }
         }
 
