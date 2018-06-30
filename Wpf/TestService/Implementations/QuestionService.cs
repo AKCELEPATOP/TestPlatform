@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using TestModels;
 using TestService.BindingModels;
 using TestService.Interfaces;
@@ -48,8 +49,8 @@ namespace TestService.Implementations
                     };
                     context.Questions.Add(element);
                     await context.SaveChangesAsync();
-                    
-                    foreach(var answer in model.Answers)
+
+                    foreach (var answer in model.Answers)
                     {
                         context.Answers.Add(new Answer
                         {
@@ -59,13 +60,39 @@ namespace TestService.Implementations
                         });
                     }
                     await context.SaveChangesAsync();
+                    foreach (var image in model.Images)
+                    {
+                        var buffer = Convert.FromBase64String(image);
 
+                        HttpPostedFileBase objFile = (HttpPostedFileBase)new MemoryPostedFile(buffer);
+
+                        try
+                        {
+                            if (objFile != null && objFile.ContentLength > 0)
+                            {
+                                string path = model.ImagesPath + ((string.IsNullOrEmpty(objFile.FileName)) ? string.Format("{0}.{1}.png", element.Id, 1) : objFile.FileName);
+
+                                objFile.SaveAs(path);
+
+                                context.Attachments.Add(new Attachment
+                                {
+                                    Path = path,
+                                    QuestionId = element.Id
+                                });
+                                await context.SaveChangesAsync();
+                            }
+                        }
+                        catch
+                        {
+                            throw new Exception("Не удалось добавить изображение");
+                        }
+                    }
                     transaction.Commit();
                 }
                 catch (Exception ex)
                 {
                     transaction.Rollback();
-                    throw;
+                    throw ex;
                 }
             }
         }
@@ -80,12 +107,21 @@ namespace TestService.Implementations
                     if (element != null)
                     {
                         context.Answers.RemoveRange(context.Answers.Where(rec => rec.QuestionId == element.Id));
+
+                        var list = await context.Attachments.Where(rec => rec.QuestionId == element.Id).ToListAsync();
+
+                        foreach(var el in list)
+                        {
+                            System.IO.File.Delete(el.Path);
+                        }
+                        context.Attachments.RemoveRange(list);
+
                         context.Questions.Remove(element);
                         await context.SaveChangesAsync();
                     }
                     else
                     {
-                        throw new Exception("Элемент не найден");
+                        throw new Exception("Ошибка удаления");
                     }
                     transaction.Commit();
                 }
@@ -100,34 +136,46 @@ namespace TestService.Implementations
         public async Task<QuestionViewModel> GetElement(int id)
         {
             Question element = await context.Questions.FirstOrDefaultAsync(rec => rec.Id == id);
-            
-                if (element == null)
+
+            if (element == null)
+            {
+                throw new Exception("Элемент не найден");
+            }
+            else
+            {
+                List<string> images = new List<string>();
+
+                List<string> list = await context.Attachments.Where(rec => rec.QuestionId == element.Id).Select(rec=>rec.Path).ToListAsync();
+
+                foreach(var el in list)
                 {
-                    throw new Exception("Элемент не найден");
-                }
-                else
-                {
-                    QuestionViewModel result = new QuestionViewModel
-                    {
-                        Id = element.Id,
-                        Text=element.Text,
-                        Answers = element.Answers.Select(recQ => new AnswerViewModel
-                        {
-                            Id = recQ.Id,
-                            Text=recQ.Text,
-                            True = recQ.True
-                        }).ToList(),
-                        Complexity=element.Complexity,
-                        CategoryName=element.Category.Name,
-                        Active = element.Active,
-                        CategoryId = element.CategoryId,
-                        ComplexityName = element.Complexity.ToString(),
-                        Time = element.Time
-                    };
-                    return result;
+                    byte[] bytes = System.IO.File.ReadAllBytes(el);
+
+                    images.Add(Convert.ToBase64String(bytes));
                 }
 
-            
+                QuestionViewModel result = new QuestionViewModel
+                {
+                    Id = element.Id,
+                    Text = element.Text,
+                    Answers = element.Answers.Select(recQ => new AnswerViewModel
+                    {
+                        Id = recQ.Id,
+                        Text = recQ.Text,
+                        True = recQ.True
+                    }).ToList(),
+                    Complexity = element.Complexity,
+                    CategoryName = element.Category.Name,
+                    Active = element.Active,
+                    CategoryId = element.CategoryId,
+                    ComplexityName = element.Complexity.ToString(),
+                    Time = element.Time,
+                    Images = images
+                };
+                return result;
+            }
+
+
         }
 
         public async Task UpdElement(QuestionBindingModel model)
@@ -171,7 +219,7 @@ namespace TestService.Implementations
                     var answers = model.Answers
                         .Where(rec => rec.Id == 0);
 
-                    foreach(var answer in answers)
+                    foreach (var answer in answers)
                     {
                         context.Answers.Add(new Answer
                         {
@@ -189,7 +237,7 @@ namespace TestService.Implementations
                     throw;
                 }
             }
-           
+
         }
     }
 }

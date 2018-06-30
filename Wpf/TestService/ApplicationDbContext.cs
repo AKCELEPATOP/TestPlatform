@@ -91,5 +91,7 @@ namespace TestService
 
         public virtual DbSet<PatternQuestion> PatternQuestions { get; set; }
 
+        public virtual DbSet<Attachment> Attachments { get; set; } 
+
     }
 }

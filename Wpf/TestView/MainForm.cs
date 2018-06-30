@@ -111,7 +111,7 @@ namespace TestView
         {
             //textBoxCurrentUser.Text = ;
             //textBoxGroupUser.Text = ;
-
+            Initialize();
             this.ForeColor = colorFont;
             this.BackColor = colorBack;
         }

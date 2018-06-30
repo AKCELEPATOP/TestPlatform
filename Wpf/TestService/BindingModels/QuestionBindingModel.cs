@@ -21,7 +21,10 @@ namespace TestService.BindingModels
         public long Time { get; set; }
 
         [DataMember]
-        public string Image { get; set; }
+        public string ImagesPath { get; set; }
+
+        [DataMember]
+        public List<string> Images { get; set; }
 
         [DataMember]
         public QuestionComplexity Complexity { get; set; }
