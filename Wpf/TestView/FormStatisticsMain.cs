@@ -68,11 +68,14 @@ namespace TestView
         //изменить шаблон
         private void button10_Click(object sender, EventArgs e)
         {
-            var form = new FormTestTemplate();
-            form.Id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
-            if (form.ShowDialog() == DialogResult.OK)
+            if (dataGridView1.SelectedRows.Count == 1)
             {
-                Initialize();
+                var form = new FormTestTemplate();
+                form.Id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    Initialize();
+                }
             }
         }
         //удалить шаблон
@@ -102,6 +105,20 @@ namespace TestView
                 Initialize();
             }
         }
+
+        // ПКМ -> Обновить
+        private void MouseDown_Form(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                contextMenuStrip1.Show(MousePosition);
+            }
+        }
+        private void ОбновитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Initialize();
+        }
+
         //сменить пользователя
         private void button7_Click(object sender, EventArgs e)
         {

@@ -31,6 +31,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.dataGridViewAvailablePatterns = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonBeginTest = new System.Windows.Forms.Button();
@@ -49,9 +50,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.buttonResultOfTest = new System.Windows.Forms.Button();
             this.buttonStatistic = new System.Windows.Forms.Button();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.обновитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAvailablePatterns)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPassedTests)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridViewAvailablePatterns
@@ -135,7 +139,6 @@
             this.label6.Size = new System.Drawing.Size(119, 13);
             this.label6.TabIndex = 17;
             this.label6.Text = "Настроить цвет фона:";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // buttonChangeColorBack
             // 
@@ -222,6 +225,19 @@
             this.buttonStatistic.UseVisualStyleBackColor = true;
             this.buttonStatistic.Click += new System.EventHandler(this.buttonStatistic_Click);
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.обновитьToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 48);
+            // 
+            // обновитьToolStripMenuItem
+            // 
+            this.обновитьToolStripMenuItem.Name = "обновитьToolStripMenuItem";
+            this.обновитьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.обновитьToolStripMenuItem.Text = "Обновить";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -249,6 +265,7 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPassedTests)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -274,5 +291,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button buttonResultOfTest;
         private System.Windows.Forms.Button buttonStatistic;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem обновитьToolStripMenuItem;
     }
 }

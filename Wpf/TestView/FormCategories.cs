@@ -19,7 +19,8 @@ namespace TestView
             Initialize();
         }
 
-        private void Initialize() {
+        private void Initialize()
+        {
             try
             {
                 List<CategoryViewModel> list =
@@ -60,10 +61,10 @@ namespace TestView
         private void button1_Click(object sender, EventArgs e)
         {
             var form = new FormCategoryEdit();
-            
+
             if (form.ShowDialog() == DialogResult.OK)
             {
-                      Initialize();
+                Initialize();
             }
         }
 
@@ -114,14 +115,29 @@ namespace TestView
             }
         }
 
+        private void MouseDown_Form(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                contextMenuStrip1.Show(MousePosition);
+            }
+        }
+        private void обновитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Initialize();
+        }
+
         private void button4_Click(object sender, EventArgs e)
         {
-            var form = new FormQuestionEditor();
-            form.IdCat = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
-            form.Id = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells[0].Value);
-            if (form.ShowDialog() == DialogResult.OK)
+            if (dataGridView1.SelectedRows.Count == 1)
             {
-                Initialize();
+                var form = new FormQuestionEditor();
+                form.IdCat = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
+                form.Id = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells[0].Value);
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    Initialize();
+                }
             }
         }
 
@@ -151,6 +167,7 @@ namespace TestView
                 Initialize();
             }
         }
+
 
     }
 }
