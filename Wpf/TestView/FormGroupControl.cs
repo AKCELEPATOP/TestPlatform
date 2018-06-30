@@ -61,6 +61,18 @@ namespace TestView
             }
         }
 
+        private void MouseDown_Form(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                contextMenuStrip1.Show(MousePosition);
+            }
+        }
+        private void ОбновитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Initialize();
+        }
+
         private void button5_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count == 1)
@@ -87,5 +99,6 @@ namespace TestView
                 Initialize();
             }
         }
+
     }
 }

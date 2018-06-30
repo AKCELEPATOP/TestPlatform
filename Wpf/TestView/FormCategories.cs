@@ -19,7 +19,8 @@ namespace TestView
             Initialize();
         }
 
-        private void Initialize() {
+        private void Initialize()
+        {
             try
             {
                 List<CategoryViewModel> list =
@@ -59,21 +60,26 @@ namespace TestView
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var form = new FormCategoryEdit();
+
+                var form = new FormCategoryEdit();
+
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    Initialize();
+                }
             
-            if (form.ShowDialog() == DialogResult.OK)
-            {
-                      Initialize();
-            }
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            var form = new FormCategoryEdit();
-            form.Id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
-            if (form.ShowDialog() == DialogResult.OK)
+            if (dataGridView1.SelectedRows.Count == 1)
             {
-                Initialize();
+                var form = new FormCategoryEdit();
+                form.Id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    Initialize();
+                }
             }
         }
 
@@ -99,28 +105,47 @@ namespace TestView
                         MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }, TaskContinuationOptions.OnlyOnFaulted);
                 }
-
                 Initialize();
             }
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            var form = new FormQuestionEditor();
-
-            if (form.ShowDialog() == DialogResult.OK)
+            if (dataGridView1.SelectedRows.Count == 1)
             {
-                Initialize();
+                var form = new FormQuestionEditor();
+                form.IdCat = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
+                form.Initialize();
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    Initialize();
+                }
             }
+        }
+
+        private void MouseDown_Form(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                contextMenuStrip1.Show(MousePosition);
+            }
+        }
+        private void обновитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Initialize();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            var form = new FormQuestionEditor();
-            form.Id = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells[0].Value);
-            if (form.ShowDialog() == DialogResult.OK)
+            if (dataGridView1.SelectedRows.Count == 1)
             {
-                Initialize();
+                var form = new FormQuestionEditor();
+                form.IdCat = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
+                form.Id = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells[0].Value);
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    Initialize();
+                }
             }
         }
 
@@ -150,5 +175,7 @@ namespace TestView
                 Initialize();
             }
         }
+
+
     }
 }

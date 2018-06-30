@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TestingForm));
             this.questionList = new System.Windows.Forms.DataGridView();
             this.question = new System.Windows.Forms.Label();
@@ -48,10 +49,13 @@
             this.labelTime = new System.Windows.Forms.Label();
             this.appendixForQestion = new System.Windows.Forms.Button();
             this.textBoxTime = new System.Windows.Forms.TextBox();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.обновитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.questionList)).BeginInit();
             this.answerGroupBoxCheckButtons.SuspendLayout();
             this.answerGroupBoxRadioButtons.SuspendLayout();
             this.questionGroupBox.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // questionList
@@ -63,6 +67,7 @@
             this.questionList.Size = new System.Drawing.Size(190, 374);
             this.questionList.TabIndex = 0;
             this.questionList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.questionList_CellContentClick);
+            this.questionList.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
             // 
             // question
             // 
@@ -253,6 +258,19 @@
             this.textBoxTime.Size = new System.Drawing.Size(68, 20);
             this.textBoxTime.TabIndex = 10;
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.обновитьToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(129, 26);
+            // 
+            // обновитьToolStripMenuItem
+            // 
+            this.обновитьToolStripMenuItem.Name = "обновитьToolStripMenuItem";
+            this.обновитьToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.обновитьToolStripMenuItem.Text = "Обновить";
+            // 
             // TestingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -268,6 +286,7 @@
             this.Controls.Add(this.questionList);
             this.Name = "TestingForm";
             this.Text = "Форма тестирования";
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
             ((System.ComponentModel.ISupportInitialize)(this.questionList)).EndInit();
             this.answerGroupBoxCheckButtons.ResumeLayout(false);
             this.answerGroupBoxCheckButtons.PerformLayout();
@@ -275,6 +294,7 @@
             this.answerGroupBoxRadioButtons.PerformLayout();
             this.questionGroupBox.ResumeLayout(false);
             this.questionGroupBox.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -301,6 +321,8 @@
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.TextBox textBoxTime;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem обновитьToolStripMenuItem;
     }
 }
 

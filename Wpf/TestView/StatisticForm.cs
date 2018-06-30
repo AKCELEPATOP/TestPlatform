@@ -89,6 +89,10 @@ namespace TestView
             pictureBox1.Image = graph;
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
 
         private void back_Click(object sender, EventArgs e)
         {

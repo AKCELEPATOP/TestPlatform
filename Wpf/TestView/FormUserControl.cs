@@ -61,11 +61,14 @@ namespace TestView
 
         private void button3_Click(object sender, EventArgs e)
         {
-            var form = new FormUserEdit();
-            form.Id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
-            if (form.ShowDialog() == DialogResult.OK)
+            if (dataGridView1.SelectedRows.Count == 1)
             {
-                Initialize();
+                var form = new FormUserEdit();
+                form.Id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    Initialize();
+                }
             }
         }
 
@@ -128,6 +131,19 @@ namespace TestView
                 }, TaskContinuationOptions.OnlyOnFaulted);
 
             }
+        }
+
+        // ПКМ -> Обновить
+        private void MouseDown_Form(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                contextMenuStrip1.Show(MousePosition);
+            }
+        }
+        private void ОбновитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Initialize();
         }
     }
 }

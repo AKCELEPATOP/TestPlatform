@@ -448,6 +448,7 @@ namespace TestService.Implementations
             await context.SaveChangesAsync();
 
             await getUserData;
+
             Task task = Task.Run(() => SendMail(result.Email, "Вы прошли тест", CreateMessage(result)));
             return result;
         }

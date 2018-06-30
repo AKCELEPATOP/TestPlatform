@@ -1,10 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TestModels;
@@ -29,7 +24,7 @@ namespace TestView
             Initialize();
         }
 
-        private void Initialize() {
+        public void Initialize() {
 
             if (id.HasValue) {
                 try
@@ -64,7 +59,7 @@ namespace TestView
                 }
             }
             maskedTextBox1.Mask = "00 / 00";
-            maskedTextBox1.Text = "02/00";
+            maskedTextBox1.Text = "02 / 00";
             List<string> source = new List<string>
             {
             QuestionComplexity.Easy.ToString(), QuestionComplexity.Middle.ToString(), QuestionComplexity.Difficult.ToString()
@@ -107,39 +102,38 @@ namespace TestView
             }
             bool active = checkBox5.Checked;
             
-            string[] timestr = maskedTextBox1.ToString().Split('/');
+            string[] timestr = maskedTextBox1.Text.ToString().Split('.');
             long time = Convert.ToInt32(timestr[0]) * 60 + Convert.ToInt32(timestr[1]);
             QuestionComplexity complexity = (QuestionComplexity)Enum.Parse(typeof(QuestionComplexity), domainUpDown2.SelectedItem.ToString(), true);
-            List<Answer> answers = new List<Answer>(4);
+            List<AnswerBindingModel> answers = new List<AnswerBindingModel>(4);
             for (int i = 0; i < 4; i++) {
                 if (i == idTrue) {
-                     answers.Add(new Answer
+                     answers.Add(new AnswerBindingModel
                      {
                          Text = listanswer[i],
                          True =true
                 });
                 } else {
-                    answers.Add(new Answer {
+                    answers.Add(new AnswerBindingModel
+                    {
                         Text = listanswer[i],
                         True =false
     
                 });
                 }
-            } 
+            }
             if (id.HasValue)
             {
                 task = Task.Run(() => ApiClient.PostRequestData("api/Question/UpdElement", new QuestionBindingModel
                 {
                     Id = id.Value,
-                    Text= text,
-                    Complexity=complexity,
-                    Active=active,
-                    Time= time,
-                    //Answers=answers
-
+                    Text = text,
+                    Complexity = complexity,
+                    Active = active,
+                    Time = time,
+                    Answers = answers,
+                    CategoryId = idCat.Value
                 }));
-
-
             }
             else
             {

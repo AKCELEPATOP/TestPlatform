@@ -346,6 +346,20 @@ namespace TestView
         {
             listPC.Clear();
         }
+
+        // ПКМ -> Обновить
+        private void MouseDown_Form(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                contextMenuStrip1.Show(MousePosition);
+            }
+        }
+        private void обновитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Initialize();
+        }
+
         //Сохранить категорию в шаблон 
         private void button8_Click(object sender, EventArgs e)
         {

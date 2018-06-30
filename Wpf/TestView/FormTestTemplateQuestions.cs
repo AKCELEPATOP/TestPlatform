@@ -19,9 +19,9 @@ namespace TestView
         public FormTestTemplateQuestions()
         {
             InitializeComponent();
-            inicialize();
+            Initialize();
         }
-        private void inicialize() {
+        private void Initialize() {
              listC= Task.Run(() => ApiClient.GetRequestData<List<QuestionViewModel>>("api/Question/GetList")).Result;
             if (listC != null)
             {
@@ -63,6 +63,7 @@ namespace TestView
         //<
         private void button6_Click(object sender, EventArgs e)
         {
+
             if (dataGridView1.SelectedRows.Count == 1)
             {
                 int id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
@@ -88,6 +89,19 @@ namespace TestView
         private void button4_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        // ПКМ -> Обновить
+        private void MouseDown_Form(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                contextMenuStrip1.Show(MousePosition);
+            }
+        }
+        private void ОбновитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Initialize();
         }
     }
 }
