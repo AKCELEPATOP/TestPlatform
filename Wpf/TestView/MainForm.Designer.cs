@@ -18,6 +18,7 @@
                 components.Dispose();
             }
             base.Dispose(disposing);
+            ApiClient.Logout();
             if (parent != null)
                 parent.DisposeForm();
         }
