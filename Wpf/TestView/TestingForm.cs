@@ -23,8 +23,6 @@ namespace TestView
 
         int IdQuestions = 0;
 
-        int Amount = 0;
-
         int Time;
 
         private TestViewModel model;
@@ -124,28 +122,42 @@ namespace TestView
         {
             questionGroupBox.Text = "Вопрос № " + listBoxQuestions.SelectedIndex;//чекать
 
-            IdQuestions = Convert.ToInt32(Convert.ToInt32(listBoxQuestions.SelectedIndex));
+            IdQuestions = listBoxQuestions.SelectedIndex;
 
-            QuestionViewModel question;
-            if ((question = model.Questions.FirstOrDefault(rec => rec.Id == IdQuestions)).Multi)
+            if (IdQuestions < model.Questions.Count)
             {
-                answerGroupBoxCheckButtons.Enabled = true;
-                answerGroupBoxCheckButtons.Visible = true;
-                answer1.Text = question.Answers[0].Text;
-                answer2.Text = question.Answers[1].Text;
-                answer3.Text = question.Answers[2].Text;
-                answer4.Text = question.Answers[3].Text;
+                QuestionViewModel question;
+                if ((question = model.Questions[IdQuestions]).Multi)
+                {
+                    answerGroupBoxCheckButtons.Enabled = true;
+                    answerGroupBoxCheckButtons.Visible = true;
+                    answerGroupBoxRadioButtons.Enabled = false;
+                    answerGroupBoxRadioButtons.Visible = false;
+                    answer1.Text = question.Answers[0].Text;
+                    answer2.Text = question.Answers[1].Text;
+                    answer3.Text = question.Answers[2].Text;
+                    answer4.Text = question.Answers[3].Text;
+                    answer1.Checked = question.Answers[0].True;
+                    answer2.Checked = question.Answers[1].True;
+                    answer3.Checked = question.Answers[2].True;
+                    answer4.Checked = question.Answers[3].True;
+                }
+                else
+                {
+                    answerGroupBoxRadioButtons.Enabled = true;
+                    answerGroupBoxRadioButtons.Visible = true;
+                    radioButton1.Text = question.Answers[0].Text;
+                    radioButton2.Text = question.Answers[1].Text;
+                    radioButton3.Text = question.Answers[2].Text;
+                    radioButton4.Text = question.Answers[3].Text;
+                    radioButton1.Checked = question.Answers[0].True;
+                    radioButton2.Checked = question.Answers[1].True;
+                    radioButton3.Checked = question.Answers[2].True;
+                    radioButton4.Checked = question.Answers[3].True;
+                }
+                TextBoxQuestion.Text = question.Text;
             }
-            else
-            {
-                answerGroupBoxRadioButtons.Enabled = true;
-                answerGroupBoxRadioButtons.Visible = true;
-                radioButton1.Text = question.Answers[0].Text;
-                radioButton2.Text = question.Answers[1].Text;
-                radioButton3.Text = question.Answers[2].Text;
-                radioButton4.Text = question.Answers[3].Text;
-            }
-            question.Text = question.Text;
+            
         }
 
 
@@ -165,23 +177,22 @@ namespace TestView
         {
             //List<bool> idAnswers = new List<bool> { false, false, false, false };
             //model.Questions[IdQuestions].Answers = new List<AnswerViewModel>();
-            if (IdQuestions < model.Questions.Count)
+
+            if (model.Questions[IdQuestions].Multi)
             {
-                if (Amount > 1)
-                {
-                    if (answer1.Checked) model.Questions[IdQuestions].Answers[0].True = true;
-                    if (answer2.Checked) model.Questions[IdQuestions].Answers[1].True = true;
-                    if (answer3.Checked) model.Questions[IdQuestions].Answers[2].True = true;
-                    if (answer4.Checked) model.Questions[IdQuestions].Answers[3].True = true;
-                }
-                else
-                {
-                    if (radioButton1.Checked) model.Questions[IdQuestions].Answers[0].True = true;
-                    if (radioButton2.Checked) model.Questions[IdQuestions].Answers[1].True = true;
-                    if (radioButton3.Checked) model.Questions[IdQuestions].Answers[2].True = true;
-                    if (radioButton4.Checked) model.Questions[IdQuestions].Answers[3].True = true;
-                }
+                model.Questions[IdQuestions].Answers[0].True = answer1.Checked;
+                model.Questions[IdQuestions].Answers[1].True = answer2.Checked;
+                model.Questions[IdQuestions].Answers[2].True = answer3.Checked;
+                model.Questions[IdQuestions].Answers[3].True = answer4.Checked;
             }
+            else
+            {
+                model.Questions[IdQuestions].Answers[0].True = radioButton1.Checked;
+                model.Questions[IdQuestions].Answers[1].True = radioButton2.Checked;
+                model.Questions[IdQuestions].Answers[2].True = radioButton3.Checked;
+                model.Questions[IdQuestions].Answers[3].True = radioButton4.Checked;
+            }
+
 
             model.Questions[IdQuestions].Active = true;
         }
@@ -207,7 +218,7 @@ namespace TestView
         }
         private void обновитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void Form_Load(object sender, EventArgs e)
@@ -227,7 +238,7 @@ namespace TestView
         private SolidBrush reportsBackgroundBrushSelected = new SolidBrush(Color.FromKnownColor(KnownColor.Highlight));
         private SolidBrush reportsBackgroundBrushSeen = new SolidBrush(Color.DeepSkyBlue);
         private SolidBrush reportsBackgroundBrushAnswered = new SolidBrush(Color.LightSeaGreen);
-        private SolidBrush reportsBackgroundBrushNonActive = new SolidBrush(Color.MintCream);
+        private SolidBrush reportsBackgroundBrushNonActive = new SolidBrush(Color.Bisque);
 
         private void listBoxQuestions_DrawItem(object sender, DrawItemEventArgs e)
         {
@@ -247,15 +258,15 @@ namespace TestView
 
                 if (selected)
                     backgroundBrush = reportsBackgroundBrushSelected;
-                else if ((listBoxQuestions.Items[index] as QuestionViewModel).Answers.Select(rec => rec.True).FirstOrDefault())
+                else if ((listBoxQuestions.Items[index] as QuestionViewModel).Answers.Where(rec => rec.True).Select(rec=>rec.True).DefaultIfEmpty(false).FirstOrDefault())
                     backgroundBrush = reportsBackgroundBrushAnswered;
-                else if((listBoxQuestions.Items[index] as QuestionViewModel).Active)
+                else if ((listBoxQuestions.Items[index] as QuestionViewModel).Active)
                     backgroundBrush = reportsBackgroundBrushSeen;
                 else
                     backgroundBrush = reportsBackgroundBrushNonActive;
                 g.FillRectangle(backgroundBrush, e.Bounds);
 
-                
+
                 SolidBrush foregroundBrush = (selected) ? reportsForegroundBrushSelected : reportsForegroundBrush;
                 g.DrawString(text, e.Font, foregroundBrush, listBoxQuestions.GetItemRectangle(index).Location);
 

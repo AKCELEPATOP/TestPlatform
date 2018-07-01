@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TestingForm));
-            this.question = new System.Windows.Forms.Label();
+            this.TextBoxQuestion = new System.Windows.Forms.Label();
             this.answerGroupBoxCheckButtons = new System.Windows.Forms.GroupBox();
             this.answerGroupBoxRadioButtons = new System.Windows.Forms.GroupBox();
             this.radioButton4 = new System.Windows.Forms.RadioButton();
@@ -57,14 +57,14 @@
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // question
+            // TextBoxQuestion
             // 
-            this.question.Location = new System.Drawing.Point(8, 36);
-            this.question.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.question.Name = "question";
-            this.question.Size = new System.Drawing.Size(928, 92);
-            this.question.TabIndex = 2;
-            this.question.Text = resources.GetString("question.Text");
+            this.TextBoxQuestion.Location = new System.Drawing.Point(8, 36);
+            this.TextBoxQuestion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.TextBoxQuestion.Name = "TextBoxQuestion";
+            this.TextBoxQuestion.Size = new System.Drawing.Size(928, 92);
+            this.TextBoxQuestion.TabIndex = 2;
+            this.TextBoxQuestion.Text = resources.GetString("TextBoxQuestion.Text");
             // 
             // answerGroupBoxCheckButtons
             // 
@@ -207,7 +207,7 @@
             // questionGroupBox
             // 
             this.questionGroupBox.Controls.Add(this.label1);
-            this.questionGroupBox.Controls.Add(this.question);
+            this.questionGroupBox.Controls.Add(this.TextBoxQuestion);
             this.questionGroupBox.Location = new System.Drawing.Point(57, 42);
             this.questionGroupBox.Margin = new System.Windows.Forms.Padding(4);
             this.questionGroupBox.Name = "questionGroupBox";
@@ -324,7 +324,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.Label question;
+        private System.Windows.Forms.Label TextBoxQuestion;
         private System.Windows.Forms.GroupBox answerGroupBoxCheckButtons;
         private System.Windows.Forms.CheckBox answer4;
         private System.Windows.Forms.CheckBox answer3;

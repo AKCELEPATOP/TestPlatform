@@ -341,6 +341,7 @@ namespace TestService.Implementations
                     {
                         Id = rec.Id,
                         Time = rec.Time,
+                        Text = rec.Text,
                         Answers = rec.Answers.Select(r => new AnswerViewModel
                         {
                             Id = r.Id,
@@ -356,6 +357,7 @@ namespace TestService.Implementations
                     {
                         Id = rec.Id,
                         Time = rec.Time,
+                        Text = rec.Text,
                         Answers = rec.Answers.Select(r => new AnswerViewModel
                         {
                             Id = r.Id,
@@ -373,6 +375,7 @@ namespace TestService.Implementations
                     {
                         Id = rec.Id,
                         Time = rec.Time,
+                        Text = rec.Text,
                         Answers = rec.Answers.Select(r => new AnswerViewModel
                         {
                             Id = r.Id,
