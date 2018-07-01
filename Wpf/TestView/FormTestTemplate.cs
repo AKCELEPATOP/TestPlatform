@@ -106,7 +106,8 @@ namespace TestView
             Task task;
             string name = textBox1.Text;
 
-            List<PatternQuestionsBindingModel> listQuestions = listPC.SelectMany(rec => rec.PatternQuestions).Select(rec => new PatternQuestionsBindingModel
+            List<PatternQuestionsBindingModel> listQuestions = listPC.SelectMany(rec => rec.PatternQuestions)
+                .Select(rec => new PatternQuestionsBindingModel
             {
                 QuestionId = rec.QuestionId
             }).ToList();
@@ -215,7 +216,7 @@ namespace TestView
                 return;
             }
             var form = new FormTestTemplateQuestions();
-            foreach(var el in listPC)
+            foreach (var el in listPC)
             {
                 form.listPC.Add(new PatternCategoryViewModel
                 {
@@ -236,7 +237,7 @@ namespace TestView
             if (dataGridView2.SelectedRows.Count == 1)
             {
                 idCat = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells[2].Value);
-                textBoxEasy.Text = listPC.FirstOrDefault(rec=>rec.CategoryId==idCat).Easy.ToString();
+                textBoxEasy.Text = listPC.FirstOrDefault(rec => rec.CategoryId == idCat).Easy.ToString();
                 textBoxMid.Text = listPC.FirstOrDefault(rec => rec.CategoryId == idCat).Middle.ToString();
                 textBoxDif.Text = listPC.FirstOrDefault(rec => rec.CategoryId == idCat).Complex.ToString();
                 textBoxCount.Text = listPC.FirstOrDefault(rec => rec.CategoryId == idCat).Count.ToString();
@@ -294,7 +295,7 @@ namespace TestView
                         CategoryId = Id,
                         CategoryName = listC.FirstOrDefault(rec => rec.Id == Id).Name,
                         PatternQuestions = new List<PatternQuestionViewModel>()
-                        
+
 
                     });
                 }
@@ -325,8 +326,8 @@ namespace TestView
                     {
                         PatternId = id.Value,
                         CategoryId = listC[i].Id,
-                        CategoryName = listC[i].Name
-
+                        CategoryName = listC[i].Name,
+                        PatternQuestions = new List<PatternQuestionViewModel>()
 
                     });
                 }
@@ -343,7 +344,8 @@ namespace TestView
                     listPC.Add(new PatternCategoryViewModel
                     {
                         CategoryId = listC[i].Id,
-                        CategoryName = listC[i].Name
+                        CategoryName = listC[i].Name,
+                        PatternQuestions = new List<PatternQuestionViewModel>()
                     });
                 }
             }

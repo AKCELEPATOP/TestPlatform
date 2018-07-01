@@ -93,9 +93,12 @@ namespace TestView
 
         private void button5_Click(object sender, EventArgs e)
         {
-            TestingForm Testing = new TestingForm();
-            Close();
-            Testing.Show();
+            if (dataGridViewAvailablePatterns.SelectedRows.Count == 1)
+            {
+                TestingForm Testing = new TestingForm();
+                Testing.Id = Convert.ToInt32(dataGridViewAvailablePatterns.SelectedRows[0].Cells[0].Value);
+                Testing.Show();
+            }
         }
 
         private void buttonExit_Click(object sender, EventArgs e)

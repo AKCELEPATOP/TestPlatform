@@ -316,7 +316,7 @@ namespace TestService.Implementations
                         {
                             Id = r.Id,
                             Text = r.Text
-                        }).ToList()
+                        }).ToList(),
                     }).ToList()
                 }).FirstOrDefaultAsync();
             TestViewModel result = new TestViewModel

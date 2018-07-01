@@ -19,40 +19,19 @@ namespace TestView
 
         private int? id;
 
-        List<TestViewModel> list;
-        private readonly Timer tmrShow;
+        private Timer tmrShow;
+
         int IdQuestions = 0;
+
         int Amount = 0;
+
         int Time;
 
+        private TestViewModel model;
 
         public TestingForm()
         {
             InitializeComponent();
-            Initialize();
-
-            list =
-                     Task.Run(() => ApiClient.GetRequestData<List<TestViewModel>>("api/Questions/GetList")).Result;
-            if (list != null)
-            {
-                questionList.DataSource = list;
-                questionList.Columns[0].Visible = false;
-                questionList.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            }
-
-
-            Time += Convert.ToInt32(list[id.Value].Time);
-
-            textBoxTime.Text = (Time / 60) + " минут " + (Time % 60) + " секунд ";
-
-            tmrShow = new Timer();
-            tmrShow.Interval = 5000;
-            tmrShow.Tick += tmrShow_Tick;
-            tmrShow.Enabled = true;
-            label1.Text = "Категория " + list[id.Value].Questions[IdQuestions].CategoryName;
-            questionGroupBox.Text = "Вопрос № " + IdQuestions;
-
-
         }
 
 
@@ -92,6 +71,27 @@ namespace TestView
         {
             try
             {
+
+                model = Task.Run(() => ApiClient.GetRequestData<TestViewModel>("api/Pattern/CreateTest/" + id)).Result;
+                if (model != null)
+                {
+                    listBoxQuestions.DataSource = model.Questions;
+                    listBoxQuestions.DisplayMember = "Text";
+                    listBoxQuestions.ValueMember = "Id";
+                }
+
+
+                Time += Convert.ToInt32(list[id.Value].Time);
+
+                textBoxTime.Text = (Time / 60) + " минут " + (Time % 60) + " секунд ";
+
+                tmrShow = new Timer();
+                tmrShow.Interval = 5000;
+                tmrShow.Tick += tmrShow_Tick;
+                tmrShow.Enabled = true;
+                //label1.Text = "Категория " + list[id.Value].Questions[IdQuestions].CategoryName;    
+                questionGroupBox.Text = "Вопрос № " + model.;
+                /////////////////////
                 IdQuestions = Convert.ToInt32(questionList.SelectedRows[0].Cells[0].Value);
 
                 for (int i = 0; i < list[id.Value].Questions.Count; i++)
@@ -239,6 +239,11 @@ namespace TestView
         private void Form_Load(object sender, EventArgs e)
         {
             Initialize();
+        }
+
+        private void listBoxQuestions_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
