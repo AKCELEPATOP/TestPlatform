@@ -40,5 +40,8 @@ namespace TestService.ViewModels
 
         [DataMember]
         public string CategoryName { get;  set; }
+
+        [DataMember]
+        public bool Multi { get; set; }
     }
 }

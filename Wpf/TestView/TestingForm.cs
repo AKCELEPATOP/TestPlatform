@@ -45,26 +45,40 @@ namespace TestView
             else
             {
                 MessageBox.Show("Время вышло", "Тест завершён", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                List<QuestionResponseModel> UserAnswers = new List<QuestionResponseModel>();
-                for (int i = 0; i < list[id.Value].Questions.Count; i++)
-                {
-                    UserAnswers.Add(new QuestionResponseModel
-                    {
-                        QuestionId = list[id.Value].Questions[i].Id,
-                        Answers = list[id.Value].Questions[i].Answers.Select(rec => rec.Id).ToList()
-                    });
-                }
-
-                Task task;
-                task = Task.Run(() => ApiClient.PostRequestData("api/Pattern/CheakTest", new TestResponseModel
-                {
-                    PatternId = list[id.Value].PatternId,
-                    QuestionResponses = UserAnswers
-                }));
-                FormResultOfTest resultsForm = new FormResultOfTest();
-                Close();
-                resultsForm.Show();
+                EndTest();
             }
+        }
+
+        private async void EndTest()
+        {
+            List<QuestionResponseModel> UserAnswers = new List<QuestionResponseModel>();
+            for (int i = 0; i < model.Questions.Count; i++)
+            {
+                UserAnswers.Add(new QuestionResponseModel
+                {
+                    QuestionId = model.Questions[i].Id,
+                    Answers = model.Questions[i].Answers.Select(rec => rec.Id).ToList()
+                });
+            }
+            try
+            {
+                var result = await ApiClient.PostRequestData<TestResponseModel, StatViewModel>("api/Pattern/CheakTest", new TestResponseModel
+                {
+                    PatternId = model.PatternId,
+                    QuestionResponses = UserAnswers
+                });
+            }
+            catch (Exception ex)
+            {
+                while (ex.InnerException != null)
+                {
+                    ex = ex.InnerException;
+                }
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            FormResultOfTest resultsForm = new FormResultOfTest();
+            Close();
+            resultsForm.Show();
         }
 
         private void Initialize()
@@ -81,7 +95,7 @@ namespace TestView
                 }
 
 
-                Time += Convert.ToInt32(list[id.Value].Time);
+                Time += Convert.ToInt32(model.Time);
 
                 textBoxTime.Text = (Time / 60) + " минут " + (Time % 60) + " секунд ";
 
@@ -90,33 +104,8 @@ namespace TestView
                 tmrShow.Tick += tmrShow_Tick;
                 tmrShow.Enabled = true;
                 //label1.Text = "Категория " + list[id.Value].Questions[IdQuestions].CategoryName;    
-                questionGroupBox.Text = "Вопрос № " + model.;
                 /////////////////////
-                IdQuestions = Convert.ToInt32(questionList.SelectedRows[0].Cells[0].Value);
-
-                for (int i = 0; i < list[id.Value].Questions.Count; i++)
-                {
-                    if (list[id.Value].Questions[IdQuestions].Answers[i].True) Amount++;
-                }
-                if (Amount > 1)
-                {
-                    answerGroupBoxCheckButtons.Enabled = true;
-                    answerGroupBoxCheckButtons.Visible = true;
-                    answer1.Text = list[id.Value].Questions[IdQuestions].Answers[0].Text;
-                    answer2.Text = list[id.Value].Questions[IdQuestions].Answers[1].Text;
-                    answer3.Text = list[id.Value].Questions[IdQuestions].Answers[2].Text;
-                    answer4.Text = list[id.Value].Questions[IdQuestions].Answers[3].Text;
-                }
-                else
-                {
-                    answerGroupBoxRadioButtons.Enabled = true;
-                    answerGroupBoxRadioButtons.Visible = true;
-                    radioButton1.Text = list[id.Value].Questions[IdQuestions].Answers[0].Text;
-                    radioButton2.Text = list[id.Value].Questions[IdQuestions].Answers[1].Text;
-                    radioButton3.Text = list[id.Value].Questions[IdQuestions].Answers[2].Text;
-                    radioButton4.Text = list[id.Value].Questions[IdQuestions].Answers[3].Text;
-                }
-                question.Text = list[id.Value].Questions[IdQuestions].Text;
+                SetNextQuestion();
 
 
             }
@@ -131,6 +120,34 @@ namespace TestView
             }
         }
 
+        private void SetNextQuestion()
+        {
+            questionGroupBox.Text = "Вопрос № " + listBoxQuestions.SelectedIndex;//чекать
+
+            IdQuestions = Convert.ToInt32(Convert.ToInt32(listBoxQuestions.SelectedIndex));
+
+            QuestionViewModel question;
+            if ((question = model.Questions.FirstOrDefault(rec => rec.Id == IdQuestions)).Multi)
+            {
+                answerGroupBoxCheckButtons.Enabled = true;
+                answerGroupBoxCheckButtons.Visible = true;
+                answer1.Text = question.Answers[0].Text;
+                answer2.Text = question.Answers[1].Text;
+                answer3.Text = question.Answers[2].Text;
+                answer4.Text = question.Answers[3].Text;
+            }
+            else
+            {
+                answerGroupBoxRadioButtons.Enabled = true;
+                answerGroupBoxRadioButtons.Visible = true;
+                radioButton1.Text = question.Answers[0].Text;
+                radioButton2.Text = question.Answers[1].Text;
+                radioButton3.Text = question.Answers[2].Text;
+                radioButton4.Text = question.Answers[3].Text;
+            }
+            question.Text = question.Text;
+        }
+
 
         private void appendixForQestion_Click(object sender, EventArgs e)
         {
@@ -141,85 +158,42 @@ namespace TestView
 
         private void endTest_Click(object sender, EventArgs e)
         {
-            List<QuestionResponseModel> UserAnswers= new List<QuestionResponseModel>();
-            for (int i=0; i<list[id.Value].Questions.Count; i++)
-            {
-                UserAnswers.Add(new QuestionResponseModel
-                {
-                    QuestionId= list[id.Value].Questions[i].Id,
-                    Answers = list[id.Value].Questions[i].Answers.Select(rec=> rec.Id).ToList()
-                });
-            }
-
-            Task task;
-            task = Task.Run(() => ApiClient.PostRequestData("api/Pattern/CheakTest", new TestResponseModel
-            {
-                PatternId = list[id.Value].PatternId,
-                QuestionResponses = UserAnswers
-            }));
-
-           FormResultOfTest resultsForm = new FormResultOfTest();
-            Close();
-            resultsForm.Show();
+            EndTest();
         }
 
         private void GetAnswer()
         {
-            List<bool> idAnswers = new List<bool> { false, false, false, false };
-            if (IdQuestions < list.Count)
+            //List<bool> idAnswers = new List<bool> { false, false, false, false };
+            //model.Questions[IdQuestions].Answers = new List<AnswerViewModel>();
+            if (IdQuestions < model.Questions.Count)
             {
                 if (Amount > 1)
                 {
-                    if (answer1.Checked) idAnswers[0] = true;
-                    if (answer2.Checked) idAnswers[1] = true;
-                    if (answer3.Checked) idAnswers[2] = true;
-                    if (answer4.Checked) idAnswers[3] = true;
+                    if (answer1.Checked) model.Questions[IdQuestions].Answers[0].True = true;
+                    if (answer2.Checked) model.Questions[IdQuestions].Answers[1].True = true;
+                    if (answer3.Checked) model.Questions[IdQuestions].Answers[2].True = true;
+                    if (answer4.Checked) model.Questions[IdQuestions].Answers[3].True = true;
                 }
                 else
                 {
-                    if (radioButton1.Checked) idAnswers[0] = true;
-                    if (radioButton2.Checked) idAnswers[1] = true;
-                    if (radioButton3.Checked) idAnswers[2] = true;
-                    if (radioButton4.Checked) idAnswers[3] = true;
-                }
-
-                for (int i = 0; i < 4; i++)
-                {
-                    list[id.Value].Questions[IdQuestions].Answers[i].True = idAnswers[i];
+                    if (radioButton1.Checked) model.Questions[IdQuestions].Answers[0].True = true;
+                    if (radioButton2.Checked) model.Questions[IdQuestions].Answers[1].True = true;
+                    if (radioButton3.Checked) model.Questions[IdQuestions].Answers[2].True = true;
+                    if (radioButton4.Checked) model.Questions[IdQuestions].Answers[3].True = true;
                 }
             }
 
-            if (idAnswers.FirstOrDefault(rec => rec.Equals(true)))
-            {
-               
-                questionList.Rows[IdQuestions].DefaultCellStyle.BackColor = Color.Blue;
-            }
-            else 
-            {
-                questionList.Rows[IdQuestions].DefaultCellStyle.BackColor = Color.Yellow;
-            }
+            model.Questions[IdQuestions].Active = true;
         }
 
 
         private void nextQuestion_Click(object sender, EventArgs e)
         {
 
-            if (IdQuestions < list.Count)
+            if (IdQuestions < model.Questions.Count)
             {
-                IdQuestions++;
                 GetAnswer();
-                Initialize();
-            }
-        }
-
-
-        private void questionList_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (questionList.SelectedRows.Count == 1)
-            {
-                IdQuestions = Convert.ToInt32(questionList.SelectedRows[0].Cells[0].Value);
-                GetAnswer();
-                Initialize();
+                SetNextQuestion();
             }
         }
 
@@ -233,7 +207,7 @@ namespace TestView
         }
         private void обновитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Initialize();
+            
         }
 
         private void Form_Load(object sender, EventArgs e)
@@ -243,7 +217,50 @@ namespace TestView
 
         private void listBoxQuestions_SelectedIndexChanged(object sender, EventArgs e)
         {
+            GetAnswer();
+            SetNextQuestion();
+        }
 
+
+        private SolidBrush reportsForegroundBrushSelected = new SolidBrush(Color.White);
+        private SolidBrush reportsForegroundBrush = new SolidBrush(Color.Black);
+        private SolidBrush reportsBackgroundBrushSelected = new SolidBrush(Color.FromKnownColor(KnownColor.Highlight));
+        private SolidBrush reportsBackgroundBrushSeen = new SolidBrush(Color.DeepSkyBlue);
+        private SolidBrush reportsBackgroundBrushAnswered = new SolidBrush(Color.LightSeaGreen);
+        private SolidBrush reportsBackgroundBrushNonActive = new SolidBrush(Color.MintCream);
+
+        private void listBoxQuestions_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            e.DrawBackground();
+
+            bool selected = ((e.State & DrawItemState.Selected) == DrawItemState.Selected);
+
+            int index = e.Index;
+
+            if (index >= 0 && index < listBoxQuestions.Items.Count)
+            {
+                string text = listBoxQuestions.Items[index].ToString();
+
+                Graphics g = e.Graphics;
+
+                SolidBrush backgroundBrush;
+
+                if (selected)
+                    backgroundBrush = reportsBackgroundBrushSelected;
+                else if ((listBoxQuestions.Items[index] as QuestionViewModel).Answers.Select(rec => rec.True).FirstOrDefault())
+                    backgroundBrush = reportsBackgroundBrushAnswered;
+                else if((listBoxQuestions.Items[index] as QuestionViewModel).Active)
+                    backgroundBrush = reportsBackgroundBrushSeen;
+                else
+                    backgroundBrush = reportsBackgroundBrushNonActive;
+                g.FillRectangle(backgroundBrush, e.Bounds);
+
+                
+                SolidBrush foregroundBrush = (selected) ? reportsForegroundBrushSelected : reportsForegroundBrush;
+                g.DrawString(text, e.Font, foregroundBrush, listBoxQuestions.GetItemRectangle(index).Location);
+
+                e.DrawFocusRectangle();
+            }
         }
     }
 }

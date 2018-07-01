@@ -75,9 +75,9 @@
             this.answerGroupBoxCheckButtons.Controls.Add(this.answer1);
             this.answerGroupBoxCheckButtons.Enabled = false;
             this.answerGroupBoxCheckButtons.Location = new System.Drawing.Point(57, 186);
-            this.answerGroupBoxCheckButtons.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.answerGroupBoxCheckButtons.Margin = new System.Windows.Forms.Padding(4);
             this.answerGroupBoxCheckButtons.Name = "answerGroupBoxCheckButtons";
-            this.answerGroupBoxCheckButtons.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.answerGroupBoxCheckButtons.Padding = new System.Windows.Forms.Padding(4);
             this.answerGroupBoxCheckButtons.Size = new System.Drawing.Size(944, 203);
             this.answerGroupBoxCheckButtons.TabIndex = 3;
             this.answerGroupBoxCheckButtons.TabStop = false;
@@ -92,9 +92,9 @@
             this.answerGroupBoxRadioButtons.Controls.Add(this.radioButton1);
             this.answerGroupBoxRadioButtons.Enabled = false;
             this.answerGroupBoxRadioButtons.Location = new System.Drawing.Point(0, 0);
-            this.answerGroupBoxRadioButtons.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.answerGroupBoxRadioButtons.Margin = new System.Windows.Forms.Padding(4);
             this.answerGroupBoxRadioButtons.Name = "answerGroupBoxRadioButtons";
-            this.answerGroupBoxRadioButtons.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.answerGroupBoxRadioButtons.Padding = new System.Windows.Forms.Padding(4);
             this.answerGroupBoxRadioButtons.Size = new System.Drawing.Size(944, 203);
             this.answerGroupBoxRadioButtons.TabIndex = 4;
             this.answerGroupBoxRadioButtons.TabStop = false;
@@ -105,7 +105,7 @@
             // 
             this.radioButton4.AutoSize = true;
             this.radioButton4.Location = new System.Drawing.Point(36, 156);
-            this.radioButton4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButton4.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton4.Name = "radioButton4";
             this.radioButton4.Size = new System.Drawing.Size(146, 21);
             this.radioButton4.TabIndex = 7;
@@ -117,7 +117,7 @@
             // 
             this.radioButton3.AutoSize = true;
             this.radioButton3.Location = new System.Drawing.Point(36, 113);
-            this.radioButton3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButton3.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton3.Name = "radioButton3";
             this.radioButton3.Size = new System.Drawing.Size(146, 21);
             this.radioButton3.TabIndex = 6;
@@ -129,7 +129,7 @@
             // 
             this.radioButton2.AutoSize = true;
             this.radioButton2.Location = new System.Drawing.Point(36, 74);
-            this.radioButton2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButton2.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(146, 21);
             this.radioButton2.TabIndex = 5;
@@ -141,7 +141,7 @@
             // 
             this.radioButton1.AutoSize = true;
             this.radioButton1.Location = new System.Drawing.Point(36, 36);
-            this.radioButton1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButton1.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(146, 21);
             this.radioButton1.TabIndex = 4;
@@ -153,7 +153,7 @@
             // 
             this.answer4.AutoSize = true;
             this.answer4.Location = new System.Drawing.Point(36, 158);
-            this.answer4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.answer4.Margin = new System.Windows.Forms.Padding(4);
             this.answer4.Name = "answer4";
             this.answer4.Size = new System.Drawing.Size(147, 21);
             this.answer4.TabIndex = 3;
@@ -164,7 +164,7 @@
             // 
             this.answer3.AutoSize = true;
             this.answer3.Location = new System.Drawing.Point(36, 114);
-            this.answer3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.answer3.Margin = new System.Windows.Forms.Padding(4);
             this.answer3.Name = "answer3";
             this.answer3.Size = new System.Drawing.Size(147, 21);
             this.answer3.TabIndex = 2;
@@ -175,7 +175,7 @@
             // 
             this.answer2.AutoSize = true;
             this.answer2.Location = new System.Drawing.Point(36, 75);
-            this.answer2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.answer2.Margin = new System.Windows.Forms.Padding(4);
             this.answer2.Name = "answer2";
             this.answer2.Size = new System.Drawing.Size(147, 21);
             this.answer2.TabIndex = 1;
@@ -186,7 +186,7 @@
             // 
             this.answer1.AutoSize = true;
             this.answer1.Location = new System.Drawing.Point(36, 36);
-            this.answer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.answer1.Margin = new System.Windows.Forms.Padding(4);
             this.answer1.Name = "answer1";
             this.answer1.Size = new System.Drawing.Size(147, 21);
             this.answer1.TabIndex = 0;
@@ -196,7 +196,7 @@
             // nextQuestion
             // 
             this.nextQuestion.Location = new System.Drawing.Point(439, 414);
-            this.nextQuestion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.nextQuestion.Margin = new System.Windows.Forms.Padding(4);
             this.nextQuestion.Name = "nextQuestion";
             this.nextQuestion.Size = new System.Drawing.Size(179, 33);
             this.nextQuestion.TabIndex = 5;
@@ -209,9 +209,9 @@
             this.questionGroupBox.Controls.Add(this.label1);
             this.questionGroupBox.Controls.Add(this.question);
             this.questionGroupBox.Location = new System.Drawing.Point(57, 42);
-            this.questionGroupBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.questionGroupBox.Margin = new System.Windows.Forms.Padding(4);
             this.questionGroupBox.Name = "questionGroupBox";
-            this.questionGroupBox.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.questionGroupBox.Padding = new System.Windows.Forms.Padding(4);
             this.questionGroupBox.Size = new System.Drawing.Size(944, 137);
             this.questionGroupBox.TabIndex = 6;
             this.questionGroupBox.TabStop = false;
@@ -230,7 +230,7 @@
             // endTest
             // 
             this.endTest.Location = new System.Drawing.Point(784, 414);
-            this.endTest.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.endTest.Margin = new System.Windows.Forms.Padding(4);
             this.endTest.Name = "endTest";
             this.endTest.Size = new System.Drawing.Size(179, 33);
             this.endTest.TabIndex = 7;
@@ -251,7 +251,7 @@
             // appendixForQestion
             // 
             this.appendixForQestion.Location = new System.Drawing.Point(113, 412);
-            this.appendixForQestion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.appendixForQestion.Margin = new System.Windows.Forms.Padding(4);
             this.appendixForQestion.Name = "appendixForQestion";
             this.appendixForQestion.Size = new System.Drawing.Size(179, 34);
             this.appendixForQestion.TabIndex = 9;
@@ -262,7 +262,7 @@
             // textBoxTime
             // 
             this.textBoxTime.Location = new System.Drawing.Point(87, 4);
-            this.textBoxTime.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxTime.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxTime.Name = "textBoxTime";
             this.textBoxTime.Size = new System.Drawing.Size(89, 22);
             this.textBoxTime.TabIndex = 10;
@@ -283,12 +283,14 @@
             // 
             // listBoxQuestions
             // 
+            this.listBoxQuestions.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.listBoxQuestions.FormattingEnabled = true;
             this.listBoxQuestions.ItemHeight = 16;
             this.listBoxQuestions.Location = new System.Drawing.Point(1008, 12);
             this.listBoxQuestions.Name = "listBoxQuestions";
             this.listBoxQuestions.Size = new System.Drawing.Size(305, 452);
             this.listBoxQuestions.TabIndex = 11;
+            this.listBoxQuestions.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.listBoxQuestions_DrawItem);
             this.listBoxQuestions.SelectedIndexChanged += new System.EventHandler(this.listBoxQuestions_SelectedIndexChanged);
             // 
             // TestingForm
@@ -304,7 +306,7 @@
             this.Controls.Add(this.endTest);
             this.Controls.Add(this.questionGroupBox);
             this.Controls.Add(this.nextQuestion);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "TestingForm";
             this.Text = "Форма тестирования";
             this.Load += new System.EventHandler(this.Form_Load);

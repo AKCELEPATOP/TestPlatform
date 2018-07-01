@@ -114,9 +114,9 @@ namespace TestRestApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IHttpActionResult> CreateTest(int patternId)
+        public async Task<IHttpActionResult> CreateTest(int id)
         {
-            var element = await Service.CreateTest(patternId);
+            var element = await Service.CreateTest(id);
             if (element == null)
             {
                 InternalServerError(new Exception("Нет данных"));

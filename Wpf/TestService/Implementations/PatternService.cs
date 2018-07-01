@@ -317,12 +317,14 @@ namespace TestService.Implementations
                             Id = r.Id,
                             Text = r.Text
                         }).ToList(),
+                        Multi = (rec.Question.Answers.Where(r=>r.True).Count()>1)
                     }).ToList()
                 }).FirstOrDefaultAsync();
             TestViewModel result = new TestViewModel
             {
                 Name = model.Name,
-                PatternId = patternId
+                PatternId = patternId,
+                Questions = new List<QuestionViewModel>()
             };
             foreach (var patternCategory in model.PatternCategories)
             {
@@ -343,7 +345,8 @@ namespace TestService.Implementations
                         {
                             Id = r.Id,
                             Text = r.Text
-                        }).ToList()
+                        }).ToList(),
+                        Multi = (rec.Answers.Where(r => r.True).Count() > 1)
                     }));
                 //добавление средних
                 int countMiddle = patternCategory.Middle - list.Where(rec => rec.Complexity.Equals(QuestionComplexity.Middle)).Count();
@@ -357,7 +360,8 @@ namespace TestService.Implementations
                         {
                             Id = r.Id,
                             Text = r.Text
-                        }).ToList()
+                        }).ToList(),
+                        Multi = (rec.Answers.Where(r => r.True).Count() > 1)
                     }));
 
                 //добавление легких
@@ -373,7 +377,8 @@ namespace TestService.Implementations
                         {
                             Id = r.Id,
                             Text = r.Text
-                        }).ToList()
+                        }).ToList(),
+                        Multi = (rec.Answers.Where(r => r.True).Count() > 1)
                     }));
 
             }
