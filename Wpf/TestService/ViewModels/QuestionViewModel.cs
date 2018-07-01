@@ -43,5 +43,10 @@ namespace TestService.ViewModels
 
         [DataMember]
         public bool Multi { get; set; }
+
+        public override string ToString()
+        {
+            return Text;
+        }
     }
 }

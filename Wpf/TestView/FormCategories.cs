@@ -24,6 +24,7 @@ namespace TestView
                 {
                     dataGridView1.DataSource = list;
                     dataGridView1.Columns[0].Visible = false;
+                    dataGridView1.Columns[3].Visible = false;
                     dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                     if (list.Count > 0)
                     {
@@ -34,6 +35,7 @@ namespace TestView
                         {
                             dataGridView2.DataSource = listQuestions;
                             dataGridView2.Columns[0].Visible = false;
+                            dataGridView2.Columns[3].Visible = false;
                             dataGridView2.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                         }
                     }
@@ -61,6 +63,7 @@ namespace TestView
                 {
                     dataGridView2.DataSource = list;
                     dataGridView2.Columns[0].Visible = false;
+                    dataGridView2.Columns[3].Visible = false;
                     dataGridView2.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
             }

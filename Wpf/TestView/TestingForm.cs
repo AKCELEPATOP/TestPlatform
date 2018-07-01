@@ -95,7 +95,7 @@ namespace TestView
                 textBoxTime.Text = (Time / 60) + " минут " + (Time % 60) + " секунд ";
 
                 tmrShow = new Timer();
-                tmrShow.Interval = 5000;
+                tmrShow.Interval = 1000;
                 tmrShow.Tick += tmrShow_Tick;
                 tmrShow.Enabled = true;
                 //label1.Text = "Категория " + list[id.Value].Questions[IdQuestions].CategoryName;    
@@ -240,8 +240,8 @@ namespace TestView
 
         private void listBoxQuestions_DrawItem(object sender, DrawItemEventArgs e)
         {
+            listBoxQuestions.DrawMode= DrawMode.Normal;
             e.DrawBackground();
-
             bool selected = ((e.State & DrawItemState.Selected) == DrawItemState.Selected);
 
             int index = e.Index;
@@ -263,12 +263,11 @@ namespace TestView
                 else
                     backgroundBrush = reportsBackgroundBrushNonActive;
                 g.FillRectangle(backgroundBrush, e.Bounds);
-
-
                 SolidBrush foregroundBrush = (selected) ? reportsForegroundBrushSelected : reportsForegroundBrush;
-                g.DrawString(text, e.Font, foregroundBrush, listBoxQuestions.GetItemRectangle(index).Location);
-
+                g.DrawString(text, e.Font, foregroundBrush, listBoxQuestions.GetItemRectangle(index).Location);           
                 e.DrawFocusRectangle();
+    
+
             }
         }
     }

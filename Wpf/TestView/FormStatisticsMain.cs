@@ -33,6 +33,8 @@ namespace TestView
                 {
                     dataGridView1.DataSource = list;
                     dataGridView1.Columns[0].Visible = false;
+                    dataGridView1.Columns[2].Visible = false;
+                    dataGridView1.Columns[4].Visible = false;
                     dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
                 List<StatViewModel> listC =
@@ -45,6 +47,10 @@ namespace TestView
                     dataGridView2.DataSource = listC;
                     dataGridView2.Columns[0].Visible = false;
                     dataGridView2.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    dataGridView2.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    dataGridView2.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    dataGridView2.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
                 }
             }
             catch (Exception ex)

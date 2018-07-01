@@ -283,7 +283,7 @@
             // 
             // listBoxQuestions
             // 
-            this.listBoxQuestions.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.listBoxQuestions.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
             this.listBoxQuestions.FormattingEnabled = true;
             this.listBoxQuestions.ItemHeight = 16;
             this.listBoxQuestions.Location = new System.Drawing.Point(1008, 12);
