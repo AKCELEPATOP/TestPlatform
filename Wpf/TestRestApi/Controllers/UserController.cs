@@ -101,5 +101,11 @@ namespace TestRestApi.Controllers
         {
             await Service.DelElement(id);
         }
+
+        [HttpPost]
+        public async Task SetGroup(UserBindingModel model)
+        {
+            await Service.SetGroup(model);
+        }
     }
 }

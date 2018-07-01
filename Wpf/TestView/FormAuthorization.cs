@@ -26,7 +26,6 @@ namespace TestView
                 {
                     FormStatisticsMain formMainAdmin = new FormStatisticsMain(this);
                     formMainAdmin.Show();
-                    formMainAdmin.UserLogin = ApiClient.UserName;
                     Hide();
                 }
                 else if (ApiClient.Role.Equals(ApplicationRoles.User))

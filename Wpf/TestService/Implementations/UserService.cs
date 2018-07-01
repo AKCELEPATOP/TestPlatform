@@ -150,9 +150,9 @@ namespace TestService.Implementations
                 }).ToListAsync();
         }
 
-        public async Task SetGroup(string userId, int groupId)
+        public async Task SetGroup(UserBindingModel model)
         {
-            User user = await context.Users.FirstOrDefaultAsync(rec => rec.Id == userId);
+            User user = await context.Users.FirstOrDefaultAsync(rec => rec.Id == model.Id);
             if (user == null)
             {
                 throw new Exception("Элемент не найден");
@@ -162,7 +162,7 @@ namespace TestService.Implementations
             {
                 throw new Exception("Элемент не является Пользователем");
             }
-            user.UserGroupId = groupId;
+            user.UserGroupId = model.GroupId;
             await context.SaveChangesAsync();
         }
     }
