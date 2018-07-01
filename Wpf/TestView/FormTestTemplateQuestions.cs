@@ -17,10 +17,14 @@ namespace TestView
         public List<PatternCategoryViewModel> listPC { get; set; }
         List<QuestionViewModel> listQ;
 
-        private BindingSource source;
+        private BindingSource sourceQ;
+
+        private BindingSource sourcePQ;
         public FormTestTemplateQuestions()
         {
             listPC = new List<PatternCategoryViewModel>();
+            sourcePQ = new BindingSource();
+            sourceQ = new BindingSource();
             InitializeComponent();
             Initialize();
         }
@@ -34,7 +38,8 @@ namespace TestView
             }
             if (listPC[0].PatternQuestions != null)
             {
-                dataGridViewTestQuestions.DataSource = listPC[0].PatternQuestions;
+                sourcePQ.DataSource = listPC[0].PatternQuestions;
+                dataGridViewTestQuestions.DataSource = sourcePQ;
                 dataGridViewTestQuestions.Columns[0].Visible = false;
                 dataGridViewTestQuestions.Columns[1].Visible = false;
                 dataGridViewTestQuestions.Columns[2].Visible = false;
@@ -42,12 +47,13 @@ namespace TestView
             }
             if (listQ != null)
             {
-                dataGridViewQuestions.DataSource = listQ;
-                dataGridViewTestQuestions.Columns[0].Visible = false;
-                dataGridViewTestQuestions.Columns[1].Visible = false;
-                dataGridViewTestQuestions.Columns[3].Visible = false;
-                dataGridViewTestQuestions.Columns[9].Visible = false;
-                dataGridViewTestQuestions.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                sourceQ.DataSource = listQ;
+                dataGridViewQuestions.DataSource = sourceQ;
+                dataGridViewQuestions.Columns[0].Visible = false;
+                dataGridViewQuestions.Columns[1].Visible = false;
+                dataGridViewQuestions.Columns[3].Visible = false;
+                dataGridViewQuestions.Columns[9].Visible = false;
+                dataGridViewQuestions.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
         }
         //>
@@ -123,9 +129,9 @@ namespace TestView
             Initialize();
         }
 
-        private void dataGridViewCategories_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private async void dataGridViewCategories_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            //listQ = 
         }
     }
 }

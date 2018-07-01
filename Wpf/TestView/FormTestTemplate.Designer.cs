@@ -84,13 +84,12 @@
             // 
             // textBoxCount
             // 
-            string zero = "0";
             this.textBoxCount.Location = new System.Drawing.Point(259, 95);
             this.textBoxCount.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxCount.Name = "textBoxCount";
             this.textBoxCount.Size = new System.Drawing.Size(148, 22);
             this.textBoxCount.TabIndex = 20;
-            this.textBoxCount.Text = zero;
+            this.textBoxCount.Text = "0";
             // 
             // label8
             // 
@@ -120,7 +119,7 @@
             this.textBoxDif.Name = "textBoxDif";
             this.textBoxDif.Size = new System.Drawing.Size(112, 22);
             this.textBoxDif.TabIndex = 12;
-            this.textBoxDif.Text = zero; 
+            this.textBoxDif.Text = "0";
             this.textBoxDif.TextChanged += new System.EventHandler(this.textBoxDif_TextChanged);
             // 
             // textBoxMid
@@ -130,7 +129,7 @@
             this.textBoxMid.Name = "textBoxMid";
             this.textBoxMid.Size = new System.Drawing.Size(112, 22);
             this.textBoxMid.TabIndex = 11;
-            this.textBoxMid.Text = zero;
+            this.textBoxMid.Text = "0";
             this.textBoxMid.TextChanged += new System.EventHandler(this.textBoxMid_TextChanged);
             // 
             // textBoxEasy
@@ -140,7 +139,7 @@
             this.textBoxEasy.Name = "textBoxEasy";
             this.textBoxEasy.Size = new System.Drawing.Size(112, 22);
             this.textBoxEasy.TabIndex = 10;
-            this.textBoxEasy.Text = zero;
+            this.textBoxEasy.Text = "0";
             this.textBoxEasy.TextChanged += new System.EventHandler(this.textBoxEasy_TextChanged);
             // 
             // label3
@@ -197,7 +196,7 @@
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView2.Size = new System.Drawing.Size(320, 231);
             this.dataGridView2.TabIndex = 6;
-            this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
+            this.dataGridView2.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             this.dataGridView2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
             // 
             // button1

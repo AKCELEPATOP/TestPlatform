@@ -234,11 +234,11 @@ namespace TestView
         {
             if (dataGridView2.SelectedRows.Count == 1)
             {
-                idCat = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells[0].Value);
-                textBoxEasy.Text = listPC[idCat].Easy.ToString();
-                textBoxMid.Text = listPC[idCat].Middle.ToString();
-                textBoxDif.Text = listPC[idCat].Complex.ToString();
-                textBoxCount.Text = listPC[idCat].Count.ToString();
+                idCat = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells[2].Value);
+                textBoxEasy.Text = listPC.FirstOrDefault(rec=>rec.CategoryId==idCat).Easy.ToString();
+                textBoxMid.Text = listPC.FirstOrDefault(rec => rec.CategoryId == idCat).Middle.ToString();
+                textBoxDif.Text = listPC.FirstOrDefault(rec => rec.CategoryId == idCat).Complex.ToString();
+                textBoxCount.Text = listPC.FirstOrDefault(rec => rec.CategoryId == idCat).Count.ToString();
 
 
             }
@@ -318,7 +318,7 @@ namespace TestView
                 {
                     if (listPC.Select(rec => rec.CategoryId).Contains(listC[i].Id))
                     {
-                        break;
+                        continue;
                     }
                     listPC.Add(new PatternCategoryViewModel
                     {
@@ -337,7 +337,7 @@ namespace TestView
                 {
                     if (listPC.Select(rec => rec.CategoryId).Contains(listC[i].Id))
                     {
-                        break;
+                        continue;
                     }
                     listPC.Add(new PatternCategoryViewModel
                     {
@@ -386,20 +386,23 @@ namespace TestView
 
         private void SaveCategory()
         {
-            if (dataGridView1.SelectedRows.Count == 1)
+            if (dataGridView2.SelectedRows.Count == 1)
             {
                 int count = Sum();
-                if (Convert.ToInt32(textBoxCount.Text) <= 0 || count < 0)
+                if (count < 0)
                 {
                     MessageBox.Show("Заполните количество вопросов", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
 
                 }
-                var element = listPC.FirstOrDefault(rec => rec.Id == Convert.ToInt32(dataGridView2.SelectedRows[0].Cells[0].Value));
-                element.Count = count;
-                element.Easy = Convert.ToInt32(textBoxEasy.Text);
-                element.Middle = Convert.ToInt32(textBoxMid.Text);
-                element.Complex = Convert.ToInt32(textBoxDif.Text);
+                var element = listPC.FirstOrDefault(rec => rec.CategoryId == Convert.ToInt32(dataGridView2.SelectedRows[0].Cells[2].Value));
+                if (element != null)
+                {
+                    element.Count = count;
+                    element.Easy = Convert.ToInt32(textBoxEasy.Text);
+                    element.Middle = Convert.ToInt32(textBoxMid.Text);
+                    element.Complex = Convert.ToInt32(textBoxDif.Text);
+                }
             }
         }
 
