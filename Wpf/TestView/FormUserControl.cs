@@ -160,15 +160,24 @@ namespace TestView
             Initialize();
         }
 
-        private void buttonSetAdmin_Click(object sender, EventArgs e)
+        private async void buttonSetAdmin_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count == 1)
             {
-                Task task = Task.Run(() => ApiClient.PostRequest("api/Admin/SetAdmin/" + Convert.ToString(dataGridView1.SelectedRows[0].Cells[0].Value)));
-                task.ContinueWith((prevTask) => {
+                try
+                {
+                    Task task = Task.Run(() => ApiClient.PostRequest("api/Admin/SetAdmin/" + Convert.ToString(dataGridView1.SelectedRows[0].Cells[0].Value)));
+                    await task;
                     MessageBox.Show("Пользователю выданы права админа", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Initialize();
-                    },
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                
+                /*task.ContinueWith((prevTask) =>
+                    MessageBox.Show("Пользователю выданы права админа", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information),
                 TaskContinuationOptions.OnlyOnRanToCompletion);
 
                 task.ContinueWith((prevTask) =>
@@ -179,7 +188,7 @@ namespace TestView
                         ex = ex.InnerException;
                     }
                     MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }, TaskContinuationOptions.OnlyOnFaulted);
+                }, TaskContinuationOptions.OnlyOnFaulted);*/
             }
         }
     }
