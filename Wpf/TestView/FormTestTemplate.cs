@@ -37,6 +37,8 @@ namespace TestView
             {
                 comboBox1.DataSource = list;
                 comboBox1.ValueMember = "Id";
+                comboBox1.DisplayMember = "Name";
+                comboBox1.SelectedValue = null;
             }
             if (id.HasValue)
             {
@@ -46,9 +48,16 @@ namespace TestView
                     textBox1.Text = pattern.Name;
                     listPC = pattern.PatternCategories;
                     dataGridView2.DataSource = listPC;
+                    dataGridView2.Columns[0].Visible = false;
+                    dataGridView2.Columns[2].Visible = false;
+                    dataGridView2.Columns[4].Visible = false;//mistake
+                    dataGridView2.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
                     comboBox1.SelectedItem = pattern.UserGroupId;
 
-                
+                    textBoxEasy.Text = pattern.PatternCategories[0].Easy.ToString();
+                    textBoxMid.Text = "";
+                    textBoxDif.Text = "";
                 }
                 catch (Exception ex)
                 {
@@ -64,11 +73,10 @@ namespace TestView
             {
                 dataGridView1.DataSource = listC;
                 dataGridView1.Columns[0].Visible = false;
+                dataGridView1.Columns[2].Visible = false;
+                dataGridView1.Columns[4].Visible = false;//mistake
                 dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
-            textBox2.Text = "";
-            textBox3.Text = "";
-            textBox4.Text = "";
         }
         //сохранить
         private void button3_Click(object sender, EventArgs e)
@@ -200,23 +208,23 @@ namespace TestView
                 idCat = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells[0].Value);
                 
 
-                textBox2.Text = listPC[idCat].Easy.ToString();
-                textBox3.Text = listPC[idCat].Middle.ToString();
-                textBox4.Text = listPC[idCat].Complex.ToString();
-                textBox5.Text = listPC[idCat].Count.ToString();
+                textBoxEasy.Text = listPC[idCat].Easy.ToString();
+                textBoxMid.Text = listPC[idCat].Middle.ToString();
+                textBoxDif.Text = listPC[idCat].Complex.ToString();
+                textBoxCount.Text = listPC[idCat].Count.ToString();
 
 
             }
         }
 
         private bool sum() {
-            if ((Convert.ToDouble(textBox3.Text) > 1 && Convert.ToDouble(textBox2.Text) > 1 && Convert.ToDouble(textBox4.Text) > 1) && (Convert.ToDouble(textBox3.Text) <0 && Convert.ToDouble(textBox2.Text) < 0 && Convert.ToDouble(textBox4.Text) < 0)) {
+            if ((Convert.ToDouble(textBoxMid.Text) > 1 && Convert.ToDouble(textBoxEasy.Text) > 1 && Convert.ToDouble(textBoxDif.Text) > 1) && (Convert.ToDouble(textBoxMid.Text) <0 && Convert.ToDouble(textBoxEasy.Text) < 0 && Convert.ToDouble(textBoxDif.Text) < 0)) {
                 MessageBox.Show("Неверные значения", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            double text1 = Convert.ToDouble(textBox2.Text);
-            double text2 = Convert.ToDouble(textBox3.Text);
-            double text3 = Convert.ToDouble(textBox4.Text);
+            double text1 = Convert.ToDouble(textBoxEasy.Text);
+            double text2 = Convert.ToDouble(textBoxMid.Text);
+            double text3 = Convert.ToDouble(textBoxDif.Text);
             double proc=0;
             switch (check) {
                 case 1:
@@ -363,16 +371,16 @@ namespace TestView
         //Сохранить категорию в шаблон 
         private void button8_Click(object sender, EventArgs e)
         {
-            if (textBox5.Text == null && sum())
+            if (textBoxCount.Text == null && sum())
             {
                 MessageBox.Show("Неверные значения", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
               
             }
-            listPC[idCat].Count=Convert.ToInt32(textBox5.Text);
-            listPC[idCat].Easy= Convert.ToDouble(textBox2.Text);
-            listPC[idCat].Middle= Convert.ToDouble(textBox3.Text);
-            listPC[idCat].Complex = Convert.ToDouble(textBox4.Text);
+            listPC[idCat].Count=Convert.ToInt32(textBoxCount.Text);
+            listPC[idCat].Easy= Convert.ToDouble(textBoxEasy.Text);
+            listPC[idCat].Middle= Convert.ToDouble(textBoxMid.Text);
+            listPC[idCat].Complex = Convert.ToDouble(textBoxDif.Text);
 
 
             idCat = -1;
