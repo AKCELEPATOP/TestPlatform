@@ -12,15 +12,11 @@ namespace TestView
         {
             InitializeComponent();
         }
-        private void registrate_Click(object sender, EventArgs e)
+        private async void registrate_Click(object sender, EventArgs e)
         {
             try
             {
                 string fio = textBoxFIO.Text;
-                if(!Regex.IsMatch(fio, @"/D{1,} /D{1,} /D{1,}"))
-                {
-                    MessageBox.Show("Неверно введено ФИО", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
                 string mail = textBoxEmail.Text;
                 if (!string.IsNullOrEmpty(mail))
                 {
@@ -32,7 +28,7 @@ namespace TestView
                     }
                 }
                 string login = textBoxLogin.Text;
-                if(!Regex.IsMatch(login, @"[0-9a-z]{8,}"))
+                if(!Regex.IsMatch(login, @"\w{8,}"))
                 {
                     MessageBox.Show("Логин должен быть не меньше 8 символов", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
@@ -55,10 +51,18 @@ namespace TestView
                         UserName = login,
                         Email = mail
                     };
+                    Task task = Task.Run(() => ApiClient.PostRequestData<UserBindingModel>("api/Account/Register", newUser));
+                    await task;
+                    MessageBox.Show("Пользователь зарегистрирован.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Close();
                 }
                 catch(Exception ex)
                 {
-
+                    while (ex.InnerException != null)
+                    {
+                        ex = ex.InnerException;
+                    }
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 /*if (textBoxFIO.TextLength != 0 || textBoxLogin.TextLength > 8 ||
                     textBoxPassword1.TextLength != 0 || textBoxPassword2.TextLength != 0 || textBoxEmail.TextLength != 0)
