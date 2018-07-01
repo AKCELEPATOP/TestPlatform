@@ -173,5 +173,15 @@ namespace TestView
         {
 
         }
+
+        private void buttonAdmins_Click(object sender, EventArgs e)
+        {
+            var form = new FormAdminsControl();
+
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                Initialize();
+            }
+        }
     }
 }

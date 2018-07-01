@@ -71,6 +71,12 @@
     <Compile Include="AppendixForm.Designer.cs">
       <DependentUpon>AppendixForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormAdminsControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAdminsControl.Designer.cs">
+      <DependentUpon>FormAdminsControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormAuthorization.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -174,6 +180,9 @@
     <Compile Include="TokenResponse.cs" />
     <EmbeddedResource Include="AppendixForm.resx">
       <DependentUpon>AppendixForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAdminsControl.resx">
+      <DependentUpon>FormAdminsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormAuthorization.resx">
       <DependentUpon>FormAuthorization.cs</DependentUpon>

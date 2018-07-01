@@ -151,31 +151,21 @@ namespace TestView
             // 
             // buttonSetAdmin
             // 
-            this.buttonSetAdmin.Location = new System.Drawing.Point(0, 0);
+            this.buttonSetAdmin.Location = new System.Drawing.Point(273, 150);
+            this.buttonSetAdmin.Margin = new System.Windows.Forms.Padding(4);
             this.buttonSetAdmin.Name = "buttonSetAdmin";
-            this.buttonSetAdmin.Size = new System.Drawing.Size(75, 23);
-            this.buttonSetAdmin.TabIndex = 0;
-            // 
-            // buttonSetAdmin
-            //
-            if (ApiClient.Role.Equals(ApplicationRoles.SuperAdmin))
-            {
-                this.buttonSetAdmin.Location = new System.Drawing.Point(383, 149);
-                this.buttonSetAdmin.Margin = new System.Windows.Forms.Padding(4);
-                this.buttonSetAdmin.Name = "buttonSetAdmin";
-                this.buttonSetAdmin.Size = new System.Drawing.Size(100, 44);
-                this.buttonSetAdmin.TabIndex = 8;
-                this.buttonSetAdmin.Text = "Назначить админом";
-                this.buttonSetAdmin.UseVisualStyleBackColor = true;
-                this.buttonSetAdmin.Click += new System.EventHandler(this.buttonSetAdmin_Click);
-                this.Controls.Add(this.buttonSetAdmin);
-            }
+            this.buttonSetAdmin.Size = new System.Drawing.Size(100, 44);
+            this.buttonSetAdmin.TabIndex = 8;
+            this.buttonSetAdmin.Text = "Назначить админом";
+            this.buttonSetAdmin.UseVisualStyleBackColor = true;
+            this.buttonSetAdmin.Click += new System.EventHandler(this.buttonSetAdmin_Click);
             // 
             // FormUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(383, 492);
+            this.Controls.Add(this.buttonSetAdmin);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);

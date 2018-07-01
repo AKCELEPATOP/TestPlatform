@@ -31,16 +31,19 @@ namespace TestView
                 if(!Regex.IsMatch(login, @"\w{8,}"))
                 {
                     MessageBox.Show("Логин должен быть не меньше 8 символов", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
 
                 string password = textBoxPassword1.Text;
                 if (!Regex.IsMatch(password, @"[0-9a-z]{5,}"))
                 {
                     MessageBox.Show("Пароль должен быть не короче 5 символов", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
                 if (!password.Equals(textBoxPassword2.Text))
                 {
                     MessageBox.Show("Пароли должны совпадать", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
                 try
                 {
@@ -63,6 +66,7 @@ namespace TestView
                         ex = ex.InnerException;
                     }
                     MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
                 /*if (textBoxFIO.TextLength != 0 || textBoxLogin.TextLength > 8 ||
                     textBoxPassword1.TextLength != 0 || textBoxPassword2.TextLength != 0 || textBoxEmail.TextLength != 0)
@@ -104,6 +108,7 @@ namespace TestView
             catch (Exception ex)
             {
                 DialogResult result = MessageBox.Show("Произошла ошибка регистрации\nОшибка:" + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
         }
     }
