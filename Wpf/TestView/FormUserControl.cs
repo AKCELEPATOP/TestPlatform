@@ -21,7 +21,8 @@ namespace TestView
             InitializeComponent();
             Initialize();
         }
-        private void Initialize() {
+        private void Initialize()
+        {
             try
             {
                 List<UserViewModel> list =
@@ -105,7 +106,7 @@ namespace TestView
         private void button5_Click(object sender, EventArgs e)
         {
             var form = new FormGroupControl();
-            
+
             if (form.ShowDialog() == DialogResult.OK)
             {
                 Initialize();
@@ -114,8 +115,8 @@ namespace TestView
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.SelectedRows.Count == 1 && comboBox1.SelectedValue !=null)
-            { 
+            if (dataGridView1.SelectedRows.Count == 1 && comboBox1.SelectedValue != null)
+            {
                 string user_id = Convert.ToString(dataGridView1.SelectedRows[0].Cells[0].Value);
                 int Grou_id = Convert.ToInt32(comboBox1.SelectedValue);
                 Task task = Task.Run(() => ApiClient.PostRequestData("api/User/SetGroup", new UserBindingModel
@@ -123,10 +124,11 @@ namespace TestView
                     Id = user_id,
                     GroupId = Grou_id
                 }));
-                task.ContinueWith((prevTask) => {
+                task.ContinueWith((prevTask) =>
+                {
                     MessageBox.Show("Группа установлена", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Initialize();
-                    },
+                },
                 TaskContinuationOptions.OnlyOnRanToCompletion);
 
                 task.ContinueWith((prevTask) =>
@@ -150,7 +152,7 @@ namespace TestView
                 contextMenuStrip1.Show(MousePosition);
             }
         }
-        private void ОбновитьToolStripMenuItem_Click(object sender, EventArgs e)
+        private void обновитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Initialize();
         }
@@ -171,11 +173,11 @@ namespace TestView
                     MessageBox.Show("Пользователю выданы права админа", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Initialize();
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                
+
                 /*task.ContinueWith((prevTask) =>
                     MessageBox.Show("Пользователю выданы права админа", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information),
                 TaskContinuationOptions.OnlyOnRanToCompletion);
@@ -191,5 +193,7 @@ namespace TestView
                 }, TaskContinuationOptions.OnlyOnFaulted);*/
             }
         }
+
+
     }
 }
