@@ -17,7 +17,7 @@ namespace TestService.BindingModels
         public string Name { get; set; }
 
         [DataMember]
-        public int UserGroupId { get; set; }
+        public int? UserGroupId { get; set; }
 
         [DataMember]
         public List<PatternCategoriesBindingModel> PatternCategories { get; set; }

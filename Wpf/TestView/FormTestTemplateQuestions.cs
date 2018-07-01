@@ -28,7 +28,8 @@ namespace TestView
             InitializeComponent();
             Initialize();
         }
-        private void Initialize() {
+        private void Initialize()
+        {
             listQ = Task.Run(() => ApiClient.GetRequestData<List<QuestionViewModel>>("api/category/GetListQuestions/" + listPC[0].CategoryId)).Result;
             if (listPC != null)
             {
@@ -59,9 +60,11 @@ namespace TestView
         //>
         private void button1_Click(object sender, EventArgs e)
         {
-            if (dataGridViewCategories.SelectedRows.Count == 1)
+            if (dataGridViewQuestions.SelectedRows.Count == 1)
             {
                 int id = Convert.ToInt32(dataGridViewCategories.SelectedRows[0].Cells[0].Value);
+                var question = listQ.FirstOrDefault(rec => rec.Id == id);
+                int categoryId = Convert.ToInt32(dataGridViewCategories.SelectedRows[0].Cells[0].Value);
                 //listQ.Add(new PatternQuestionsBindingModel
                 //{
                 //    QuestionId = id
@@ -131,7 +134,17 @@ namespace TestView
 
         private async void dataGridViewCategories_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            //listQ = 
+            if (dataGridViewCategories.SelectedRows.Count == 1)
+            {
+                try
+                {
+                    listQ = await ApiClient.GetRequestData<List<QuestionViewModel>>("api/category/GetListQuestions/" + dataGridViewCategories.SelectedRows[0].Cells[0].Value);
+                    sourceQ.ResetBindings(false);
+                }catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }

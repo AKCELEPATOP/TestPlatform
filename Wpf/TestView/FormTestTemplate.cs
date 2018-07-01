@@ -22,7 +22,7 @@ namespace TestView
 
         private List<CategoryViewModel> listC;
         private List<PatternCategoryViewModel> listPC;
-        public List<PatternQuestionsBindingModel> listQ { get; set; }
+        private List<PatternQuestionsBindingModel> listQ;
 
         private BindingSource source;
 
@@ -120,7 +120,7 @@ namespace TestView
                         Easy = listPC[i].Easy
                     });
                 }
-                if (listQ.Count != 0)
+                if (listQ!=null && listQ.Count != 0)
                 {
 
                     for (int i = 0; i < listQ.Count; i++)
