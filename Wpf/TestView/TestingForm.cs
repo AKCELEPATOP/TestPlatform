@@ -49,18 +49,15 @@ namespace TestView
 
         private async void EndTest()
         {
-            List<QuestionResponseModel> UserAnswers = new List<QuestionResponseModel>();
-            for (int i = 0; i < model.Questions.Count; i++)
+            List<QuestionResponseModel> UserAnswers = model.Questions.Select(rec => new QuestionResponseModel
             {
-                UserAnswers.Add(new QuestionResponseModel
-                {
-                    QuestionId = model.Questions[i].Id,
-                    Answers = model.Questions[i].Answers.Select(rec => rec.Id).ToList()
-                });
-            }
+                QuestionId = rec.Id,
+                Answers = rec.Answers.Where(r => r.True).Select(r => r.Id).ToList()
+            }).ToList();
+            StatViewModel result = null;
             try
             {
-                var result = await ApiClient.PostRequestData<TestResponseModel, StatViewModel>("api/Pattern/CheakTest", new TestResponseModel
+                result = await ApiClient.PostRequestData<TestResponseModel, StatViewModel>("api/Pattern/CheakTest", new TestResponseModel
                 {
                     PatternId = model.PatternId,
                     QuestionResponses = UserAnswers
@@ -74,7 +71,7 @@ namespace TestView
                 }
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            FormResultOfTest resultsForm = new FormResultOfTest();
+            FormResultOfTest resultsForm = new FormResultOfTest(result);
             Close();
             resultsForm.Show();
         }
@@ -157,7 +154,7 @@ namespace TestView
                 }
                 TextBoxQuestion.Text = question.Text;
             }
-            
+
         }
 
 
@@ -201,11 +198,9 @@ namespace TestView
         private void nextQuestion_Click(object sender, EventArgs e)
         {
 
-            if (IdQuestions < model.Questions.Count)
-            {
-                GetAnswer();
-                SetNextQuestion();
-            }
+            GetAnswer();
+            SetNextQuestion();
+
         }
 
         // ПКМ -> Обновить
@@ -228,8 +223,11 @@ namespace TestView
 
         private void listBoxQuestions_SelectedIndexChanged(object sender, EventArgs e)
         {
-            GetAnswer();
-            SetNextQuestion();
+            if (listBoxQuestions.SelectedIndex > -1 && listBoxQuestions.SelectedIndex < model.Questions.Count)
+            {
+                GetAnswer();
+                SetNextQuestion();
+            }
         }
 
 
@@ -258,7 +256,7 @@ namespace TestView
 
                 if (selected)
                     backgroundBrush = reportsBackgroundBrushSelected;
-                else if ((listBoxQuestions.Items[index] as QuestionViewModel).Answers.Where(rec => rec.True).Select(rec=>rec.True).DefaultIfEmpty(false).FirstOrDefault())
+                else if ((listBoxQuestions.Items[index] as QuestionViewModel).Answers.Select(rec => rec.True).Where(rec => rec).DefaultIfEmpty(false).FirstOrDefault())
                     backgroundBrush = reportsBackgroundBrushAnswered;
                 else if ((listBoxQuestions.Items[index] as QuestionViewModel).Active)
                     backgroundBrush = reportsBackgroundBrushSeen;
