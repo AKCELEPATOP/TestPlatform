@@ -26,7 +26,6 @@ namespace TestView
             sourcePQ = new BindingSource();
             sourceQ = new BindingSource();
             InitializeComponent();
-            Initialize();
         }
         private void Initialize()
         {
