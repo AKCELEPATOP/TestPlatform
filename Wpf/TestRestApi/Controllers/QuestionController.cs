@@ -73,7 +73,7 @@ namespace TestRestApi.Controllers
         [HttpPost]
         public async Task AddElement(QuestionBindingModel model)
         {
-            model.ImagesPath = ImagesPath;
+            //model.ImagesPath = ImagesPath;
             await Service.AddElement(model);
         }
 
@@ -91,7 +91,7 @@ namespace TestRestApi.Controllers
         [HttpPost]
         public async Task UpdElement(QuestionBindingModel model)
         {
-            model.ImagesPath = ImagesPath;
+            //model.ImagesPath = ImagesPath;
             await Service.UpdElement(model);
         }
 
