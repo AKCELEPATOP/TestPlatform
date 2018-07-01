@@ -51,6 +51,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -62,9 +63,11 @@
     <Compile Include="ApplicationDbContext.cs" />
     <Compile Include="ApplicationRoles.cs" />
     <Compile Include="BindingModels\AnswerBindingModel.cs" />
+    <Compile Include="BindingModels\AttachmentBindingModel.cs" />
     <Compile Include="BindingModels\CategoryBindingModel.cs" />
     <Compile Include="BindingModels\GetListModel.cs" />
     <Compile Include="BindingModels\GroupBindingModel.cs" />
+    <Compile Include="BindingModels\MemoryPostedFile.cs" />
     <Compile Include="BindingModels\QuestionBindingModel.cs" />
     <Compile Include="BindingModels\ReportBindingModel.cs" />
     <Compile Include="BindingModels\UserBindingModel.cs" />
@@ -87,21 +90,18 @@
     <Compile Include="Interfaces\IStatService.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="Interfaces\IQuestion.cs" />
-    <Compile Include="Migrations\201806301234044_firstMigration.cs" />
-    <Compile Include="Migrations\201806301234044_firstMigration.Designer.cs">
-      <DependentUpon>201806301234044_firstMigration.cs</DependentUpon>
+    <Compile Include="Migrations\201807010751291_firstMigration.cs" />
+    <Compile Include="Migrations\201807010751291_firstMigration.Designer.cs">
+      <DependentUpon>201807010751291_firstMigration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201806301520315_huimigration.cs" />
-    <Compile Include="Migrations\201806301520315_huimigration.Designer.cs">
-      <DependentUpon>201806301520315_huimigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201806301726181_what.cs" />
-    <Compile Include="Migrations\201806301726181_what.Designer.cs">
-      <DependentUpon>201806301726181_what.cs</DependentUpon>
+    <Compile Include="Migrations\201807011151391_huiMigration.cs" />
+    <Compile Include="Migrations\201807011151391_huiMigration.Designer.cs">
+      <DependentUpon>201807011151391_huiMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\AnswerViewModel.cs" />
+    <Compile Include="ViewModels\AttachmentViewModel.cs" />
     <Compile Include="ViewModels\CategoryViewModel.cs" />
     <Compile Include="ViewModels\GroupViewModel.cs" />
     <Compile Include="ViewModels\QuestionViewModel.cs" />
@@ -128,14 +128,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201806301234044_firstMigration.resx">
-      <DependentUpon>201806301234044_firstMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201807010751291_firstMigration.resx">
+      <DependentUpon>201807010751291_firstMigration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806301520315_huimigration.resx">
-      <DependentUpon>201806301520315_huimigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806301726181_what.resx">
-      <DependentUpon>201806301726181_what.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201807011151391_huiMigration.resx">
+      <DependentUpon>201807011151391_huiMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

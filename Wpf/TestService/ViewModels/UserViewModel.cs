@@ -24,5 +24,8 @@ namespace TestService.ViewModels
 
         [DataMember]
         public string GroupName { get; set; }
+
+        [DataMember]
+        public int? GroupId { get; set; }
     }
 }

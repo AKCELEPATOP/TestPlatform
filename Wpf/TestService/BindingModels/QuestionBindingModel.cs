@@ -21,7 +21,10 @@ namespace TestService.BindingModels
         public long Time { get; set; }
 
         [DataMember]
-        public string Image { get; set; }
+        public string ImagesPath { get; set; }
+
+        [DataMember]
+        public List<AttachmentBindingModel> Attachments { get; set; }
 
         [DataMember]
         public QuestionComplexity Complexity { get; set; }
@@ -29,7 +32,8 @@ namespace TestService.BindingModels
         [DataMember]
         public bool Active { get; set; }
 
-        public virtual List<AnswerBindingModel> Answers { get; set; }
+        [DataMember]
+        public List<AnswerBindingModel> Answers { get; set; }
 
         [DataMember]
         public int CategoryId { get; set; }

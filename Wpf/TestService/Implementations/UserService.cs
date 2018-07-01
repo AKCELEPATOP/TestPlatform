@@ -35,26 +35,35 @@ namespace TestService.Implementations
 
         public static UserService Create(ApplicationDbContext context, UserManager<User> userManager)
         {
-            return new UserService(context, userManager);
+            return new UserService(context,userManager);
         }
 
-        public async Task AddElement(UserBindingModel model, UserManager<User> manager)
+        public Task AddElement(UserBindingModel model)
         {
             User user = new User
             {
                 FIO = model.FIO,
-                UserGroupId = model.GroupId,
                 UserName = model.UserName,
-                PasswordHash = model.PasswordHash,
-                Email = model.Email
+                UserGroupId = model.GroupId,
+                Email = model.Email,
+                PasswordHash = model.PasswordHash
             };
-            await manager.CreateAsync(user, user.PasswordHash);
+            var result = userManager.Create(user, user.PasswordHash);
+            if (result.Succeeded)
+            {
+                userManager.AddToRole(user.Id, ApplicationRoles.User);
+                return Task.CompletedTask;
+            }
+            else
+            {
+                throw new Exception(string.Join(", ", result.Errors));
+            }
         }
 
         public async Task DelElement(string id)
         {
             User element = await context.Users.FirstOrDefaultAsync(rec => rec.Id == id);
-            if(element == null)
+            if (element == null)
             {
                 throw new Exception("Элемент не найден");
             }
@@ -69,7 +78,7 @@ namespace TestService.Implementations
 
         public async Task<UserViewModel> Get(string id)
         {
-            User element = await context.Users.Include(rec=>rec.UserGroup).FirstOrDefaultAsync(rec => rec.Id == id);
+            User element = await context.Users.Include(rec => rec.UserGroup).FirstOrDefaultAsync(rec => rec.Id == id);
 
             if (element != null)
             {
@@ -78,21 +87,30 @@ namespace TestService.Implementations
                 {
                     throw new Exception("Элемент не является Пользователем");
                 }
+
                 return new UserViewModel
                 {
                     Id = element.Id,
                     FIO = element.FIO,
                     UserName = element.UserName,
-                    GroupName = element.UserGroup.Name,
-                    Email = element.Email
+                    Email = element.Email,
+                    GroupId = element.UserGroupId
                 };
+
             }
             throw new Exception("Элемент не найден");
         }
 
         public async Task UpdElement(UserBindingModel model)
         {
-            var userOld = await context.Users.FirstOrDefaultAsync(rec => rec.Id == model.Id);
+            var userOld = await context.Users.FirstOrDefaultAsync(rec =>
+                                    (rec.FIO == model.FIO || rec.UserName == model.UserName) && rec.Id != model.Id);
+            if (userOld != null)
+            {
+                throw new Exception("Уже есть пользователь с таким логином или именем");
+            }
+
+            userOld = await context.Users.FirstOrDefaultAsync(rec => rec.Id == model.Id);
             if (userOld == null)
             {
                 throw new Exception("Нет данных");
@@ -106,6 +124,16 @@ namespace TestService.Implementations
             userOld.UserName = model.UserName;
             userOld.UserGroupId = model.GroupId;
             userOld.Email = model.Email;
+            if (!string.IsNullOrEmpty(model.PasswordHash))
+            {
+                var token = await userManager.GeneratePasswordResetTokenAsync(userOld.Id);
+                IdentityResult result = await userManager.ResetPasswordAsync(userOld.Id, token, model.PasswordHash);
+
+                if (!result.Succeeded)
+                {
+                    throw new Exception("Не удалось обновить пароль");
+                }
+            }
             await context.SaveChangesAsync();
         }
 
@@ -114,18 +142,18 @@ namespace TestService.Implementations
             string roleId = RoleId;
             return await context.Users.Where(rec => rec.Roles.FirstOrDefault().RoleId.Equals(roleId)).Include(r => r.UserGroup)
                 .Select(rec => new UserViewModel
-            {
-                Id = rec.Id,
-                FIO = rec.FIO,
-                GroupName = rec.UserGroup.Name,
-                UserName = rec.UserName
-            }).ToListAsync();
+                {
+                    Id = rec.Id,
+                    FIO = rec.FIO,
+                    GroupName = rec.UserGroup.Name,
+                    UserName = rec.UserName
+                }).ToListAsync();
         }
 
-        public async Task SetGroup(string userId, int groupId)
+        public async Task SetGroup(UserBindingModel model)
         {
-            User user = await context.Users.FirstOrDefaultAsync(rec => rec.Id == userId);
-            if(user == null)
+            User user = await context.Users.FirstOrDefaultAsync(rec => rec.Id == model.Id);
+            if (user == null)
             {
                 throw new Exception("Элемент не найден");
             }
@@ -134,7 +162,7 @@ namespace TestService.Implementations
             {
                 throw new Exception("Элемент не является Пользователем");
             }
-            user.UserGroupId = groupId;
+            user.UserGroupId = model.GroupId;
             await context.SaveChangesAsync();
         }
     }

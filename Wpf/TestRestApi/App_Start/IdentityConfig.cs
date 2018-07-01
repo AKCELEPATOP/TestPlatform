@@ -32,7 +32,7 @@ namespace TestRestApi
             {
                 RequiredLength = 5,
                 RequireNonLetterOrDigit = false,
-                RequireDigit = false,
+                RequireDigit = true,
                 RequireLowercase = true,
                 RequireUppercase = false,
             };

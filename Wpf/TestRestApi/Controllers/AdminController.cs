@@ -66,7 +66,6 @@ namespace TestRestApi.Controllers
         #endregion
 
         [HttpGet]
-        [Route("GetList")]
         public async Task<IHttpActionResult> GetList()
         {
             var list = await Service.GetList();
@@ -78,7 +77,6 @@ namespace TestRestApi.Controllers
         }
 
         [HttpGet]
-        [Route("Get")]
         public async Task<IHttpActionResult> Get(string id)
         {
             var element = await Service.Get(id);
@@ -90,21 +88,18 @@ namespace TestRestApi.Controllers
         }
 
         [HttpPost]
-        [Route("UpdElement")]
         public async Task UpdElement(UserBindingModel model)
         {
             await Service.UpdElement(model);
         }
 
         [HttpPost]
-        [Route("DelElement")]
         public async Task DelElement(string id)
         {
             await Service.DelElement(id);
         }
 
         [HttpPost]
-        [Route("SetAdmin")]
         public async Task SetAdmin(string id)
         {
             if (!await UserManager.IsInRoleAsync(id, ApplicationRoles.User))
@@ -116,7 +111,6 @@ namespace TestRestApi.Controllers
         }
 
         [HttpPost]
-        [Route("SetUser")]
         public async Task SetUser(string id)
         {
             if (!await UserManager.IsInRoleAsync(id, ApplicationRoles.Admin))

@@ -91,6 +91,7 @@
             // 
             this.textBoxCurrentUser.Location = new System.Drawing.Point(369, 6);
             this.textBoxCurrentUser.Name = "textBoxCurrentUser";
+            this.textBoxCurrentUser.ReadOnly = true;
             this.textBoxCurrentUser.Size = new System.Drawing.Size(124, 20);
             this.textBoxCurrentUser.TabIndex = 13;
             // 
@@ -115,11 +116,13 @@
             // 
             // buttonChangeColorFont
             // 
-            this.buttonChangeColorFont.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.buttonChangeColorFont.BackColor = System.Drawing.SystemColors.Control;
+            this.buttonChangeColorFont.ForeColor = System.Drawing.SystemColors.ControlText;
             this.buttonChangeColorFont.Location = new System.Drawing.Point(30, 84);
             this.buttonChangeColorFont.Name = "buttonChangeColorFont";
             this.buttonChangeColorFont.Size = new System.Drawing.Size(101, 30);
             this.buttonChangeColorFont.TabIndex = 14;
+            this.buttonChangeColorFont.Text = "Сменить";
             this.buttonChangeColorFont.UseVisualStyleBackColor = false;
             this.buttonChangeColorFont.Click += new System.EventHandler(this.button7_Click);
             // 
@@ -147,6 +150,7 @@
             this.buttonChangeColorBack.Name = "buttonChangeColorBack";
             this.buttonChangeColorBack.Size = new System.Drawing.Size(101, 30);
             this.buttonChangeColorBack.TabIndex = 16;
+            this.buttonChangeColorBack.Text = "Сменить";
             this.buttonChangeColorBack.UseVisualStyleBackColor = true;
             this.buttonChangeColorBack.Click += new System.EventHandler(this.button8_Click);
             // 
@@ -196,6 +200,7 @@
             // 
             this.textBoxGroupUser.Location = new System.Drawing.Point(643, 6);
             this.textBoxGroupUser.Name = "textBoxGroupUser";
+            this.textBoxGroupUser.ReadOnly = true;
             this.textBoxGroupUser.Size = new System.Drawing.Size(124, 20);
             this.textBoxGroupUser.TabIndex = 25;
             // 
@@ -237,7 +242,7 @@
             // обновитьToolStripMenuItem
             // 
             this.обновитьToolStripMenuItem.Name = "обновитьToolStripMenuItem";
-            this.обновитьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.обновитьToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.обновитьToolStripMenuItem.Text = "Обновить";
             this.обновитьToolStripMenuItem.Click += new System.EventHandler(this.обновитьToolStripMenuItem_Click_1);
             // 
@@ -263,6 +268,9 @@
             this.Controls.Add(this.dataGridViewAvailablePatterns);
             this.Name = "FormMain";
             this.Text = "Главный экран";
+
+            this.Load += new System.EventHandler(this.FormMain_Load);
+
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAvailablePatterns)).EndInit();
             this.groupBox2.ResumeLayout(false);

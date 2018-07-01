@@ -80,9 +80,9 @@ namespace TestRestApi.Controllers
         }
 
         [HttpPost]
-        public async Task DelElement(CategoryBindingModel model)
+        public async Task DelElement(int id)
         {
-            await Service.DelElement(model.Id);
+            await Service.DelElement(id);
         }
 
         [HttpGet]

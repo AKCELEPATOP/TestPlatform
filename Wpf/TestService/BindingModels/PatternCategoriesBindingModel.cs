@@ -14,13 +14,13 @@ namespace TestService.BindingModels
         public int Id { get; set; }
 
         [DataMember]
-        public double Copmlex { get; set; }
+        public int Copmlex { get; set; }
 
         [DataMember]
-        public double Middle { get; set; }
+        public int Middle { get; set; }
 
         [DataMember]
-        public int Count { get; set; }
+        public int Easy { get; set; }
 
         [DataMember]
         public int PatternId { get; set; }

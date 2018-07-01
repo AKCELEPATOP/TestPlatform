@@ -18,7 +18,7 @@ namespace TestView
         public Color colorBack;
         public Color colorFont;
 
-        public string UserLogin;
+        public string UserLogin { get; set; }
 
         private FormAuthorization parent;
 
@@ -26,7 +26,6 @@ namespace TestView
         {
             this.parent = parent;
             InitializeComponent();
-            Initialize();
         }
 
         private void Initialize()
@@ -54,9 +53,6 @@ namespace TestView
                     dataGridViewPassedTests.Columns[0].Visible = false;
                     dataGridViewPassedTests.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
-
-                textBoxCurrentUser.Text = UserLogin;
-
             }
                      
             catch (Exception ex)
@@ -68,9 +64,6 @@ namespace TestView
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            this.ForeColor = colorFont;
-            this.BackColor = colorBack;
-
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -79,7 +72,6 @@ namespace TestView
             if (cd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 colorFont = cd.Color;
-                buttonChangeColorFont.BackColor = colorFont;
             }
             this.ForeColor = colorFont;
         }
@@ -91,7 +83,9 @@ namespace TestView
             if (cd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 colorBack = cd.Color;
-                buttonChangeColorBack.BackColor = colorBack;
+
+                buttonChangeColorFont.BackColor = colorBack;
+
             }
             this.BackColor = colorBack;
         }
@@ -101,7 +95,7 @@ namespace TestView
             if (dataGridViewAvailablePatterns.SelectedRows.Count == 1)
             {
                 TestingForm Testing = new TestingForm();
-                Close();
+                Testing.Id = Convert.ToInt32(dataGridViewAvailablePatterns.SelectedRows[0].Cells[0].Value);
                 Testing.Show();
             }
         }
@@ -118,6 +112,14 @@ namespace TestView
             Close();
         }
 
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+            //textBoxCurrentUser.Text = ;
+            //textBoxGroupUser.Text = ;
+            Initialize();
+            this.ForeColor = colorFont;
+            this.BackColor = colorBack;
+        }
 
         private void buttonStatistic_Click(object sender, EventArgs e)
         {
@@ -167,6 +169,12 @@ namespace TestView
         }
 
         private void обновитьToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            Initialize();
+            this.
+        }
+
+        private void Form_Load(object sender, EventArgs e)
         {
             Initialize();
         }

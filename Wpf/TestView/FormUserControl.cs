@@ -7,12 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TestService;
+using TestService.BindingModels;
 using TestService.ViewModels;
 
 namespace TestView
 {
     public partial class FormUserControl : Form
     {
+
         public FormUserControl()
         {
             InitializeComponent();
@@ -64,7 +67,7 @@ namespace TestView
             if (dataGridView1.SelectedRows.Count == 1)
             {
                 var form = new FormUserEdit();
-                form.Id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
+                form.Id = Convert.ToString(dataGridView1.SelectedRows[0].Cells[0].Value);
                 if (form.ShowDialog() == DialogResult.OK)
                 {
                     Initialize();
@@ -78,7 +81,7 @@ namespace TestView
             {
                 if (MessageBox.Show("Удалить запись", "Вопрос", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    int id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
+                    string id = Convert.ToString(dataGridView1.SelectedRows[0].Cells[0].Value);
 
                     Task task = Task.Run(() => ApiClient.PostRequest("api/User/DelElement/" + id));
                     task.ContinueWith((prevTask) => MessageBox.Show("Запись удалена. Обновите список", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information),
@@ -113,11 +116,17 @@ namespace TestView
         {
             if (dataGridView1.SelectedRows.Count == 1 && comboBox1.SelectedValue !=null)
             { 
-                int user_id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
+                string user_id = Convert.ToString(dataGridView1.SelectedRows[0].Cells[0].Value);
                 int Grou_id = Convert.ToInt32(comboBox1.SelectedValue);
-                string value = user_id + "/" + Grou_id;
-                Task task = Task.Run(() => ApiClient.PostRequestData("api/User/SetGroup", value));
-                task.ContinueWith((prevTask) => MessageBox.Show("Запись удалена. Обновите список", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information),
+                Task task = Task.Run(() => ApiClient.PostRequestData("api/User/SetGroup", new UserBindingModel
+                {
+                    Id = user_id,
+                    GroupId = Grou_id
+                }));
+                task.ContinueWith((prevTask) => {
+                    MessageBox.Show("Группа установлена", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Initialize();
+                    },
                 TaskContinuationOptions.OnlyOnRanToCompletion);
 
                 task.ContinueWith((prevTask) =>
@@ -144,6 +153,43 @@ namespace TestView
         private void ОбновитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Initialize();
+        }
+
+        private void Form_Load(object sender, EventArgs e)
+        {
+            Initialize();
+        }
+
+        private async void buttonSetAdmin_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count == 1)
+            {
+                try
+                {
+                    Task task = Task.Run(() => ApiClient.PostRequest("api/Admin/SetAdmin/" + Convert.ToString(dataGridView1.SelectedRows[0].Cells[0].Value)));
+                    await task;
+                    MessageBox.Show("Пользователю выданы права админа", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Initialize();
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                
+                /*task.ContinueWith((prevTask) =>
+                    MessageBox.Show("Пользователю выданы права админа", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information),
+                TaskContinuationOptions.OnlyOnRanToCompletion);
+
+                task.ContinueWith((prevTask) =>
+                {
+                    var ex = (Exception)prevTask.Exception;
+                    while (ex.InnerException != null)
+                    {
+                        ex = ex.InnerException;
+                    }
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }, TaskContinuationOptions.OnlyOnFaulted);*/
+            }
         }
     }
 }

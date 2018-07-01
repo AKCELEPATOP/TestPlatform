@@ -107,7 +107,6 @@ namespace TestRestApi.Controllers
             }
 
             IdentityResult result = await UserManager.AddPasswordAsync(User.Identity.GetUserId(), model.NewPassword);
-
             if (!result.Succeeded)
             {
                 return GetErrorResult(result);

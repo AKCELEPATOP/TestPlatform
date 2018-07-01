@@ -20,10 +20,12 @@ namespace TestView
 
         private int idCat;
 
-        private int check;
         private List<CategoryViewModel> listC;
         private List<PatternCategoryViewModel> listPC;
-        public List<PatternQuestionsBindingModel> listQ { get; set; }
+        private List<PatternQuestionsBindingModel> listQ;
+
+        private BindingSource source;
+
         public FormTestTemplate()
         {
             InitializeComponent();
@@ -37,6 +39,8 @@ namespace TestView
             {
                 comboBox1.DataSource = list;
                 comboBox1.ValueMember = "Id";
+                comboBox1.DisplayMember = "Name";
+                comboBox1.SelectedItem = null;
             }
             if (id.HasValue)
             {
@@ -45,10 +49,15 @@ namespace TestView
                     var pattern = Task.Run(() => ApiClient.GetRequestData<PatternViewModel>("api/Pattern/Get/" + id.Value)).Result;
                     textBox1.Text = pattern.Name;
                     listPC = pattern.PatternCategories;
-                    dataGridView2.DataSource = listPC;
                     comboBox1.SelectedItem = pattern.UserGroupId;
-
-                
+                    if (pattern.PatternCategories.Count > 0)
+                    {
+                        dataGridView2.Rows[0].Selected = true;
+                        textBoxEasy.Text = pattern.PatternCategories[0].Easy.ToString();
+                        textBoxMid.Text = pattern.PatternCategories[0].Middle.ToString();
+                        textBoxDif.Text = pattern.PatternCategories[0].Complex.ToString();
+                        textBoxCount.Text = pattern.PatternCategories[0].Count.ToString();
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -59,68 +68,86 @@ namespace TestView
                     MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            listC =Task.Run(() => ApiClient.GetRequestData<List<CategoryViewModel>>("api/Category/GetList")).Result;
+            else
+            {
+                listPC = new List<PatternCategoryViewModel>();
+            }
+            source = new BindingSource();
+            source.DataSource = listPC;
+            dataGridView2.DataSource = source;
+            dataGridView2.Columns[0].Visible = false;
+            dataGridView2.Columns[1].Visible = false;
+            dataGridView2.Columns[2].Visible = false;
+            dataGridView2.Columns[4].Visible = false;
+            dataGridView2.Columns[5].Visible = false;
+            dataGridView2.Columns[6].Visible = false;
+            dataGridView2.Columns[7].Visible = false;
+            dataGridView2.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            listC = Task.Run(() => ApiClient.GetRequestData<List<CategoryViewModel>>("api/Category/GetList")).Result;
             if (listC != null)
             {
                 dataGridView1.DataSource = listC;
                 dataGridView1.Columns[0].Visible = false;
+                dataGridView1.Columns[2].Visible = false;
+
                 dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
-            textBox2.Text = "";
-            textBox3.Text = "";
-            textBox4.Text = "";
         }
         //сохранить
         private void button3_Click(object sender, EventArgs e)
         {
-            if (sum() && textBox1.Text==null)
+            if (string.IsNullOrEmpty(textBox1.Text))
             {
-                MessageBox.Show("Неверные значения", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Введите название", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
+            SaveCategory();
             Task task;
             string name = textBox1.Text;
+
+            List<PatternQuestionsBindingModel> listQuestions = listPC.SelectMany(rec => rec.PatternQuestions)
+                .Select(rec => new PatternQuestionsBindingModel
+            {
+                QuestionId = rec.QuestionId
+            }).ToList();
             if (id.HasValue)
             {
                 List<PatternCategoriesBindingModel> bin = new List<PatternCategoriesBindingModel>(listPC.Count);
 
-                for (int i = 0; i < listPC.Count; i++) {
-                    bin.Add(new PatternCategoriesBindingModel {
+                for (int i = 0; i < listPC.Count; i++)
+                {
+                    bin.Add(new PatternCategoriesBindingModel
+                    {
                         PatternId = id.Value,
-                        CategoryId = listC[i].Id,
-                        Count = listPC[idCat].Count,
-                        Middle = listPC[idCat].Middle,
-                        Copmlex = listPC[idCat].Complex
-
-
+                        CategoryId = listPC[i].CategoryId,
+                        Middle = listPC[i].Middle,
+                        Copmlex = listPC[i].Complex,
+                        Easy = listPC[i].Easy
                     });
                 }
-                if (listQ.Count != 0)
+                if (listQuestions != null && listQuestions.Count != 0)
                 {
 
-                    for (int i = 0; i < listQ.Count; i++)
+                    for (int i = 0; i < listQuestions.Count; i++)
                     {
-                        listQ[i].PatternId = id.Value;
+                        listQuestions[i].PatternId = id.Value;
                     }
                     task = Task.Run(() => ApiClient.PostRequestData("api/Pattern/UpdElement", new PatternBindingModel
                     {
                         Id = id.Value,
                         Name = name,
                         PatternCategories = bin,
-                        PatternQuestions = listQ
-
-
+                        PatternQuestions = listQuestions
                     }));
                 }
-                else {
+                else
+                {
                     task = Task.Run(() => ApiClient.PostRequestData("api/Pattern/UpdElement", new PatternBindingModel
                     {
                         Id = id.Value,
                         Name = name,
                         PatternCategories = bin
-
-
                     }));
                 }
             }
@@ -133,21 +160,20 @@ namespace TestView
                 {
                     bin.Add(new PatternCategoriesBindingModel
                     {
-                        CategoryId = listC[i].Id,
-                        Count = listPC[idCat].Count,
-                        Middle = listPC[idCat].Middle,
-                        Copmlex = listPC[idCat].Complex
-
+                        CategoryId = listPC[i].CategoryId,
+                        Middle = listPC[i].Middle,
+                        Copmlex = listPC[i].Complex,
+                        Easy = listPC[i].Easy
 
                     });
                 }
-                if (listQ.Count != 0)
+                if (listQuestions != null && listQuestions.Count != 0)
                 {
                     task = Task.Run(() => ApiClient.PostRequestData("api/Pattern/AddElement", new PatternBindingModel
                     {
                         Name = name,
                         PatternCategories = bin,
-                        PatternQuestions=listQ
+                        PatternQuestions = listQuestions
 
                     }));
                 }
@@ -157,7 +183,6 @@ namespace TestView
                     {
                         Name = name,
                         PatternCategories = bin
-
                     }));
                 }
 
@@ -185,11 +210,25 @@ namespace TestView
 
         private void button7_Click(object sender, EventArgs e)
         {
+            if (listPC.Count == 0)
+            {
+                MessageBox.Show("Выберите категории", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             var form = new FormTestTemplateQuestions();
-            form.listQ =listQ;
+            foreach (var el in listPC)
+            {
+                form.listPC.Add(new PatternCategoryViewModel
+                {
+                    CategoryId = el.CategoryId,
+                    CategoryName = el.CategoryName,
+                    PatternQuestions = new List<PatternQuestionViewModel>(el.PatternQuestions)
+                });
+            }
             if (form.ShowDialog() == DialogResult.OK)
             {
                 Initialize();
+                listPC = form.listPC;
             }
         }
 
@@ -197,110 +236,79 @@ namespace TestView
         {
             if (dataGridView2.SelectedRows.Count == 1)
             {
-                idCat = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells[0].Value);
-                
-
-                textBox2.Text = listPC[idCat].Easy.ToString();
-                textBox3.Text = listPC[idCat].Middle.ToString();
-                textBox4.Text = listPC[idCat].Complex.ToString();
-                textBox5.Text = listPC[idCat].Count.ToString();
+                idCat = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells[2].Value);
+                textBoxEasy.Text = listPC.FirstOrDefault(rec => rec.CategoryId == idCat).Easy.ToString();
+                textBoxMid.Text = listPC.FirstOrDefault(rec => rec.CategoryId == idCat).Middle.ToString();
+                textBoxDif.Text = listPC.FirstOrDefault(rec => rec.CategoryId == idCat).Complex.ToString();
+                textBoxCount.Text = listPC.FirstOrDefault(rec => rec.CategoryId == idCat).Count.ToString();
 
 
             }
         }
 
-        private bool sum() {
-            if ((Convert.ToDouble(textBox3.Text) > 1 && Convert.ToDouble(textBox2.Text) > 1 && Convert.ToDouble(textBox4.Text) > 1) && (Convert.ToDouble(textBox3.Text) <0 && Convert.ToDouble(textBox2.Text) < 0 && Convert.ToDouble(textBox4.Text) < 0)) {
+        private int Sum()
+        {
+            int easy = 0;
+            int mid = 0;
+            int complex = 0;
+            if ((!string.IsNullOrEmpty(textBoxEasy.Text) && !Int32.TryParse(textBoxEasy.Text, out easy)) || easy < 0 ||
+                (!string.IsNullOrEmpty(textBoxMid.Text) && !Int32.TryParse(textBoxMid.Text, out mid)) || mid < 0 ||
+                (!string.IsNullOrEmpty(textBoxDif.Text) && !Int32.TryParse(textBoxDif.Text, out complex)) || complex < 0)
+            {
                 MessageBox.Show("Неверные значения", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
+                return -1;
             }
-            double text1 = Convert.ToDouble(textBox2.Text);
-            double text2 = Convert.ToDouble(textBox3.Text);
-            double text3 = Convert.ToDouble(textBox4.Text);
-            double proc=0;
-            switch (check) {
-                case 1:
-                     proc = text2+text3;
-                    if (proc + text1 > 1) {
-                        text2 /= 2;
-                        text3 /= 2;
-                    }
-                    break;
-                case 2:
-                    proc = text1 + text3;
-                    if (proc + text2 > 1)
-                    {
-                        text1 /= 2;
-                        text3 /= 2;
-                    }
-                    break;
-                case 3:
-                     proc = text2 + text1;
-                    if (proc + text3 > 1)
-                    {
-                        text2 /= 2;
-                        text1 /= 2;
-                    }
-                    break;
-                default:
-                    check = 0;
-                    break;
-            }
-            check = 0;
-            if (proc == 1) {
-                return true;
-            }
-            else{
-                return false;
-            }
-            
+            int sum = easy + mid + complex;
+            textBoxCount.Text = sum.ToString();
+            return sum;
+        }
+        private void textBoxEasy_TextChanged(object sender, EventArgs e)
+        {
+            Sum();
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
+        private void textBoxDif_TextChanged(object sender, EventArgs e)
         {
-            
-            check = 1;
-            sum();
+            Sum();
         }
 
-        private void textBox3_TextChanged(object sender, EventArgs e)
+        private void textBoxMid_TextChanged(object sender, EventArgs e)
         {
-            
-            check = 2;
-            sum();
-        }
-
-        private void textBox4_TextChanged(object sender, EventArgs e)
-        {
-            
-            check = 3;
-            sum();
+            Sum();
         }
         // >
         private void button1_Click(object sender, EventArgs e)
         {
-            
+
             if (dataGridView1.SelectedRows.Count == 1)
             {
                 int Id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
+                if (listPC.Select(rec => rec.CategoryId).Contains(Id))
+                {
+                    return;
+                }
                 if (id.HasValue)
                 {
                     listPC.Add(new PatternCategoryViewModel
                     {
-                        PatternId=id.Value,
-                        CategoryId=listC[Id].Id,
-                        CategoryName= listC[Id].Name
+                        PatternId = id.Value,
+                        CategoryId = Id,
+                        CategoryName = listC.FirstOrDefault(rec => rec.Id == Id).Name,
+                        PatternQuestions = new List<PatternQuestionViewModel>()
 
 
                     });
                 }
-                else {
+                else
+                {
                     listPC.Add(new PatternCategoryViewModel
                     {
-                        CategoryId = listC[Id].Id,
-                        CategoryName = listC[Id].Name
+                        CategoryId = Id,
+                        CategoryName = listC.FirstOrDefault(rec => rec.Id == Id).Name,
+                        PatternQuestions = new List<PatternQuestionViewModel>()
                     });
                 }
+                source.ResetBindings(false);
             }
         }
         // >>
@@ -310,26 +318,38 @@ namespace TestView
             {
                 for (int i = 0; i < listC.Count; i++)
                 {
+                    if (listPC.Select(rec => rec.CategoryId).Contains(listC[i].Id))
+                    {
+                        continue;
+                    }
                     listPC.Add(new PatternCategoryViewModel
                     {
                         PatternId = id.Value,
                         CategoryId = listC[i].Id,
-                        CategoryName = listC[i].Name
-
+                        CategoryName = listC[i].Name,
+                        PatternQuestions = new List<PatternQuestionViewModel>()
 
                     });
                 }
             }
-            else {
+            else
+            {
+
                 for (int i = 0; i < listC.Count; i++)
                 {
+                    if (listPC.Select(rec => rec.CategoryId).Contains(listC[i].Id))
+                    {
+                        continue;
+                    }
                     listPC.Add(new PatternCategoryViewModel
                     {
                         CategoryId = listC[i].Id,
-                        CategoryName = listC[i].Name
+                        CategoryName = listC[i].Name,
+                        PatternQuestions = new List<PatternQuestionViewModel>()
                     });
                 }
             }
+            source.ResetBindings(false);
         }
         // <
         private void button6_Click(object sender, EventArgs e)
@@ -337,14 +357,15 @@ namespace TestView
             if (dataGridView2.SelectedRows.Count == 1)
             {
                 int Id = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells[0].Value);
-                listPC.RemoveAt(Id);
-                idCat = -1;
+                listPC.Remove(listPC.FirstOrDefault(rec => rec.Id == Id));
+                source.ResetBindings(false);
             }
         }
         // <<
         private void button2_Click(object sender, EventArgs e)
         {
             listPC.Clear();
+            source.ResetBindings(false);
         }
 
         // ПКМ -> Обновить
@@ -363,19 +384,34 @@ namespace TestView
         //Сохранить категорию в шаблон 
         private void button8_Click(object sender, EventArgs e)
         {
-            if (textBox5.Text == null && sum())
+            SaveCategory();
+        }
+
+        private void SaveCategory()
+        {
+            if (dataGridView2.SelectedRows.Count == 1)
             {
-                MessageBox.Show("Неверные значения", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-              
+                int count = Sum();
+                if (count < 0)
+                {
+                    MessageBox.Show("Заполните количество вопросов", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+
+                }
+                var element = listPC.FirstOrDefault(rec => rec.CategoryId == Convert.ToInt32(dataGridView2.SelectedRows[0].Cells[2].Value));
+                if (element != null)
+                {
+                    element.Count = count;
+                    element.Easy = Convert.ToInt32(textBoxEasy.Text);
+                    element.Middle = Convert.ToInt32(textBoxMid.Text);
+                    element.Complex = Convert.ToInt32(textBoxDif.Text);
+                }
             }
-            listPC[idCat].Count=Convert.ToInt32(textBox5.Text);
-            listPC[idCat].Easy= Convert.ToDouble(textBox2.Text);
-            listPC[idCat].Middle= Convert.ToDouble(textBox3.Text);
-            listPC[idCat].Complex = Convert.ToDouble(textBox4.Text);
+        }
 
-
-            idCat = -1;
+        private void Form_Load(object sender, EventArgs e)
+        {
+            Initialize();
         }
     }
 }

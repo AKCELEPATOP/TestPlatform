@@ -26,7 +26,6 @@ namespace TestView
                 {
                     FormStatisticsMain formMainAdmin = new FormStatisticsMain(this);
                     formMainAdmin.Show();
-                    formMainAdmin.UserLogin = ApiClient.UserName;
                     Hide();
                 }
                 else if (ApiClient.Role.Equals(ApplicationRoles.User))
@@ -41,6 +40,12 @@ namespace TestView
             {
                 DialogResult result = MessageBox.Show("Произошла ошибка авторизации\nОшибка:" + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void Form_Load(object sender, EventArgs e)
+        {
+            textBoxLogin.Text = "";
+            textBoxPassword.Text = "";
         }
     }
 }

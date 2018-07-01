@@ -91,7 +91,6 @@ namespace TestRestApi.Controllers
         }
 
         [HttpGet]
-        [Route("Get")]
         public async Task<IHttpActionResult> Get(int id)
         {
             var element = await Service.Get(id);
@@ -103,24 +102,21 @@ namespace TestRestApi.Controllers
         }
 
         [HttpPost]
-        [Route("UpdElement")]
         public async Task UpdElement(PatternBindingModel model)
         {
             await Service.Upd(model);
         }
 
         [HttpPost]
-        [Route("DelElement")]
         public async Task DelElement(int id)
         {
             await Service.Del(id);
         }
 
         [HttpGet]
-        [Route("CreateTest")]
-        public async Task<IHttpActionResult> CreateTest(int patternId)
+        public async Task<IHttpActionResult> CreateTest(int id)
         {
-            var element = await Service.CreateTest(patternId);
+            var element = await Service.CreateTest(id);
             if (element == null)
             {
                 InternalServerError(new Exception("Нет данных"));
@@ -129,7 +125,6 @@ namespace TestRestApi.Controllers
         }
 
         [HttpPost]
-        [Route("CheakTest")]
         public async Task<IHttpActionResult> CheakTest(TestResponseModel model)
         {
             model.UserId = User.Identity.GetUserId();

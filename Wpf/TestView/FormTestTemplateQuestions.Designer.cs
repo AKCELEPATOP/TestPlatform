@@ -29,155 +29,201 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.buttonDel = new System.Windows.Forms.Button();
+            this.buttonAddAll = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.buttonDelAll = new System.Windows.Forms.Button();
+            this.buttonAdd = new System.Windows.Forms.Button();
+            this.dataGridViewTestQuestions = new System.Windows.Forms.DataGridView();
+            this.dataGridViewCategories = new System.Windows.Forms.DataGridView();
+            this.buttonCancel = new System.Windows.Forms.Button();
+            this.buttonSave = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.обновитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.dataGridViewQuestions = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTestQuestions)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCategories)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewQuestions)).BeginInit();
             this.SuspendLayout();
             // 
-            // button6
+            // buttonDel
             // 
-            this.button6.Location = new System.Drawing.Point(336, 135);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(43, 31);
-            this.button6.TabIndex = 24;
-            this.button6.Text = "<";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.buttonDel.Location = new System.Drawing.Point(659, 166);
+            this.buttonDel.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonDel.Name = "buttonDel";
+            this.buttonDel.Size = new System.Drawing.Size(57, 38);
+            this.buttonDel.TabIndex = 24;
+            this.buttonDel.Text = "<";
+            this.buttonDel.UseVisualStyleBackColor = true;
+            this.buttonDel.Click += new System.EventHandler(this.button6_Click);
             // 
-            // button5
+            // buttonAddAll
             // 
-            this.button5.Location = new System.Drawing.Point(336, 66);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(43, 31);
-            this.button5.TabIndex = 23;
-            this.button5.Text = ">>";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.buttonAddAll.Location = new System.Drawing.Point(659, 81);
+            this.buttonAddAll.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonAddAll.Name = "buttonAddAll";
+            this.buttonAddAll.Size = new System.Drawing.Size(57, 38);
+            this.buttonAddAll.TabIndex = 23;
+            this.buttonAddAll.Text = ">>";
+            this.buttonAddAll.UseVisualStyleBackColor = true;
+            this.buttonAddAll.Click += new System.EventHandler(this.button5_Click);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(382, 13);
+            this.label6.Location = new System.Drawing.Point(720, 16);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(92, 13);
+            this.label6.Size = new System.Drawing.Size(118, 17);
             this.label6.TabIndex = 22;
             this.label6.Text = "Вопросы в тесте";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(9, 13);
+            this.label5.Location = new System.Drawing.Point(306, 16);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(73, 13);
+            this.label5.Size = new System.Drawing.Size(92, 17);
             this.label5.TabIndex = 21;
             this.label5.Text = "Все вопросы";
             // 
-            // button2
+            // buttonDelAll
             // 
-            this.button2.Location = new System.Drawing.Point(336, 172);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(43, 31);
-            this.button2.TabIndex = 20;
-            this.button2.Text = "<<";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.buttonDelAll.Location = new System.Drawing.Point(659, 212);
+            this.buttonDelAll.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonDelAll.Name = "buttonDelAll";
+            this.buttonDelAll.Size = new System.Drawing.Size(57, 38);
+            this.buttonDelAll.TabIndex = 20;
+            this.buttonDelAll.Text = "<<";
+            this.buttonDelAll.UseVisualStyleBackColor = true;
+            this.buttonDelAll.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button1
+            // buttonAdd
             // 
-            this.button1.Location = new System.Drawing.Point(336, 29);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(43, 31);
-            this.button1.TabIndex = 19;
-            this.button1.Text = ">";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.buttonAdd.Location = new System.Drawing.Point(659, 36);
+            this.buttonAdd.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonAdd.Name = "buttonAdd";
+            this.buttonAdd.Size = new System.Drawing.Size(57, 38);
+            this.buttonAdd.TabIndex = 19;
+            this.buttonAdd.Text = ">";
+            this.buttonAdd.UseVisualStyleBackColor = true;
+            this.buttonAdd.Click += new System.EventHandler(this.button1_Click);
             // 
-            // dataGridView2
+            // dataGridViewTestQuestions
             // 
-            this.dataGridView2.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(385, 29);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(318, 174);
-            this.dataGridView2.TabIndex = 18;
-            this.dataGridView2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
+            this.dataGridViewTestQuestions.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dataGridViewTestQuestions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewTestQuestions.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dataGridViewTestQuestions.Location = new System.Drawing.Point(724, 36);
+            this.dataGridViewTestQuestions.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridViewTestQuestions.Name = "dataGridViewTestQuestions";
+            this.dataGridViewTestQuestions.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewTestQuestions.Size = new System.Drawing.Size(424, 214);
+            this.dataGridViewTestQuestions.TabIndex = 18;
+            this.dataGridViewTestQuestions.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
             // 
-            // dataGridView1
+            // dataGridViewCategories
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 29);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(318, 174);
-            this.dataGridView1.TabIndex = 17;
-            this.dataGridView1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
+            this.dataGridViewCategories.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dataGridViewCategories.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewCategories.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dataGridViewCategories.Location = new System.Drawing.Point(16, 36);
+            this.dataGridViewCategories.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridViewCategories.Name = "dataGridViewCategories";
+            this.dataGridViewCategories.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewCategories.Size = new System.Drawing.Size(280, 214);
+            this.dataGridViewCategories.TabIndex = 17;
+            this.dataGridViewCategories.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCategories_CellContentClick);
+            this.dataGridViewCategories.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
             // 
-            // button4
+            // buttonCancel
             // 
-            this.button4.Location = new System.Drawing.Point(615, 209);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(89, 29);
-            this.button4.TabIndex = 26;
-            this.button4.Text = "Отмена";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.buttonCancel.Location = new System.Drawing.Point(1029, 258);
+            this.buttonCancel.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonCancel.Name = "buttonCancel";
+            this.buttonCancel.Size = new System.Drawing.Size(119, 36);
+            this.buttonCancel.TabIndex = 26;
+            this.buttonCancel.Text = "Отмена";
+            this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Click += new System.EventHandler(this.button4_Click);
             // 
-            // button3
+            // buttonSave
             // 
-            this.button3.Location = new System.Drawing.Point(510, 209);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(89, 29);
-            this.button3.TabIndex = 25;
-            this.button3.Text = "Сохранить";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.buttonSave.Location = new System.Drawing.Point(889, 258);
+            this.buttonSave.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(119, 36);
+            this.buttonSave.TabIndex = 25;
+            this.buttonSave.Text = "Сохранить";
+            this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.button3_Click);
             // 
             // contextMenuStrip1
             // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.обновитьToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(129, 26);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(148, 28);
             // 
             // обновитьToolStripMenuItem
             // 
             this.обновитьToolStripMenuItem.Name = "обновитьToolStripMenuItem";
-            this.обновитьToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.обновитьToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
             this.обновитьToolStripMenuItem.Text = "Обновить";
+            // 
+            // dataGridViewQuestions
+            // 
+            this.dataGridViewQuestions.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dataGridViewQuestions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewQuestions.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dataGridViewQuestions.Location = new System.Drawing.Point(304, 36);
+            this.dataGridViewQuestions.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridViewQuestions.Name = "dataGridViewQuestions";
+            this.dataGridViewQuestions.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewQuestions.Size = new System.Drawing.Size(347, 214);
+            this.dataGridViewQuestions.TabIndex = 27;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(19, 15);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(77, 17);
+            this.label1.TabIndex = 28;
+            this.label1.Text = "Категории";
             // 
             // FormTestTemplateQuestions
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(716, 248);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button6);
-            this.Controls.Add(this.button5);
+            this.ClientSize = new System.Drawing.Size(1161, 305);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.dataGridViewQuestions);
+            this.Controls.Add(this.buttonCancel);
+            this.Controls.Add(this.buttonSave);
+            this.Controls.Add(this.buttonDel);
+            this.Controls.Add(this.buttonAddAll);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.dataGridView2);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.buttonDelAll);
+            this.Controls.Add(this.buttonAdd);
+            this.Controls.Add(this.dataGridViewTestQuestions);
+            this.Controls.Add(this.dataGridViewCategories);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormTestTemplateQuestions";
             this.Text = "Выбор вопросов";
+            this.Load += new System.EventHandler(this.Form_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTestQuestions)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCategories)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewQuestions)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -185,17 +231,19 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button buttonDel;
+        private System.Windows.Forms.Button buttonAddAll;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button buttonDelAll;
+        private System.Windows.Forms.Button buttonAdd;
+        private System.Windows.Forms.DataGridView dataGridViewTestQuestions;
+        private System.Windows.Forms.DataGridView dataGridViewCategories;
+        private System.Windows.Forms.Button buttonCancel;
+        private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem обновитьToolStripMenuItem;
+        private System.Windows.Forms.DataGridView dataGridViewQuestions;
+        private System.Windows.Forms.Label label1;
     }
 }

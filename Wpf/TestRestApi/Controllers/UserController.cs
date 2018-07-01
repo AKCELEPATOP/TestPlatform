@@ -65,7 +65,7 @@ namespace TestRestApi.Controllers
         [HttpPost]
         public async Task AddElement(UserBindingModel model)
         {
-            await Service.AddElement(model, UserManager);
+            await Service.AddElement(model);
         }
 
         [HttpGet]
@@ -77,6 +77,35 @@ namespace TestRestApi.Controllers
                 InternalServerError(new Exception("Нет данных"));
             }
             return Ok(list);
+        }
+
+        [HttpGet]
+        public async Task<IHttpActionResult> Get(string id)
+        {
+            var element = await Service.Get(id);
+            if (element == null)
+            {
+                InternalServerError(new Exception("Нет данных"));
+            }
+            return Ok(element);
+        }
+
+        [HttpPost]
+        public async Task UpdElement(UserBindingModel model)
+        {
+            await Service.UpdElement(model);
+        }
+
+        [HttpPost]
+        public async Task DelElement(string id)
+        {
+            await Service.DelElement(id);
+        }
+
+        [HttpPost]
+        public async Task SetGroup(UserBindingModel model)
+        {
+            await Service.SetGroup(model);
         }
     }
 }

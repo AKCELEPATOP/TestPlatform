@@ -25,15 +25,18 @@ namespace TestView
                     dataGridView1.DataSource = list;
                     dataGridView1.Columns[0].Visible = false;
                     dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                }
+                    if (list.Count > 0)
+                    {
 
-                List<QuestionViewModel> listQuestions =
-                  Task.Run(() => ApiClient.GetRequestData<List<QuestionViewModel>>("api/Category/GetListQuestions/" + list[0].Id)).Result;
-                if (listQuestions != null)
-                {
-                    dataGridView2.DataSource = listQuestions;
-                    dataGridView2.Columns[0].Visible = false;
-                    dataGridView2.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                        List<QuestionViewModel> listQuestions =
+                      Task.Run(() => ApiClient.GetRequestData<List<QuestionViewModel>>("api/Category/GetListQuestions/" + list[0].Id)).Result;
+                        if (listQuestions != null)
+                        {
+                            dataGridView2.DataSource = listQuestions;
+                            dataGridView2.Columns[0].Visible = false;
+                            dataGridView2.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                        }
+                    }
                 }
 
             }
@@ -66,13 +69,13 @@ namespace TestView
         private void button1_Click(object sender, EventArgs e)
         {
 
-                var form = new FormCategoryEdit();
+            var form = new FormCategoryEdit();
 
-                if (form.ShowDialog() == DialogResult.OK)
-                {
-                    Initialize();
-                }
-            
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                Initialize();
+            }
+
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -184,6 +187,11 @@ namespace TestView
         private void button10_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void Form_Load(object sender, EventArgs e)
+        {
+            Initialize();
         }
     }
 }

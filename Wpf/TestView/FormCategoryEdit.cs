@@ -53,17 +53,20 @@ namespace TestView
             }
             Task task;
             string name = textBox1.Text;
+            bool active = !checkBoxNotActive.Checked;
             if (id.HasValue) {
                     task = Task.Run(() => ApiClient.PostRequestData("api/Category/UpdElement", new CategoryBindingModel
                     {
                         Id = id.Value,
-                        Name=name
+                        Name=name,
+                        Active = active
                         
                     }));
             } else {
                 task = Task.Run(() => ApiClient.PostRequestData("api/Category/AddElement", new CategoryBindingModel
                 {
-                    Name = name
+                    Name = name,
+                    Active = active
                 }));
             }
             task.ContinueWith((prevTask) => MessageBox.Show("Сохранение прошло успешно. Обновите список", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information),

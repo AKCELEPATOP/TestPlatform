@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using TestModels;
 using TestService.BindingModels;
 using TestService.Interfaces;
@@ -48,24 +49,53 @@ namespace TestService.Implementations
                     };
                     context.Questions.Add(element);
                     await context.SaveChangesAsync();
-                    
-                    foreach(var answer in model.Answers)
+
+                    foreach (var answer in model.Answers)
                     {
                         context.Answers.Add(new Answer
                         {
                             QuestionId = element.Id,
                             Text = answer.Text,
-                            True = answer.True
+                            True = answer.True,
                         });
                     }
                     await context.SaveChangesAsync();
+                    if (model.Attachments != null)
+                    {
+                        foreach (var attachment in model.Attachments)
+                        {
+                            var buffer = Convert.FromBase64String(attachment.Image);
 
+                            HttpPostedFileBase objFile = (HttpPostedFileBase)new MemoryPostedFile(buffer);
+
+                            try
+                            {
+                                if (objFile != null && objFile.ContentLength > 0)
+                                {
+                                    string path = model.ImagesPath + ((string.IsNullOrEmpty(objFile.FileName)) ? string.Format("{0}.{1}.png", element.Id, 1) : objFile.FileName);
+
+                                    objFile.SaveAs(path);
+
+                                    context.Attachments.Add(new Attachment
+                                    {
+                                        Path = path,
+                                        QuestionId = element.Id
+                                    });
+                                    await context.SaveChangesAsync();
+                                }
+                            }
+                            catch
+                            {
+                                throw new Exception("Не удалось добавить изображение");
+                            }
+                        }
+                    }
                     transaction.Commit();
                 }
                 catch (Exception ex)
                 {
                     transaction.Rollback();
-                    throw;
+                    throw ex;
                 }
             }
         }
@@ -80,12 +110,21 @@ namespace TestService.Implementations
                     if (element != null)
                     {
                         context.Answers.RemoveRange(context.Answers.Where(rec => rec.QuestionId == element.Id));
+
+                        var list = await context.Attachments.Where(rec => rec.QuestionId == element.Id).ToListAsync();
+
+                        foreach (var el in list)
+                        {
+                            System.IO.File.Delete(el.Path);
+                        }
+                        context.Attachments.RemoveRange(list);
+
                         context.Questions.Remove(element);
                         await context.SaveChangesAsync();
                     }
                     else
                     {
-                        throw new Exception("Элемент не найден");
+                        throw new Exception("Ошибка удаления");
                     }
                     transaction.Commit();
                 }
@@ -100,34 +139,50 @@ namespace TestService.Implementations
         public async Task<QuestionViewModel> GetElement(int id)
         {
             Question element = await context.Questions.FirstOrDefaultAsync(rec => rec.Id == id);
-            
-                if (element == null)
+
+            if (element == null)
+            {
+                throw new Exception("Элемент не найден");
+            }
+            else
+            {
+                List<AttachmentViewModel> attachments = new List<AttachmentViewModel>();
+
+                var list = await context.Attachments.Where(rec => rec.QuestionId == element.Id).ToListAsync();
+
+                foreach (var el in list)
                 {
-                    throw new Exception("Элемент не найден");
-                }
-                else
-                {
-                    QuestionViewModel result = new QuestionViewModel
+                    byte[] bytes = System.IO.File.ReadAllBytes(el.Path);
+
+                    attachments.Add(new AttachmentViewModel
                     {
-                        Id = element.Id,
-                        Text=element.Text,
-                        Answers = element.Answers.Select(recQ => new AnswerViewModel
-                        {
-                            Id = recQ.Id,
-                            Text=recQ.Text,
-                            True = recQ.True
-                        }).ToList(),
-                        Complexity=element.Complexity,
-                        CategoryName=element.Category.Name,
-                        Active = element.Active,
-                        CategoryId = element.CategoryId,
-                        ComplexityName = element.Complexity.ToString(),
-                        Time = element.Time
-                    };
-                    return result;
+                        Image = Convert.ToBase64String(bytes),
+                        Id = el.Id
+                    });
                 }
 
-            
+                QuestionViewModel result = new QuestionViewModel
+                {
+                    Id = element.Id,
+                    Text = element.Text,
+                    Answers = element.Answers.Select(recQ => new AnswerViewModel
+                    {
+                        Id = recQ.Id,
+                        Text = recQ.Text,
+                        True = recQ.True
+                    }).ToList(),
+                    Complexity = element.Complexity,
+                    CategoryName = element.Category.Name,
+                    Active = element.Active,
+                    CategoryId = element.CategoryId,
+                    ComplexityName = element.Complexity.ToString(),
+                    Time = element.Time,
+                    Images = attachments
+                };
+                return result;
+            }
+
+
         }
 
         public async Task UpdElement(QuestionBindingModel model)
@@ -171,7 +226,7 @@ namespace TestService.Implementations
                     var answers = model.Answers
                         .Where(rec => rec.Id == 0);
 
-                    foreach(var answer in answers)
+                    foreach (var answer in answers)
                     {
                         context.Answers.Add(new Answer
                         {
@@ -181,6 +236,74 @@ namespace TestService.Implementations
                         });
                         await context.SaveChangesAsync();
                     }
+
+                    //обновление приложений
+                    if (model.Attachments != null)
+                    {
+                        var attachIds = model.Attachments.Select(rec => rec.Id).Distinct();
+
+                        var updateAttachments = context.Attachments.Where(rec => rec.QuestionId == model.Id && answersId.Contains(rec.Id));
+
+                        foreach (var updateAttach in updateAttachments)
+                        {
+                            var buffer = Convert.FromBase64String(model.Attachments.FirstOrDefault(rec => rec.Id == updateAttach.Id).Image);
+
+                            HttpPostedFileBase objFile = (HttpPostedFileBase)new MemoryPostedFile(buffer);
+
+                            try
+                            {
+                                if (objFile != null && objFile.ContentLength > 0)
+                                {
+                                    string path = updateAttach.Path;//возможна ошибка
+
+                                    objFile.SaveAs(path);
+
+                                    await context.SaveChangesAsync();
+                                }
+                            }
+                            catch
+                            {
+                                throw new Exception("Не удалось обновить изображение");
+                            }
+                        }
+
+                        context.Attachments.RemoveRange(context.Attachments.Where(rec => rec.QuestionId == model.Id && !attachIds.Contains(rec.Id)));
+
+                        await context.SaveChangesAsync();
+
+                        var attachments = model.Attachments
+                            .Where(rec => rec.Id == 0);
+
+                        foreach (var attach in attachments)
+                        {
+
+                            var buffer = Convert.FromBase64String(attach.Image);
+
+                            HttpPostedFileBase objFile = (HttpPostedFileBase)new MemoryPostedFile(buffer);
+
+                            try
+                            {
+                                if (objFile != null && objFile.ContentLength > 0)
+                                {
+                                    string path = model.ImagesPath + ((string.IsNullOrEmpty(objFile.FileName)) ? string.Format("{0}.{1}.png", element.Id, 1) : objFile.FileName);
+
+                                    objFile.SaveAs(path);
+
+                                    context.Attachments.Add(new Attachment
+                                    {
+                                        Path = path,
+                                        QuestionId = element.Id
+                                    });
+                                    await context.SaveChangesAsync();
+                                }
+                            }
+                            catch
+                            {
+                                throw new Exception("Не удалось добавить изображение");
+                            }
+                            await context.SaveChangesAsync();
+                        }
+                    }
                     transaction.Commit();
                 }
                 catch (Exception)
@@ -189,7 +312,7 @@ namespace TestService.Implementations
                     throw;
                 }
             }
-           
+
         }
     }
 }
