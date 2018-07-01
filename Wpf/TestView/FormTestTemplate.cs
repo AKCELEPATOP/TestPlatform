@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MetroFramework.Forms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,7 +13,7 @@ using TestService.ViewModels;
 
 namespace TestView
 {
-    public partial class FormTestTemplate : Form
+    public partial class FormTestTemplate : MetroForm
     {
         public int Id { set { id = value; } }
 
@@ -29,6 +30,8 @@ namespace TestView
         public FormTestTemplate()
         {
             InitializeComponent();
+            FormBorderStyle = FormBorderStyle.None;
+            this.Style = MetroFramework.MetroColorStyle.Teal;
             Initialize();
         }
         private void Initialize()

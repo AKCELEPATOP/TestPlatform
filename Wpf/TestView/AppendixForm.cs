@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MetroFramework.Forms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,12 +11,14 @@ using System.Windows.Forms;
 
 namespace TestView
 {
-    public partial class AppendixForm : Form
+    public partial class AppendixForm : MetroForm
     {
         public AppendixForm()
         {
             InitializeComponent();
             Initialize();
+            FormBorderStyle = FormBorderStyle.None;
+            this.Style = MetroFramework.MetroColorStyle.Teal;
         }
 
         private void Initialize()

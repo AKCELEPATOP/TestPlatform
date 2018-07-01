@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+﻿using MetroFramework.Forms;
+using System;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TestService.BindingModels;
@@ -12,7 +7,7 @@ using TestService.ViewModels;
 
 namespace TestView
 {
-    public partial class FormCategoryEdit : Form
+    public partial class FormCategoryEdit : MetroForm
     {
         public int Id { set { id = value; } }
 
@@ -21,6 +16,8 @@ namespace TestView
         public FormCategoryEdit()
         {
             InitializeComponent();
+            FormBorderStyle = FormBorderStyle.None;
+            this.Style = MetroFramework.MetroColorStyle.Teal;
             Initialize();
         }
         private void Initialize() {
