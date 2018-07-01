@@ -160,7 +160,8 @@ namespace TestView
             Initialize();
         }
 
-        private async void buttonSetAdmin_Click(object sender, EventArgs e)
+
+        private async void buttonSetAdmin_Click_1(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count == 1)
             {
@@ -171,11 +172,11 @@ namespace TestView
                     MessageBox.Show("Пользователю выданы права админа", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Initialize();
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                
+
                 /*task.ContinueWith((prevTask) =>
                     MessageBox.Show("Пользователю выданы права админа", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information),
                 TaskContinuationOptions.OnlyOnRanToCompletion);
