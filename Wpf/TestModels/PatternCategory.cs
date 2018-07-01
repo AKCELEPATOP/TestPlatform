@@ -14,13 +14,13 @@ namespace TestModels
         public int Id { get; set; }
 
         [DataMember]
-        public double Complex { get; set; }
+        public int Complex { get; set; }
 
         [DataMember]
-        public double Middle { get; set; }
+        public int Middle { get; set; }
 
         [DataMember]
-        public int Count { get; set; }
+        public int Easy { get; set; }
 
         [DataMember]
         public int PatternId { get; set; }

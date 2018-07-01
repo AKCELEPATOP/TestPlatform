@@ -23,13 +23,13 @@ namespace TestService.ViewModels
         public int Count { get; set; }
 
         [DataMember]
-        public double Complex { get; set; }
+        public int Complex { get; set; }
 
         [DataMember]
-        public double Middle { get; set; }
+        public int Middle { get; set; }
 
         [DataMember]
-        public double Easy { get; set; }
+        public int Easy { get; set; }
 
         [DataMember]
         public string CategoryName { get; set; }

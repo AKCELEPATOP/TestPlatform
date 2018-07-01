@@ -45,7 +45,7 @@ namespace TestService.Implementations
                     var groupCategories = model.PatternCategories.GroupBy(rec => rec.CategoryId).Select(rec => new PatternCategoriesBindingModel
                     {
                         CategoryId = rec.Key,
-                        Count = rec.Sum(r => r.Count),
+                        Easy = rec.Select(r => r.Easy).FirstOrDefault(),
                         Copmlex = rec.Select(r => r.Copmlex).FirstOrDefault(),
                         Middle = rec.Select(r => r.Middle).FirstOrDefault()
                     });
@@ -54,7 +54,7 @@ namespace TestService.Implementations
                         context.PatternCategories.Add(new PatternCategory
                         {
                             PatternId = element.Id,
-                            Count = groupCategory.Count,
+                            Easy = groupCategory.Easy,
                             Complex = groupCategory.Copmlex,
                             Middle = groupCategory.Middle,
                             CategoryId = groupCategory.CategoryId
@@ -124,10 +124,10 @@ namespace TestService.Implementations
                     CategoryName = category.Category.Name,
                     Complex = category.Complex,
                     Middle = category.Middle,
-                    Easy = 1 - category.Complex - category.Middle,
+                    Easy = category.Easy,
                     Id = category.Id,
                     PatternId = category.PatternId,
-                    Count = category.Count,
+                    Count = category.Complex + category.Easy + category.Middle,
                     PatternQuestions = questions.Select(rec => new PatternQuestionViewModel
                     {
                         Id = rec.Id,
@@ -191,7 +191,7 @@ namespace TestService.Implementations
                     {
                         updateCategory.Complex = model.PatternCategories.FirstOrDefault(rec => rec.Id == updateCategory.Id).Copmlex;
                         updateCategory.Middle = model.PatternCategories.FirstOrDefault(rec => rec.Id == updateCategory.Id).Middle;
-                        updateCategory.Count = model.PatternCategories.FirstOrDefault(rec => rec.Id == updateCategory.Id).Count;
+                        updateCategory.Easy = model.PatternCategories.FirstOrDefault(rec => rec.Id == updateCategory.Id).Easy;
                     }
                     await context.SaveChangesAsync();
 
@@ -206,7 +206,7 @@ namespace TestService.Implementations
                         .Select(rec => new PatternCategoryViewModel
                         {
                             CategoryId = rec.Key,
-                            Count = rec.Sum(r => r.Count),
+                            Easy = rec.Select(r => r.Easy).FirstOrDefault(),
                             Complex = rec.Select(r => r.Copmlex).FirstOrDefault(),
                             Middle = rec.Select(r => r.Middle).FirstOrDefault()
                         });
@@ -217,7 +217,7 @@ namespace TestService.Implementations
                                                                 rec.CategoryId == groupCategory.CategoryId);
                         if (element != null)
                         {
-                            element.Count += groupCategory.Count;
+                            element.Easy += groupCategory.Easy;
                             element.Complex = groupCategory.Complex;
                             element.Middle = groupCategory.Middle;
                             await context.SaveChangesAsync();
@@ -227,7 +227,7 @@ namespace TestService.Implementations
                             context.PatternCategories.Add(new PatternCategory
                             {
                                 PatternId = model.Id,
-                                Count = groupCategory.Count,
+                                Easy = groupCategory.Easy,
                                 Complex = groupCategory.Complex,
                                 Middle = groupCategory.Middle,
                                 CategoryId = groupCategory.CategoryId,
@@ -290,9 +290,9 @@ namespace TestService.Implementations
                     {
                         CategoryId = rec.CategoryId,
                         Complex = rec.Complex,
-                        Count = rec.Count,
+                        Count = rec.Easy + rec.Complex + rec.Middle,
                         Middle = rec.Middle,
-                        Easy = 1 - rec.Complex - rec.Middle,
+                        Easy = rec.Easy,
                         PatternId = rec.PatternId,
 
                     }).ToList(),
@@ -322,7 +322,7 @@ namespace TestService.Implementations
                     result.Questions.AddRange(list);
                 }
                 //добавление сложных
-                int countComplex = (int)(patternCategory.Complex * patternCategory.Count) - list.Where(rec => rec.Complexity.Equals(QuestionComplexity.Difficult)).Count();
+                int countComplex = patternCategory.Complex - list.Where(rec => rec.Complexity.Equals(QuestionComplexity.Difficult)).Count();
                 result.Questions.AddRange(context.Questions.Where(rec => rec.CategoryId == patternCategory.CategoryId &&
                 rec.Complexity == QuestionComplexity.Difficult && rec.Active).OrderBy(a => Guid.NewGuid())
                     .Take(countComplex).Select(rec => new QuestionViewModel
@@ -336,7 +336,7 @@ namespace TestService.Implementations
                         }).ToList()
                     }));
                 //добавление средних
-                int countMiddle = (int)(patternCategory.Middle * patternCategory.Count) - list.Where(rec => rec.Complexity.Equals(QuestionComplexity.Middle)).Count();
+                int countMiddle = patternCategory.Middle - list.Where(rec => rec.Complexity.Equals(QuestionComplexity.Middle)).Count();
                 result.Questions.AddRange(context.Questions.Where(rec => rec.CategoryId == patternCategory.CategoryId &&
                 rec.Complexity == QuestionComplexity.Middle && rec.Active).OrderBy(a => Guid.NewGuid())
                     .Take(countMiddle).Select(rec => new QuestionViewModel
@@ -351,9 +351,7 @@ namespace TestService.Implementations
                     }));
 
                 //добавление легких
-                int countEasy = (patternCategory.Count - (int)(patternCategory.Complex * patternCategory.Count) -
-                    (int)(patternCategory.Middle * patternCategory.Count)) -
-                    list.Where(rec => rec.Complexity.Equals(QuestionComplexity.Easy)).Count();
+                int countEasy = patternCategory.Easy - list.Where(rec => rec.Complexity.Equals(QuestionComplexity.Easy)).Count();
 
                 result.Questions.AddRange(context.Questions.Where(rec => rec.CategoryId == patternCategory.CategoryId &&
                 rec.Complexity == QuestionComplexity.Easy && rec.Active).OrderBy(a => Guid.NewGuid())
@@ -388,7 +386,7 @@ namespace TestService.Implementations
             });
 
             var questionCount = context.Patterns.FirstOrDefault(rec => rec.Id == model.PatternId)
-                .PatternCategories.Select(rec => rec.Count).DefaultIfEmpty(0).Sum();
+                .PatternCategories.Select(rec => rec.Easy + rec.Complex + rec.Middle).DefaultIfEmpty(0).Sum();
             if (model.QuestionResponses.Count != questionCount)
             {
                 throw new Exception("Не совпадает количество вопросов");
