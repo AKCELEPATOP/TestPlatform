@@ -55,7 +55,7 @@ namespace TestView
 
                     comboBox1.SelectedItem = pattern.UserGroupId;
 
-                    textBoxEasy.Text = pattern.PatternCategories.;
+                    textBoxEasy.Text = pattern.PatternCategories[0].Easy.ToString();
                     textBoxMid.Text = "";
                     textBoxDif.Text = "";
                 }

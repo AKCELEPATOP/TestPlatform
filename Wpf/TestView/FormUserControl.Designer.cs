@@ -170,6 +170,7 @@ namespace TestView
                 this.buttonSetAdmin.Text = "Назначить админом";
                 this.buttonSetAdmin.UseVisualStyleBackColor = true;
                 this.buttonSetAdmin.Click += new System.EventHandler(this.buttonSetAdmin_Click);
+                this.Controls.Add(this.buttonSetAdmin);
             }
                 // 
             // FormUserControl
@@ -177,7 +178,7 @@ namespace TestView
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(511, 606);
-            this.Controls.Add(this.buttonSetAdmin);
+            
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
