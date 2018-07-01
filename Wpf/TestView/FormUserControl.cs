@@ -64,7 +64,7 @@ namespace TestView
             if (dataGridView1.SelectedRows.Count == 1)
             {
                 var form = new FormUserEdit();
-                form.Id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
+                form.Id = Convert.ToString(dataGridView1.SelectedRows[0].Cells[0].Value);
                 if (form.ShowDialog() == DialogResult.OK)
                 {
                     Initialize();

@@ -24,7 +24,7 @@ namespace TestService.BindingModels
         public override string PasswordHash { get; set; }
 
         [DataMember]
-        public int GroupId { get; set; }
+        public int? GroupId { get; set; }
 
         [DataMember]
         public override string Email { get; set; }

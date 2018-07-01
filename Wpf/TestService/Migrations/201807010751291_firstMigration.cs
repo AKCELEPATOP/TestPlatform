@@ -36,6 +36,18 @@ namespace TestService.Migrations
                 .Index(t => t.CategoryId);
             
             CreateTable(
+                "dbo.Attachments",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Path = c.String(),
+                        QuestionId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Questions", t => t.QuestionId, cascadeDelete: true)
+                .Index(t => t.QuestionId);
+            
+            CreateTable(
                 "dbo.Categories",
                 c => new
                     {
@@ -203,6 +215,7 @@ namespace TestService.Migrations
             DropForeignKey("dbo.PatternQuestions", "PatternId", "dbo.Patterns");
             DropForeignKey("dbo.PatternCategories", "PatternId", "dbo.Patterns");
             DropForeignKey("dbo.PatternCategories", "CategoryId", "dbo.Categories");
+            DropForeignKey("dbo.Attachments", "QuestionId", "dbo.Questions");
             DropForeignKey("dbo.Answers", "QuestionId", "dbo.Questions");
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
@@ -218,6 +231,7 @@ namespace TestService.Migrations
             DropIndex("dbo.Patterns", new[] { "UserGroupId" });
             DropIndex("dbo.PatternCategories", new[] { "CategoryId" });
             DropIndex("dbo.PatternCategories", new[] { "PatternId" });
+            DropIndex("dbo.Attachments", new[] { "QuestionId" });
             DropIndex("dbo.Questions", new[] { "CategoryId" });
             DropIndex("dbo.Answers", new[] { "QuestionId" });
             DropTable("dbo.AspNetRoles");
@@ -231,6 +245,7 @@ namespace TestService.Migrations
             DropTable("dbo.Patterns");
             DropTable("dbo.PatternCategories");
             DropTable("dbo.Categories");
+            DropTable("dbo.Attachments");
             DropTable("dbo.Questions");
             DropTable("dbo.Answers");
         }
