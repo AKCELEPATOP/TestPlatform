@@ -65,7 +65,7 @@ namespace TestView
             }
         }
         //сохранить
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_ClickAsync(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(textBoxFIO.Text))
             {
@@ -101,12 +101,13 @@ namespace TestView
             {
                 if (comboBoxGroups.SelectedValue != null)
                 {
+                    int groupId = Convert.ToInt32(comboBoxGroups.SelectedValue);
                     task = Task.Run(() => ApiClient.PostRequestData("api/User/UpdElement", new UserBindingModel
                     {
                         Id = id,
                         UserName = username,
                         Email = mail,
-                        GroupId = Convert.ToInt32(comboBoxGroups.SelectedValue),
+                        GroupId = groupId,
                         FIO = fio,
                         PasswordHash = password
                     }));
@@ -127,11 +128,12 @@ namespace TestView
             {
                 if (comboBoxGroups.SelectedValue != null)
                 {
-                    task = Task.Run(() => ApiClient.PostRequestData("api/User/AddElement", new UserBindingModel
+                    int groupId= Convert.ToInt32(comboBoxGroups.SelectedValue);
+                    task =  Task.Run(() => ApiClient.PostRequestData("api/User/AddElement", new UserBindingModel
                     {
                         UserName = username,
                         Email = mail,
-                        GroupId = Convert.ToInt32(comboBoxGroups.SelectedValue),
+                        GroupId = groupId,
                         FIO = fio,
                         PasswordHash = password
                     }));
