@@ -90,13 +90,9 @@
     <Compile Include="Interfaces\IStatService.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="Interfaces\IQuestion.cs" />
-    <Compile Include="Migrations\201807010751291_firstMigration.cs" />
-    <Compile Include="Migrations\201807010751291_firstMigration.Designer.cs">
-      <DependentUpon>201807010751291_firstMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807011151391_huiMigration.cs" />
-    <Compile Include="Migrations\201807011151391_huiMigration.Designer.cs">
-      <DependentUpon>201807011151391_huiMigration.cs</DependentUpon>
+    <Compile Include="Migrations\201807012053181_huiMigration.cs" />
+    <Compile Include="Migrations\201807012053181_huiMigration.Designer.cs">
+      <DependentUpon>201807012053181_huiMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -128,11 +124,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201807010751291_firstMigration.resx">
-      <DependentUpon>201807010751291_firstMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807011151391_huiMigration.resx">
-      <DependentUpon>201807011151391_huiMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201807012053181_huiMigration.resx">
+      <DependentUpon>201807012053181_huiMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

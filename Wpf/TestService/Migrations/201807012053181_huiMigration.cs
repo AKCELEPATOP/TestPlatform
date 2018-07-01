@@ -3,7 +3,7 @@ namespace TestService.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class firstMigration : DbMigration
+    public partial class huiMigration : DbMigration
     {
         public override void Up()
         {
@@ -62,9 +62,9 @@ namespace TestService.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Complex = c.Double(nullable: false),
-                        Middle = c.Double(nullable: false),
-                        Count = c.Int(nullable: false),
+                        Complex = c.Int(nullable: false),
+                        Middle = c.Int(nullable: false),
+                        Easy = c.Int(nullable: false),
                         PatternId = c.Int(nullable: false),
                         CategoryId = c.Int(nullable: false),
                     })

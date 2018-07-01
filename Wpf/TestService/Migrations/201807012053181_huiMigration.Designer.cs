@@ -7,13 +7,13 @@ namespace TestService.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class firstMigration : IMigrationMetadata
+    public sealed partial class huiMigration : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(firstMigration));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(huiMigration));
         
         string IMigrationMetadata.Id
         {
-            get { return "201807010751291_firstMigration"; }
+            get { return "201807012053181_huiMigration"; }
         }
         
         string IMigrationMetadata.Source

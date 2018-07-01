@@ -334,9 +334,10 @@ namespace TestService.Implementations
                     result.Questions.AddRange(list);
                 }
                 //добавление сложных
+                var questionIds = result.Questions.Select(r => r.Id);
                 int countComplex = patternCategory.Complex - list.Where(rec => rec.Complexity.Equals(QuestionComplexity.Difficult)).Count();
                 result.Questions.AddRange(context.Questions.Where(rec => rec.CategoryId == patternCategory.CategoryId &&
-                rec.Complexity == QuestionComplexity.Difficult && rec.Active).OrderBy(a => Guid.NewGuid())
+                rec.Complexity == QuestionComplexity.Difficult && rec.Active && !questionIds.Contains(rec.Id)).OrderBy(a => Guid.NewGuid())
                     .Take(countComplex).Select(rec => new QuestionViewModel
                     {
                         Id = rec.Id,
@@ -352,7 +353,7 @@ namespace TestService.Implementations
                 //добавление средних
                 int countMiddle = patternCategory.Middle - list.Where(rec => rec.Complexity.Equals(QuestionComplexity.Middle)).Count();
                 result.Questions.AddRange(context.Questions.Where(rec => rec.CategoryId == patternCategory.CategoryId &&
-                rec.Complexity == QuestionComplexity.Middle && rec.Active).OrderBy(a => Guid.NewGuid())
+                rec.Complexity == QuestionComplexity.Middle && rec.Active && !questionIds.Contains(rec.Id)).OrderBy(a => Guid.NewGuid())
                     .Take(countMiddle).Select(rec => new QuestionViewModel
                     {
                         Id = rec.Id,
@@ -370,7 +371,7 @@ namespace TestService.Implementations
                 int countEasy = patternCategory.Easy - list.Where(rec => rec.Complexity.Equals(QuestionComplexity.Easy)).Count();
 
                 result.Questions.AddRange(context.Questions.Where(rec => rec.CategoryId == patternCategory.CategoryId &&
-                rec.Complexity == QuestionComplexity.Easy && rec.Active).OrderBy(a => Guid.NewGuid())
+                rec.Complexity == QuestionComplexity.Easy && rec.Active && !questionIds.Contains(rec.Id)).OrderBy(a => Guid.NewGuid())
                     .Take(countEasy).Select(rec => new QuestionViewModel
                     {
                         Id = rec.Id,
@@ -391,25 +392,25 @@ namespace TestService.Implementations
 
         public async Task<StatViewModel> CheakTest(TestResponseModel model)
         {
-            StatViewModel result = new StatViewModel();
-
-            Task getUserData = Task.Run(() =>
-            {
-                var user = context.Users.Where(rec => rec.Id == model.UserId).Select(rec => new UserViewModel
+                var user = context.Users.Where(rec => rec.Id.Equals(model.UserId)).Select(rec => new UserViewModel
                 {
                     FIO = rec.FIO,
                     Email = rec.Email
                 }).FirstOrDefault();
-                result.UserName = user.FIO;
-                result.Email = user.Email;
-            });
+            if(user == null)
+            {
+                throw new Exception("Данный пользователь не существует");
+            }
+            StatViewModel result = new StatViewModel
+            {
+                UserName = user.FIO,
+                Email = user.Email ?? "",
+                StatCategories = new List<StatCategoryViewModel>()
+            };
 
             var questionCount = context.Patterns.FirstOrDefault(rec => rec.Id == model.PatternId)
                 .PatternCategories.Select(rec => rec.Easy + rec.Complex + rec.Middle).DefaultIfEmpty(0).Sum();
-            if (model.QuestionResponses.Count != questionCount)
-            {
-                throw new Exception("Не совпадает количество вопросов");
-            }
+            
 
             result.StatCategories.AddRange(context.PatternCategories.Where(rec => rec.PatternId == model.PatternId).Include(rec => rec.Category)
                 .Select(rec => new StatCategoryViewModel
@@ -444,6 +445,7 @@ namespace TestService.Implementations
                 {
                     list.Right += (int)question.Complexity;
                 }
+                list.Questions = new List<StatQuestionViewModel>();
                 list.Questions.Add(new StatQuestionViewModel
                 {
                     Text = question.Text,
@@ -463,8 +465,6 @@ namespace TestService.Implementations
                 Total = result.Total
             });
             await context.SaveChangesAsync();
-
-            await getUserData;
             //отправка
             return result;
         }
