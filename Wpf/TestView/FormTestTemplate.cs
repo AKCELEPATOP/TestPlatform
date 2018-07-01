@@ -281,6 +281,10 @@ namespace TestView
             if (dataGridView1.SelectedRows.Count == 1)
             {
                 int Id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
+                if (listPC.Select(rec => rec.CategoryId).Contains(Id))
+                {
+                    return;
+                }
                 if (id.HasValue)
                 {
                     listPC.Add(new PatternCategoryViewModel
@@ -312,6 +316,10 @@ namespace TestView
             {
                 for (int i = 0; i < listC.Count; i++)
                 {
+                    if (listPC.Select(rec => rec.CategoryId).Contains(listC[i].Id))
+                    {
+                        break;
+                    }
                     listPC.Add(new PatternCategoryViewModel
                     {
                         PatternId = id.Value,
@@ -324,8 +332,13 @@ namespace TestView
             }
             else
             {
+
                 for (int i = 0; i < listC.Count; i++)
                 {
+                    if (listPC.Select(rec => rec.CategoryId).Contains(listC[i].Id))
+                    {
+                        break;
+                    }
                     listPC.Add(new PatternCategoryViewModel
                     {
                         CategoryId = listC[i].Id,
@@ -333,6 +346,7 @@ namespace TestView
                     });
                 }
             }
+            source.ResetBindings(false);
         }
         // <
         private void button6_Click(object sender, EventArgs e)
@@ -341,13 +355,14 @@ namespace TestView
             {
                 int Id = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells[0].Value);
                 listPC.Remove(listPC.FirstOrDefault(rec => rec.Id == Id));
-                
+                source.ResetBindings(false);
             }
         }
         // <<
         private void button2_Click(object sender, EventArgs e)
         {
             listPC.Clear();
+            source.ResetBindings(false);
         }
 
         // ПКМ -> Обновить

@@ -16,6 +16,8 @@ namespace TestView
     {
         public List<PatternCategoryViewModel> listPC { get; set; }
         List<QuestionViewModel> listQ;
+
+        private BindingSource source;
         public FormTestTemplateQuestions()
         {
             listPC = new List<PatternCategoryViewModel>();
@@ -44,6 +46,8 @@ namespace TestView
                 dataGridViewTestQuestions.Columns[0].Visible = false;
                 dataGridViewTestQuestions.Columns[1].Visible = false;
                 dataGridViewTestQuestions.Columns[3].Visible = false;
+                dataGridViewTestQuestions.Columns[9].Visible = false;
+                dataGridViewTestQuestions.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
         }
         //>
@@ -117,6 +121,11 @@ namespace TestView
         private void Form_Load(object sender, EventArgs e)
         {
             Initialize();
+        }
+
+        private void dataGridViewCategories_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
