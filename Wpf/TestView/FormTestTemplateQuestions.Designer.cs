@@ -137,7 +137,7 @@
             this.dataGridViewCategories.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewCategories.Size = new System.Drawing.Size(280, 214);
             this.dataGridViewCategories.TabIndex = 17;
-            this.dataGridViewCategories.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCategories_CellContentClick);
+            this.dataGridViewCategories.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCategories_CellContentClick);
             this.dataGridViewCategories.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
             // 
             // buttonCancel

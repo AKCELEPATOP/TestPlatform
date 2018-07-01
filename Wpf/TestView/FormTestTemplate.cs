@@ -105,6 +105,11 @@ namespace TestView
             SaveCategory();
             Task task;
             string name = textBox1.Text;
+
+            List<PatternQuestionsBindingModel> listQuestions = listPC.SelectMany(rec => rec.PatternQuestions).Select(rec => new PatternQuestionsBindingModel
+            {
+                QuestionId = rec.QuestionId
+            }).ToList();
             if (id.HasValue)
             {
                 List<PatternCategoriesBindingModel> bin = new List<PatternCategoriesBindingModel>(listPC.Count);
@@ -120,21 +125,19 @@ namespace TestView
                         Easy = listPC[i].Easy
                     });
                 }
-                if (listQ!=null && listQ.Count != 0)
+                if (listQuestions != null && listQuestions.Count != 0)
                 {
 
-                    for (int i = 0; i < listQ.Count; i++)
+                    for (int i = 0; i < listQuestions.Count; i++)
                     {
-                        listQ[i].PatternId = id.Value;
+                        listQuestions[i].PatternId = id.Value;
                     }
                     task = Task.Run(() => ApiClient.PostRequestData("api/Pattern/UpdElement", new PatternBindingModel
                     {
                         Id = id.Value,
                         Name = name,
                         PatternCategories = bin,
-                        PatternQuestions = listQ
-
-
+                        PatternQuestions = listQuestions
                     }));
                 }
                 else
@@ -144,8 +147,6 @@ namespace TestView
                         Id = id.Value,
                         Name = name,
                         PatternCategories = bin
-
-
                     }));
                 }
             }
@@ -165,13 +166,13 @@ namespace TestView
 
                     });
                 }
-                if (listQ.Count != 0)
+                if (listQuestions != null && listQuestions.Count != 0)
                 {
                     task = Task.Run(() => ApiClient.PostRequestData("api/Pattern/AddElement", new PatternBindingModel
                     {
                         Name = name,
                         PatternCategories = bin,
-                        PatternQuestions = listQ
+                        PatternQuestions = listQuestions
 
                     }));
                 }
@@ -181,7 +182,6 @@ namespace TestView
                     {
                         Name = name,
                         PatternCategories = bin
-
                     }));
                 }
 
@@ -227,6 +227,7 @@ namespace TestView
             if (form.ShowDialog() == DialogResult.OK)
             {
                 Initialize();
+                listPC = form.listPC;
             }
         }
 
