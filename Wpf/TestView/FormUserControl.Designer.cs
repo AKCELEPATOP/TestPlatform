@@ -160,25 +160,23 @@ namespace TestView
             // 
             // buttonSetAdmin
             //
-            if (ApiClient.Role.Equals(ApplicationRoles.SuperAdmin))
-            {
-                this.buttonSetAdmin.Location = new System.Drawing.Point(383, 149);
-                this.buttonSetAdmin.Margin = new System.Windows.Forms.Padding(4);
-                this.buttonSetAdmin.Name = "buttonSetAdmin";
-                this.buttonSetAdmin.Size = new System.Drawing.Size(100, 44);
-                this.buttonSetAdmin.TabIndex = 8;
-                this.buttonSetAdmin.Text = "Назначить админом";
-                this.buttonSetAdmin.UseVisualStyleBackColor = true;
-                this.buttonSetAdmin.Click += new System.EventHandler(this.buttonSetAdmin_Click);
-                this.Controls.Add(this.buttonSetAdmin);
-            }
-                // 
+
+            this.buttonSetAdmin.Location = new System.Drawing.Point(383, 149);
+            this.buttonSetAdmin.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonSetAdmin.Name = "buttonSetAdmin";
+            this.buttonSetAdmin.Size = new System.Drawing.Size(100, 44);
+            this.buttonSetAdmin.TabIndex = 8;
+            this.buttonSetAdmin.Text = "Назначить админом";
+            this.buttonSetAdmin.UseVisualStyleBackColor = true;
+            this.buttonSetAdmin.Click += new System.EventHandler(this.buttonSetAdmin_Click);
+            this.Controls.Add(this.buttonSetAdmin);
+            // 
             // FormUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(511, 606);
-            
+
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);

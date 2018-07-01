@@ -20,6 +20,9 @@ namespace TestService.ViewModels
         public int CategoryId { get; set; }
 
         [DataMember]
+        public string CategoryName { get; set; }
+
+        [DataMember]
         public int Count { get; set; }
 
         [DataMember]
@@ -30,9 +33,6 @@ namespace TestService.ViewModels
 
         [DataMember]
         public int Easy { get; set; }
-
-        [DataMember]
-        public string CategoryName { get; set; }
 
         [DataMember]
         public List<PatternQuestionViewModel> PatternQuestions { get; set; }

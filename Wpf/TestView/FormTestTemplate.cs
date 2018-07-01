@@ -20,10 +20,12 @@ namespace TestView
 
         private int idCat;
 
-        private int check;
         private List<CategoryViewModel> listC;
         private List<PatternCategoryViewModel> listPC;
         public List<PatternQuestionsBindingModel> listQ { get; set; }
+
+        private BindingSource source;
+
         public FormTestTemplate()
         {
             InitializeComponent();
@@ -70,10 +72,17 @@ namespace TestView
             {
                 listPC = new List<PatternCategoryViewModel>();
             }
-            dataGridView2.DataSource = listPC;
+            source = new BindingSource();
+            source.DataSource = listPC;
+            dataGridView2.DataSource = source;
             dataGridView2.Columns[0].Visible = false;
+            dataGridView2.Columns[1].Visible = false;
             dataGridView2.Columns[2].Visible = false;
-            dataGridView2.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridView2.Columns[4].Visible = false;
+            dataGridView2.Columns[5].Visible = false;
+            dataGridView2.Columns[6].Visible = false;
+            dataGridView2.Columns[7].Visible = false;
+            dataGridView2.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
             listC = Task.Run(() => ApiClient.GetRequestData<List<CategoryViewModel>>("api/Category/GetList")).Result;
             if (listC != null)
@@ -200,8 +209,21 @@ namespace TestView
 
         private void button7_Click(object sender, EventArgs e)
         {
+            if (listPC.Count == 0)
+            {
+                MessageBox.Show("Выберите категории", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             var form = new FormTestTemplateQuestions();
-            form.listQ = listQ;
+            foreach(var el in listPC)
+            {
+                form.listPC.Add(new PatternCategoryViewModel
+                {
+                    CategoryId = el.CategoryId,
+                    CategoryName = el.CategoryName,
+                    PatternQuestions = new List<PatternQuestionViewModel>(el.PatternQuestions)
+                });
+            }
             if (form.ShowDialog() == DialogResult.OK)
             {
                 Initialize();
@@ -265,8 +287,9 @@ namespace TestView
                     {
                         PatternId = id.Value,
                         CategoryId = Id,
-                        CategoryName = listC.FirstOrDefault(rec=>rec.Id == Id).Name
-
+                        CategoryName = listC.FirstOrDefault(rec => rec.Id == Id).Name,
+                        PatternQuestions = new List<PatternQuestionViewModel>()
+                        
 
                     });
                 }
@@ -275,9 +298,11 @@ namespace TestView
                     listPC.Add(new PatternCategoryViewModel
                     {
                         CategoryId = Id,
-                        CategoryName = listC.FirstOrDefault(rec => rec.Id == Id).Name
+                        CategoryName = listC.FirstOrDefault(rec => rec.Id == Id).Name,
+                        PatternQuestions = new List<PatternQuestionViewModel>()
                     });
                 }
+                source.ResetBindings(false);
             }
         }
         // >>

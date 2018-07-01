@@ -14,59 +14,69 @@ namespace TestView
 {
     public partial class FormTestTemplateQuestions : Form
     {
-        public List<PatternQuestionsBindingModel> listQ { get; set; }
-        List<QuestionViewModel> listC;
+        public List<PatternCategoryViewModel> listPC { get; set; }
+        List<QuestionViewModel> listQ;
         public FormTestTemplateQuestions()
         {
+            listPC = new List<PatternCategoryViewModel>();
             InitializeComponent();
             Initialize();
         }
         private void Initialize() {
-             listC= Task.Run(() => ApiClient.GetRequestData<List<QuestionViewModel>>("api/Question/GetList")).Result;
-            if (listC != null)
+            listQ = Task.Run(() => ApiClient.GetRequestData<List<QuestionViewModel>>("api/category/GetListQuestions/" + listPC[0].CategoryId)).Result;
+            if (listPC != null)
             {
-                dataGridView1.DataSource = listC;
-                dataGridView1.Columns[0].Visible = false;
-                dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                dataGridViewCategories.DataSource = listPC;
+                dataGridViewCategories.Columns[0].Visible = false;
+                dataGridViewCategories.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
+            if (listPC[0].PatternQuestions != null)
+            {
+                dataGridViewTestQuestions.DataSource = listPC[0].PatternQuestions;
+                dataGridViewTestQuestions.Columns[0].Visible = false;
+                dataGridViewTestQuestions.Columns[1].Visible = false;
+                dataGridViewTestQuestions.Columns[2].Visible = false;
+                dataGridViewTestQuestions.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
             if (listQ != null)
             {
-                dataGridView2.DataSource = listQ;
-                dataGridView2.Columns[0].Visible = false;
-                dataGridView2.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                dataGridViewQuestions.DataSource = listQ;
+                dataGridViewTestQuestions.Columns[0].Visible = false;
+                dataGridViewTestQuestions.Columns[1].Visible = false;
+                dataGridViewTestQuestions.Columns[3].Visible = false;
             }
         }
         //>
         private void button1_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.SelectedRows.Count == 1)
+            if (dataGridViewCategories.SelectedRows.Count == 1)
             {
-                int id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
-                listQ.Add(new PatternQuestionsBindingModel
-                {
-                    QuestionId = id
+                int id = Convert.ToInt32(dataGridViewCategories.SelectedRows[0].Cells[0].Value);
+                //listQ.Add(new PatternQuestionsBindingModel
+                //{
+                //    QuestionId = id
 
 
-                });
+                //});
             }
         }
         //>>
         private void button5_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < listC.Count; i++) {
-                listQ.Add(new PatternQuestionsBindingModel
-                {
-                    QuestionId = listC[i].Id
-                });
-            }
+            //for (int i = 0; i < listC.Count; i++) {
+            //    listQ.Add(new PatternQuestionsBindingModel
+            //    {
+            //        QuestionId = listC[i].Id
+            //    });
+            //}
         }
         //<
         private void button6_Click(object sender, EventArgs e)
         {
 
-            if (dataGridView1.SelectedRows.Count == 1)
+            if (dataGridViewCategories.SelectedRows.Count == 1)
             {
-                int id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
+                int id = Convert.ToInt32(dataGridViewCategories.SelectedRows[0].Cells[0].Value);
                 listQ.RemoveAt(id);
             }
         }
@@ -79,7 +89,7 @@ namespace TestView
         private void button3_Click(object sender, EventArgs e)
         {
             var form = new FormTestTemplate();
-            form.listQ = listQ;
+            //form.listQ = listQ;
             if (form.ShowDialog() == DialogResult.OK)
             {
                 Close();
