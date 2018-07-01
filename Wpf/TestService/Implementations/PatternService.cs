@@ -34,7 +34,12 @@ namespace TestService.Implementations
             {
                 try
                 {
-                    var element = new Pattern
+                    var element = context.Patterns.FirstOrDefault(rec => rec.Name == model.Name);
+                    if (element != null)
+                    {
+                        throw new Exception("Есть шаблон с таким названием");
+                    }
+                    element = new Pattern
                     {
                         Name = model.Name,
                         UserGroupId = model.UserGroupId
@@ -61,20 +66,25 @@ namespace TestService.Implementations
                         });
                     }
 
-                    var groupQuestions = model.PatternQuestions.GroupBy(rec => rec.QuestionId).Select(g => g.First()).ToList();
-
-                    foreach (var groupQuestion in groupQuestions)
-                    {
-                        context.PatternQuestions.Add(new PatternQuestion
-                        {
-                            PatternId = element.Id,
-                            QuestionId = groupQuestion.QuestionId
-                        });
-                    }
                     await context.SaveChangesAsync();
+
+                    if (model.PatternQuestions != null)
+                    {
+                        var groupQuestions = model.PatternQuestions.GroupBy(rec => rec.QuestionId).Select(g => g.First()).ToList();
+
+                        foreach (var groupQuestion in groupQuestions)
+                        {
+                            context.PatternQuestions.Add(new PatternQuestion
+                            {
+                                PatternId = element.Id,
+                                QuestionId = groupQuestion.QuestionId
+                            });
+                        }
+                        await context.SaveChangesAsync();
+                    }
                     transaction.Commit();
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     transaction.Rollback();
                     throw;
@@ -375,7 +385,8 @@ namespace TestService.Implementations
         {
             StatViewModel result = new StatViewModel();
 
-            Task getUserData = Task.Run(() => {
+            Task getUserData = Task.Run(() =>
+            {
                 var user = context.Users.Where(rec => rec.Id == model.UserId).Select(rec => new UserViewModel
                 {
                     FIO = rec.FIO,
@@ -398,7 +409,7 @@ namespace TestService.Implementations
                     CategoryId = rec.CategoryId,
                     CategoryName = rec.Category.Name
                 }));
-            
+
             foreach (var questionResponce in model.QuestionResponses)
             {
                 var question = await context.Questions.Where(rec => rec.Id == questionResponce.QuestionId).Include(rec => rec.Answers).Select(rec => new QuestionViewModel
@@ -423,7 +434,7 @@ namespace TestService.Implementations
                 bool right = CheakAnswers(question.Answers, questionResponce.Answers);
                 if (right)
                 {
-                    list.Right+= (int)question.Complexity;
+                    list.Right += (int)question.Complexity;
                 }
                 list.Questions.Add(new StatQuestionViewModel
                 {
@@ -432,7 +443,7 @@ namespace TestService.Implementations
                 });
             }
 
-            result.Total = result.StatCategories.Select(rec=>rec.Total).DefaultIfEmpty(0).Sum();
+            result.Total = result.StatCategories.Select(rec => rec.Total).DefaultIfEmpty(0).Sum();
             result.Right = result.StatCategories.Select(rec => rec.Right).DefaultIfEmpty(0).Sum();
             result.Mark = (int)((double)result.Right / result.Total * 100);
             context.Stats.Add(new Stat
@@ -550,7 +561,7 @@ namespace TestService.Implementations
         "      </tr>\n" +
         "    </tbody></table></td></tr></tbody></table></div></td></tr></tbody></table></div>\n" +
         "      <div style=\"margin:0px auto;max-width:640px;background:#ffffff\"><table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" style=\"font-size:0px;width:100%;background:#ffffff\" align=\"center\" border=\"0\"><tbody><tr><td style=\"text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:20px 40px 0px\"></td></tr></tbody></table></div>\n" +
-        "      </div>", model.UserName, "Вы только что прошли тест","ссылка на картинку", model.PatternName, model.Mark,"");
+        "      </div>", model.UserName, "Вы только что прошли тест", "ссылка на картинку", model.PatternName, model.Mark, "");
         }
 
         public async Task<List<PatternViewModel>> GetUserList(string id)
@@ -564,13 +575,13 @@ namespace TestService.Implementations
             if (id != -1)
             {
                 return await context.Patterns.Where(rec => rec.UserGroupId == id)
-                    .Where(rec=>!rec.PatternCategories.Select(r=>r.Category).Any(r=>!r.Active)).Select(rec => new PatternViewModel
-                {
-                    Id = rec.Id,
-                    Name = rec.Name,
-                    UserGroupId = rec.UserGroupId.Value,
-                    UserGroupName = rec.UserGroup.Name
-                }).ToListAsync();
+                    .Where(rec => !rec.PatternCategories.Select(r => r.Category).Any(r => !r.Active)).Select(rec => new PatternViewModel
+                    {
+                        Id = rec.Id,
+                        Name = rec.Name,
+                        UserGroupId = rec.UserGroupId.Value,
+                        UserGroupName = rec.UserGroup.Name
+                    }).ToListAsync();
             }
             else
             {
