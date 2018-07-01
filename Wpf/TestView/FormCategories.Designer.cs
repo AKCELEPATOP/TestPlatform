@@ -69,7 +69,7 @@
             this.groupBox1.Controls.Add(this.button7);
             this.groupBox1.Controls.Add(this.dataGridView1);
             this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Location = new System.Drawing.Point(13, 61);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(246, 434);
             this.groupBox1.TabIndex = 1;
@@ -121,7 +121,7 @@
             this.groupBox2.Controls.Add(this.button4);
             this.groupBox2.Controls.Add(this.button3);
             this.groupBox2.Controls.Add(this.dataGridView2);
-            this.groupBox2.Location = new System.Drawing.Point(277, 12);
+            this.groupBox2.Location = new System.Drawing.Point(271, 61);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(516, 405);
             this.groupBox2.TabIndex = 2;
@@ -171,7 +171,7 @@
             // 
             // button10
             // 
-            this.button10.Location = new System.Drawing.Point(712, 423);
+            this.button10.Location = new System.Drawing.Point(712, 483);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(75, 23);
             this.button10.TabIndex = 5;
@@ -198,7 +198,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(805, 459);
+            this.ClientSize = new System.Drawing.Size(805, 518);
             this.Controls.Add(this.button10);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);

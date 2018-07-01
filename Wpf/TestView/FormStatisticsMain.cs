@@ -1,10 +1,6 @@
-﻿using System;
+﻿using MetroFramework.Forms;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TestService.BindingModels;
@@ -12,7 +8,7 @@ using TestService.ViewModels;
 
 namespace TestView
 {
-    public partial class FormStatisticsMain : Form
+    public partial class FormStatisticsMain : MetroForm
     {
         private FormAuthorization parent;
 
@@ -20,6 +16,8 @@ namespace TestView
         {
             this.parent = parent;
             InitializeComponent();
+            FormBorderStyle = FormBorderStyle.None;
+            this.Style = MetroFramework.MetroColorStyle.Teal;
             labelUserName.Text = ApiClient.UserName;
             Initialize();
         }

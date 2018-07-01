@@ -10,10 +10,11 @@ using System.Windows.Forms;
 using TestView;
 using TestService.ViewModels;
 using TestService.BindingModels;
+using MetroFramework.Forms;
 
 namespace TestView
 {
-    public partial class FormMain : Form
+    public partial class FormMain : MetroForm
     {
         public Color colorBack;
         public Color colorFont;
@@ -26,6 +27,8 @@ namespace TestView
         {
             this.parent = parent;
             InitializeComponent();
+            FormBorderStyle = FormBorderStyle.None;
+            this.Style = MetroFramework.MetroColorStyle.Teal;
             Initialize();
         }
 

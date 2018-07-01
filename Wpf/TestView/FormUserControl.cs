@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MetroFramework.Forms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,12 +14,14 @@ using TestService.ViewModels;
 
 namespace TestView
 {
-    public partial class FormUserControl : Form
+    public partial class FormUserControl : MetroForm
     {
 
         public FormUserControl()
         {
             InitializeComponent();
+            FormBorderStyle = FormBorderStyle.None;
+            this.Style = MetroFramework.MetroColorStyle.Teal;
             Initialize();
         }
         private void Initialize() {

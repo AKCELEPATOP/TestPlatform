@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MetroFramework.Forms;
+using System;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -6,11 +7,13 @@ using TestService.BindingModels;
 
 namespace TestView
 {
-    public partial class RegistrationForm : Form
+    public partial class RegistrationForm : MetroForm
     {
         public RegistrationForm()
         {
             InitializeComponent();
+            FormBorderStyle = FormBorderStyle.None;
+            this.Style = MetroFramework.MetroColorStyle.Teal;
         }
         private async void registrate_Click(object sender, EventArgs e)
         {

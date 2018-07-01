@@ -45,7 +45,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(24, 43);
+            this.label1.Location = new System.Drawing.Point(23, 79);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 13);
             this.label1.TabIndex = 0;
@@ -54,7 +54,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(20, 87);
+            this.label2.Location = new System.Drawing.Point(20, 115);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(45, 13);
             this.label2.TabIndex = 1;
@@ -62,7 +62,7 @@
             // 
             // sign_In
             // 
-            this.sign_In.Location = new System.Drawing.Point(96, 129);
+            this.sign_In.Location = new System.Drawing.Point(96, 160);
             this.sign_In.Name = "sign_In";
             this.sign_In.Size = new System.Drawing.Size(90, 23);
             this.sign_In.TabIndex = 2;
@@ -72,7 +72,7 @@
             // 
             // sign_Up
             // 
-            this.sign_Up.Location = new System.Drawing.Point(96, 168);
+            this.sign_Up.Location = new System.Drawing.Point(96, 199);
             this.sign_Up.Name = "sign_Up";
             this.sign_Up.Size = new System.Drawing.Size(90, 23);
             this.sign_Up.TabIndex = 3;
@@ -82,14 +82,14 @@
             // 
             // textBoxLogin
             // 
-            this.textBoxLogin.Location = new System.Drawing.Point(83, 40);
+            this.textBoxLogin.Location = new System.Drawing.Point(83, 76);
             this.textBoxLogin.Name = "textBoxLogin";
             this.textBoxLogin.Size = new System.Drawing.Size(167, 20);
             this.textBoxLogin.TabIndex = 4;
             // 
             // textBoxPassword
             // 
-            this.textBoxPassword.Location = new System.Drawing.Point(83, 84);
+            this.textBoxPassword.Location = new System.Drawing.Point(83, 112);
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.Size = new System.Drawing.Size(167, 20);
             this.textBoxPassword.TabIndex = 5;
@@ -99,7 +99,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(288, 208);
+            this.ClientSize = new System.Drawing.Size(288, 234);
             this.Controls.Add(this.textBoxPassword);
             this.Controls.Add(this.textBoxLogin);
             this.Controls.Add(this.sign_Up);
