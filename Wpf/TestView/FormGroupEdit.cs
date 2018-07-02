@@ -35,17 +35,15 @@ namespace TestView
                 Theme = MetroFramework.MetroThemeStyle.Light;
                 label1.ForeColor = Color.Black;
             }
-            Initialize();
         }
 
-        private void Initialize() {
+        private async void Initialize() {
             if (id.HasValue)
             {
                 try
                 {
-                    var group = Task.Run(() => ApiClient.GetRequestData<GroupViewModel>("api/Group/Get/" + id.Value)).Result;
+                    var group = await ApiClient.GetRequestData<GroupViewModel>("api/Group/Get/" + id.Value);
                     textBox1.Text = group.Name;
-
                 }
                 catch (Exception ex)
                 {
@@ -58,50 +56,43 @@ namespace TestView
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(textBox1.Text))
             {
                 MessageBox.Show("Заполните Название", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            Task task;
-            string name = textBox1.Text;
-            if (id.HasValue)
+            try
             {
-
-
-
-                task = Task.Run(() => ApiClient.PostRequestData("api/Group/UpdElement", new GroupBindingModel
+                string name = textBox1.Text;
+                if (id.HasValue)
                 {
-                    Id = id.Value,
-                    Name = name
+                    await ApiClient.PostRequestData("api/Group/UpdElement", new GroupBindingModel
+                    {
+                        Id = id.Value,
+                        Name = name
 
-                }));
-
-
-            }
-            else
-            {
-                task = Task.Run(() => ApiClient.PostRequestData("api/Group/AddElement", new CategoryBindingModel
+                    });
+                }
+                else
                 {
-                    Name = name
-
-                }));
-
+                    await ApiClient.PostRequestData("api/Group/AddElement", new GroupBindingModel
+                    {
+                        Name = name
+                    });
+                }
+                MessageBox.Show("Сохранение прошло успешно. Обновите список", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DialogResult = DialogResult.OK;
             }
-            task.ContinueWith((prevTask) => MessageBox.Show("Сохранение прошло успешно. Обновите список", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information),
-                TaskContinuationOptions.OnlyOnRanToCompletion);
-            task.ContinueWith((prevTask) =>
+            catch(Exception ex)
             {
-                var ex = (Exception)prevTask.Exception;
                 while (ex.InnerException != null)
                 {
                     ex = ex.InnerException;
                 }
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }, TaskContinuationOptions.OnlyOnFaulted);
-
+            }
             Close();
         }
 

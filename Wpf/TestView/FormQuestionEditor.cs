@@ -131,7 +131,6 @@ namespace TestView
                 MessageBox.Show("Заполните все поля", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            Task task;
             string text = textBox6.Text;
             List<bool> checkBoxes = new List<bool>
             {
