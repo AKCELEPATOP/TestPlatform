@@ -38,8 +38,6 @@
             this.textBoxCurrentUser = new System.Windows.Forms.TextBox();
             this.buttonChangeUser = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.buttonChangeColorFont = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.buttonChangeColorBack = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -114,35 +112,14 @@
             this.label4.TabIndex = 11;
             this.label4.Text = "Текущий пользователь: ";
             // 
-            // buttonChangeColorFont
-            // 
-            this.buttonChangeColorFont.BackColor = System.Drawing.SystemColors.Control;
-            this.buttonChangeColorFont.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonChangeColorFont.Location = new System.Drawing.Point(30, 84);
-            this.buttonChangeColorFont.Name = "buttonChangeColorFont";
-            this.buttonChangeColorFont.Size = new System.Drawing.Size(101, 30);
-            this.buttonChangeColorFont.TabIndex = 14;
-            this.buttonChangeColorFont.Text = "Сменить";
-            this.buttonChangeColorFont.UseVisualStyleBackColor = false;
-            this.buttonChangeColorFont.Click += new System.EventHandler(this.button7_Click);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(19, 68);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(132, 13);
-            this.label5.TabIndex = 15;
-            this.label5.Text = "Настроить цвет шрифта:";
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(19, 19);
+            this.label6.Location = new System.Drawing.Point(35, 19);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(119, 13);
+            this.label6.Size = new System.Drawing.Size(78, 13);
             this.label6.TabIndex = 17;
-            this.label6.Text = "Настроить цвет фона:";
+            this.label6.Text = "Сменить тему";
             // 
             // buttonChangeColorBack
             // 
@@ -152,14 +129,12 @@
             this.buttonChangeColorBack.TabIndex = 16;
             this.buttonChangeColorBack.Text = "Сменить";
             this.buttonChangeColorBack.UseVisualStyleBackColor = true;
-            this.buttonChangeColorBack.Click += new System.EventHandler(this.button8_Click);
+            this.buttonChangeColorBack.Click += new System.EventHandler(this.buttonChangeColorBack_Click);
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.buttonChangeColorBack);
-            this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.buttonChangeColorFont);
             this.groupBox2.Location = new System.Drawing.Point(604, 101);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(162, 124);
@@ -287,8 +262,6 @@
         private System.Windows.Forms.TextBox textBoxCurrentUser;
         private System.Windows.Forms.Button buttonChangeUser;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button buttonChangeColorFont;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button buttonChangeColorBack;
         private System.Windows.Forms.GroupBox groupBox2;
