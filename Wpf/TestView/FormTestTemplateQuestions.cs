@@ -54,7 +54,13 @@ namespace TestView
             {
                 dataGridViewCategories.DataSource = listPC;
                 dataGridViewCategories.Columns[0].Visible = false;
-                dataGridViewCategories.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                dataGridViewCategories.Columns[1].Visible = false;
+                dataGridViewCategories.Columns[2].Visible = false;
+                dataGridViewCategories.Columns[4].Visible = false;
+                dataGridViewCategories.Columns[5].Visible = false;
+                dataGridViewCategories.Columns[6].Visible = false;
+                dataGridViewCategories.Columns[7].Visible = false;
+                dataGridViewCategories.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
             if (listPC[0].PatternQuestions != null)
             {
@@ -72,7 +78,10 @@ namespace TestView
                 dataGridViewQuestions.Columns[0].Visible = false;
                 dataGridViewQuestions.Columns[1].Visible = false;
                 dataGridViewQuestions.Columns[3].Visible = false;
-                dataGridViewQuestions.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                dataGridViewQuestions.Columns[5].Visible = false;
+                dataGridViewQuestions.Columns[7].Visible = false;
+                dataGridViewQuestions.Columns[8].Visible = false;
+                dataGridViewQuestions.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
         }
         //>

@@ -12,7 +12,7 @@ namespace TestView
     public partial class FormStatisticsMain : MetroForm
     {
         private FormAuthorization parent;
-        public static bool DarkTheme { get { return DarkTheme; } set { DarkTheme = false; } }
+        public static bool DarkTheme { get; set; }
 
         public FormStatisticsMain(FormAuthorization parent)
         {
