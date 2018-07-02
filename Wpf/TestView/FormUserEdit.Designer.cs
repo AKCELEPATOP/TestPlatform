@@ -180,7 +180,7 @@
             this.Load += new System.EventHandler(this.FormUserEdit_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
-
+            this.AcceptButton = this.buttonSave;
         }
 
         #endregion

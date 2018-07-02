@@ -84,6 +84,7 @@
             this.Text = "Группа";
             this.ResumeLayout(false);
             this.PerformLayout();
+            this.AcceptButton = this.button1;
 
         }
 

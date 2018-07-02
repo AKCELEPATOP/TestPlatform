@@ -51,5 +51,6 @@ namespace TestView
             textBoxLogin.Text = "";
             textBoxPassword.Text = "";
         }
+
     }
 }

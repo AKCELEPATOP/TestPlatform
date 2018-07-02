@@ -168,6 +168,7 @@
             this.TextAlign = System.Windows.Forms.VisualStyles.HorizontalAlign.Center;
             this.ResumeLayout(false);
             this.PerformLayout();
+            this.AcceptButton = this.registrate;
 
         }
 
