@@ -27,7 +27,7 @@ namespace TestView
             {
                 message += " Неверный формат для ФИО.";
             }
-            if (string.IsNullOrEmpty(mail))
+            if (!string.IsNullOrEmpty(mail))
             {
                 if (!Regex.IsMatch(mail, @"^(?("")(""[^""]+?""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
                 @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-\w]*[0-9a-z]*\.)+[a-z0-9]{2,17}))$"))
