@@ -108,8 +108,8 @@ namespace TestView
                 }
             }
 
-            maskedTextBox1.Mask = "00 / 00";
-            maskedTextBox1.Text = "02/00";
+            maskedTextBox1.Mask = "00 : 00";
+            maskedTextBox1.Text = "02 : 00";
             string[] source = new string[]
             {
             QuestionComplexity.Easy.ToString(), QuestionComplexity.Middle.ToString(), QuestionComplexity.Difficult.ToString()
@@ -148,7 +148,7 @@ namespace TestView
             }
             bool active = !checkBox5.Checked;
 
-            string[] timestr = maskedTextBox1.Text.ToString().Split('.');
+            string[] timestr = maskedTextBox1.Text.ToString().Split(':');
             long time = Convert.ToInt32(timestr[0]) * 60 + Convert.ToInt32(timestr[1]);
             QuestionComplexity complexity = (QuestionComplexity)Enum.Parse(typeof(QuestionComplexity), comboBox1.SelectedItem.ToString(), true);
             List<AnswerBindingModel> answers = new List<AnswerBindingModel>(4);
