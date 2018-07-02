@@ -278,7 +278,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(532, 33);
+            this.label4.Location = new System.Drawing.Point(499, 33);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(129, 13);
             this.label4.TabIndex = 7;
@@ -322,7 +322,7 @@
             // 
             this.labelUserName.AutoSize = true;
             this.labelUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelUserName.Location = new System.Drawing.Point(618, 28);
+            this.labelUserName.Location = new System.Drawing.Point(665, 31);
             this.labelUserName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelUserName.Name = "labelUserName";
             this.labelUserName.Size = new System.Drawing.Size(0, 17);
@@ -343,7 +343,7 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "FormStatisticsMain";
-            this.Padding = new System.Windows.Forms.Padding(15, 49, 15, 16);
+            this.Padding = new System.Windows.Forms.Padding(15, 60, 15, 16);
             this.Text = "Главный экран";
             this.Load += new System.EventHandler(this.Form_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);

@@ -24,6 +24,8 @@ namespace TestView
             InitializeComponent();
             FormBorderStyle = FormBorderStyle.None;
             this.Style = MetroFramework.MetroColorStyle.Teal;
+            ShadowType = MetroFormShadowType.DropShadow;
+
             Initialize();
         }
 
@@ -72,12 +74,12 @@ namespace TestView
 
             maskedTextBox1.Mask = "00 / 00";
             maskedTextBox1.Text = "02/00";
-            List<string> source = new List<string>
+            string[] source = new string[]
             {
             QuestionComplexity.Easy.ToString(), QuestionComplexity.Middle.ToString(), QuestionComplexity.Difficult.ToString()
             };
-            domainUpDown2.Items.AddRange (source);
-            domainUpDown2.Text=QuestionComplexity.Easy.ToString();
+            comboBox1.Items.AddRange (source);
+            comboBox1.Text=QuestionComplexity.Easy.ToString();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -112,7 +114,7 @@ namespace TestView
 
             string[] timestr = maskedTextBox1.Text.ToString().Split('.');
             long time = Convert.ToInt32(timestr[0]) * 60 + Convert.ToInt32(timestr[1]);
-            QuestionComplexity complexity = (QuestionComplexity)Enum.Parse(typeof(QuestionComplexity), domainUpDown2.SelectedItem.ToString(), true);
+            QuestionComplexity complexity = (QuestionComplexity)Enum.Parse(typeof(QuestionComplexity), comboBox1.SelectedItem.ToString(), true);
             List<AnswerBindingModel> answers = new List<AnswerBindingModel>(4);
             for (int i = 0; i < answersString.Count; i++)
             {

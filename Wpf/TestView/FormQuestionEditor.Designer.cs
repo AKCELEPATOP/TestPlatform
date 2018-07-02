@@ -47,12 +47,12 @@
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
-            this.domainUpDown2 = new System.Windows.Forms.DomainUpDown();
             this.button2 = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.checkBox5 = new System.Windows.Forms.CheckBox();
             this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -233,13 +233,6 @@
             this.label8.TabIndex = 9;
             this.label8.Text = "Сложность:";
             // 
-            // domainUpDown2
-            // 
-            this.domainUpDown2.Location = new System.Drawing.Point(221, 117);
-            this.domainUpDown2.Name = "domainUpDown2";
-            this.domainUpDown2.Size = new System.Drawing.Size(77, 20);
-            this.domainUpDown2.TabIndex = 10;
-            // 
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(221, 310);
@@ -286,17 +279,25 @@
             this.maskedTextBox1.Size = new System.Drawing.Size(76, 20);
             this.maskedTextBox1.TabIndex = 16;
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(221, 116);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(108, 21);
+            this.comboBox1.TabIndex = 17;
+            // 
             // FormQuestionEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(701, 363);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.maskedTextBox1);
             this.Controls.Add(this.checkBox5);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.domainUpDown2);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox6);
@@ -336,11 +337,11 @@
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.DomainUpDown domainUpDown2;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.CheckBox checkBox5;
         private System.Windows.Forms.MaskedTextBox maskedTextBox1;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
