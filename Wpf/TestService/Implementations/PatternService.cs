@@ -336,55 +336,61 @@ namespace TestService.Implementations
                 //добавление сложных
                 var questionIds = result.Questions.Select(r => r.Id);
                 int countComplex = patternCategory.Complex - list.Where(rec => rec.Complexity.Equals(QuestionComplexity.Difficult)).Count();
-                result.Questions.AddRange(context.Questions.Where(rec => rec.CategoryId == patternCategory.CategoryId &&
-                rec.Complexity == QuestionComplexity.Difficult && rec.Active && !questionIds.Contains(rec.Id)).OrderBy(a => Guid.NewGuid())
-                    .Take(countComplex).Select(rec => new QuestionViewModel
-                    {
-                        Id = rec.Id,
-                        Time = rec.Time,
-                        Text = rec.Text,
-                        Answers = rec.Answers.Select(r => new AnswerViewModel
+                if (countComplex > 0)
+                {
+                    result.Questions.AddRange(context.Questions.Where(rec => rec.CategoryId == patternCategory.CategoryId &&
+                    rec.Complexity == QuestionComplexity.Difficult && rec.Active && !questionIds.Contains(rec.Id)).OrderBy(a => Guid.NewGuid())
+                        .Take(countComplex).Select(rec => new QuestionViewModel
                         {
-                            Id = r.Id,
-                            Text = r.Text
-                        }).ToList(),
-                        Multi = (rec.Answers.Where(r => r.True).Count() > 1)
-                    }));
+                            Id = rec.Id,
+                            Time = rec.Time,
+                            Text = rec.Text,
+                            Answers = rec.Answers.Select(r => new AnswerViewModel
+                            {
+                                Id = r.Id,
+                                Text = r.Text
+                            }).ToList(),
+                            Multi = (rec.Answers.Where(r => r.True).Count() > 1)
+                        }));
+                }
                 //добавление средних
                 int countMiddle = patternCategory.Middle - list.Where(rec => rec.Complexity.Equals(QuestionComplexity.Middle)).Count();
-                result.Questions.AddRange(context.Questions.Where(rec => rec.CategoryId == patternCategory.CategoryId &&
-                rec.Complexity == QuestionComplexity.Middle && rec.Active && !questionIds.Contains(rec.Id)).OrderBy(a => Guid.NewGuid())
-                    .Take(countMiddle).Select(rec => new QuestionViewModel
-                    {
-                        Id = rec.Id,
-                        Time = rec.Time,
-                        Text = rec.Text,
-                        Answers = rec.Answers.Select(r => new AnswerViewModel
+                if (countMiddle > 0)
+                {
+                    result.Questions.AddRange(context.Questions.Where(rec => rec.CategoryId == patternCategory.CategoryId &&
+                    rec.Complexity == QuestionComplexity.Middle && rec.Active && !questionIds.Contains(rec.Id)).OrderBy(a => Guid.NewGuid())
+                        .Take(countMiddle).Select(rec => new QuestionViewModel
                         {
-                            Id = r.Id,
-                            Text = r.Text
-                        }).ToList(),
-                        Multi = (rec.Answers.Where(r => r.True).Count() > 1)
-                    }));
-
+                            Id = rec.Id,
+                            Time = rec.Time,
+                            Text = rec.Text,
+                            Answers = rec.Answers.Select(r => new AnswerViewModel
+                            {
+                                Id = r.Id,
+                                Text = r.Text
+                            }).ToList(),
+                            Multi = (rec.Answers.Where(r => r.True).Count() > 1)
+                        }));
+                }
                 //добавление легких
                 int countEasy = patternCategory.Easy - list.Where(rec => rec.Complexity.Equals(QuestionComplexity.Easy)).Count();
-
-                result.Questions.AddRange(context.Questions.Where(rec => rec.CategoryId == patternCategory.CategoryId &&
-                rec.Complexity == QuestionComplexity.Easy && rec.Active && !questionIds.Contains(rec.Id)).OrderBy(a => Guid.NewGuid())
-                    .Take(countEasy).Select(rec => new QuestionViewModel
-                    {
-                        Id = rec.Id,
-                        Time = rec.Time,
-                        Text = rec.Text,
-                        Answers = rec.Answers.Select(r => new AnswerViewModel
+                if (countEasy > 0)
+                {
+                    result.Questions.AddRange(context.Questions.Where(rec => rec.CategoryId == patternCategory.CategoryId &&
+                    rec.Complexity == QuestionComplexity.Easy && rec.Active && !questionIds.Contains(rec.Id)).OrderBy(a => Guid.NewGuid())
+                        .Take(countEasy).Select(rec => new QuestionViewModel
                         {
-                            Id = r.Id,
-                            Text = r.Text
-                        }).ToList(),
-                        Multi = (rec.Answers.Where(r => r.True).Count() > 1)
-                    }));
-
+                            Id = rec.Id,
+                            Time = rec.Time,
+                            Text = rec.Text,
+                            Answers = rec.Answers.Select(r => new AnswerViewModel
+                            {
+                                Id = r.Id,
+                                Text = r.Text
+                            }).ToList(),
+                            Multi = (rec.Answers.Where(r => r.True).Count() > 1)
+                        }));
+                }
             }
             result.Time = result.Questions.Select(rec => rec.Time).DefaultIfEmpty(0).Sum();
             return result;
