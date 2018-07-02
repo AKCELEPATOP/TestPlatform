@@ -74,7 +74,11 @@ namespace TestView
                     textBoxFIO.Text = user.FIO;
                     textBoxUserName.Text = user.UserName;
                     textBoxEmail.Text = user.Email;
-                    comboBoxGroups.SelectedValue = user.GroupId ?? null;
+
+
+                    if(user.GroupId !=null) {
+                        comboBoxGroups.SelectedValue = user.GroupId;
+                    }
                 }
                 catch (Exception ex)
                 {
