@@ -15,6 +15,7 @@ namespace TestView
     public partial class FormResultOfTest : MetroForm
     {
         private StatViewModel result;
+        private static int border = 60;
 
         public FormResultOfTest(StatViewModel result)
         {
@@ -27,7 +28,7 @@ namespace TestView
         }
 
         private void Initialize()
-        {  // Переделать или удалить
+        { 
            
                 if (result!=null && result.StatCategories != null)
                 {
@@ -35,7 +36,19 @@ namespace TestView
                     dataGridView1.Columns[0].Visible = false;
                     dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
-            
+
+            labelMark.Text = result.Mark.ToString();
+
+            if (result.Mark>border) {
+                labelResult.Text = "Успешно";
+                labelResult.ForeColor = Color.Green;
+            }
+            else
+            {
+                labelResult.Text = "Провален";
+                labelResult.ForeColor = Color.Red;
+            }
+
         }
 
         private void back_Click(object sender, EventArgs e)

@@ -35,6 +35,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.labelResult = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.labelMark = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -42,11 +43,11 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(36, 65);
+            this.label5.Location = new System.Drawing.Point(65, 70);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(315, 24);
+            this.label5.Size = new System.Drawing.Size(213, 24);
             this.label5.TabIndex = 8;
-            this.label5.Text = "Процент выполнения: #   Время: #";
+            this.label5.Text = "Процент выполнения: ";
             // 
             // back
             // 
@@ -63,18 +64,18 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(258, 138);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(75, 13);
+            this.label4.Size = new System.Drawing.Size(63, 13);
             this.label4.TabIndex = 7;
-            this.label4.Text = "Неправильно";
+            this.label4.Text = "Правильно";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(169, 138);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(63, 13);
+            this.label3.Size = new System.Drawing.Size(56, 13);
             this.label3.TabIndex = 6;
-            this.label3.Text = "Правильно";
+            this.label3.Text = "Вопросов";
             // 
             // label1
             // 
@@ -89,7 +90,7 @@
             // 
             this.labelResult.AutoSize = true;
             this.labelResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelResult.Location = new System.Drawing.Point(94, 100);
+            this.labelResult.Location = new System.Drawing.Point(141, 103);
             this.labelResult.Name = "labelResult";
             this.labelResult.Size = new System.Drawing.Size(210, 26);
             this.labelResult.TabIndex = 11;
@@ -104,11 +105,22 @@
             this.dataGridView1.TabIndex = 12;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
+            // labelMark
+            // 
+            this.labelMark.AutoSize = true;
+            this.labelMark.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelMark.Location = new System.Drawing.Point(284, 70);
+            this.labelMark.Name = "labelMark";
+            this.labelMark.Size = new System.Drawing.Size(20, 24);
+            this.labelMark.TabIndex = 13;
+            this.labelMark.Text = "#";
+            // 
             // FormResultOfTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(397, 523);
+            this.Controls.Add(this.labelMark);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.labelResult);
             this.Controls.Add(this.back);
@@ -133,5 +145,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label labelResult;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label labelMark;
     }
 }
