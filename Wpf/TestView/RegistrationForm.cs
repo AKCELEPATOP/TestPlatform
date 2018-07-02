@@ -35,16 +35,19 @@ namespace TestView
                 if(!Regex.IsMatch(login, @"\w{8,}"))
                 {
                     MessageBox.Show("Логин должен быть не меньше 8 символов", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
 
                 string password = textBoxPassword1.Text;
-                if (!Regex.IsMatch(password, @"[0-9a-z]{5,}"))
+                if (!Regex.IsMatch(password, @"^(?=.*[0-9]$)(?=.*[a-zA-Z])"))
                 {
-                    MessageBox.Show("Пароль должен быть не короче 5 символов", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Пароль должен быть не короче 5 символов, содержать хотя бы одну лат букву в ниж регистре", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
                 if (!password.Equals(textBoxPassword2.Text))
                 {
                     MessageBox.Show("Пароли должны совпадать", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
                 try
                 {
