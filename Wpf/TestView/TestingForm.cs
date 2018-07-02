@@ -1,5 +1,4 @@
-﻿using MetroFramework.Forms;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,7 +12,7 @@ using TestService.ViewModels;
 
 namespace TestView
 {
-    public partial class TestingForm : MetroForm
+    public partial class TestingForm : Form
     {
 
         public int Id { set { id = value; } }
@@ -32,12 +31,12 @@ namespace TestView
         public TestingForm()
         {
             InitializeComponent();
-            FormBorderStyle = FormBorderStyle.None;
-            this.Style = MetroFramework.MetroColorStyle.Teal;
-            ShadowType = MetroFormShadowType.DropShadow;
+ 
+ 
+ 
             if (FormMain.DarkTheme)
             {
-                Theme = MetroFramework.MetroThemeStyle.Dark;
+ 
                 label1.ForeColor = Color.White;
                 labelTime.ForeColor = Color.White;
                 TextBoxQuestion.ForeColor = Color.White;
@@ -54,7 +53,7 @@ namespace TestView
             }
             else
             {
-                Theme = MetroFramework.MetroThemeStyle.Light;
+ 
                 label1.ForeColor = Color.Black;
                 labelTime.ForeColor = Color.Black;
                 TextBoxQuestion.ForeColor = Color.Black;
@@ -117,12 +116,12 @@ namespace TestView
             resultsForm.Show();
         }
 
-        private void Initialize()
+        private async void Initialize()
         {
             try
             {
 
-                model = Task.Run(() => ApiClient.GetRequestData<TestViewModel>("api/Pattern/CreateTest/" + id)).Result;
+                model = await ApiClient.GetRequestData<TestViewModel>("api/Pattern/CreateTest/" + id);
                 if (model != null)
                 {
                     listBoxQuestions.DataSource = model.Questions;

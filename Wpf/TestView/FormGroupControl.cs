@@ -1,4 +1,4 @@
-﻿using MetroFramework.Forms;
+﻿ 
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,22 +12,12 @@ using TestService.ViewModels;
 
 namespace TestView
 {
-    public partial class FormGroupControl : MetroForm
+    public partial class FormGroupControl : Form
     {
         public FormGroupControl()
         {
             InitializeComponent();
-            FormBorderStyle = FormBorderStyle.None;
-            this.Style = MetroFramework.MetroColorStyle.Teal;
-            ShadowType = MetroFormShadowType.DropShadow;
-            if (FormStatisticsMain.DarkTheme)
-            {
-                Theme = MetroFramework.MetroThemeStyle.Dark;             
-            }
-            else
-            {
-                Theme = MetroFramework.MetroThemeStyle.Light;
-            }
+ 
         }
 
         private async void Initialize() {

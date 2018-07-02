@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TestingForm));
             this.TextBoxQuestion = new System.Windows.Forms.Label();
@@ -73,14 +72,12 @@
             this.answerGroupBoxCheckButtons.Controls.Add(this.answer3);
             this.answerGroupBoxCheckButtons.Controls.Add(this.answer2);
             this.answerGroupBoxCheckButtons.Controls.Add(this.answer1);
-            this.answerGroupBoxCheckButtons.Enabled = true;
-            this.answerGroupBoxCheckButtons.Location = new System.Drawing.Point(37, 187);
+            this.answerGroupBoxCheckButtons.Location = new System.Drawing.Point(38, 171);
             this.answerGroupBoxCheckButtons.Name = "answerGroupBoxCheckButtons";
             this.answerGroupBoxCheckButtons.Size = new System.Drawing.Size(708, 165);
             this.answerGroupBoxCheckButtons.TabIndex = 3;
             this.answerGroupBoxCheckButtons.TabStop = false;
             this.answerGroupBoxCheckButtons.Text = "Варианты ответов:";
-            this.answerGroupBoxCheckButtons.Visible = true;
             // 
             // answerGroupBoxRadioButtons
             // 
@@ -183,7 +180,7 @@
             // 
             // nextQuestion
             // 
-            this.nextQuestion.Location = new System.Drawing.Point(323, 372);
+            this.nextQuestion.Location = new System.Drawing.Point(324, 356);
             this.nextQuestion.Name = "nextQuestion";
             this.nextQuestion.Size = new System.Drawing.Size(134, 27);
             this.nextQuestion.TabIndex = 5;
@@ -195,7 +192,7 @@
             // 
             this.questionGroupBox.Controls.Add(this.label1);
             this.questionGroupBox.Controls.Add(this.TextBoxQuestion);
-            this.questionGroupBox.Location = new System.Drawing.Point(37, 70);
+            this.questionGroupBox.Location = new System.Drawing.Point(38, 54);
             this.questionGroupBox.Name = "questionGroupBox";
             this.questionGroupBox.Size = new System.Drawing.Size(708, 111);
             this.questionGroupBox.TabIndex = 6;
@@ -213,7 +210,7 @@
             // 
             // endTest
             // 
-            this.endTest.Location = new System.Drawing.Point(582, 372);
+            this.endTest.Location = new System.Drawing.Point(583, 356);
             this.endTest.Name = "endTest";
             this.endTest.Size = new System.Drawing.Size(134, 27);
             this.endTest.TabIndex = 7;
@@ -224,7 +221,7 @@
             // labelTime
             // 
             this.labelTime.AutoSize = true;
-            this.labelTime.Location = new System.Drawing.Point(320, 30);
+            this.labelTime.Location = new System.Drawing.Point(321, 14);
             this.labelTime.Name = "labelTime";
             this.labelTime.Size = new System.Drawing.Size(43, 13);
             this.labelTime.TabIndex = 8;
@@ -232,7 +229,7 @@
             // 
             // appendixForQestion
             // 
-            this.appendixForQestion.Location = new System.Drawing.Point(79, 371);
+            this.appendixForQestion.Location = new System.Drawing.Point(80, 355);
             this.appendixForQestion.Name = "appendixForQestion";
             this.appendixForQestion.Size = new System.Drawing.Size(134, 28);
             this.appendixForQestion.TabIndex = 9;
@@ -242,9 +239,10 @@
             // 
             // textBoxTime
             // 
-            this.textBoxTime.Location = new System.Drawing.Point(369, 27);
+            this.textBoxTime.Location = new System.Drawing.Point(370, 11);
             this.textBoxTime.Name = "textBoxTime";
-            this.textBoxTime.Size = new System.Drawing.Size(68, 20);
+            this.textBoxTime.ReadOnly = true;
+            this.textBoxTime.Size = new System.Drawing.Size(109, 20);
             this.textBoxTime.TabIndex = 10;
             // 
             // contextMenuStrip1
@@ -266,8 +264,8 @@
             this.listBoxQuestions.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.listBoxQuestions.FormattingEnabled = true;
             this.listBoxQuestions.ItemHeight = 16;
-            this.listBoxQuestions.Location = new System.Drawing.Point(750, 46);
-            this.listBoxQuestions.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listBoxQuestions.Location = new System.Drawing.Point(751, 30);
+            this.listBoxQuestions.Margin = new System.Windows.Forms.Padding(2);
             this.listBoxQuestions.Name = "listBoxQuestions";
             this.listBoxQuestions.Size = new System.Drawing.Size(230, 356);
             this.listBoxQuestions.TabIndex = 11;
@@ -276,9 +274,10 @@
             // 
             // TestingForm
             // 
+            this.AcceptButton = this.nextQuestion;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 413);
+            this.ClientSize = new System.Drawing.Size(984, 397);
             this.Controls.Add(this.listBoxQuestions);
             this.Controls.Add(this.textBoxTime);
             this.Controls.Add(this.appendixForQestion);
@@ -301,7 +300,6 @@
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
-            this.AcceptButton = this.nextQuestion;
 
         }
 

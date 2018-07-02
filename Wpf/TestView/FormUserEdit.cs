@@ -1,5 +1,4 @@
-﻿using MetroFramework.Forms;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,7 +13,7 @@ using TestService.ViewModels;
 
 namespace TestView
 {
-    public partial class FormUserEdit : MetroForm
+    public partial class FormUserEdit : Form
     {
         public string Id { set { id = value; } }
 
@@ -23,12 +22,12 @@ namespace TestView
         public FormUserEdit()
         {
             InitializeComponent();
-            FormBorderStyle = FormBorderStyle.None;
-            this.Style = MetroFramework.MetroColorStyle.Teal;
-            ShadowType = MetroFormShadowType.DropShadow;
+ 
+ 
+ 
             if (FormStatisticsMain.DarkTheme)
             {
-                Theme = MetroFramework.MetroThemeStyle.Dark;
+ 
                 label1.ForeColor = Color.White;
                 label2.ForeColor = Color.White;
                 label3.ForeColor = Color.White;
@@ -37,7 +36,7 @@ namespace TestView
             }
             else
             {
-                Theme = MetroFramework.MetroThemeStyle.Light;
+ 
                 label1.ForeColor = Color.Black;
                 label2.ForeColor = Color.Black;
                 label3.ForeColor = Color.Black;
@@ -46,10 +45,10 @@ namespace TestView
             }
         }
 
-        private void Initialize() {
+        private async void Initialize() {
             try
             {
-                var groups = Task.Run(() => ApiClient.GetRequestData<List<GroupViewModel>>("api/Group/GetList")).Result;
+                var groups = await ApiClient.GetRequestData<List<GroupViewModel>>("api/Group/GetList");
                 comboBoxGroups.DisplayMember = "Name";
                 comboBoxGroups.ValueMember = "Id";
                 comboBoxGroups.DataSource = groups;
@@ -68,14 +67,10 @@ namespace TestView
             {
                 try
                 {
-
-
-                    var user = Task.Run(() => ApiClient.GetRequestData<UserViewModel>("api/User/Get/" + id)).Result;
+                    var user = await ApiClient.GetRequestData<UserViewModel>("api/User/Get/" + id);
                     textBoxFIO.Text = user.FIO;
                     textBoxUserName.Text = user.UserName;
                     textBoxEmail.Text = user.Email;
-
-
                     if(user.GroupId !=null) {
                         comboBoxGroups.SelectedValue = user.GroupId;
                     }

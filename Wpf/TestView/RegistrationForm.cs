@@ -1,5 +1,4 @@
-﻿using MetroFramework.Forms;
-using System;
+﻿using System;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -7,14 +6,14 @@ using TestService.BindingModels;
 
 namespace TestView
 {
-    public partial class RegistrationForm : MetroForm
+    public partial class RegistrationForm : Form
     {
         public RegistrationForm()
         {
             InitializeComponent();
-            FormBorderStyle = FormBorderStyle.None;
-            this.Style = MetroFramework.MetroColorStyle.Teal;
-            ShadowType = MetroFormShadowType.DropShadow;
+ 
+ 
+ 
 
            
         }

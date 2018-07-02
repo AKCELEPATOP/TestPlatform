@@ -51,6 +51,8 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.обновитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SaveToPDF = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.buttonChangeFont = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAvailablePatterns)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPassedTests)).BeginInit();
@@ -64,7 +66,6 @@
             this.dataGridViewAvailablePatterns.Name = "dataGridViewAvailablePatterns";
             this.dataGridViewAvailablePatterns.Size = new System.Drawing.Size(303, 279);
             this.dataGridViewAvailablePatterns.TabIndex = 0;
-            this.dataGridViewAvailablePatterns.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewAvailablePatterns_CellContentClick);
             this.dataGridViewAvailablePatterns.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
             // 
             // label1
@@ -134,11 +135,13 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.buttonChangeFont);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.buttonChangeColorBack);
             this.groupBox2.Location = new System.Drawing.Point(764, 105);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(162, 124);
+            this.groupBox2.Size = new System.Drawing.Size(162, 159);
             this.groupBox2.TabIndex = 18;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Настройка цветов";
@@ -160,7 +163,6 @@
             this.dataGridViewPassedTests.Name = "dataGridViewPassedTests";
             this.dataGridViewPassedTests.Size = new System.Drawing.Size(397, 279);
             this.dataGridViewPassedTests.TabIndex = 23;
-            this.dataGridViewPassedTests.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPassedTests_CellContentClick);
             this.dataGridViewPassedTests.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
             // 
             // label2
@@ -200,7 +202,7 @@
             // 
             // buttonStatistic
             // 
-            this.buttonStatistic.Location = new System.Drawing.Point(781, 254);
+            this.buttonStatistic.Location = new System.Drawing.Point(778, 297);
             this.buttonStatistic.Name = "buttonStatistic";
             this.buttonStatistic.Size = new System.Drawing.Size(134, 28);
             this.buttonStatistic.TabIndex = 28;
@@ -210,6 +212,7 @@
             // 
             // contextMenuStrip1
             // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.обновитьToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
@@ -224,13 +227,32 @@
             // 
             // SaveToPDF
             // 
-            this.SaveToPDF.Location = new System.Drawing.Point(781, 288);
+            this.SaveToPDF.Location = new System.Drawing.Point(778, 331);
             this.SaveToPDF.Name = "SaveToPDF";
             this.SaveToPDF.Size = new System.Drawing.Size(134, 28);
             this.SaveToPDF.TabIndex = 29;
             this.SaveToPDF.Text = "Сохранить PDF";
             this.SaveToPDF.UseVisualStyleBackColor = true;
             this.SaveToPDF.Click += new System.EventHandler(this.buttonSaveToPdf_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(20, 72);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(119, 13);
+            this.label5.TabIndex = 19;
+            this.label5.Text = "Сменить цвет шрифта";
+            // 
+            // buttonChangeFont
+            // 
+            this.buttonChangeFont.Location = new System.Drawing.Point(30, 88);
+            this.buttonChangeFont.Name = "buttonChangeFont";
+            this.buttonChangeFont.Size = new System.Drawing.Size(101, 30);
+            this.buttonChangeFont.TabIndex = 18;
+            this.buttonChangeFont.Text = "Сменить";
+            this.buttonChangeFont.UseVisualStyleBackColor = true;
+            this.buttonChangeFont.Click += new System.EventHandler(this.buttonChangeFont_Click);
             // 
             // FormMain
             // 
@@ -253,6 +275,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridViewAvailablePatterns);
             this.Name = "FormMain";
+            this.Padding = new System.Windows.Forms.Padding(20, 60, 20, 20);
             this.Text = "Главный экран";
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
@@ -287,5 +310,7 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem обновитьToolStripMenuItem;
         private System.Windows.Forms.Button SaveToPDF;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button buttonChangeFont;
     }
 }

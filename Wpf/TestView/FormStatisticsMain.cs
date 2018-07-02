@@ -1,4 +1,4 @@
-﻿using MetroFramework.Forms;
+﻿ 
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -9,18 +9,21 @@ using TestService.ViewModels;
 
 namespace TestView
 {
-    public partial class FormStatisticsMain : MetroForm
+    public partial class FormStatisticsMain : Form
     {
         private FormAuthorization parent;
+        private Color colorBack;
+        private Color colorFont;
+
         public static bool DarkTheme { get; set; }
 
         public FormStatisticsMain(FormAuthorization parent)
         {
             this.parent = parent;
             InitializeComponent();
-            FormBorderStyle = FormBorderStyle.None;
-            this.Style = MetroFramework.MetroColorStyle.Teal;
-            ShadowType = MetroFormShadowType.DropShadow;
+ 
+ 
+ 
             labelUserName.Text = ApiClient.UserName;
             Initialize();
         }
@@ -41,8 +44,8 @@ namespace TestView
                 if (listC != null)
                 {
                     dataGridView2.DataSource = listC;
-                    dataGridView2.Columns[0].Visible = false;
-                    dataGridView2.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    dataGridView2.Columns[6].Visible = false;
+                    dataGridView2.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
             }
             catch (Exception ex)
@@ -144,6 +147,28 @@ namespace TestView
             }
         }
 
+
+        private void buttonChangeColorBack_Click_1(object sender, EventArgs e)
+        {
+            ColorDialog cd = new ColorDialog();
+            if (cd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                colorBack = cd.Color;
+            }
+            this.BackColor = colorBack;
+        }
+
+        private void buttonChangeFont_Click_1(object sender, EventArgs e)
+        {
+            ColorDialog cd = new ColorDialog();
+            if (cd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                colorFont = cd.Color;
+            }
+            this.ForeColor = colorFont;
+        }
+
+
         //сохранить в файл
         private async void button4_Click(object sender, EventArgs e)
         {
@@ -183,41 +208,20 @@ namespace TestView
             Initialize();
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void buttonChangeColorBack_Click(object sender, EventArgs e)
         {
-            if (DarkTheme)
-            {
-                this.Theme = MetroFramework.MetroThemeStyle.Dark;
-                label1.ForeColor = Color.White;
-                label2.ForeColor = Color.White;
-                label4.ForeColor = Color.White;
-                labelUserName.ForeColor = Color.White;
-                groupBox1.ForeColor = Color.White;
-                groupBox2.ForeColor = Color.White;
-                groupBox3.ForeColor = Color.White;
-                groupBox4.ForeColor = Color.White;
-                groupBox5.ForeColor = Color.White;
-                DarkTheme = !DarkTheme;
-            }
-            else
-            {
-                this.Theme = MetroFramework.MetroThemeStyle.Light;
-                label1.ForeColor = Color.Black;
-                label2.ForeColor = Color.Black;
-                label4.ForeColor = Color.Black;
-                labelUserName.ForeColor = Color.Black;
-                groupBox1.ForeColor = Color.Black;
-                groupBox2.ForeColor = Color.Black;
-                groupBox3.ForeColor = Color.Black;
-                groupBox4.ForeColor = Color.Black;
-                groupBox5.ForeColor = Color.Black;
-                DarkTheme = !DarkTheme;
-            }
+
+        }
+        private void buttonChangeFont_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void buttonAdmins_Click(object sender, EventArgs e)
         {
             //сделайте
         }
+
+       
     }
 }
