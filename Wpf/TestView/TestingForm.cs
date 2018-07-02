@@ -235,6 +235,7 @@ namespace TestView
             {
                 GetAnswer();
                 SetNextQuestion();
+                listBoxQuestions.Refresh();
             }
         }
 

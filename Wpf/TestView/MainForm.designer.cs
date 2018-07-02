@@ -174,7 +174,7 @@
             this.groupBox2.Controls.Add(this.buttonChangeColorBack);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.buttonChangeColorFont);
-            this.groupBox2.Location = new System.Drawing.Point(805, 124);
+            this.groupBox2.Location = new System.Drawing.Point(911, 124);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
@@ -185,7 +185,7 @@
             // 
             // buttonExit
             // 
-            this.buttonExit.Location = new System.Drawing.Point(905, 449);
+            this.buttonExit.Location = new System.Drawing.Point(1011, 449);
             this.buttonExit.Margin = new System.Windows.Forms.Padding(4);
             this.buttonExit.Name = "buttonExit";
             this.buttonExit.Size = new System.Drawing.Size(116, 34);
@@ -203,7 +203,7 @@
             this.dataGridViewPassedTests.Name = "dataGridViewPassedTests";
             this.dataGridViewPassedTests.RowHeadersVisible = false;
             this.dataGridViewPassedTests.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewPassedTests.Size = new System.Drawing.Size(309, 343);
+            this.dataGridViewPassedTests.Size = new System.Drawing.Size(448, 343);
             this.dataGridViewPassedTests.TabIndex = 23;
             this.dataGridViewPassedTests.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPassedTests_CellContentClick);
             this.dataGridViewPassedTests.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
@@ -220,7 +220,7 @@
             // 
             // textBoxGroupUser
             // 
-            this.textBoxGroupUser.Location = new System.Drawing.Point(856, 42);
+            this.textBoxGroupUser.Location = new System.Drawing.Point(962, 42);
             this.textBoxGroupUser.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxGroupUser.Name = "textBoxGroupUser";
             this.textBoxGroupUser.ReadOnly = true;
@@ -230,7 +230,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(788, 46);
+            this.label3.Location = new System.Drawing.Point(894, 46);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(59, 17);
@@ -249,7 +249,7 @@
             // 
             // buttonStatistic
             // 
-            this.buttonStatistic.Location = new System.Drawing.Point(828, 308);
+            this.buttonStatistic.Location = new System.Drawing.Point(934, 308);
             this.buttonStatistic.Margin = new System.Windows.Forms.Padding(4);
             this.buttonStatistic.Name = "buttonStatistic";
             this.buttonStatistic.Size = new System.Drawing.Size(179, 34);
@@ -275,7 +275,7 @@
             // 
             // buttonSaveToPdf
             // 
-            this.buttonSaveToPdf.Location = new System.Drawing.Point(828, 370);
+            this.buttonSaveToPdf.Location = new System.Drawing.Point(934, 370);
             this.buttonSaveToPdf.Name = "buttonSaveToPdf";
             this.buttonSaveToPdf.Size = new System.Drawing.Size(179, 33);
             this.buttonSaveToPdf.TabIndex = 29;
@@ -287,7 +287,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1041, 532);
+            this.ClientSize = new System.Drawing.Size(1151, 532);
             this.Controls.Add(this.buttonSaveToPdf);
             this.Controls.Add(this.buttonStatistic);
             this.Controls.Add(this.buttonResultOfTest);

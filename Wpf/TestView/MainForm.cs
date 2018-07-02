@@ -57,9 +57,11 @@ namespace TestView
                 if (listС != null)
                 {
                     dataGridViewPassedTests.DataSource = listС;
-                    dataGridViewPassedTests.Columns[1].Visible = false;
-                //    dataGridViewPassedTests.Columns[2].Visible = false;
-                    dataGridViewPassedTests.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    dataGridViewPassedTests.Columns[4].Visible = false;
+                    dataGridViewPassedTests.Columns[5].Visible = false;
+                    dataGridViewPassedTests.Columns[6].Visible = false;
+                    //    dataGridViewPassedTests.Columns[2].Visible = false;
+                    //dataGridViewPassedTests.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
             }
                      
