@@ -19,9 +19,10 @@ namespace TestView
 
         private int? id;
 
-        private int idCat;
+        private PatternCategoryViewModel current;
 
         private List<CategoryViewModel> listC;
+
         private List<PatternCategoryViewModel> listPC;
 
         private BindingSource source;
@@ -58,12 +59,10 @@ namespace TestView
                 label8.ForeColor = Color.Black;
                 groupBox1.ForeColor = Color.Black;
             }
-            Initialize();
         }
-        private void Initialize()
+        private async void Initialize()
         {
-            List<GroupViewModel> list =
-                    Task.Run(() => ApiClient.GetRequestData<List<GroupViewModel>>("api/Group/GetList")).Result;
+            List<GroupViewModel> list = await ApiClient.GetRequestData<List<GroupViewModel>>("api/Group/GetList");
             if (list != null)
             {
                 comboBox1.DataSource = list;
@@ -75,7 +74,7 @@ namespace TestView
             {
                 try
                 {
-                    var pattern = Task.Run(() => ApiClient.GetRequestData<PatternViewModel>("api/Pattern/Get/" + id.Value)).Result;
+                    var pattern = await ApiClient.GetRequestData<PatternViewModel>("api/Pattern/Get/" + id.Value);
                     textBox1.Text = pattern.Name;
                     listPC = pattern.PatternCategories;
                     comboBox1.SelectedItem = pattern.UserGroupId;
@@ -101,8 +100,10 @@ namespace TestView
             {
                 listPC = new List<PatternCategoryViewModel>();
             }
-            source = new BindingSource();
-            source.DataSource = listPC;
+            source = new BindingSource
+            {
+                DataSource = listPC
+            };
             dataGridView2.DataSource = source;
             dataGridView2.Columns[0].Visible = false;
             dataGridView2.Columns[1].Visible = false;
@@ -113,13 +114,12 @@ namespace TestView
             dataGridView2.Columns[7].Visible = false;
             dataGridView2.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
-            listC = Task.Run(() => ApiClient.GetRequestData<List<CategoryViewModel>>("api/Category/GetList")).Result;
+            listC = await ApiClient.GetRequestData<List<CategoryViewModel>>("api/Category/GetList");
             if (listC != null)
             {
                 dataGridView1.DataSource = listC;
                 dataGridView1.Columns[0].Visible = false;
                 dataGridView1.Columns[2].Visible = false;
-
                 dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
         }
@@ -132,7 +132,6 @@ namespace TestView
                 return;
             }
             SaveCategory();
-            Task task;
             string name = textBox1.Text;
 
             List<PatternQuestionsBindingModel> listQuestions = listPC.SelectMany(rec => rec.PatternQuestions)
@@ -164,22 +163,22 @@ namespace TestView
                         {
                             listQuestions[i].PatternId = id.Value;
                         }
-                        task = Task.Run(() => ApiClient.PostRequestData("api/Pattern/UpdElement", new PatternBindingModel
+                        await ApiClient.PostRequestData("api/Pattern/UpdElement", new PatternBindingModel
                         {
                             Id = id.Value,
                             Name = name,
                             PatternCategories = bin,
                             PatternQuestions = listQuestions
-                        }));
+                        });
                     }
                     else
                     {
-                        task = Task.Run(() => ApiClient.PostRequestData("api/Pattern/UpdElement", new PatternBindingModel
+                        await ApiClient.PostRequestData("api/Pattern/UpdElement", new PatternBindingModel
                         {
                             Id = id.Value,
                             Name = name,
                             PatternCategories = bin
-                        }));
+                        });
                     }
                 }
                 else
@@ -200,25 +199,24 @@ namespace TestView
                     }
                     if (listQuestions != null && listQuestions.Count != 0)
                     {
-                        task = Task.Run(() => ApiClient.PostRequestData("api/Pattern/AddElement", new PatternBindingModel
+                        await ApiClient.PostRequestData("api/Pattern/AddElement", new PatternBindingModel
                         {
                             Name = name,
                             PatternCategories = bin,
                             PatternQuestions = listQuestions
 
-                        }));
+                        });
                     }
                     else
                     {
-                        task = Task.Run(() => ApiClient.PostRequestData("api/Pattern/AddElement", new PatternBindingModel
+                        await ApiClient.PostRequestData("api/Pattern/AddElement", new PatternBindingModel
                         {
                             Name = name,
                             PatternCategories = bin
-                        }));
+                        });
                     }
 
                 }
-                await task;
                 MessageBox.Show("Сохранение прошло успешно. Обновите список", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch(Exception ex)
@@ -270,13 +268,16 @@ namespace TestView
         {
             if (dataGridView2.SelectedRows.Count == 1)
             {
-                idCat = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells[2].Value);
-                textBoxEasy.Text = listPC.FirstOrDefault(rec => rec.CategoryId == idCat).Easy.ToString();
-                textBoxMid.Text = listPC.FirstOrDefault(rec => rec.CategoryId == idCat).Middle.ToString();
-                textBoxDif.Text = listPC.FirstOrDefault(rec => rec.CategoryId == idCat).Complex.ToString();
-                textBoxCount.Text = listPC.FirstOrDefault(rec => rec.CategoryId == idCat).Count.ToString();
+                if (current != null)
+                {
+                    SaveCategory();
+                }
 
-
+                current = listPC.FirstOrDefault(rec=>rec.CategoryId == Convert.ToInt32(dataGridView2.SelectedRows[0].Cells[2].Value));
+                textBoxEasy.Text = current.Easy.ToString();
+                textBoxMid.Text = current.Middle.ToString();
+                textBoxDif.Text = current.Complex.ToString();
+                textBoxCount.Text = current.Count.ToString();
             }
         }
 
@@ -416,10 +417,6 @@ namespace TestView
         }
 
         //Сохранить категорию в шаблон 
-        private void button8_Click(object sender, EventArgs e)
-        {
-            SaveCategory();
-        }
 
         private void SaveCategory()
         {
@@ -432,13 +429,12 @@ namespace TestView
                     return;
 
                 }
-                var element = listPC.FirstOrDefault(rec => rec.CategoryId == Convert.ToInt32(dataGridView2.SelectedRows[0].Cells[2].Value));
-                if (element != null)
+                if (current != null)
                 {
-                    element.Count = count;
-                    element.Easy = Convert.ToInt32(textBoxEasy.Text);
-                    element.Middle = Convert.ToInt32(textBoxMid.Text);
-                    element.Complex = Convert.ToInt32(textBoxDif.Text);
+                    current.Count = count;
+                    current.Easy = Convert.ToInt32(textBoxEasy.Text);
+                    current.Middle = Convert.ToInt32(textBoxMid.Text);
+                    current.Complex = Convert.ToInt32(textBoxDif.Text);
                 }
             }
         }

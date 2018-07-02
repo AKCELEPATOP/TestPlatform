@@ -24,12 +24,11 @@ namespace TestView
             labelUserName.Text = ApiClient.UserName;
             Initialize();
         }
-        private void Initialize()
+        private async void Initialize()
         {
             try
             {
-                List<PatternViewModel> list =
-                    Task.Run(() => ApiClient.GetRequestData<List<PatternViewModel>>("api/Pattern/GetList")).Result;
+                List<PatternViewModel> list = await ApiClient.GetRequestData<List<PatternViewModel>>("api/Pattern/GetList");
                 if (list != null)
                 {
                     dataGridView1.DataSource = list;
@@ -38,12 +37,7 @@ namespace TestView
                     dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                     dataGridView1.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
-                List<StatViewModel> listC =
-                    Task.Run(() => ApiClient.PostRequestData<GetListModel, List<StatViewModel>>("api/Stat/GetList", new GetListModel
-                    {
-                        Skip = 0,
-                        Take = 20
-                    })).Result;
+                List<StatViewModel> listC = await ApiClient.PostRequestData<GetListModel, List<StatViewModel>>("api/Stat/GetList", new GetListModel{});
                 if (listC != null)
                 {
                     dataGridView2.DataSource = listC;
@@ -84,30 +78,28 @@ namespace TestView
             }
         }
         //удалить шаблон
-        private void button9_Click(object sender, EventArgs e)
+        private async void button9_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count == 1)
             {
                 if (MessageBox.Show("Удалить запись", "Вопрос", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     int id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
-
-                    Task task = Task.Run(() => ApiClient.PostRequest("api/Pattern/DelElement/" + id));
-                    task.ContinueWith((prevTask) => MessageBox.Show("Запись удалена. Обновите список", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information),
-                TaskContinuationOptions.OnlyOnRanToCompletion);
-
-                    task.ContinueWith((prevTask) =>
+                    try
                     {
-                        var ex = (Exception)prevTask.Exception;
+                        await ApiClient.PostRequest("api/Pattern/DelElement/" + id);
+                        MessageBox.Show("Запись удалена. Обновите список", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Initialize();
+                    }
+                    catch(Exception ex)
+                    {
                         while (ex.InnerException != null)
                         {
                             ex = ex.InnerException;
                         }
                         MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }, TaskContinuationOptions.OnlyOnFaulted);
+                    }
                 }
-
-                Initialize();
             }
         }
 
@@ -223,11 +215,9 @@ namespace TestView
             }
         }
 
-        private void button6_Click(object sender, EventArgs e)
+        private void buttonAdmins_Click(object sender, EventArgs e)
         {
-
+            //сделайте
         }
-
-      
     }
 }

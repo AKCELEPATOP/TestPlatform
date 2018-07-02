@@ -28,14 +28,12 @@ namespace TestView
             {
                 Theme = MetroFramework.MetroThemeStyle.Light;
             }
-            Initialize();
         }
 
-        private void Initialize() {
+        private async void Initialize() {
             try
             {
-                List<GroupViewModel> list =
-                    Task.Run(() => ApiClient.GetRequestData<List<GroupViewModel>>("api/Group/GetList")).Result;
+                List<GroupViewModel> list = await ApiClient.GetRequestData<List<GroupViewModel>>("api/Group/GetList");
                 if (list != null)
                 {
                     dataGridView1.DataSource = list;
@@ -85,30 +83,28 @@ namespace TestView
             Initialize();
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private async void button5_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count == 1)
             {
                 if (MessageBox.Show("Удалить запись", "Вопрос", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     int id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
-
-                    Task task = Task.Run(() => ApiClient.PostRequest("api/Group/DelElement/" + id));
-                    task.ContinueWith((prevTask) => MessageBox.Show("Запись удалена. Обновите список", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information),
-                TaskContinuationOptions.OnlyOnRanToCompletion);
-
-                    task.ContinueWith((prevTask) =>
+                    try
                     {
-                        var ex = (Exception)prevTask.Exception;
+                        await ApiClient.PostRequest("api/Group/DelElement/" + id);
+                        MessageBox.Show("Запись удалена. Обновите список", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Initialize();
+                    }
+                    catch(Exception ex)
+                    {
                         while (ex.InnerException != null)
                         {
                             ex = ex.InnerException;
                         }
                         MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }, TaskContinuationOptions.OnlyOnFaulted);
+                    }
                 }
-
-                Initialize();
             }
         }
 
