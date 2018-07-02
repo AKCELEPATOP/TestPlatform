@@ -34,12 +34,14 @@ namespace TestView
                 {
                     dataGridView1.DataSource = result.StatCategories;
                     dataGridView1.Columns[0].Visible = false;
+                    dataGridView1.Columns[1].HeaderText = "Максимум баллов";
+                    dataGridView1.Columns[2].HeaderText = "Набранные баллы";
+                    dataGridView1.Columns[3].HeaderText = "Категории теста";
                     dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
 
             labelMark.Text = result.Mark.ToString();
-            label2.Text = result.Total.ToString();
-            label6.Text = result.Mark.ToString();
+          
             if (result.Mark>border) {
                 labelResult.Text = "Успешно";
                 labelResult.ForeColor = Color.Green;
