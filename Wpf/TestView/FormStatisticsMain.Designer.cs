@@ -48,16 +48,16 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.buttonChangeFont = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.buttonChangeColorBack = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.button7 = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.обновитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.labelUserName = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.buttonChangeFont = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
-            this.buttonChangeColorBack = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPatternStat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -78,9 +78,9 @@
             this.groupBox1.Controls.Add(this.dataGridView1);
             this.groupBox1.Controls.Add(this.button3);
             this.groupBox1.Location = new System.Drawing.Point(15, 49);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(783, 255);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
@@ -102,7 +102,7 @@
             this.dataGridViewPatternStat.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewPatternStat.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridViewPatternStat.Location = new System.Drawing.Point(448, 25);
-            this.dataGridViewPatternStat.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridViewPatternStat.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridViewPatternStat.MultiSelect = false;
             this.dataGridViewPatternStat.Name = "dataGridViewPatternStat";
             this.dataGridViewPatternStat.RowHeadersVisible = false;
@@ -115,7 +115,7 @@
             // button10
             // 
             this.button10.Location = new System.Drawing.Point(260, 222);
-            this.button10.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button10.Margin = new System.Windows.Forms.Padding(4);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(237, 26);
             this.button10.TabIndex = 3;
@@ -126,7 +126,7 @@
             // button9
             // 
             this.button9.Location = new System.Drawing.Point(505, 222);
-            this.button9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button9.Margin = new System.Windows.Forms.Padding(4);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(237, 26);
             this.button9.TabIndex = 2;
@@ -141,7 +141,7 @@
             this.dataGridView1.ColumnHeadersVisible = false;
             this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridView1.Location = new System.Drawing.Point(15, 25);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
@@ -153,7 +153,7 @@
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(15, 222);
-            this.button3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button3.Margin = new System.Windows.Forms.Padding(4);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(237, 26);
             this.button3.TabIndex = 1;
@@ -165,9 +165,9 @@
             // 
             this.groupBox2.Controls.Add(this.dataGridView2);
             this.groupBox2.Location = new System.Drawing.Point(15, 311);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox2.Size = new System.Drawing.Size(783, 326);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
@@ -179,7 +179,7 @@
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridView2.Location = new System.Drawing.Point(15, 23);
-            this.dataGridView2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView2.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersVisible = false;
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -193,9 +193,9 @@
             this.groupBox3.Controls.Add(this.button8);
             this.groupBox3.Controls.Add(this.button2);
             this.groupBox3.Location = new System.Drawing.Point(821, 90);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox3.Size = new System.Drawing.Size(300, 207);
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
@@ -204,7 +204,7 @@
             // buttonAdmins
             // 
             this.buttonAdmins.Location = new System.Drawing.Point(35, 123);
-            this.buttonAdmins.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonAdmins.Margin = new System.Windows.Forms.Padding(4);
             this.buttonAdmins.Name = "buttonAdmins";
             this.buttonAdmins.Size = new System.Drawing.Size(237, 44);
             this.buttonAdmins.TabIndex = 4;
@@ -215,7 +215,7 @@
             // button8
             // 
             this.button8.Location = new System.Drawing.Point(35, 71);
-            this.button8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button8.Margin = new System.Windows.Forms.Padding(4);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(237, 44);
             this.button8.TabIndex = 3;
@@ -226,7 +226,7 @@
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(35, 25);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(237, 39);
             this.button2.TabIndex = 0;
@@ -237,7 +237,7 @@
             // button4
             // 
             this.button4.Location = new System.Drawing.Point(35, 23);
-            this.button4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button4.Margin = new System.Windows.Forms.Padding(4);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(237, 34);
             this.button4.TabIndex = 2;
@@ -248,7 +248,7 @@
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(893, 592);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(141, 46);
             this.button1.TabIndex = 5;
@@ -262,13 +262,51 @@
             this.groupBox4.Controls.Add(this.buttonChangeFont);
             this.groupBox4.Controls.Add(this.label6);
             this.groupBox4.Controls.Add(this.buttonChangeColorBack);
-            this.groupBox4.Location = new System.Drawing.Point(619, 322);
+            this.groupBox4.Location = new System.Drawing.Point(821, 388);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox4.Size = new System.Drawing.Size(300, 188);
             this.groupBox4.TabIndex = 6;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Настройка цветов";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(46, 74);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(155, 17);
+            this.label5.TabIndex = 23;
+            this.label5.Text = "Сменить цвет шрифта";
+            // 
+            // buttonChangeFont
+            // 
+            this.buttonChangeFont.Location = new System.Drawing.Point(56, 90);
+            this.buttonChangeFont.Name = "buttonChangeFont";
+            this.buttonChangeFont.Size = new System.Drawing.Size(101, 30);
+            this.buttonChangeFont.TabIndex = 22;
+            this.buttonChangeFont.Text = "Сменить";
+            this.buttonChangeFont.UseVisualStyleBackColor = true;
+            this.buttonChangeFont.Click += new System.EventHandler(this.buttonChangeFont_Click_1);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(61, 21);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(99, 17);
+            this.label6.TabIndex = 21;
+            this.label6.Text = "Сменить тему";
+            // 
+            // buttonChangeColorBack
+            // 
+            this.buttonChangeColorBack.Location = new System.Drawing.Point(56, 37);
+            this.buttonChangeColorBack.Name = "buttonChangeColorBack";
+            this.buttonChangeColorBack.Size = new System.Drawing.Size(101, 30);
+            this.buttonChangeColorBack.TabIndex = 20;
+            this.buttonChangeColorBack.Text = "Сменить";
+            this.buttonChangeColorBack.UseVisualStyleBackColor = true;
+            this.buttonChangeColorBack.Click += new System.EventHandler(this.buttonChangeColorBack_Click_1);
             // 
             // label4
             // 
@@ -283,7 +321,7 @@
             // button7
             // 
             this.button7.Location = new System.Drawing.Point(1029, 11);
-            this.button7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button7.Margin = new System.Windows.Forms.Padding(4);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(84, 28);
             this.button7.TabIndex = 9;
@@ -295,9 +333,9 @@
             // 
             this.groupBox5.Controls.Add(this.button4);
             this.groupBox5.Location = new System.Drawing.Point(825, 311);
-            this.groupBox5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox5.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox5.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox5.Size = new System.Drawing.Size(300, 70);
             this.groupBox5.TabIndex = 10;
             this.groupBox5.TabStop = false;
@@ -327,44 +365,6 @@
             this.labelUserName.Size = new System.Drawing.Size(0, 20);
             this.labelUserName.TabIndex = 11;
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(46, 74);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(119, 13);
-            this.label5.TabIndex = 23;
-            this.label5.Text = "Сменить цвет шрифта";
-            // 
-            // buttonChangeFont
-            // 
-            this.buttonChangeFont.Location = new System.Drawing.Point(56, 90);
-            this.buttonChangeFont.Name = "buttonChangeFont";
-            this.buttonChangeFont.Size = new System.Drawing.Size(101, 30);
-            this.buttonChangeFont.TabIndex = 22;
-            this.buttonChangeFont.Text = "Сменить";
-            this.buttonChangeFont.UseVisualStyleBackColor = true;
-            this.buttonChangeFont.Click += new System.EventHandler(this.buttonChangeFont_Click_1);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(61, 21);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(78, 13);
-            this.label6.TabIndex = 21;
-            this.label6.Text = "Сменить тему";
-            // 
-            // buttonChangeColorBack
-            // 
-            this.buttonChangeColorBack.Location = new System.Drawing.Point(56, 37);
-            this.buttonChangeColorBack.Name = "buttonChangeColorBack";
-            this.buttonChangeColorBack.Size = new System.Drawing.Size(101, 30);
-            this.buttonChangeColorBack.TabIndex = 20;
-            this.buttonChangeColorBack.Text = "Сменить";
-            this.buttonChangeColorBack.UseVisualStyleBackColor = true;
-            this.buttonChangeColorBack.Click += new System.EventHandler(this.buttonChangeColorBack_Click_1);
-            // 
             // FormStatisticsMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -379,7 +379,7 @@
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormStatisticsMain";
             this.Padding = new System.Windows.Forms.Padding(20, 74, 20, 20);
             this.Text = "Главный экран";
