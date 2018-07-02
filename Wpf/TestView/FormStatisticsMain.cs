@@ -17,13 +17,10 @@ namespace TestView
 
         public static bool DarkTheme { get; set; }
 
-        private BindingSource sourcePS;
-
         public FormStatisticsMain(FormAuthorization parent)
         {
             this.parent = parent;
             InitializeComponent();
-            sourcePS = new BindingSource();
             labelUserName.Text = ApiClient.UserName;
             Initialize();
         }
@@ -44,7 +41,6 @@ namespace TestView
                     {
                         dataGridView1.Rows[0].Selected = true;
                         List<StatViewModel> listPS = await ApiClient.GetRequestData<List<StatViewModel>>("api/Stat/GetPatternList/" + list[0].Id);
-                        sourcePS.DataSource = listPS;
                         dataGridViewPatternStat.DataSource = listPS;
                         dataGridViewPatternStat.Columns[0].Visible = false;
                         dataGridViewPatternStat.Columns[6].Visible = false;
@@ -235,16 +231,16 @@ namespace TestView
             //сделайте
         }
 
-        private async void dataGridViewPatternStat_CellClick(object sender, DataGridViewCellEventArgs e)
+        private async void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dataGridView1.SelectedRows.Count == 1)
             {
                 try
                 {
                     List<StatViewModel> listPS = await ApiClient.GetRequestData<List<StatViewModel>>("api/Stat/GetPatternList/" + Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value));
-                    sourcePS.DataSource = listPS;
-                    sourcePS.ResetBindings(false);
-                }catch(Exception ex)
+                    dataGridViewPatternStat.DataSource = listPS;
+                }
+                catch (Exception ex)
                 {
                     while (ex.InnerException != null)
                     {

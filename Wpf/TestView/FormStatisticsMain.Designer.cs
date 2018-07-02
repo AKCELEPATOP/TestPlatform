@@ -109,7 +109,6 @@
             this.dataGridViewPatternStat.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewPatternStat.Size = new System.Drawing.Size(320, 186);
             this.dataGridViewPatternStat.TabIndex = 4;
-            this.dataGridViewPatternStat.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPatternStat_CellClick);
             this.dataGridViewPatternStat.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
             // 
             // button10
@@ -148,6 +147,7 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(413, 186);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             this.dataGridView1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
             // 
             // button3
