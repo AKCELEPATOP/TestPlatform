@@ -53,7 +53,12 @@ namespace TestService.Implementations
             {
                 Total = rec.Total,
                 Right = rec.Right,
-                PatternName = rec.Pattern.Name
+                PatternName = rec.Pattern.Name,
+                UserName = rec.User.FIO,
+                Mark = (int)((double)rec.Right / rec.Total * 100),
+                DateCreate = SqlFunctions.DateName("dd", rec.DateCreate) + " " +
+                                            SqlFunctions.DateName("mm", rec.DateCreate) + " " +
+                                            SqlFunctions.DateName("yyyy", rec.DateCreate)
             }).ToListAsync();
         }
 

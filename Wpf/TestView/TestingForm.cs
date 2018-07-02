@@ -53,6 +53,7 @@ namespace TestView
 
         private async void EndTest()
         {
+            GetAnswer();
             List<QuestionResponseModel> UserAnswers = model.Questions.Select(rec => new QuestionResponseModel
             {
                 QuestionId = rec.Id,

@@ -98,7 +98,7 @@ namespace TestView
             }
         }
         //сохранить
-        private void button3_Click(object sender, EventArgs e)
+        private async void button3_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(textBox1.Text))
             {
@@ -114,93 +114,95 @@ namespace TestView
             {
                 QuestionId = rec.QuestionId
             }).ToList();
-            if (id.HasValue)
+            try
             {
-                List<PatternCategoriesBindingModel> bin = new List<PatternCategoriesBindingModel>(listPC.Count);
-
-                for (int i = 0; i < listPC.Count; i++)
+                if (id.HasValue)
                 {
-                    bin.Add(new PatternCategoriesBindingModel
-                    {
-                        PatternId = id.Value,
-                        CategoryId = listPC[i].CategoryId,
-                        Middle = listPC[i].Middle,
-                        Copmlex = listPC[i].Complex,
-                        Easy = listPC[i].Easy
-                    });
-                }
-                if (listQuestions != null && listQuestions.Count != 0)
-                {
+                    List<PatternCategoriesBindingModel> bin = new List<PatternCategoriesBindingModel>(listPC.Count);
 
-                    for (int i = 0; i < listQuestions.Count; i++)
+                    for (int i = 0; i < listPC.Count; i++)
                     {
-                        listQuestions[i].PatternId = id.Value;
+                        bin.Add(new PatternCategoriesBindingModel
+                        {
+                            PatternId = id.Value,
+                            CategoryId = listPC[i].CategoryId,
+                            Middle = listPC[i].Middle,
+                            Copmlex = listPC[i].Complex,
+                            Easy = listPC[i].Easy
+                        });
                     }
-                    task = Task.Run(() => ApiClient.PostRequestData("api/Pattern/UpdElement", new PatternBindingModel
+                    if (listQuestions != null && listQuestions.Count != 0)
                     {
-                        Id = id.Value,
-                        Name = name,
-                        PatternCategories = bin,
-                        PatternQuestions = listQuestions
-                    }));
+
+                        for (int i = 0; i < listQuestions.Count; i++)
+                        {
+                            listQuestions[i].PatternId = id.Value;
+                        }
+                        task = Task.Run(() => ApiClient.PostRequestData("api/Pattern/UpdElement", new PatternBindingModel
+                        {
+                            Id = id.Value,
+                            Name = name,
+                            PatternCategories = bin,
+                            PatternQuestions = listQuestions
+                        }));
+                    }
+                    else
+                    {
+                        task = Task.Run(() => ApiClient.PostRequestData("api/Pattern/UpdElement", new PatternBindingModel
+                        {
+                            Id = id.Value,
+                            Name = name,
+                            PatternCategories = bin
+                        }));
+                    }
                 }
                 else
                 {
-                    task = Task.Run(() => ApiClient.PostRequestData("api/Pattern/UpdElement", new PatternBindingModel
+
+                    List<PatternCategoriesBindingModel> bin = new List<PatternCategoriesBindingModel>(listPC.Count);
+
+                    for (int i = 0; i < listPC.Count; i++)
                     {
-                        Id = id.Value,
-                        Name = name,
-                        PatternCategories = bin
-                    }));
+                        bin.Add(new PatternCategoriesBindingModel
+                        {
+                            CategoryId = listPC[i].CategoryId,
+                            Middle = listPC[i].Middle,
+                            Copmlex = listPC[i].Complex,
+                            Easy = listPC[i].Easy
+
+                        });
+                    }
+                    if (listQuestions != null && listQuestions.Count != 0)
+                    {
+                        task = Task.Run(() => ApiClient.PostRequestData("api/Pattern/AddElement", new PatternBindingModel
+                        {
+                            Name = name,
+                            PatternCategories = bin,
+                            PatternQuestions = listQuestions
+
+                        }));
+                    }
+                    else
+                    {
+                        task = Task.Run(() => ApiClient.PostRequestData("api/Pattern/AddElement", new PatternBindingModel
+                        {
+                            Name = name,
+                            PatternCategories = bin
+                        }));
+                    }
+
                 }
+                await task;
+                MessageBox.Show("Сохранение прошло успешно. Обновите список", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            else
+            catch(Exception ex)
             {
-
-                List<PatternCategoriesBindingModel> bin = new List<PatternCategoriesBindingModel>(listPC.Count);
-
-                for (int i = 0; i < listPC.Count; i++)
-                {
-                    bin.Add(new PatternCategoriesBindingModel
-                    {
-                        CategoryId = listPC[i].CategoryId,
-                        Middle = listPC[i].Middle,
-                        Copmlex = listPC[i].Complex,
-                        Easy = listPC[i].Easy
-
-                    });
-                }
-                if (listQuestions != null && listQuestions.Count != 0)
-                {
-                    task = Task.Run(() => ApiClient.PostRequestData("api/Pattern/AddElement", new PatternBindingModel
-                    {
-                        Name = name,
-                        PatternCategories = bin,
-                        PatternQuestions = listQuestions
-
-                    }));
-                }
-                else
-                {
-                    task = Task.Run(() => ApiClient.PostRequestData("api/Pattern/AddElement", new PatternBindingModel
-                    {
-                        Name = name,
-                        PatternCategories = bin
-                    }));
-                }
-
-            }
-            task.ContinueWith((prevTask) => MessageBox.Show("Сохранение прошло успешно. Обновите список", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information),
-                TaskContinuationOptions.OnlyOnRanToCompletion);
-            task.ContinueWith((prevTask) =>
-            {
-                var ex = (Exception)prevTask.Exception;
                 while (ex.InnerException != null)
                 {
                     ex = ex.InnerException;
                 }
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }, TaskContinuationOptions.OnlyOnFaulted);
+            }
 
             Close();
 
