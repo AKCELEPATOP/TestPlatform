@@ -31,6 +31,8 @@ namespace TestView
 
         public void Initialize() {
 
+            
+
             if (id.HasValue) {
                 try
                 {
