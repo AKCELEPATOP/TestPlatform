@@ -121,6 +121,7 @@ namespace TestView
             };
             comboBox1.Items.AddRange (source);
             comboBox1.Text=QuestionComplexity.Easy.ToString();
+         //   comboBox1.e
         }
 
         private async void button1_Click(object sender, EventArgs e)
