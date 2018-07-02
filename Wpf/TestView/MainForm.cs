@@ -11,6 +11,8 @@ using TestView;
 using TestService.ViewModels;
 using TestService.BindingModels;
 using MetroFramework.Forms;
+using MetroFramework.Components;
+using MetroFramework;
 
 namespace TestView
 {
@@ -29,7 +31,6 @@ namespace TestView
             FormBorderStyle = FormBorderStyle.None;
             this.Style = MetroFramework.MetroColorStyle.Teal;
             ShadowType = MetroFormShadowType.DropShadow;
-            Initialize();
         }
 
         private void Initialize()
@@ -157,6 +158,9 @@ namespace TestView
         private void Form_Load(object sender, EventArgs e)
         {
             Initialize();
+
+            this.components.SetDefaultStyle(this,MetroColorStyle.Purple);
+            
         }
 
         private void buttonChangeColorBack_Click(object sender, EventArgs e)

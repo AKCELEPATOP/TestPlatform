@@ -25,11 +25,10 @@ namespace TestView
             ShadowType = MetroFormShadowType.DropShadow;
             Initialize();
         }
-        private void Initialize() {
+        private async void Initialize() {
             try
             {
-                List<UserViewModel> list =
-                    Task.Run(() => ApiClient.GetRequestData<List<UserViewModel>>("api/User/GetList")).Result;
+                List<UserViewModel> list = await ApiClient.GetRequestData<List<UserViewModel>>("api/User/GetList");
                 if (list != null)
                 {
                     dataGridView1.DataSource = list;
@@ -37,8 +36,7 @@ namespace TestView
                     dataGridView1.Columns[5].Visible = false;
                     dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
-                List<GroupViewModel> listC =
-                   Task.Run(() => ApiClient.GetRequestData<List<GroupViewModel>>("api/Group/GetList")).Result;
+                List<GroupViewModel> listC = await ApiClient.GetRequestData<List<GroupViewModel>>("api/Group/GetList");
                 if (listC != null)
                 {
                     comboBox1.DataSource = listC;
@@ -80,30 +78,28 @@ namespace TestView
             }
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private async void button4_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count == 1)
             {
                 if (MessageBox.Show("Удалить запись", "Вопрос", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     string id = Convert.ToString(dataGridView1.SelectedRows[0].Cells[0].Value);
-
-                    Task task = Task.Run(() => ApiClient.PostRequest("api/User/DelElement/" + id));
-                    task.ContinueWith((prevTask) => MessageBox.Show("Запись удалена. Обновите список", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information),
-                TaskContinuationOptions.OnlyOnRanToCompletion);
-
-                    task.ContinueWith((prevTask) =>
+                    try
                     {
-                        var ex = (Exception)prevTask.Exception;
+                        await ApiClient.PostRequest("api/User/DelElement/" + id);
+                        MessageBox.Show("Запись удалена. Обновите список", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Initialize();
+                    }
+                    catch(Exception ex)
+                    {
                         while (ex.InnerException != null)
                         {
                             ex = ex.InnerException;
                         }
                         MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }, TaskContinuationOptions.OnlyOnFaulted);
+                    }
                 }
-
-                Initialize();
             }
         }
 
@@ -117,33 +113,31 @@ namespace TestView
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count == 1 && comboBox1.SelectedValue !=null)
             { 
                 string user_id = Convert.ToString(dataGridView1.SelectedRows[0].Cells[0].Value);
                 int Grou_id = Convert.ToInt32(comboBox1.SelectedValue);
-                Task task = Task.Run(() => ApiClient.PostRequestData("api/User/SetGroup", new UserBindingModel
+                try
                 {
-                    Id = user_id,
-                    GroupId = Grou_id
-                }));
-                task.ContinueWith((prevTask) => {
-                    MessageBox.Show("Группа установлена", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Initialize();
-                    },
-                TaskContinuationOptions.OnlyOnRanToCompletion);
-
-                task.ContinueWith((prevTask) =>
+                    await ApiClient.PostRequestData("api/User/SetGroup", new UserBindingModel
+                    {
+                        Id = user_id,
+                        GroupId = Grou_id
+                    });
+                    
+                        MessageBox.Show("Группа установлена", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Initialize();
+                   
+                }catch(Exception ex)
                 {
-                    var ex = (Exception)prevTask.Exception;
                     while (ex.InnerException != null)
                     {
                         ex = ex.InnerException;
                     }
                     MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }, TaskContinuationOptions.OnlyOnFaulted);
-
+                }
             }
         }
 
@@ -171,29 +165,18 @@ namespace TestView
             {
                 try
                 {
-                    Task task = Task.Run(() => ApiClient.PostRequest("api/Admin/SetAdmin/" + Convert.ToString(dataGridView1.SelectedRows[0].Cells[0].Value)));
-                    await task;
+                    await ApiClient.PostRequest("api/Admin/SetAdmin/" + Convert.ToString(dataGridView1.SelectedRows[0].Cells[0].Value));
                     MessageBox.Show("Пользователю выданы права админа", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Initialize();
                 }
                 catch(Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                
-                /*task.ContinueWith((prevTask) =>
-                    MessageBox.Show("Пользователю выданы права админа", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information),
-                TaskContinuationOptions.OnlyOnRanToCompletion);
-
-                task.ContinueWith((prevTask) =>
-                {
-                    var ex = (Exception)prevTask.Exception;
                     while (ex.InnerException != null)
                     {
                         ex = ex.InnerException;
                     }
                     MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }, TaskContinuationOptions.OnlyOnFaulted);*/
+                }
             }
         }
     }
