@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TestModels;
@@ -150,9 +151,14 @@ namespace TestView
             if (!checkBoxes.Contains(true))
             {
                 MessageBox.Show("Выберите верный ответ", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
             bool active = !checkBox5.Checked;
-
+            if (!Regex.IsMatch(maskedTextBox1.Text.ToString(), @"d{2}[:]?\d{2}") || maskedTextBox1.Text ==null)
+            {
+                MessageBox.Show("Формат времени неверный", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             string[] timestr = maskedTextBox1.Text.ToString().Split(':');
             long time = Convert.ToInt32(timestr[0]) * 60 + Convert.ToInt32(timestr[1]);
             QuestionComplexity complexity = (QuestionComplexity)Enum.Parse(typeof(QuestionComplexity), comboBox1.SelectedItem.ToString(), true);

@@ -15,6 +15,8 @@ namespace TestView
             FormBorderStyle = FormBorderStyle.None;
             this.Style = MetroFramework.MetroColorStyle.Teal;
             ShadowType = MetroFormShadowType.DropShadow;
+
+           
         }
         private async void registrate_Click(object sender, EventArgs e)
         {
@@ -75,6 +77,8 @@ namespace TestView
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+     
+
     }
 
 }
