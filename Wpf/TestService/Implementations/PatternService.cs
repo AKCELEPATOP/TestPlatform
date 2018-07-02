@@ -472,6 +472,8 @@ namespace TestService.Implementations
                 Total = result.Total
             });
             await context.SaveChangesAsync();
+
+            Task task = Task.Run(async() => await SendMail(user.Email, "Вы прошли тест", CreateMessage(result)));
             //отправка
             return result;
         }
