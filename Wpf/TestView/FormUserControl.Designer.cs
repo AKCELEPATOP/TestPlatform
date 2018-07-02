@@ -52,9 +52,9 @@ namespace TestView
             // 
             this.groupBox1.Controls.Add(this.dataGridView1);
             this.groupBox1.Location = new System.Drawing.Point(21, 75);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(337, 470);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
@@ -65,9 +65,9 @@ namespace TestView
             this.dataGridView1.ColumnHeadersVisible = false;
             this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridView1.Location = new System.Drawing.Point(9, 22);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullColumnSelect;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(320, 442);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
@@ -86,7 +86,7 @@ namespace TestView
             // 
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(87, 553);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(229, 24);
             this.comboBox1.TabIndex = 2;
@@ -94,7 +94,7 @@ namespace TestView
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(325, 553);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(176, 28);
             this.button1.TabIndex = 3;
@@ -105,7 +105,7 @@ namespace TestView
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(387, 97);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(100, 28);
             this.button2.TabIndex = 4;
@@ -116,7 +116,7 @@ namespace TestView
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(387, 134);
-            this.button3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button3.Margin = new System.Windows.Forms.Padding(4);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(100, 28);
             this.button3.TabIndex = 5;
@@ -127,7 +127,7 @@ namespace TestView
             // button4
             // 
             this.button4.Location = new System.Drawing.Point(387, 171);
-            this.button4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button4.Margin = new System.Windows.Forms.Padding(4);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(100, 28);
             this.button4.TabIndex = 6;
@@ -138,7 +138,7 @@ namespace TestView
             // button5
             // 
             this.button5.Location = new System.Drawing.Point(24, 601);
-            this.button5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button5.Margin = new System.Windows.Forms.Padding(4);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(177, 46);
             this.button5.TabIndex = 7;
@@ -163,7 +163,7 @@ namespace TestView
             // buttonSetAdmin
             // 
             this.buttonSetAdmin.Location = new System.Drawing.Point(387, 207);
-            this.buttonSetAdmin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonSetAdmin.Margin = new System.Windows.Forms.Padding(4);
             this.buttonSetAdmin.Name = "buttonSetAdmin";
             this.buttonSetAdmin.Size = new System.Drawing.Size(100, 44);
             this.buttonSetAdmin.TabIndex = 8;
@@ -185,7 +185,7 @@ namespace TestView
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormUserControl";
             this.Padding = new System.Windows.Forms.Padding(20, 74, 20, 20);
             this.Text = "Пользователи";
