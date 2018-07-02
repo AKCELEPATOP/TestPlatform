@@ -13,7 +13,7 @@ namespace TestView
     public class ApiClient
     {
         private static HttpClient client = new HttpClient();
-      
+
         public static string Role { get; set; }
 
         public static string UserName { get; set; }
@@ -97,7 +97,7 @@ namespace TestView
             }
         }
 
-        public static void PostRequestData<T>(string requestUrl, T model)
+        public static Task PostRequestData<T>(string requestUrl, T model)
         {
             HttpResponseMessage response = Task.Run(() => PostRequest(requestUrl, model)).Result;
             if (!response.IsSuccessStatusCode)
@@ -105,8 +105,10 @@ namespace TestView
                 string error = response.Content.ReadAsStringAsync().Result;
                 var errorMessage = JsonConvert.DeserializeObject<HttpErrorMessage>(error);
                 throw new Exception(errorMessage.Message + " " + (errorMessage.MessageDetail ?? "") +
-                    " " + (errorMessage.ExceptionMessage ?? ""));
+                    " " + (errorMessage.ExceptionMessage ?? "") + " " + (errorMessage.Error ?? "")
+                    + (errorMessage.Error_description ?? ""));
             }
+            return Task.CompletedTask;
         }
 
         public static async Task<U> PostRequestData<T, U>(string requestUrl, T model)

@@ -19,6 +19,8 @@ using TestRestApi.Providers;
 using TestRestApi.Results;
 using TestService;
 using TestService.BindingModels;
+using TestService.Implementations;
+using TestService.Interfaces;
 
 namespace TestRestApi.Controllers
 {
@@ -49,6 +51,20 @@ namespace TestRestApi.Controllers
             private set
             {
                 _userManager = value;
+            }
+        }
+
+        private IUserService service;
+
+        public IUserService Service
+        {
+            get
+            {
+                return service ?? new UserService(HttpContext.Current.GetOwinContext().Get<ApplicationDbContext>(),UserManager);
+            }
+            private set
+            {
+                service = value;
             }
         }
 
@@ -195,17 +211,11 @@ namespace TestRestApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new User {
-                FIO = model.FIO,
-                UserName = model.UserName,
-                PasswordHash = model.PasswordHash,
-                Email = model.Email
-            };
-            IdentityResult result = await UserManager.CreateAsync(user, user.PasswordHash);
+
+            var result = await Service.AddElement(model);
 
             if (result.Succeeded)
-            {
-                await UserManager.AddToRoleAsync(user.Id, ApplicationRoles.User);
+            { 
                 return Ok();
             }
 

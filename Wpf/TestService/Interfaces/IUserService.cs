@@ -14,7 +14,7 @@ namespace TestService.Interfaces
     {
         Task<UserViewModel> Get(string id);
 
-        Task AddElement(UserBindingModel model);
+        Task<IdentityResult> AddElement(UserBindingModel model);
 
         Task UpdElement(UserBindingModel model);
 

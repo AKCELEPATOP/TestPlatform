@@ -35,12 +35,17 @@ namespace TestService.Implementations
 
         public static UserService Create(ApplicationDbContext context, UserManager<User> userManager)
         {
-            return new UserService(context,userManager);
+            return new UserService(context, userManager);
         }
 
-        public Task AddElement(UserBindingModel model)
+        public async Task<IdentityResult> AddElement(UserBindingModel model)
         {
-            User user = new User
+            User user = await context.Users.FirstOrDefaultAsync(rec => rec.FIO.Equals(model.FIO) || rec.Email.Equals(rec.Email) || rec.UserName.Equals(model.UserName));
+            if(user == null)
+            {
+                throw new Exception("Существует пользователь с такими данными");
+            }
+            user = new User
             {
                 FIO = model.FIO,
                 UserName = model.UserName,
@@ -48,16 +53,13 @@ namespace TestService.Implementations
                 Email = model.Email,
                 PasswordHash = model.PasswordHash
             };
-            var result = userManager.Create(user, user.PasswordHash);
+            var result = await userManager.CreateAsync(user, user.PasswordHash);
             if (result.Succeeded)
             {
                 userManager.AddToRole(user.Id, ApplicationRoles.User);
-                return Task.CompletedTask;
+                return result;
             }
-            else
-            {
-                throw new Exception(string.Join(", ", result.Errors));
-            }
+            return result;
         }
 
         public async Task DelElement(string id)

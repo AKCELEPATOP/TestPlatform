@@ -21,5 +21,8 @@ namespace TestView
 
         [DataMember]
         public string Error_description { get; set; }
+
+        [DataMember]
+        public string Error { get; set; }
     }
 }

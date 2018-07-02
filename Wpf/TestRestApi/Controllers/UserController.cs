@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity.Owin;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,9 +64,22 @@ namespace TestRestApi.Controllers
         #endregion
 
         [HttpPost]
-        public async Task AddElement(UserBindingModel model)
+        public async Task<IHttpActionResult> AddElement(UserBindingModel model)
         {
-            await Service.AddElement(model);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+
+            var result = await Service.AddElement(model);
+
+            if (result.Succeeded)
+            {
+                return Ok();
+            }
+
+            return GetErrorResult(result);
         }
 
         [HttpGet]
@@ -106,6 +120,35 @@ namespace TestRestApi.Controllers
         public async Task SetGroup(UserBindingModel model)
         {
             await Service.SetGroup(model);
+        }
+
+        private IHttpActionResult GetErrorResult(IdentityResult result)
+        {
+            if (result == null)
+            {
+                return InternalServerError();
+            }
+
+            if (!result.Succeeded)
+            {
+                if (result.Errors != null)
+                {
+                    foreach (string error in result.Errors)
+                    {
+                        ModelState.AddModelError("", error);
+                    }
+                }
+
+                if (ModelState.IsValid)
+                {
+                    // Ошибки ModelState для отправки отсутствуют, поэтому просто возвращается пустой BadRequest.
+                    return BadRequest();
+                }
+
+                return BadRequest(ModelState);
+            }
+
+            return null;
         }
     }
 }

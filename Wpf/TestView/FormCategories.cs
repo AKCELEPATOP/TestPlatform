@@ -32,12 +32,11 @@ namespace TestView
 
         }
 
-        private void Initialize()
+        private async void Initialize()
         {
             try
             {
-                List<CategoryViewModel> list =
-                    Task.Run(() => ApiClient.GetRequestData<List<CategoryViewModel>>("api/Category/GetList")).Result;
+                List<CategoryViewModel> list = await ApiClient.GetRequestData<List<CategoryViewModel>>("api/Category/GetList");
                 if (list != null)
                 {
                     dataGridView1.DataSource = list;
@@ -46,9 +45,7 @@ namespace TestView
                     dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                     if (list.Count > 0)
                     {
-
-                        List<QuestionViewModel> listQuestions =
-                      Task.Run(() => ApiClient.GetRequestData<List<QuestionViewModel>>("api/Category/GetListQuestions/" + list[0].Id)).Result;
+                        List<QuestionViewModel> listQuestions = await ApiClient.GetRequestData<List<QuestionViewModel>>("api/Category/GetListQuestions/" + list[0].Id);
                         if (listQuestions != null)
                         {
                             dataGridView2.DataSource = listQuestions;
@@ -74,13 +71,12 @@ namespace TestView
             }
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private async void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dataGridView1.SelectedRows.Count == 1)
             {
                 int Id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
-                List<QuestionViewModel> list =
-                Task.Run(() => ApiClient.GetRequestData<List<QuestionViewModel>>("api/Category/GetListQuestions/" + Id)).Result;
+                List<QuestionViewModel> list = await ApiClient.GetRequestData<List<QuestionViewModel>>("api/Category/GetListQuestions/" + Id);
                 if (list != null)
                 {
                     dataGridView2.DataSource = list;
@@ -120,29 +116,28 @@ namespace TestView
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private async void button2_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count == 1)
             {
                 if (MessageBox.Show("Удалить запись", "Вопрос", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     int id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
-
-                    Task task = Task.Run(() => ApiClient.PostRequest("api/Category/DelElement/" + id));
-                    task.ContinueWith((prevTask) => MessageBox.Show("Запись удалена. Обновите список", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information),
-                TaskContinuationOptions.OnlyOnRanToCompletion);
-
-                    task.ContinueWith((prevTask) =>
+                    try
                     {
-                        var ex = (Exception)prevTask.Exception;
+                        await ApiClient.PostRequest("api/Category/DelElement/" + id);
+                        MessageBox.Show("Запись удалена. Обновите список", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Initialize();
+                    }
+                    catch (Exception ex)
+                    {
                         while (ex.InnerException != null)
                         {
                             ex = ex.InnerException;
                         }
                         MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }, TaskContinuationOptions.OnlyOnFaulted);
+                    }
                 }
-                Initialize();
             }
         }
 
@@ -152,7 +147,6 @@ namespace TestView
             {
                 var form = new FormQuestionEditor();
                 form.IdCat = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
-                form.Initialize();
                 if (form.ShowDialog() == DialogResult.OK)
                 {
                     Initialize();
@@ -186,30 +180,28 @@ namespace TestView
             }
         }
 
-        private void button6_Click(object sender, EventArgs e)
+        private async void button6_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count == 1)
             {
                 if (MessageBox.Show("Удалить запись", "Вопрос", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     int id = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells[0].Value);
-
-                    Task task = Task.Run(() => ApiClient.PostRequest("api/Question/DelElement/" + id));
-                    task.ContinueWith((prevTask) => MessageBox.Show("Запись удалена. Обновите список", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information),
-                TaskContinuationOptions.OnlyOnRanToCompletion);
-
-                    task.ContinueWith((prevTask) =>
+                    try
                     {
-                        var ex = (Exception)prevTask.Exception;
+                        await ApiClient.PostRequest("api/Question/DelElement/" + id);
+                        MessageBox.Show("Запись удалена. Обновите список", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Initialize();
+                    }
+                    catch (Exception ex)
+                    {
                         while (ex.InnerException != null)
                         {
                             ex = ex.InnerException;
                         }
                         MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }, TaskContinuationOptions.OnlyOnFaulted);
+                    }
                 }
-
-                Initialize();
             }
         }
 

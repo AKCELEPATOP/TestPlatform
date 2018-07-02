@@ -16,7 +16,7 @@ namespace TestView
 {
     public partial class FormMain : MetroForm
     {
-        public static bool DarkTheme { get { return DarkTheme; }  set { DarkTheme = false; } } 
+        public static bool DarkTheme { get; set; } 
 
         public string UserLogin { get; set; }
 

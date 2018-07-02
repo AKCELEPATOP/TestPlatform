@@ -20,6 +20,8 @@ namespace TestView
 
         private int? idCat;
 
+        private List<int> answerIds;
+
         public FormQuestionEditor()
         {
             InitializeComponent();
@@ -60,17 +62,13 @@ namespace TestView
                 checkBox4.ForeColor = Color.Black;
                 checkBox5.ForeColor = Color.Black;
             }
-            Initialize();
         }
 
-        public void Initialize() {
-
-            
-
+        public async void Initialize() {
             if (id.HasValue) {
                 try
                 {
-                    var question = Task.Run(() => ApiClient.GetRequestData<QuestionViewModel>("api/Question/Get/" + id.Value)).Result;
+                    var question = await ApiClient.GetRequestData<QuestionViewModel>("api/Question/Get/" + id.Value);
                     textBox6.Text = question.Text;
                     textBox2.Text = question.Answers[0].Text;
                     textBox3.Text = question.Answers[1].Text;
@@ -81,6 +79,13 @@ namespace TestView
                     checkBox3.Checked = question.Answers[2].True;
                     checkBox4.Checked = question.Answers[3].True;
                     checkBox5.Checked = !question.Active;
+                    answerIds = new List<int>
+                    {
+                        question.Answers[0].Id,
+                        question.Answers[1].Id,
+                        question.Answers[2].Id,
+                        question.Answers[3].Id
+                    };
                 }
                 catch (Exception ex)
                 {
@@ -94,7 +99,7 @@ namespace TestView
             if (idCat.HasValue) {
                 try
                 {
-                    var category = Task.Run(() => ApiClient.GetRequestData<CategoryViewModel>("api/Category/Get/" + idCat.Value)).Result;
+                    var category = await ApiClient.GetRequestData<CategoryViewModel>("api/Category/Get/" + idCat.Value);
                     textBox1.Text = category.Name;
                     textBox1.Enabled = false;
                 }
@@ -110,7 +115,7 @@ namespace TestView
 
             maskedTextBox1.Mask = "00 : 00";
             maskedTextBox1.Text = "02 : 00";
-            string[] source = new string[]
+            string[] source = new string[] //пофиксить
             {
             QuestionComplexity.Easy.ToString(), QuestionComplexity.Middle.ToString(), QuestionComplexity.Difficult.ToString()
             };
@@ -118,7 +123,7 @@ namespace TestView
             comboBox1.Text=QuestionComplexity.Easy.ToString();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(textBox2.Text) && string.IsNullOrEmpty(textBox3.Text) && string.IsNullOrEmpty(textBox4.Text) && string.IsNullOrEmpty(textBox5.Text)
                 && string.IsNullOrEmpty(textBox6.Text))
@@ -154,52 +159,65 @@ namespace TestView
             List<AnswerBindingModel> answers = new List<AnswerBindingModel>(4);
             for (int i = 0; i < answersString.Count; i++)
             {
-                answers.Add(new AnswerBindingModel
+                if (answerIds != null)
                 {
-                    //сохранять id вопросов при редактировании
-                    Text = answersString[i],
-                    True = checkBoxes[i],
-                });
-            }
-            if (id.HasValue)
-            {
-                task = Task.Run(() => ApiClient.PostRequestData("api/Question/UpdElement", new QuestionBindingModel
+                    answers.Add(new AnswerBindingModel
+                    {
+                        Id = answerIds[i],
+                        Text = answersString[i],
+                        True = checkBoxes[i],
+                    });
+                }
+                else
                 {
-                    Id = id.Value,
-                    Text = text,
-                    Complexity = complexity,
-                    Active = active,
-                    Time = time,
-                    Answers = answers,
-                    CategoryId = idCat.Value
-                }));
+                    answers.Add(new AnswerBindingModel
+                    {
+                        Text = answersString[i],
+                        True = checkBoxes[i],
+                    });
+                }
             }
-            else
+            try
             {
-                task = Task.Run(() => ApiClient.PostRequestData("api/Question/AddElement", new QuestionBindingModel
+                if (id.HasValue)
                 {
+                    await ApiClient.PostRequestData("api/Question/UpdElement", new QuestionBindingModel
+                    {
+                        Id = id.Value,
+                        Text = text,
+                        Complexity = complexity,
+                        Active = active,
+                        Time = time,
+                        Answers = answers,
+                        CategoryId = idCat.Value
+                    });
+                }
+                else
+                {
+                    await ApiClient.PostRequestData("api/Question/AddElement", new QuestionBindingModel
+                    {
 
-                    Text = text,
-                    Complexity = complexity,
-                    Active = active,
-                    Time = time,
-                    Answers = answers,
-                    CategoryId = idCat.Value
+                        Text = text,
+                        Complexity = complexity,
+                        Active = active,
+                        Time = time,
+                        Answers = answers,
+                        CategoryId = idCat.Value
 
-                }));
+                    });
 
+                }
+                MessageBox.Show("Сохранение прошло успешно. Обновите список", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DialogResult = DialogResult.OK;
             }
-            task.ContinueWith((prevTask) => MessageBox.Show("Сохранение прошло успешно. Обновите список", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information),
-                TaskContinuationOptions.OnlyOnRanToCompletion);
-            task.ContinueWith((prevTask) =>
+            catch(Exception ex)
             {
-                var ex = (Exception)prevTask.Exception;
                 while (ex.InnerException != null)
                 {
                     ex = ex.InnerException;
                 }
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }, TaskContinuationOptions.OnlyOnFaulted);
+            }
 
             Close();
         }
