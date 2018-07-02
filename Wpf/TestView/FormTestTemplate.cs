@@ -78,14 +78,13 @@ namespace TestView
                     textBox1.Text = pattern.Name;
                     listPC = pattern.PatternCategories;
                     comboBox1.SelectedItem = pattern.UserGroupId;
-                    if (pattern.PatternCategories.Count > 0)
-                    {
-                        dataGridView2.Rows[0].Selected = true;
-                        textBoxEasy.Text = pattern.PatternCategories[0].Easy.ToString();
-                        textBoxMid.Text = pattern.PatternCategories[0].Middle.ToString();
-                        textBoxDif.Text = pattern.PatternCategories[0].Complex.ToString();
-                        textBoxCount.Text = pattern.PatternCategories[0].Count.ToString();
-                    }
+                    //if (pattern.PatternCategories.Count > 0)
+                    //{
+                    //    textBoxEasy.Text = pattern.PatternCategories[0].Easy.ToString();
+                    //    textBoxMid.Text = pattern.PatternCategories[0].Middle.ToString();
+                    //    textBoxDif.Text = pattern.PatternCategories[0].Complex.ToString();
+                    //    textBoxCount.Text = pattern.PatternCategories[0].Count.ToString();
+                    //}
                 }
                 catch (Exception ex)
                 {
@@ -113,7 +112,11 @@ namespace TestView
             dataGridView2.Columns[6].Visible = false;
             dataGridView2.Columns[7].Visible = false;
             dataGridView2.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-
+            if(id.HasValue && listPC.Count > 0)
+            {
+                dataGridView2.Rows[0].Selected = true;
+                ChangeCategory();
+            }
             listC = await ApiClient.GetRequestData<List<CategoryViewModel>>("api/Category/GetList");
             if (listC != null)
             {
@@ -149,6 +152,7 @@ namespace TestView
                     {
                         bin.Add(new PatternCategoriesBindingModel
                         {
+                            Id = listPC[i].Id,
                             PatternId = id.Value,
                             CategoryId = listPC[i].CategoryId,
                             Middle = listPC[i].Middle,

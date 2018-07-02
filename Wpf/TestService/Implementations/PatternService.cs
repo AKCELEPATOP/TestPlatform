@@ -199,11 +199,12 @@ namespace TestService.Implementations
 
                     foreach (var updateCategory in updateCategories)
                     {
-                        updateCategory.Complex = model.PatternCategories.FirstOrDefault(rec => rec.Id == updateCategory.Id).Copmlex;
-                        updateCategory.Middle = model.PatternCategories.FirstOrDefault(rec => rec.Id == updateCategory.Id).Middle;
-                        updateCategory.Easy = model.PatternCategories.FirstOrDefault(rec => rec.Id == updateCategory.Id).Easy;
+                        updateCategory.Complex = model.PatternCategories.FirstOrDefault(rec => rec.CategoryId == updateCategory.CategoryId).Copmlex;
+                        updateCategory.Middle = model.PatternCategories.FirstOrDefault(rec => rec.CategoryId == updateCategory.CategoryId).Middle;
+                        updateCategory.Easy = model.PatternCategories.FirstOrDefault(rec => rec.CategoryId == updateCategory.CategoryId).Easy;
+                        await context.SaveChangesAsync();
                     }
-                    await context.SaveChangesAsync();
+                    
 
                     context.PatternCategories.RemoveRange(
                         context.PatternCategories.Where(rec => rec.PatternId == model.Id && !categoriesIds.Contains(rec.CategoryId)));
@@ -281,10 +282,10 @@ namespace TestService.Implementations
 
                     transaction.Commit();
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     transaction.Rollback();
-                    throw;
+                    throw ex;
                 }
             }
         }
