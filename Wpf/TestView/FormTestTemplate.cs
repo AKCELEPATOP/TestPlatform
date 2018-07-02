@@ -23,7 +23,6 @@ namespace TestView
 
         private List<CategoryViewModel> listC;
         private List<PatternCategoryViewModel> listPC;
-        private List<PatternQuestionsBindingModel> listQ;
 
         private BindingSource source;
 
@@ -225,12 +224,15 @@ namespace TestView
                 {
                     CategoryId = el.CategoryId,
                     CategoryName = el.CategoryName,
+                    Complex = el.Complex,
+                    Count = el.Count,
+                    Easy = el.Easy,
+                    Middle = el.Middle,
                     PatternQuestions = new List<PatternQuestionViewModel>(el.PatternQuestions)
                 });
             }
             if (form.ShowDialog() == DialogResult.OK)
             {
-                Initialize();
                 listPC = form.listPC;
             }
         }

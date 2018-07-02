@@ -34,7 +34,15 @@ namespace TestView
                 {
                     var question = Task.Run(() => ApiClient.GetRequestData<QuestionViewModel>("api/Question/Get/" + id.Value)).Result;
                     textBox6.Text = question.Text;
-
+                    textBox2.Text = question.Answers[0].Text;
+                    textBox3.Text = question.Answers[1].Text;
+                    textBox4.Text = question.Answers[2].Text;
+                    textBox5.Text = question.Answers[3].Text;
+                    checkBox1.Checked = question.Answers[0].True;
+                    checkBox2.Checked = question.Answers[1].True;
+                    checkBox3.Checked = question.Answers[2].True;
+                    checkBox4.Checked = question.Answers[3].True;
+                    checkBox5.Checked = !question.Active;
                 }
                 catch (Exception ex)
                 {

@@ -583,7 +583,7 @@ namespace TestService.Implementations
             if (id != -1)
             {
                 return await context.Patterns.Where(rec => rec.UserGroupId == id)
-                    .Where(rec => !rec.PatternCategories.Select(r => r.Category).Any(r => !r.Active)).Select(rec => new PatternViewModel
+                    .Where(rec => !(rec.PatternCategories.Select(r => r.Category).Any(r => !r.Active))).Select(rec => new PatternViewModel
                     {
                         Id = rec.Id,
                         Name = rec.Name,
@@ -594,12 +594,12 @@ namespace TestService.Implementations
             else
             {
                 //не знаю будет ли работать
-                return await context.Patterns.Where(rec => !rec.UserGroupId.HasValue).Select(rec => new PatternViewModel
+                return await context.Patterns.Where(rec => !rec.UserGroupId.HasValue)
+                    .Where(rec => !(rec.PatternCategories.Select(r => r.Category).Any(r => !r.Active))).Select(rec => new PatternViewModel
                 {
                     Id = rec.Id,
                     Name = rec.Name,
-                    UserGroupId = rec.UserGroupId.Value,
-                    UserGroupName = rec.UserGroup.Name
+                    UserGroupName = "Общий"
                 }).ToListAsync();
             }
         }

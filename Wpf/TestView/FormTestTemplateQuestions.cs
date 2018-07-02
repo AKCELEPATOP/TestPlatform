@@ -55,7 +55,6 @@ namespace TestView
                 dataGridViewQuestions.Columns[0].Visible = false;
                 dataGridViewQuestions.Columns[1].Visible = false;
                 dataGridViewQuestions.Columns[3].Visible = false;
-                dataGridViewQuestions.Columns[9].Visible = false;
                 dataGridViewQuestions.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
         }
@@ -64,11 +63,11 @@ namespace TestView
         {
             if (dataGridViewQuestions.SelectedRows.Count == 1)
             {
-                int id = Convert.ToInt32(dataGridViewCategories.SelectedRows[0].Cells[0].Value);
+                int id = Convert.ToInt32(dataGridViewQuestions.SelectedRows[0].Cells[0].Value);
                 var question = listQ.FirstOrDefault(rec => rec.Id == id);
                 if (dataGridViewCategories.SelectedRows.Count == 1)
                 {
-                    int categoryId = Convert.ToInt32(dataGridViewCategories.SelectedRows[0].Cells[0].Value);
+                    int categoryId = Convert.ToInt32(dataGridViewCategories.SelectedRows[0].Cells[2].Value);
                     var PQ = listPC.FirstOrDefault(rec => rec.CategoryId == categoryId).PatternQuestions;
                     if (!PQ.Select(rec => rec.QuestionId).Contains(question.Id))
                     {
@@ -132,12 +131,8 @@ namespace TestView
         //save
         private void button3_Click(object sender, EventArgs e)
         {
-            var form = new FormTestTemplate();
-            //form.listQ = listQ;
-            if (form.ShowDialog() == DialogResult.OK)
-            {
-                Close();
-            }
+            DialogResult = DialogResult.OK;
+            Close();
         }
         //nazad
         private void button4_Click(object sender, EventArgs e)
@@ -167,12 +162,13 @@ namespace TestView
         {
             if (dataGridViewCategories.SelectedRows.Count == 1)
             {
-                int categoryId = Convert.ToInt32(dataGridViewCategories.SelectedRows[0].Cells[0].Value);
+                int categoryId = Convert.ToInt32(dataGridViewCategories.SelectedRows[0].Cells[2].Value);
                 var PC = listPC.FirstOrDefault(rec => rec.CategoryId == categoryId);
                 sourcePQ.DataSource = PC.PatternQuestions;
                 try
                 {
                     listQ = await ApiClient.GetRequestData<List<QuestionViewModel>>("api/category/GetListQuestions/" + categoryId);
+                    sourceQ.DataSource = listQ;
 
                 }catch(Exception ex)
                 {

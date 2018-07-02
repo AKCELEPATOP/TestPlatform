@@ -18,7 +18,6 @@ namespace TestView
             InitializeComponent();
             FormBorderStyle = FormBorderStyle.None;
             this.Style = MetroFramework.MetroColorStyle.Teal;
-            Initialize();
         }
         private void Initialize() {
 
@@ -28,7 +27,7 @@ namespace TestView
                 {
                     var category = Task.Run(() => ApiClient.GetRequestData<CategoryViewModel>("api/Category/Get/" + id.Value)).Result;
                     textBox1.Text = category.Name;
-
+                    checkBoxNotActive.Checked = !category.Active;
                 }
                 catch (Exception ex)
                 {
@@ -77,12 +76,18 @@ namespace TestView
                 }
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }, TaskContinuationOptions.OnlyOnFaulted);
+            DialogResult = DialogResult.OK;
             Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void FormCategoryEdit_Load(object sender, EventArgs e)
+        {
+            Initialize();
         }
     }
 }

@@ -51,6 +51,7 @@ namespace TestRestApi.Controllers
         #endregion
 
         [HttpGet]
+        [Authorize(Roles = ApplicationRoles.SuperAdmin + "," + ApplicationRoles.Admin)]
         public async Task<IHttpActionResult> GetList()
         {
             var list = await Service.GetList();

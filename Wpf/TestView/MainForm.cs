@@ -37,7 +37,7 @@ namespace TestView
             try
             {
                 List<PatternViewModel> list =
-                    Task.Run(() => ApiClient.GetRequestData<List<PatternViewModel>>("api/Pattern/GetList")).Result;
+                    Task.Run(() => ApiClient.GetRequestData<List<PatternViewModel>>("api/Pattern/GetUserList")).Result;
                 if (list != null)
                 {
                     dataGridViewAvailablePatterns.DataSource = list;
