@@ -114,8 +114,8 @@ namespace TestView
                 }
             }
 
-            maskedTextBox1.Mask = "00 : 00";
-            maskedTextBox1.Text = "02 : 00";
+            maskedTextBox1.Mask = "00:00";
+            maskedTextBox1.Text = "02:00";
             string[] source = new string[] //пофиксить
             {
             QuestionComplexity.Easy.ToString(), QuestionComplexity.Middle.ToString(), QuestionComplexity.Difficult.ToString()
@@ -154,7 +154,7 @@ namespace TestView
                 return;
             }
             bool active = !checkBox5.Checked;
-            if (!Regex.IsMatch(maskedTextBox1.Text.ToString(), @"d{2}[:]?\d{2}") || maskedTextBox1.Text ==null)
+            if (!Regex.IsMatch(maskedTextBox1.Text.ToString(), @"\d{2}[:]\d{2}") || maskedTextBox1.Text ==null)
             {
                 MessageBox.Show("Формат времени неверный", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
