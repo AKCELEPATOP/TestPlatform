@@ -20,7 +20,14 @@ namespace TestView
             FormBorderStyle = FormBorderStyle.None;
             this.Style = MetroFramework.MetroColorStyle.Teal;
             ShadowType = MetroFormShadowType.DropShadow;
-
+            if (FormStatisticsMain.DarkTheme)
+            {
+                Theme = MetroFramework.MetroThemeStyle.Dark;             
+            }
+            else
+            {
+                Theme = MetroFramework.MetroThemeStyle.Light;
+            }
             Initialize();
         }
 

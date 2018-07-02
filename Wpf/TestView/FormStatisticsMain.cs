@@ -1,6 +1,7 @@
 ﻿using MetroFramework.Forms;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TestService.BindingModels;
@@ -11,6 +12,7 @@ namespace TestView
     public partial class FormStatisticsMain : MetroForm
     {
         private FormAuthorization parent;
+        public static bool DarkTheme { get { return DarkTheme; } set { DarkTheme = false; } }
 
         public FormStatisticsMain(FormAuthorization parent)
         {
@@ -117,11 +119,11 @@ namespace TestView
                 contextMenuStrip1.Show(MousePosition);
             }
         }
-        private void ОбновитьToolStripMenuItem_Click(object sender, EventArgs e)
+        private void обновитьToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             Initialize();
         }
-
+       
         //сменить пользователя
         private void button7_Click(object sender, EventArgs e)
         {
@@ -191,12 +193,41 @@ namespace TestView
 
         private void button5_Click(object sender, EventArgs e)
         {
-
+            if (DarkTheme)
+            {
+                this.Theme = MetroFramework.MetroThemeStyle.Dark;
+                label1.ForeColor = Color.White;
+                label2.ForeColor = Color.White;
+                label4.ForeColor = Color.White;
+                labelUserName.ForeColor = Color.White;
+                groupBox1.ForeColor = Color.White;
+                groupBox2.ForeColor = Color.White;
+                groupBox3.ForeColor = Color.White;
+                groupBox4.ForeColor = Color.White;
+                groupBox5.ForeColor = Color.White;
+                DarkTheme = !DarkTheme;
+            }
+            else
+            {
+                this.Theme = MetroFramework.MetroThemeStyle.Light;
+                label1.ForeColor = Color.Black;
+                label2.ForeColor = Color.Black;
+                label4.ForeColor = Color.Black;
+                labelUserName.ForeColor = Color.Black;
+                groupBox1.ForeColor = Color.Black;
+                groupBox2.ForeColor = Color.Black;
+                groupBox3.ForeColor = Color.Black;
+                groupBox4.ForeColor = Color.Black;
+                groupBox5.ForeColor = Color.Black;
+                DarkTheme = !DarkTheme;
+            }
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
 
         }
+
+      
     }
 }

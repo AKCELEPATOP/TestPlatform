@@ -30,6 +30,22 @@ namespace TestView
             FormBorderStyle = FormBorderStyle.None;
             this.Style = MetroFramework.MetroColorStyle.Teal;
             ShadowType = MetroFormShadowType.DropShadow;
+
+            if (FormStatisticsMain.DarkTheme)
+            {
+                Theme = MetroFramework.MetroThemeStyle.Dark;
+                label1.ForeColor = Color.White;
+                label5.ForeColor = Color.White;
+                label6.ForeColor = Color.White;
+            }
+            else
+            {
+                Theme = MetroFramework.MetroThemeStyle.Light;
+                label1.ForeColor = Color.Black;
+                label5.ForeColor = Color.Black;
+                label6.ForeColor = Color.Black;
+            }
+
         }
         private void Initialize()
         {
