@@ -50,7 +50,6 @@
             this.buttonStatistic = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.обновитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.buttonSaveToPdf = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAvailablePatterns)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPassedTests)).BeginInit();
@@ -60,15 +59,9 @@
             // dataGridViewAvailablePatterns
             // 
             this.dataGridViewAvailablePatterns.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-
-
-            this.dataGridViewAvailablePatterns.ColumnHeadersVisible = false;
-            this.dataGridViewAvailablePatterns.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dataGridViewAvailablePatterns.Location = new System.Drawing.Point(15, 98);
-            this.dataGridViewAvailablePatterns.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridViewAvailablePatterns.Location = new System.Drawing.Point(11, 80);
             this.dataGridViewAvailablePatterns.Name = "dataGridViewAvailablePatterns";
-            this.dataGridViewAvailablePatterns.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewAvailablePatterns.Size = new System.Drawing.Size(404, 343);
+            this.dataGridViewAvailablePatterns.Size = new System.Drawing.Size(303, 279);
             this.dataGridViewAvailablePatterns.TabIndex = 0;
             this.dataGridViewAvailablePatterns.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewAvailablePatterns_CellContentClick);
             this.dataGridViewAvailablePatterns.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
@@ -84,9 +77,7 @@
             // 
             // buttonBeginTest
             // 
-
             this.buttonBeginTest.Location = new System.Drawing.Point(86, 365);
-
             this.buttonBeginTest.Name = "buttonBeginTest";
             this.buttonBeginTest.Size = new System.Drawing.Size(134, 28);
             this.buttonBeginTest.TabIndex = 10;
@@ -96,9 +87,7 @@
             // 
             // textBoxCurrentUser
             // 
-
-            this.textBoxCurrentUser.Location = new System.Drawing.Point(491, 42);
-            this.textBoxCurrentUser.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxCurrentUser.Location = new System.Drawing.Point(368, 34);
             this.textBoxCurrentUser.Name = "textBoxCurrentUser";
             this.textBoxCurrentUser.ReadOnly = true;
             this.textBoxCurrentUser.Size = new System.Drawing.Size(124, 20);
@@ -106,10 +95,7 @@
             // 
             // buttonChangeUser
             // 
-
-            this.buttonChangeUser.Location = new System.Drawing.Point(667, 39);
-            this.buttonChangeUser.Margin = new System.Windows.Forms.Padding(4);
-
+            this.buttonChangeUser.Location = new System.Drawing.Point(500, 32);
             this.buttonChangeUser.Name = "buttonChangeUser";
             this.buttonChangeUser.Size = new System.Drawing.Size(73, 22);
             this.buttonChangeUser.TabIndex = 12;
@@ -126,9 +112,6 @@
             this.label4.TabIndex = 11;
             this.label4.Text = "Текущий пользователь: ";
             // 
-
- 
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -140,9 +123,7 @@
             // 
             // buttonChangeColorBack
             // 
-
-            this.buttonChangeColorBack.Location = new System.Drawing.Point(40, 43);
-            this.buttonChangeColorBack.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonChangeColorBack.Location = new System.Drawing.Point(30, 35);
             this.buttonChangeColorBack.Name = "buttonChangeColorBack";
             this.buttonChangeColorBack.Size = new System.Drawing.Size(101, 30);
             this.buttonChangeColorBack.TabIndex = 16;
@@ -154,23 +135,16 @@
             // 
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.buttonChangeColorBack);
-
-            this.groupBox2.Location = new System.Drawing.Point(805, 124);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox2.Location = new System.Drawing.Point(604, 101);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(216, 153);
-
+            this.groupBox2.Size = new System.Drawing.Size(162, 124);
             this.groupBox2.TabIndex = 18;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Настройка цветов";
             // 
             // buttonExit
             // 
-
-            this.buttonExit.Location = new System.Drawing.Point(905, 449);
-            this.buttonExit.Margin = new System.Windows.Forms.Padding(4);
-
+            this.buttonExit.Location = new System.Drawing.Point(679, 365);
             this.buttonExit.Name = "buttonExit";
             this.buttonExit.Size = new System.Drawing.Size(87, 28);
             this.buttonExit.TabIndex = 19;
@@ -181,14 +155,9 @@
             // dataGridViewPassedTests
             // 
             this.dataGridViewPassedTests.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-
-            this.dataGridViewPassedTests.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dataGridViewPassedTests.Location = new System.Drawing.Point(455, 98);
-            this.dataGridViewPassedTests.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridViewPassedTests.Location = new System.Drawing.Point(341, 80);
             this.dataGridViewPassedTests.Name = "dataGridViewPassedTests";
-            this.dataGridViewPassedTests.RowHeadersVisible = false;
-            this.dataGridViewPassedTests.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewPassedTests.Size = new System.Drawing.Size(309, 343);
+            this.dataGridViewPassedTests.Size = new System.Drawing.Size(232, 279);
             this.dataGridViewPassedTests.TabIndex = 23;
             this.dataGridViewPassedTests.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPassedTests_CellContentClick);
             this.dataGridViewPassedTests.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
@@ -204,9 +173,7 @@
             // 
             // textBoxGroupUser
             // 
-
-            this.textBoxGroupUser.Location = new System.Drawing.Point(856, 42);
-            this.textBoxGroupUser.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxGroupUser.Location = new System.Drawing.Point(642, 34);
             this.textBoxGroupUser.Name = "textBoxGroupUser";
             this.textBoxGroupUser.ReadOnly = true;
             this.textBoxGroupUser.Size = new System.Drawing.Size(124, 20);
@@ -223,9 +190,7 @@
             // 
             // buttonResultOfTest
             // 
-
-            this.buttonResultOfTest.Location = new System.Drawing.Point(505, 450);
-            this.buttonResultOfTest.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonResultOfTest.Location = new System.Drawing.Point(379, 366);
             this.buttonResultOfTest.Name = "buttonResultOfTest";
             this.buttonResultOfTest.Size = new System.Drawing.Size(148, 27);
             this.buttonResultOfTest.TabIndex = 27;
@@ -234,10 +199,7 @@
             // 
             // buttonStatistic
             // 
-
-            this.buttonStatistic.Location = new System.Drawing.Point(828, 308);
-            this.buttonStatistic.Margin = new System.Windows.Forms.Padding(4);
-
+            this.buttonStatistic.Location = new System.Drawing.Point(621, 250);
             this.buttonStatistic.Name = "buttonStatistic";
             this.buttonStatistic.Size = new System.Drawing.Size(134, 28);
             this.buttonStatistic.TabIndex = 28;
@@ -259,26 +221,11 @@
             this.обновитьToolStripMenuItem.Text = "Обновить";
             this.обновитьToolStripMenuItem.Click += new System.EventHandler(this.обновитьToolStripMenuItem_Click_1);
             // 
-            // buttonSaveToPdf
-            // 
-            this.buttonSaveToPdf.Location = new System.Drawing.Point(828, 370);
-            this.buttonSaveToPdf.Name = "buttonSaveToPdf";
-            this.buttonSaveToPdf.Size = new System.Drawing.Size(179, 33);
-            this.buttonSaveToPdf.TabIndex = 29;
-            this.buttonSaveToPdf.Text = "Сохранить статистику";
-            this.buttonSaveToPdf.UseVisualStyleBackColor = true;
-            this.buttonSaveToPdf.Click += new System.EventHandler(this.buttonSaveToPdf_Click);
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-
             this.ClientSize = new System.Drawing.Size(781, 432);
-
-            this.ClientSize = new System.Drawing.Size(1041, 532);
-            this.Controls.Add(this.buttonSaveToPdf);
-
             this.Controls.Add(this.buttonStatistic);
             this.Controls.Add(this.buttonResultOfTest);
             this.Controls.Add(this.label3);
@@ -293,8 +240,6 @@
             this.Controls.Add(this.buttonBeginTest);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridViewAvailablePatterns);
-
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormMain";
             this.Text = "Главный экран";
             this.Load += new System.EventHandler(this.FormMain_Load);
@@ -329,6 +274,5 @@
         private System.Windows.Forms.Button buttonStatistic;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem обновитьToolStripMenuItem;
-        private System.Windows.Forms.Button buttonSaveToPdf;
     }
 }
