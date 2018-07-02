@@ -121,6 +121,7 @@ namespace TestView
             };
             comboBox1.Items.AddRange (source);
             comboBox1.Text=QuestionComplexity.Easy.ToString();
+         //   comboBox1.e
         }
 
         private async void button1_Click(object sender, EventArgs e)
@@ -131,7 +132,6 @@ namespace TestView
                 MessageBox.Show("Заполните все поля", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            Task task;
             string text = textBox6.Text;
             List<bool> checkBoxes = new List<bool>
             {
