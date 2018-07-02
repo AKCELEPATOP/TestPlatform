@@ -103,7 +103,7 @@
             this.Load += new System.EventHandler(this.FormCategoryEdit_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
-
+            this.AcceptButton = this.button1;
         }
 
         #endregion
