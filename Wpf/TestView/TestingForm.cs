@@ -139,8 +139,8 @@ namespace TestView
                 tmrShow.Interval = 1000;
                 tmrShow.Tick += tmrShow_Tick;
                 tmrShow.Enabled = true;
-                //label1.Text = "Категория " + list[id.Value].Questions[IdQuestions].CategoryName;    
-                /////////////////////
+                label1.Text = "Категория " + model.Questions[0].CategoryName;    
+
                 SetNextQuestion();
 
 
@@ -161,7 +161,7 @@ namespace TestView
             questionGroupBox.Text = "Вопрос № " + (listBoxQuestions.SelectedIndex + 1);//чекать
 
             IdQuestions = listBoxQuestions.SelectedIndex;
-
+            label1.Text = "Категория " + model.Questions[IdQuestions].CategoryName;
             if (IdQuestions < model.Questions.Count)
             {
                 QuestionViewModel question;
