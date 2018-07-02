@@ -120,6 +120,7 @@
             this.dataGridViewTestQuestions.TabIndex = 18;
             this.dataGridViewTestQuestions.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
             this.dataGridViewTestQuestions.AllowUserToAddRows = false;
+            this.dataGridViewTestQuestions.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             // 
             // dataGridViewCategories
             // 
@@ -135,6 +136,7 @@
             this.dataGridViewCategories.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCategories_CellContentClick);
             this.dataGridViewCategories.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
             this.dataGridViewCategories.AllowUserToAddRows = false;
+            this.dataGridViewCategories.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             // 
             // buttonCancel
             // 
@@ -181,6 +183,9 @@
             this.dataGridViewQuestions.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewQuestions.Size = new System.Drawing.Size(260, 174);
             this.dataGridViewQuestions.TabIndex = 27;
+            this.dataGridViewQuestions.AllowUserToAddRows = false;
+            this.dataGridViewQuestions.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+
             // 
             // label1
             // 
