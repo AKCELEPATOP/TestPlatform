@@ -23,11 +23,11 @@ namespace TestView
             string fio = textBoxFIO.Text;
             string mail = textBoxEmail.Text;
             string message = string.Empty;
-            if (!string.IsNullOrEmpty(fio) || !Regex.IsMatch(fio, @"\D{1,} \D{1,} \D{1,}"))
+            if (string.IsNullOrEmpty(fio) || !Regex.IsMatch(fio, @"\D{1,} \D{1,} \D{1,}"))
             {
                 message += " Неверный формат для ФИО.";
             }
-            if (!string.IsNullOrEmpty(mail))
+            if (string.IsNullOrEmpty(mail))
             {
                 if (!Regex.IsMatch(mail, @"^(?("")(""[^""]+?""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
                 @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-\w]*[0-9a-z]*\.)+[a-z0-9]{2,17}))$"))
