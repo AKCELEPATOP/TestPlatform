@@ -92,7 +92,7 @@ namespace TestService.Implementations
                         DateCreate = SqlFunctions.DateName("dd", rec.DateCreate) + " " +
                                             SqlFunctions.DateName("mm", rec.DateCreate) + " " +
                                             SqlFunctions.DateName("yyyy", rec.DateCreate),
-                        UserName = rec.User.FIO
+                        UserName = rec.User.FIO,
                     }).ToListAsync();
                 }
                 return await context.Stats.Where(rec => rec.UserId == model.UserId)

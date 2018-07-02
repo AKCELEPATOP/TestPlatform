@@ -166,7 +166,9 @@ namespace TestView
                     {
                         FilePath = fileName,
                     }));
-                }catch(Exception ex)
+                    MessageBox.Show("Файл успешно сохранен", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch(Exception ex)
                 {
                     while (ex.InnerException != null)
                     {

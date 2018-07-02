@@ -48,8 +48,8 @@ namespace TestView
                     dataGridViewAvailablePatterns.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
 
-                List<TestViewModel> listС =
-                    Task.Run(() => ApiClient.PostRequestData<GetListModel,List<TestViewModel>>("api/Stat/GetUserList",new GetListModel
+                List<StatViewModel> listС =
+                    Task.Run(() => ApiClient.PostRequestData<GetListModel,List<StatViewModel>>("api/Stat/GetUserList",new GetListModel
                     {
                         Skip = 0,
                         Take = 20
@@ -202,7 +202,7 @@ namespace TestView
                         FilePath = fileName,
                     }));
                     await task;
-                    MessageBox.Show("Файл успешно сохранен", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Файл успешно сохранен", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
                 {
