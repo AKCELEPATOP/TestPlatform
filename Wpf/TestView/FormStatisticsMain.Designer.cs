@@ -105,6 +105,7 @@
             this.dataGridView3.Size = new System.Drawing.Size(240, 151);
             this.dataGridView3.TabIndex = 4;
             this.dataGridView3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
+            this.dataGridView3.AllowUserToAddRows = false;
             // 
             // button10
             // 
@@ -139,6 +140,7 @@
             this.dataGridView1.Size = new System.Drawing.Size(310, 151);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
+            this.dataGridView1.AllowUserToAddRows = false;
             // 
             // button3
             // 
@@ -172,6 +174,7 @@
             this.dataGridView2.Size = new System.Drawing.Size(565, 240);
             this.dataGridView2.TabIndex = 2;
             this.dataGridView2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
+            this.dataGridView2.AllowUserToAddRows = false;
             // 
             // groupBox3
             // 

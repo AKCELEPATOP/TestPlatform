@@ -28,6 +28,7 @@ namespace TestView
                 groupBox1.ForeColor = Color.Black;
                 groupBox2.ForeColor = Color.Black;
             }
+            
             Initialize();
 
         }
