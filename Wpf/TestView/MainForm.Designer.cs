@@ -61,10 +61,12 @@
             // dataGridViewAvailablePatterns
             // 
             this.dataGridViewAvailablePatterns.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewAvailablePatterns.ColumnHeadersVisible = false;
+            this.dataGridViewAvailablePatterns.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridViewAvailablePatterns.Location = new System.Drawing.Point(15, 98);
             this.dataGridViewAvailablePatterns.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataGridViewAvailablePatterns.Name = "dataGridViewAvailablePatterns";
-            this.dataGridViewAvailablePatterns.RowHeadersVisible = false;
+            this.dataGridViewAvailablePatterns.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewAvailablePatterns.Size = new System.Drawing.Size(404, 343);
             this.dataGridViewAvailablePatterns.TabIndex = 0;
             this.dataGridViewAvailablePatterns.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewAvailablePatterns_CellContentClick);
@@ -194,9 +196,12 @@
             // dataGridViewPassedTests
             // 
             this.dataGridViewPassedTests.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewPassedTests.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridViewPassedTests.Location = new System.Drawing.Point(455, 98);
             this.dataGridViewPassedTests.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataGridViewPassedTests.Name = "dataGridViewPassedTests";
+            this.dataGridViewPassedTests.RowHeadersVisible = false;
+            this.dataGridViewPassedTests.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewPassedTests.Size = new System.Drawing.Size(309, 343);
             this.dataGridViewPassedTests.TabIndex = 23;
             this.dataGridViewPassedTests.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPassedTests_CellContentClick);
