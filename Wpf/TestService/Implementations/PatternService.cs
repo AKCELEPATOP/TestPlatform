@@ -204,7 +204,7 @@ namespace TestService.Implementations
                         updateCategory.Easy = model.PatternCategories.FirstOrDefault(rec => rec.CategoryId == updateCategory.CategoryId).Easy;
                         await context.SaveChangesAsync();
                     }
-                    
+
 
                     context.PatternCategories.RemoveRange(
                         context.PatternCategories.Where(rec => rec.PatternId == model.Id && !categoriesIds.Contains(rec.CategoryId)));
@@ -318,7 +318,7 @@ namespace TestService.Implementations
                             Id = r.Id,
                             Text = r.Text
                         }).ToList(),
-                        Multi = (rec.Question.Answers.Where(r=>r.True).Count()>1)
+                        Multi = (rec.Question.Answers.Where(r => r.True).Count() > 1)
                     }).ToList()
                 }).FirstOrDefaultAsync();
             TestViewModel result = new TestViewModel
@@ -399,12 +399,12 @@ namespace TestService.Implementations
 
         public async Task<StatViewModel> CheakTest(TestResponseModel model)
         {
-                var user = context.Users.Where(rec => rec.Id.Equals(model.UserId)).Select(rec => new UserViewModel
-                {
-                    FIO = rec.FIO,
-                    Email = rec.Email
-                }).FirstOrDefault();
-            if(user == null)
+            var user = context.Users.Where(rec => rec.Id.Equals(model.UserId)).Select(rec => new UserViewModel
+            {
+                FIO = rec.FIO,
+                Email = rec.Email
+            }).FirstOrDefault();
+            if (user == null)
             {
                 throw new Exception("Данный пользователь не существует");
             }
@@ -417,7 +417,7 @@ namespace TestService.Implementations
 
             var questionCount = context.Patterns.FirstOrDefault(rec => rec.Id == model.PatternId)
                 .PatternCategories.Select(rec => rec.Easy + rec.Complex + rec.Middle).DefaultIfEmpty(0).Sum();
-            
+
 
             result.StatCategories.AddRange(context.PatternCategories.Where(rec => rec.PatternId == model.PatternId).Include(rec => rec.Category)
                 .Select(rec => new StatCategoryViewModel
@@ -473,7 +473,7 @@ namespace TestService.Implementations
             });
             await context.SaveChangesAsync();
 
-            Task task = Task.Run(async() => await SendMail(result.Email, "Вы прошли тест!", CreateMessage(result)));
+            Task task = Task.Run(async () => await SendMail(result.Email, "Вы прошли тест!", CreateMessage(result)));
             //отправка
             return result;
         }
@@ -609,33 +609,33 @@ namespace TestService.Implementations
 
         public async Task<List<PatternViewModel>> GetUserList(string id)
         {
-            int groupId = (await context.Users.FirstOrDefaultAsync(rec => rec.Id == id)).UserGroupId ?? -1;
+            int? groupId = (await context.Users.FirstOrDefaultAsync(rec => rec.Id == id)).UserGroupId;
             return await GetGroupList(groupId);
         }
 
-        public async Task<List<PatternViewModel>> GetGroupList(int id)
+        public async Task<List<PatternViewModel>> GetGroupList(int? id)
         {
-            if (id != -1)
+            if (id.HasValue)
             {
-                return await context.Patterns.Where(rec => rec.UserGroupId == id)
+                return await context.Patterns.Where(rec => rec.UserGroupId == id || rec.UserGroup == null)
                     .Where(rec => !(rec.PatternCategories.Select(r => r.Category).Any(r => !r.Active))).Select(rec => new PatternViewModel
                     {
                         Id = rec.Id,
                         Name = rec.Name,
-                        UserGroupId = rec.UserGroupId.Value,
-                        UserGroupName = rec.UserGroup.Name
+                        UserGroupId = rec.UserGroupId,
+                        UserGroupName = rec.UserGroup.Name ?? "Общий"
                     }).ToListAsync();
             }
             else
             {
                 //не знаю будет ли работать
-                return await context.Patterns.Where(rec => !rec.UserGroupId.HasValue)
+                return await context.Patterns.Where(rec => rec.UserGroup == null)
                     .Where(rec => !(rec.PatternCategories.Select(r => r.Category).Any(r => !r.Active))).Select(rec => new PatternViewModel
-                {
-                    Id = rec.Id,
-                    Name = rec.Name,
-                    UserGroupName = "Общий"
-                }).ToListAsync();
+                    {
+                        Id = rec.Id,
+                        Name = rec.Name,
+                        UserGroupName = "Общий"
+                    }).ToListAsync();
             }
         }
     }

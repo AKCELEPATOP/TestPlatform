@@ -17,7 +17,7 @@ namespace TestService.ViewModels
         public string Name { get; set; }
 
         [DataMember]
-        public int UserGroupId { get; set; }
+        public int? UserGroupId { get; set; }
 
         [DataMember]
         public string UserGroupName { get; set; }
