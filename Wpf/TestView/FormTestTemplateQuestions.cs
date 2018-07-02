@@ -47,9 +47,9 @@ namespace TestView
             }
 
         }
-        private void Initialize()
+        private async void Initialize()
         {
-            listQ = Task.Run(() => ApiClient.GetRequestData<List<QuestionViewModel>>("api/category/GetListQuestions/" + listPC[0].CategoryId)).Result;
+            listQ = await ApiClient.GetRequestData<List<QuestionViewModel>>("api/category/GetListQuestions/" + listPC[0].CategoryId);
             if (listPC != null)
             {
                 dataGridViewCategories.DataSource = listPC;
