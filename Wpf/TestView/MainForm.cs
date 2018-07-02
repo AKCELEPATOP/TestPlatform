@@ -44,7 +44,7 @@ namespace TestView
                     dataGridViewAvailablePatterns.DataSource = list;
                     dataGridViewAvailablePatterns.Columns[0].Visible = false;
                     dataGridViewAvailablePatterns.Columns[2].Visible = false;
-                    dataGridViewAvailablePatterns.Columns[4].Visible = false;
+           //         dataGridViewAvailablePatterns.Columns[4].Visible = false;
                     dataGridViewAvailablePatterns.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
 
@@ -58,7 +58,7 @@ namespace TestView
                 {
                     dataGridViewPassedTests.DataSource = listС;
                     dataGridViewPassedTests.Columns[1].Visible = false;
-                    dataGridViewPassedTests.Columns[2].Visible = false;
+                //    dataGridViewPassedTests.Columns[2].Visible = false;
                     dataGridViewPassedTests.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
             }

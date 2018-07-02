@@ -33,15 +33,15 @@ namespace TestView
                     dataGridView1.DataSource = list;
                     dataGridView1.Columns[0].Visible = false;
                     dataGridView1.Columns[2].Visible = false;
-                    dataGridView1.Columns[4].Visible = false;
                     dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    dataGridView1.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
                 List<StatViewModel> listC =
                     Task.Run(() => ApiClient.PostRequestData<GetListModel,List<StatViewModel>>("api/Stat/GetList",new GetListModel {
                         Skip = 0,
                         Take = 20
                     })).Result;
-                if (list != null)
+                if (listC != null)
                 {
                     dataGridView2.DataSource = listC;
                     dataGridView2.Columns[0].Visible = false;
