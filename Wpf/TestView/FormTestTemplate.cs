@@ -266,6 +266,11 @@ namespace TestView
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            ChangeCategory();
+        }
+
+        private void ChangeCategory()
+        {
             if (dataGridView2.SelectedRows.Count == 1)
             {
                 if (current != null)
@@ -273,7 +278,7 @@ namespace TestView
                     SaveCategory();
                 }
 
-                current = listPC.FirstOrDefault(rec=>rec.CategoryId == Convert.ToInt32(dataGridView2.SelectedRows[0].Cells[2].Value));
+                current = listPC.FirstOrDefault(rec => rec.CategoryId == Convert.ToInt32(dataGridView2.SelectedRows[0].Cells[2].Value));
                 textBoxEasy.Text = current.Easy.ToString();
                 textBoxMid.Text = current.Middle.ToString();
                 textBoxDif.Text = current.Complex.ToString();
@@ -344,6 +349,8 @@ namespace TestView
                     });
                 }
                 source.ResetBindings(false);
+                dataGridView2.Rows[listPC.Count-1].Selected = true;
+                ChangeCategory();
             }
         }
         // >>
@@ -385,15 +392,25 @@ namespace TestView
                 }
             }
             source.ResetBindings(false);
+            if (listPC!=null && listPC.Count > 0)
+            {
+                dataGridView2.Rows[0].Selected = true;
+                ChangeCategory();
+            }
         }
         // <
         private void button6_Click(object sender, EventArgs e)
         {
             if (dataGridView2.SelectedRows.Count == 1)
             {
-                int Id = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells[0].Value);
-                listPC.Remove(listPC.FirstOrDefault(rec => rec.Id == Id));
+                int Id = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells[2].Value);
+                listPC.Remove(listPC.FirstOrDefault(rec => rec.CategoryId == Id));
                 source.ResetBindings(false);
+            }
+            if (listPC != null && listPC.Count > 0)
+            {
+                dataGridView2.Rows[0].Selected = true;
+                ChangeCategory();
             }
         }
         // <<

@@ -167,6 +167,7 @@
             this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.Location = new System.Drawing.Point(24, 140);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -182,6 +183,7 @@
             this.dataGridView2.EnableHeadersVisualStyles = false;
             this.dataGridView2.Location = new System.Drawing.Point(428, 140);
             this.dataGridView2.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridView2.MultiSelect = false;
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersVisible = false;
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
