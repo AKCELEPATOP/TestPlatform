@@ -1,6 +1,7 @@
 ﻿using MetroFramework.Forms;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TestModels;
@@ -25,7 +26,40 @@ namespace TestView
             FormBorderStyle = FormBorderStyle.None;
             this.Style = MetroFramework.MetroColorStyle.Teal;
             ShadowType = MetroFormShadowType.DropShadow;
-
+            if (FormStatisticsMain.DarkTheme)
+            {
+                Theme = MetroFramework.MetroThemeStyle.Dark;
+                label1.ForeColor = Color.White;
+                label2.ForeColor = Color.White;
+                label3.ForeColor = Color.White;
+                label4.ForeColor = Color.White;
+                label5.ForeColor = Color.White;
+                label6.ForeColor = Color.White;
+                label8.ForeColor = Color.White;
+                label9.ForeColor = Color.White;
+                checkBox1.ForeColor = Color.White;
+                checkBox2.ForeColor = Color.White;
+                checkBox3.ForeColor = Color.White;
+                checkBox4.ForeColor = Color.White;
+                checkBox5.ForeColor = Color.White;
+            }
+            else
+            {
+                Theme = MetroFramework.MetroThemeStyle.Light;
+                label1.ForeColor = Color.Black;
+                label2.ForeColor = Color.Black;
+                label3.ForeColor = Color.Black;
+                label4.ForeColor = Color.Black;
+                label5.ForeColor = Color.Black;
+                label6.ForeColor = Color.Black;
+                label8.ForeColor = Color.Black;
+                label9.ForeColor = Color.Black;
+                checkBox1.ForeColor = Color.Black;
+                checkBox2.ForeColor = Color.Black;
+                checkBox3.ForeColor = Color.Black;
+                checkBox4.ForeColor = Color.Black;
+                checkBox5.ForeColor = Color.Black;
+            }
             Initialize();
         }
 

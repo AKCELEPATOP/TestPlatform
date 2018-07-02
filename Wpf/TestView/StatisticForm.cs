@@ -14,12 +14,24 @@ namespace TestView
 {
     public partial class StatisticForm : MetroForm
     {
+
+        public static bool DarkTheme { get { return DarkTheme; } set { DarkTheme = false; } }
         public StatisticForm()
         {
             InitializeComponent();
             FormBorderStyle = FormBorderStyle.None;
             this.Style = MetroFramework.MetroColorStyle.Teal;
             ShadowType = MetroFormShadowType.DropShadow;
+            if (FormMain.DarkTheme)
+            {
+                Theme = MetroFramework.MetroThemeStyle.Dark;
+                label5.ForeColor = Color.White;
+            }
+            else
+            {
+                Theme = MetroFramework.MetroThemeStyle.Light;
+                label5.ForeColor = Color.Black;
+            }
             Initialize();
         }
 
@@ -36,7 +48,6 @@ namespace TestView
                     dataGridView1.Columns[0].Visible = false;
                     dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
-
             }
 
             catch (Exception ex)

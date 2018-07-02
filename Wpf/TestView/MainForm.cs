@@ -16,8 +16,7 @@ namespace TestView
 {
     public partial class FormMain : MetroForm
     {
-        public Color colorBack;
-        public Color colorFont;
+        public static bool DarkTheme { get { return DarkTheme; }  set { DarkTheme = false; } } 
 
         public string UserLogin { get; set; }
 
@@ -74,29 +73,6 @@ namespace TestView
 
         }
 
-        private void button7_Click(object sender, EventArgs e)
-        {
-            ColorDialog cd = new ColorDialog();
-            if (cd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                colorFont = cd.Color;
-            }
-            this.ForeColor = colorFont;
-        }
-
-
-        private void button8_Click(object sender, EventArgs e)
-        {
-            ColorDialog cd = new ColorDialog();
-            if (cd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                colorBack = cd.Color;
-
-                buttonChangeColorFont.BackColor = colorBack;
-
-            }
-            this.BackColor = colorBack;
-        }
 
         private void button5_Click(object sender, EventArgs e)
         {
@@ -125,8 +101,6 @@ namespace TestView
             //textBoxCurrentUser.Text = ;
             //textBoxGroupUser.Text = ;
             Initialize();
-            this.ForeColor = colorFont;
-            this.BackColor = colorBack;
         }
 
         private void buttonStatistic_Click(object sender, EventArgs e)
@@ -184,6 +158,36 @@ namespace TestView
         private void Form_Load(object sender, EventArgs e)
         {
             Initialize();
+        }
+
+        private void buttonChangeColorBack_Click(object sender, EventArgs e)
+        {
+            if (DarkTheme.Equals(false))
+            {
+                this.Theme = MetroFramework.MetroThemeStyle.Dark;
+                label1.ForeColor = Color.White;
+                label2.ForeColor = Color.White;
+                label4.ForeColor = Color.White;
+                label3.ForeColor = Color.White;
+                label6.ForeColor = Color.White;
+                textBoxCurrentUser.ForeColor = Color.White;
+                textBoxGroupUser.ForeColor = Color.White;
+                groupBox2.ForeColor = Color.White;
+                DarkTheme = !DarkTheme;
+            }
+            else
+            {
+                this.Theme = MetroFramework.MetroThemeStyle.Light;
+                label1.ForeColor = Color.Black;
+                label2.ForeColor = Color.Black;
+                label4.ForeColor = Color.Black;
+                label3.ForeColor = Color.Black;
+                label6.ForeColor = Color.Black;
+                textBoxCurrentUser.ForeColor = Color.Black;
+                textBoxGroupUser.ForeColor = Color.Black;
+                groupBox2.ForeColor = Color.Black;
+                                DarkTheme = !DarkTheme;
+            }
         }
     }
 }
