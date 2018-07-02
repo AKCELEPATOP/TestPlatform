@@ -125,5 +125,17 @@ namespace TestRestApi.Controllers
             }
             await Service.SaveToPdfAdmin(model);
         }
+
+        [HttpGet]
+        [Authorize(Roles = ApplicationRoles.SuperAdmin + "," + ApplicationRoles.Admin)]
+        public async Task<IHttpActionResult> GetPatternList(int id)
+        {
+            var list = await Service.GetPatternList(id);
+            if (list == null)
+            {
+                InternalServerError(new Exception("Нет данных"));
+            }
+            return Ok(list);
+        }
     }
 }

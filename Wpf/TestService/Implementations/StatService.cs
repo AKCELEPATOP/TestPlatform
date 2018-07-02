@@ -358,5 +358,19 @@ namespace TestService.Implementations
             doc.Close();
 
         }
+
+        public async Task<List<StatViewModel>> GetPatternList(int id)
+        {
+            return await context.Stats.Where(rec => rec.PatternId == id).Select(rec => new StatViewModel
+            {
+                UserName = rec.User.FIO,
+                Total = rec.Total,
+                Right = rec.Right,
+                Mark = (int)((double)rec.Right / rec.Total * 100),
+                DateCreate = SqlFunctions.DateName("dd", rec.DateCreate) + " " +
+                                            SqlFunctions.DateName("mm", rec.DateCreate) + " " +
+                                            SqlFunctions.DateName("yyyy", rec.DateCreate)
+            }).ToListAsync();
+        }
     }
 }

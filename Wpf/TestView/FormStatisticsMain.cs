@@ -17,13 +17,13 @@ namespace TestView
 
         public static bool DarkTheme { get; set; }
 
+        private BindingSource sourcePS;
+
         public FormStatisticsMain(FormAuthorization parent)
         {
             this.parent = parent;
             InitializeComponent();
- 
- 
- 
+            sourcePS = new BindingSource();
             labelUserName.Text = ApiClient.UserName;
             Initialize();
         }
@@ -39,6 +39,19 @@ namespace TestView
                     dataGridView1.Columns[2].Visible = false;
                     dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                     dataGridView1.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+                    if (list.Count > 0)
+                    {
+                        dataGridView1.Rows[0].Selected = true;
+                        List<StatViewModel> listPS = await ApiClient.GetRequestData<List<StatViewModel>>("api/Stat/GetPatternList/" + list[0].Id);
+                        sourcePS.DataSource = listPS;
+                        dataGridViewPatternStat.DataSource = listPS;
+                        dataGridViewPatternStat.Columns[0].Visible = false;
+                        dataGridViewPatternStat.Columns[6].Visible = false;
+                        //dataGridViewPatternStat.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                        //dataGridViewPatternStat.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                        //dataGridViewPatternStat.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    }
                 }
                 List<StatViewModel> listC = await ApiClient.PostRequestData<GetListModel, List<StatViewModel>>("api/Stat/GetList", new GetListModel{});
                 if (listC != null)
@@ -222,6 +235,24 @@ namespace TestView
             //сделайте
         }
 
-       
+        private async void dataGridViewPatternStat_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count == 1)
+            {
+                try
+                {
+                    List<StatViewModel> listPS = await ApiClient.GetRequestData<List<StatViewModel>>("api/Stat/GetPatternList/" + Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value));
+                    sourcePS.DataSource = listPS;
+                    sourcePS.ResetBindings(false);
+                }catch(Exception ex)
+                {
+                    while (ex.InnerException != null)
+                    {
+                        ex = ex.InnerException;
+                    }
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
     }
 }

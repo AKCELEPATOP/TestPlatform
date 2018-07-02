@@ -12,6 +12,8 @@ namespace TestService.Interfaces
     {
         Task<List<StatViewModel>> GetList(GetListModel model);
 
+        Task<List<StatViewModel>> GetPatternList(int id);
+
         Task<List<StatViewModel>> GetUserList(GetListModel model);
 
         Task<StatChartViewModel> GetUserChart(GetListModel model);
