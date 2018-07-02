@@ -46,10 +46,10 @@ namespace TestView
             }
         }
 
-        private void Initialize() {
+        private async void Initialize() {
             try
             {
-                var groups = Task.Run(() => ApiClient.GetRequestData<List<GroupViewModel>>("api/Group/GetList")).Result;
+                var groups = await ApiClient.GetRequestData<List<GroupViewModel>>("api/Group/GetList");
                 comboBoxGroups.DisplayMember = "Name";
                 comboBoxGroups.ValueMember = "Id";
                 comboBoxGroups.DataSource = groups;
@@ -68,14 +68,10 @@ namespace TestView
             {
                 try
                 {
-
-
-                    var user = Task.Run(() => ApiClient.GetRequestData<UserViewModel>("api/User/Get/" + id)).Result;
+                    var user = await ApiClient.GetRequestData<UserViewModel>("api/User/Get/" + id);
                     textBoxFIO.Text = user.FIO;
                     textBoxUserName.Text = user.UserName;
                     textBoxEmail.Text = user.Email;
-
-
                     if(user.GroupId !=null) {
                         comboBoxGroups.SelectedValue = user.GroupId;
                     }

@@ -41,8 +41,8 @@ namespace TestView
                 if (listC != null)
                 {
                     dataGridView2.DataSource = listC;
-                    dataGridView2.Columns[0].Visible = false;
-                    dataGridView2.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    dataGridView2.Columns[6].Visible = false;
+                    dataGridView2.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
             }
             catch (Exception ex)

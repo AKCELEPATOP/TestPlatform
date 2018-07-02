@@ -33,12 +33,11 @@ namespace TestView
             ShadowType = MetroFormShadowType.DropShadow;
         }
 
-        private void Initialize()
+        private async void Initialize()
         {
             try
             {
-                List<PatternViewModel> list =
-                    Task.Run(() => ApiClient.GetRequestData<List<PatternViewModel>>("api/Pattern/GetUserList")).Result;
+                List<PatternViewModel> list = await ApiClient.GetRequestData<List<PatternViewModel>>("api/Pattern/GetUserList");
                 if (list != null)
                 {
                     dataGridViewAvailablePatterns.DataSource = list;
@@ -48,18 +47,13 @@ namespace TestView
                     dataGridViewAvailablePatterns.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
 
-                List<TestViewModel> listС =
-                    Task.Run(() => ApiClient.PostRequestData<GetListModel,List<TestViewModel>>("api/Stat/GetUserList",new GetListModel
-                    {
-                        Skip = 0,
-                        Take = 20
-                    })).Result;
+                List<TestViewModel> listС = await ApiClient.PostRequestData<GetListModel,List<TestViewModel>>("api/Stat/GetUserList",new GetListModel{});
                 if (listС != null)
                 {
                     dataGridViewPassedTests.DataSource = listС;
                     dataGridViewPassedTests.Columns[1].Visible = false;
-                //    dataGridViewPassedTests.Columns[2].Visible = false;
-                    dataGridViewPassedTests.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    dataGridViewPassedTests.Columns[2].Visible = false;
+                    dataGridViewPassedTests.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
             }
                      
@@ -110,38 +104,6 @@ namespace TestView
             statisticForm.Show();
         }
 
-        private void dataGridViewAvailablePatterns_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (dataGridViewAvailablePatterns.SelectedRows.Count == 1)
-            {
-                int Id = Convert.ToInt32(dataGridViewAvailablePatterns.SelectedRows[0].Cells[0].Value);
-                List<PatternViewModel> list =
-                Task.Run(() => ApiClient.GetRequestData<List<PatternViewModel>>("api/Pattern/GetList/" + Id)).Result;
-                if (list != null)
-                {
-                    dataGridViewAvailablePatterns.DataSource = list;
-                    dataGridViewAvailablePatterns.Columns[0].Visible = false;
-                    dataGridViewAvailablePatterns.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                }
-            }
-        }
-
-        private void dataGridViewPassedTests_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (dataGridViewPassedTests.SelectedRows.Count == 1)
-            {
-                int Id = Convert.ToInt32(dataGridViewPassedTests.SelectedRows[0].Cells[0].Value);
-                List<TestViewModel> list =
-                Task.Run(() => ApiClient.GetRequestData<List<TestViewModel>>("api/Stat/GetList/" + Id)).Result;
-                if (list != null)
-                {
-                    dataGridViewPassedTests.DataSource = list;
-                    dataGridViewPassedTests.Columns[0].Visible = false;
-                    dataGridViewPassedTests.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                }
-            }
-        }
-
         // ПКМ -> Обновить
         private void MouseDown_Form(object sender, MouseEventArgs e)
         {
@@ -159,9 +121,6 @@ namespace TestView
         private void Form_Load(object sender, EventArgs e)
         {
             Initialize();
-
-            this.components.SetDefaultStyle(this,MetroColorStyle.Purple);
-            
         }
 
         private void buttonChangeColorBack_Click(object sender, EventArgs e)
@@ -205,11 +164,10 @@ namespace TestView
                 string fileName = sfd.FileName;
                 try
                 {
-                    Task task = Task.Run(() => ApiClient.PostRequestData("api/stat/SaveToPdf", new ReportBindingModel
+                    await ApiClient.PostRequestData("api/stat/SaveToPdf", new ReportBindingModel
                     {
                         FilePath = fileName,
-                    }));
-                    await task;
+                    });
                     MessageBox.Show("Файл успешно сохранен", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)

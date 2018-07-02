@@ -117,12 +117,12 @@ namespace TestView
             resultsForm.Show();
         }
 
-        private void Initialize()
+        private async void Initialize()
         {
             try
             {
 
-                model = Task.Run(() => ApiClient.GetRequestData<TestViewModel>("api/Pattern/CreateTest/" + id)).Result;
+                model = await ApiClient.GetRequestData<TestViewModel>("api/Pattern/CreateTest/" + id);
                 if (model != null)
                 {
                     listBoxQuestions.DataSource = model.Questions;
