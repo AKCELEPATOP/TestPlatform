@@ -48,14 +48,16 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.button5 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.button7 = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.обновитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.labelUserName = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.buttonChangeFont = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.buttonChangeColorBack = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPatternStat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -256,37 +258,17 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.label2);
-            this.groupBox4.Controls.Add(this.button5);
-            this.groupBox4.Location = new System.Drawing.Point(825, 396);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox4.Controls.Add(this.label5);
+            this.groupBox4.Controls.Add(this.buttonChangeFont);
+            this.groupBox4.Controls.Add(this.label6);
+            this.groupBox4.Controls.Add(this.buttonChangeColorBack);
+            this.groupBox4.Location = new System.Drawing.Point(619, 322);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox4.Size = new System.Drawing.Size(300, 188);
             this.groupBox4.TabIndex = 6;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Настройка цветов";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(88, 42);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(99, 17);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Сменить тему";
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(72, 62);
-            this.button5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(141, 41);
-            this.button5.TabIndex = 0;
-            this.button5.Text = "Сменить";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // label4
             // 
@@ -345,6 +327,44 @@
             this.labelUserName.Size = new System.Drawing.Size(0, 20);
             this.labelUserName.TabIndex = 11;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(46, 74);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(119, 13);
+            this.label5.TabIndex = 23;
+            this.label5.Text = "Сменить цвет шрифта";
+            // 
+            // buttonChangeFont
+            // 
+            this.buttonChangeFont.Location = new System.Drawing.Point(56, 90);
+            this.buttonChangeFont.Name = "buttonChangeFont";
+            this.buttonChangeFont.Size = new System.Drawing.Size(101, 30);
+            this.buttonChangeFont.TabIndex = 22;
+            this.buttonChangeFont.Text = "Сменить";
+            this.buttonChangeFont.UseVisualStyleBackColor = true;
+            this.buttonChangeFont.Click += new System.EventHandler(this.buttonChangeFont_Click_1);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(61, 21);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(78, 13);
+            this.label6.TabIndex = 21;
+            this.label6.Text = "Сменить тему";
+            // 
+            // buttonChangeColorBack
+            // 
+            this.buttonChangeColorBack.Location = new System.Drawing.Point(56, 37);
+            this.buttonChangeColorBack.Name = "buttonChangeColorBack";
+            this.buttonChangeColorBack.Size = new System.Drawing.Size(101, 30);
+            this.buttonChangeColorBack.TabIndex = 20;
+            this.buttonChangeColorBack.Text = "Сменить";
+            this.buttonChangeColorBack.UseVisualStyleBackColor = true;
+            this.buttonChangeColorBack.Click += new System.EventHandler(this.buttonChangeColorBack_Click_1);
+            // 
             // FormStatisticsMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -392,8 +412,6 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button8;
@@ -406,5 +424,9 @@
         private System.Windows.Forms.ToolStripMenuItem обновитьToolStripMenuItem;
         private System.Windows.Forms.Button buttonAdmins;
         private System.Windows.Forms.Label labelUserName;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button buttonChangeFont;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button buttonChangeColorBack;
     }
 }

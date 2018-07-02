@@ -20,6 +20,8 @@ namespace TestView
         public string UserLogin { get; set; }
 
         private FormAuthorization parent;
+        private Color colorFont;
+        private Color colorBack;
 
         public FormMain(FormAuthorization parent)
         {
@@ -121,34 +123,22 @@ namespace TestView
 
         private void buttonChangeColorBack_Click(object sender, EventArgs e)
         {
-            if (DarkTheme.Equals(false))
+            ColorDialog cd = new ColorDialog();
+            if (cd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-      
-                label1.ForeColor = Color.White;
-                label2.ForeColor = Color.White;
-                label4.ForeColor = Color.White;
-                label3.ForeColor = Color.White;
-                label6.ForeColor = Color.White;
-                textBoxCurrentUser.ForeColor = Color.White;
-                textBoxGroupUser.ForeColor = Color.White;
-                groupBox2.ForeColor = Color.White;
-                DarkTheme = !DarkTheme;
+                colorBack = cd.Color;
             }
-            else
-            {
- 
-                label1.ForeColor = Color.Black;
-                label2.ForeColor = Color.Black;
-                label4.ForeColor = Color.Black;
-                label3.ForeColor = Color.Black;
-                label6.ForeColor = Color.Black;
-                textBoxCurrentUser.ForeColor = Color.Black;
-                textBoxGroupUser.ForeColor = Color.Black;
-                groupBox2.ForeColor = Color.Black;
-                                DarkTheme = !DarkTheme;
-            }
+            this.BackColor = colorBack;
         }
-
+        private void buttonChangeFont_Click(object sender, EventArgs e)
+        {
+            ColorDialog cd = new ColorDialog();
+            if (cd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                colorFont = cd.Color;
+            }
+            this.ForeColor = colorFont;
+        }
         private async void buttonSaveToPdf_Click(object sender, EventArgs e)
         {
             SaveFileDialog sfd = new SaveFileDialog
@@ -176,5 +166,7 @@ namespace TestView
                 }
             }
         }
+
+
     }
 }
