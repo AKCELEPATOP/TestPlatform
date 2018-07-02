@@ -23,7 +23,7 @@ namespace TestView
             string fio = textBoxFIO.Text;
             string mail = textBoxEmail.Text;
             string message = string.Empty;
-            if (string.IsNullOrEmpty(fio) || !Regex.IsMatch(fio, @"\D{1,} \D{1,} \D{1,}"))
+            if (!string.IsNullOrEmpty(fio) || !Regex.IsMatch(fio, @"\D{1,} \D{1,} \D{1,}"))
             {
                 message += " Неверный формат для ФИО.";
             }
