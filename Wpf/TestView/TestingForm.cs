@@ -238,7 +238,7 @@ namespace TestView
 
         private void nextQuestion_Click(object sender, EventArgs e)
         {
-            if (listBoxQuestions.SelectedIndex < model.Questions.Count)
+            if (listBoxQuestions.SelectedIndex < model.Questions.Count-1)
             {
                 listBoxQuestions.SelectedIndex++;
                 GetAnswer();
