@@ -69,6 +69,7 @@ namespace TestView
                 radioButton4.ForeColor = Color.Black;
                 answerGroupBoxRadioButtons.ForeColor = Color.Black;
             }
+            textBoxTime.Enabled = false;
         }
 
 
