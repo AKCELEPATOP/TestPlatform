@@ -1,5 +1,4 @@
-﻿using MetroFramework.Forms;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text.RegularExpressions;
@@ -11,7 +10,7 @@ using TestService.ViewModels;
 
 namespace TestView
 {
-    public partial class FormQuestionEditor : MetroForm
+    public partial class FormQuestionEditor : Form
     {
         public int Id { set { id = value; } }
 
@@ -26,12 +25,12 @@ namespace TestView
         public FormQuestionEditor()
         {
             InitializeComponent();
-            FormBorderStyle = FormBorderStyle.None;
-            this.Style = MetroFramework.MetroColorStyle.Teal;
-            ShadowType = MetroFormShadowType.DropShadow;
+ 
+ 
+ 
             if (FormStatisticsMain.DarkTheme)
             {
-                Theme = MetroFramework.MetroThemeStyle.Dark;
+ 
                 label1.ForeColor = Color.White;
                 label2.ForeColor = Color.White;
                 label3.ForeColor = Color.White;
@@ -48,7 +47,7 @@ namespace TestView
             }
             else
             {
-                Theme = MetroFramework.MetroThemeStyle.Light;
+ 
                 label1.ForeColor = Color.Black;
                 label2.ForeColor = Color.Black;
                 label3.ForeColor = Color.Black;
@@ -114,8 +113,8 @@ namespace TestView
                 }
             }
 
-            maskedTextBox1.Mask = "00 : 00";
-            maskedTextBox1.Text = "02 : 00";
+            maskedTextBox1.Mask = "00:00";
+            maskedTextBox1.Text = "02:00";
             string[] source = new string[] //пофиксить
             {
             QuestionComplexity.Easy.ToString(), QuestionComplexity.Middle.ToString(), QuestionComplexity.Difficult.ToString()
@@ -154,7 +153,7 @@ namespace TestView
                 return;
             }
             bool active = !checkBox5.Checked;
-            if (!Regex.IsMatch(maskedTextBox1.Text.ToString(), @"d{2}[:]?\d{2}") || maskedTextBox1.Text ==null)
+            if (!Regex.IsMatch(maskedTextBox1.Text.ToString(), @"\d{2}[:]\d{2}") || maskedTextBox1.Text ==null)
             {
                 MessageBox.Show("Формат времени неверный", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
