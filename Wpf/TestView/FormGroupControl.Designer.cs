@@ -61,7 +61,6 @@
             this.groupBox1.Size = new System.Drawing.Size(346, 181);
             this.groupBox1.TabIndex = 30;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Группы";
             // 
             // button1
             // 

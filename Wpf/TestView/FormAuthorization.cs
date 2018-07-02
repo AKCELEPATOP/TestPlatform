@@ -12,6 +12,7 @@ namespace TestView
             InitializeComponent();
             FormBorderStyle = FormBorderStyle.None;
             this.Style = MetroFramework.MetroColorStyle.Teal;
+            ShadowType = MetroFormShadowType.DropShadow;
         }
 
         private void button2_Click(object sender, EventArgs e)
