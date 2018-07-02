@@ -50,6 +50,7 @@
             this.buttonStatistic = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.обновитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SaveToPDF = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAvailablePatterns)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPassedTests)).BeginInit();
@@ -87,7 +88,7 @@
             // 
             // textBoxCurrentUser
             // 
-            this.textBoxCurrentUser.Location = new System.Drawing.Point(368, 34);
+            this.textBoxCurrentUser.Location = new System.Drawing.Point(510, 38);
             this.textBoxCurrentUser.Name = "textBoxCurrentUser";
             this.textBoxCurrentUser.ReadOnly = true;
             this.textBoxCurrentUser.Size = new System.Drawing.Size(124, 20);
@@ -95,7 +96,7 @@
             // 
             // buttonChangeUser
             // 
-            this.buttonChangeUser.Location = new System.Drawing.Point(500, 32);
+            this.buttonChangeUser.Location = new System.Drawing.Point(642, 36);
             this.buttonChangeUser.Name = "buttonChangeUser";
             this.buttonChangeUser.Size = new System.Drawing.Size(73, 22);
             this.buttonChangeUser.TabIndex = 12;
@@ -106,7 +107,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(221, 37);
+            this.label4.Location = new System.Drawing.Point(363, 41);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(132, 13);
             this.label4.TabIndex = 11;
@@ -135,7 +136,7 @@
             // 
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.buttonChangeColorBack);
-            this.groupBox2.Location = new System.Drawing.Point(604, 101);
+            this.groupBox2.Location = new System.Drawing.Point(764, 105);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(162, 124);
             this.groupBox2.TabIndex = 18;
@@ -144,7 +145,7 @@
             // 
             // buttonExit
             // 
-            this.buttonExit.Location = new System.Drawing.Point(679, 365);
+            this.buttonExit.Location = new System.Drawing.Point(839, 369);
             this.buttonExit.Name = "buttonExit";
             this.buttonExit.Size = new System.Drawing.Size(87, 28);
             this.buttonExit.TabIndex = 19;
@@ -157,7 +158,7 @@
             this.dataGridViewPassedTests.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewPassedTests.Location = new System.Drawing.Point(341, 80);
             this.dataGridViewPassedTests.Name = "dataGridViewPassedTests";
-            this.dataGridViewPassedTests.Size = new System.Drawing.Size(232, 279);
+            this.dataGridViewPassedTests.Size = new System.Drawing.Size(397, 279);
             this.dataGridViewPassedTests.TabIndex = 23;
             this.dataGridViewPassedTests.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPassedTests_CellContentClick);
             this.dataGridViewPassedTests.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
@@ -173,7 +174,7 @@
             // 
             // textBoxGroupUser
             // 
-            this.textBoxGroupUser.Location = new System.Drawing.Point(642, 34);
+            this.textBoxGroupUser.Location = new System.Drawing.Point(802, 38);
             this.textBoxGroupUser.Name = "textBoxGroupUser";
             this.textBoxGroupUser.ReadOnly = true;
             this.textBoxGroupUser.Size = new System.Drawing.Size(124, 20);
@@ -182,7 +183,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(591, 37);
+            this.label3.Location = new System.Drawing.Point(751, 41);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(45, 13);
             this.label3.TabIndex = 26;
@@ -190,7 +191,7 @@
             // 
             // buttonResultOfTest
             // 
-            this.buttonResultOfTest.Location = new System.Drawing.Point(379, 366);
+            this.buttonResultOfTest.Location = new System.Drawing.Point(464, 366);
             this.buttonResultOfTest.Name = "buttonResultOfTest";
             this.buttonResultOfTest.Size = new System.Drawing.Size(148, 27);
             this.buttonResultOfTest.TabIndex = 27;
@@ -199,7 +200,7 @@
             // 
             // buttonStatistic
             // 
-            this.buttonStatistic.Location = new System.Drawing.Point(621, 250);
+            this.buttonStatistic.Location = new System.Drawing.Point(781, 254);
             this.buttonStatistic.Name = "buttonStatistic";
             this.buttonStatistic.Size = new System.Drawing.Size(134, 28);
             this.buttonStatistic.TabIndex = 28;
@@ -221,11 +222,22 @@
             this.обновитьToolStripMenuItem.Text = "Обновить";
             this.обновитьToolStripMenuItem.Click += new System.EventHandler(this.обновитьToolStripMenuItem_Click_1);
             // 
+            // SaveToPDF
+            // 
+            this.SaveToPDF.Location = new System.Drawing.Point(781, 288);
+            this.SaveToPDF.Name = "SaveToPDF";
+            this.SaveToPDF.Size = new System.Drawing.Size(134, 28);
+            this.SaveToPDF.TabIndex = 29;
+            this.SaveToPDF.Text = "Сохранить PDF";
+            this.SaveToPDF.UseVisualStyleBackColor = true;
+            this.SaveToPDF.Click += new System.EventHandler(this.buttonSaveToPdf_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(781, 432);
+            this.ClientSize = new System.Drawing.Size(954, 432);
+            this.Controls.Add(this.SaveToPDF);
             this.Controls.Add(this.buttonStatistic);
             this.Controls.Add(this.buttonResultOfTest);
             this.Controls.Add(this.label3);
@@ -274,5 +286,6 @@
         private System.Windows.Forms.Button buttonStatistic;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem обновитьToolStripMenuItem;
+        private System.Windows.Forms.Button SaveToPDF;
     }
 }
