@@ -30,7 +30,6 @@
         {
             this.label5 = new System.Windows.Forms.Label();
             this.back = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.labelResult = new System.Windows.Forms.Label();
@@ -63,25 +62,14 @@
             this.back.UseVisualStyleBackColor = true;
             this.back.Click += new System.EventHandler(this.back_Click);
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(79, 251);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(77, 17);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Категории";
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(79, 208);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(132, 17);
+            this.label3.Size = new System.Drawing.Size(0, 17);
             this.label3.TabIndex = 6;
-            this.label3.Text = "Набраныые баллы";
             // 
             // label1
             // 
@@ -89,9 +77,8 @@
             this.label1.Location = new System.Drawing.Point(79, 170);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(177, 17);
+            this.label1.Size = new System.Drawing.Size(0, 17);
             this.label1.TabIndex = 5;
-            this.label1.Text = "Максимум баллов в тесте";
             // 
             // labelResult
             // 
@@ -107,10 +94,10 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(53, 450);
+            this.dataGridView1.Location = new System.Drawing.Point(53, 170);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(415, 138);
+            this.dataGridView1.Size = new System.Drawing.Size(415, 418);
             this.dataGridView1.TabIndex = 12;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -131,9 +118,8 @@
             this.label2.Location = new System.Drawing.Point(270, 170);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(50, 17);
+            this.label2.Size = new System.Drawing.Size(0, 17);
             this.label2.TabIndex = 14;
-            this.label2.Text = "баллы";
             // 
             // label6
             // 
@@ -141,9 +127,8 @@
             this.label6.Location = new System.Drawing.Point(270, 208);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(50, 17);
+            this.label6.Size = new System.Drawing.Size(0, 17);
             this.label6.TabIndex = 15;
-            this.label6.Text = "баллы";
             // 
             // FormResultOfTest
             // 
@@ -157,7 +142,6 @@
             this.Controls.Add(this.labelResult);
             this.Controls.Add(this.back);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -174,7 +158,6 @@
         #endregion
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button back;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label labelResult;
