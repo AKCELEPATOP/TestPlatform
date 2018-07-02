@@ -1,18 +1,17 @@
-﻿using MetroFramework.Forms;
-using System;
+﻿using System;
 using System.Windows.Forms;
 using TestService;
 
 namespace TestView
 {
-    public partial class FormAuthorization : MetroForm
+    public partial class FormAuthorization : Form
     {
         public FormAuthorization()
         {
             InitializeComponent();
-            FormBorderStyle = FormBorderStyle.None;
-            this.Style = MetroFramework.MetroColorStyle.Teal;
-            ShadowType = MetroFormShadowType.DropShadow;
+ 
+ 
+ 
         }
 
         private void button2_Click(object sender, EventArgs e)

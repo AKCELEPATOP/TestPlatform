@@ -1,4 +1,4 @@
-﻿using MetroFramework.Forms;
+﻿ 
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -8,23 +8,23 @@ using TestService.ViewModels;
 
 namespace TestView
 {
-    public partial class FormCategories : MetroForm
+    public partial class FormCategories : Form
     {
         public FormCategories()
         {
             InitializeComponent();
-            FormBorderStyle = FormBorderStyle.None;
-            this.Style = MetroFramework.MetroColorStyle.Teal;
-            ShadowType = MetroFormShadowType.DropShadow;
+ 
+ 
+ 
             if (FormStatisticsMain.DarkTheme)
             {
-                Theme = MetroFramework.MetroThemeStyle.Dark;
+ 
                 groupBox1.ForeColor = Color.White;
                 groupBox2.ForeColor = Color.White;
             }
             else
             {
-                Theme = MetroFramework.MetroThemeStyle.Light;
+ 
                 groupBox1.ForeColor = Color.Black;
                 groupBox2.ForeColor = Color.Black;
             }

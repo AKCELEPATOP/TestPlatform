@@ -1,5 +1,4 @@
-﻿using MetroFramework.Forms;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,7 +12,7 @@ using TestService.ViewModels;
 
 namespace TestView
 {
-    public partial class FormTestTemplate : MetroForm
+    public partial class FormTestTemplate : Form
     {
         public int Id { set { id = value; } }
 
@@ -30,12 +29,12 @@ namespace TestView
         public FormTestTemplate()
         {
             InitializeComponent();
-            FormBorderStyle = FormBorderStyle.None;
-            this.Style = MetroFramework.MetroColorStyle.Teal;
-            ShadowType = MetroFormShadowType.DropShadow;
+ 
+ 
+ 
             if (FormStatisticsMain.DarkTheme)
             {
-                Theme = MetroFramework.MetroThemeStyle.Dark;
+ 
                 label1.ForeColor = Color.White;
                 label2.ForeColor = Color.White;
                 label3.ForeColor = Color.White;
@@ -48,7 +47,7 @@ namespace TestView
             }
             else
             {
-                Theme = MetroFramework.MetroThemeStyle.Light;
+ 
                 label1.ForeColor = Color.Black;
                 label2.ForeColor = Color.Black;
                 label3.ForeColor = Color.Black;

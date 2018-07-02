@@ -1,5 +1,4 @@
-﻿using MetroFramework.Forms;
-using System;
+﻿using System;
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -8,7 +7,7 @@ using TestService.ViewModels;
 
 namespace TestView
 {
-    public partial class FormCategoryEdit : MetroForm
+    public partial class FormCategoryEdit : Form
     {
         public int Id { set { id = value; } }
 
@@ -17,18 +16,18 @@ namespace TestView
         public FormCategoryEdit()
         {
             InitializeComponent();
-            FormBorderStyle = FormBorderStyle.None;
-            this.Style = MetroFramework.MetroColorStyle.Teal;
-            ShadowType = MetroFormShadowType.DropShadow;
+ 
+ 
+ 
             if (FormStatisticsMain.DarkTheme)
             {
-                Theme = MetroFramework.MetroThemeStyle.Dark;
+ 
                 label1.ForeColor = Color.White;
                 checkBoxNotActive.ForeColor = Color.White;
             }
             else
             {
-                Theme = MetroFramework.MetroThemeStyle.Light;
+ 
                 label1.ForeColor = Color.Black;
                 checkBoxNotActive.ForeColor = Color.Black;
             }

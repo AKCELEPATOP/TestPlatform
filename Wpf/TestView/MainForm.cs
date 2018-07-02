@@ -10,13 +10,10 @@ using System.Windows.Forms;
 using TestView;
 using TestService.ViewModels;
 using TestService.BindingModels;
-using MetroFramework.Forms;
-using MetroFramework.Components;
-using MetroFramework;
 
 namespace TestView
 {
-    public partial class FormMain : MetroForm
+    public partial class FormMain : Form
     {
         public static bool DarkTheme { get; set; } 
 
@@ -28,9 +25,9 @@ namespace TestView
         {
             this.parent = parent;
             InitializeComponent();
-            FormBorderStyle = FormBorderStyle.None;
-            this.Style = MetroFramework.MetroColorStyle.Teal;
-            ShadowType = MetroFormShadowType.DropShadow;
+ 
+ 
+ 
         }
 
         private void Initialize()
@@ -159,7 +156,6 @@ namespace TestView
         {
             Initialize();
 
-            this.components.SetDefaultStyle(this,MetroColorStyle.Purple);
             
         }
 
@@ -167,7 +163,7 @@ namespace TestView
         {
             if (DarkTheme.Equals(false))
             {
-                this.Theme = MetroFramework.MetroThemeStyle.Dark;
+      
                 label1.ForeColor = Color.White;
                 label2.ForeColor = Color.White;
                 label4.ForeColor = Color.White;
@@ -180,7 +176,7 @@ namespace TestView
             }
             else
             {
-                this.Theme = MetroFramework.MetroThemeStyle.Light;
+ 
                 label1.ForeColor = Color.Black;
                 label2.ForeColor = Color.Black;
                 label4.ForeColor = Color.Black;

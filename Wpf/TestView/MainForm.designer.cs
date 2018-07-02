@@ -60,7 +60,7 @@
             // dataGridViewAvailablePatterns
             // 
             this.dataGridViewAvailablePatterns.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewAvailablePatterns.Location = new System.Drawing.Point(11, 80);
+            this.dataGridViewAvailablePatterns.Location = new System.Drawing.Point(11, 64);
             this.dataGridViewAvailablePatterns.Name = "dataGridViewAvailablePatterns";
             this.dataGridViewAvailablePatterns.Size = new System.Drawing.Size(303, 279);
             this.dataGridViewAvailablePatterns.TabIndex = 0;
@@ -70,7 +70,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(25, 64);
+            this.label1.Location = new System.Drawing.Point(25, 48);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(116, 13);
             this.label1.TabIndex = 1;
@@ -78,7 +78,7 @@
             // 
             // buttonBeginTest
             // 
-            this.buttonBeginTest.Location = new System.Drawing.Point(86, 365);
+            this.buttonBeginTest.Location = new System.Drawing.Point(86, 349);
             this.buttonBeginTest.Name = "buttonBeginTest";
             this.buttonBeginTest.Size = new System.Drawing.Size(134, 28);
             this.buttonBeginTest.TabIndex = 10;
@@ -88,7 +88,7 @@
             // 
             // textBoxCurrentUser
             // 
-            this.textBoxCurrentUser.Location = new System.Drawing.Point(510, 38);
+            this.textBoxCurrentUser.Location = new System.Drawing.Point(510, 22);
             this.textBoxCurrentUser.Name = "textBoxCurrentUser";
             this.textBoxCurrentUser.ReadOnly = true;
             this.textBoxCurrentUser.Size = new System.Drawing.Size(124, 20);
@@ -96,7 +96,7 @@
             // 
             // buttonChangeUser
             // 
-            this.buttonChangeUser.Location = new System.Drawing.Point(642, 36);
+            this.buttonChangeUser.Location = new System.Drawing.Point(642, 20);
             this.buttonChangeUser.Name = "buttonChangeUser";
             this.buttonChangeUser.Size = new System.Drawing.Size(73, 22);
             this.buttonChangeUser.TabIndex = 12;
@@ -107,7 +107,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(363, 41);
+            this.label4.Location = new System.Drawing.Point(363, 25);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(132, 13);
             this.label4.TabIndex = 11;
@@ -136,7 +136,7 @@
             // 
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.buttonChangeColorBack);
-            this.groupBox2.Location = new System.Drawing.Point(764, 105);
+            this.groupBox2.Location = new System.Drawing.Point(764, 89);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(162, 124);
             this.groupBox2.TabIndex = 18;
@@ -145,7 +145,7 @@
             // 
             // buttonExit
             // 
-            this.buttonExit.Location = new System.Drawing.Point(839, 369);
+            this.buttonExit.Location = new System.Drawing.Point(839, 353);
             this.buttonExit.Name = "buttonExit";
             this.buttonExit.Size = new System.Drawing.Size(87, 28);
             this.buttonExit.TabIndex = 19;
@@ -156,7 +156,7 @@
             // dataGridViewPassedTests
             // 
             this.dataGridViewPassedTests.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewPassedTests.Location = new System.Drawing.Point(341, 80);
+            this.dataGridViewPassedTests.Location = new System.Drawing.Point(341, 64);
             this.dataGridViewPassedTests.Name = "dataGridViewPassedTests";
             this.dataGridViewPassedTests.Size = new System.Drawing.Size(397, 279);
             this.dataGridViewPassedTests.TabIndex = 23;
@@ -166,7 +166,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(338, 64);
+            this.label2.Location = new System.Drawing.Point(338, 48);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(107, 13);
             this.label2.TabIndex = 24;
@@ -174,7 +174,7 @@
             // 
             // textBoxGroupUser
             // 
-            this.textBoxGroupUser.Location = new System.Drawing.Point(802, 38);
+            this.textBoxGroupUser.Location = new System.Drawing.Point(802, 22);
             this.textBoxGroupUser.Name = "textBoxGroupUser";
             this.textBoxGroupUser.ReadOnly = true;
             this.textBoxGroupUser.Size = new System.Drawing.Size(124, 20);
@@ -183,7 +183,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(751, 41);
+            this.label3.Location = new System.Drawing.Point(751, 25);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(45, 13);
             this.label3.TabIndex = 26;
@@ -191,7 +191,7 @@
             // 
             // buttonResultOfTest
             // 
-            this.buttonResultOfTest.Location = new System.Drawing.Point(464, 366);
+            this.buttonResultOfTest.Location = new System.Drawing.Point(464, 350);
             this.buttonResultOfTest.Name = "buttonResultOfTest";
             this.buttonResultOfTest.Size = new System.Drawing.Size(148, 27);
             this.buttonResultOfTest.TabIndex = 27;
@@ -200,7 +200,7 @@
             // 
             // buttonStatistic
             // 
-            this.buttonStatistic.Location = new System.Drawing.Point(781, 254);
+            this.buttonStatistic.Location = new System.Drawing.Point(781, 238);
             this.buttonStatistic.Name = "buttonStatistic";
             this.buttonStatistic.Size = new System.Drawing.Size(134, 28);
             this.buttonStatistic.TabIndex = 28;
@@ -224,7 +224,7 @@
             // 
             // SaveToPDF
             // 
-            this.SaveToPDF.Location = new System.Drawing.Point(781, 288);
+            this.SaveToPDF.Location = new System.Drawing.Point(781, 272);
             this.SaveToPDF.Name = "SaveToPDF";
             this.SaveToPDF.Size = new System.Drawing.Size(134, 28);
             this.SaveToPDF.TabIndex = 29;
@@ -236,7 +236,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(954, 432);
+            this.ClientSize = new System.Drawing.Size(954, 395);
             this.Controls.Add(this.SaveToPDF);
             this.Controls.Add(this.buttonStatistic);
             this.Controls.Add(this.buttonResultOfTest);
