@@ -91,7 +91,7 @@ namespace TestView
             }
         }
         //сохранить
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(textBoxFIO.Text))
             {
@@ -109,7 +109,6 @@ namespace TestView
                 return;
             }
             
-            Task task;
             string fio = textBoxFIO.Text;
             string username = textBoxUserName.Text;
             string password = textBoxPassword.Text;
@@ -123,68 +122,72 @@ namespace TestView
                     return;
                 }
             }
-            if (!string.IsNullOrEmpty(id))
+            try
             {
-                if (comboBoxGroups.SelectedValue != null)
+                if (!string.IsNullOrEmpty(id))
                 {
-                    task = Task.Run(() => ApiClient.PostRequestData("api/User/UpdElement", new UserBindingModel
+                    if (comboBoxGroups.SelectedValue != null)
                     {
-                        Id = id,
-                        UserName = username,
-                        Email = mail,
-                        GroupId = Convert.ToInt32(comboBoxGroups.SelectedValue),
-                        FIO = fio,
-                        PasswordHash = password
-                    }));
+                        int groupId = Convert.ToInt32(comboBoxGroups.SelectedValue);
+                        await ApiClient.PostRequestData("api/User/UpdElement", new UserBindingModel
+                        {
+                            Id = id,
+                            UserName = username,
+                            Email = mail,
+                            GroupId = groupId,
+                            FIO = fio,
+                            PasswordHash = password
+                        });
+                    }
+                    else
+                    {
+                        await ApiClient.PostRequestData("api/User/UpdElement", new UserBindingModel
+                        {
+                            Id = id,
+                            UserName = username,
+                            Email = mail,
+                            FIO = fio,
+                            PasswordHash = password
+                        });
+                    }
                 }
                 else
                 {
-                    task = Task.Run(() => ApiClient.PostRequestData("api/User/UpdElement", new UserBindingModel
+                    if (comboBoxGroups.SelectedValue != null)
                     {
-                        Id = id,
-                        UserName = username,
-                        Email = mail,
-                        FIO = fio,
-                        PasswordHash = password
-                    }));
-                }
-            }
-            else
-            {
-                if (comboBoxGroups.SelectedValue != null)
-                {
-                    task = Task.Run(() => ApiClient.PostRequestData("api/User/AddElement", new UserBindingModel
+                        int groupId = Convert.ToInt32(comboBoxGroups.SelectedValue);
+                        await ApiClient.PostRequestData("api/User/AddElement", new UserBindingModel
+                        {
+                            UserName = username,
+                            Email = mail,
+                            GroupId = groupId,
+                            FIO = fio,
+                            PasswordHash = password
+                        });
+                    }
+                    else
                     {
-                        UserName = username,
-                        Email = mail,
-                        GroupId = Convert.ToInt32(comboBoxGroups.SelectedValue),
-                        FIO = fio,
-                        PasswordHash = password
-                    }));
-                }
-                else
-                {
-                    task = Task.Run(() => ApiClient.PostRequestData("api/User/AddElement", new UserBindingModel
-                    {
-                        UserName = username,
-                        Email = mail,
-                        FIO = fio,
-                        PasswordHash = password
-                    }));
-                }
+                        await ApiClient.PostRequestData("api/User/AddElement", new UserBindingModel
+                        {
+                            UserName = username,
+                            Email = mail,
+                            FIO = fio,
+                            PasswordHash = password
+                        });
+                    }
 
+                }
+                MessageBox.Show("Сохранение прошло успешно. Обновите список", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DialogResult = DialogResult.OK;
             }
-            task.ContinueWith((prevTask) => MessageBox.Show("Сохранение прошло успешно. Обновите список", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information),
-                TaskContinuationOptions.OnlyOnRanToCompletion);
-            task.ContinueWith((prevTask) =>
+            catch (Exception ex)
             {
-                var ex = (Exception)prevTask.Exception;
                 while (ex.InnerException != null)
                 {
                     ex = ex.InnerException;
                 }
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }, TaskContinuationOptions.OnlyOnFaulted);
+            }
 
             Close();
         }

@@ -589,7 +589,7 @@ namespace TestService.Implementations
         {
             if (id != -1)
             {
-                return await context.Patterns.Where(rec => rec.UserGroupId == id)
+                return await context.Patterns.Where(rec => rec.UserGroupId == id || !rec.UserGroupId.HasValue)
                     .Where(rec => !(rec.PatternCategories.Select(r => r.Category).Any(r => !r.Active))).Select(rec => new PatternViewModel
                     {
                         Id = rec.Id,
