@@ -106,6 +106,7 @@ namespace TestRestApi.Controllers
         public async Task SaveToPdf(ReportBindingModel model)
         {
             model.FontPath = ResourcesPath + "TIMCYR.TTF";
+            model.UserId = User.Identity.GetUserId();
             if (!File.Exists(model.FontPath))
             {
                 File.WriteAllBytes(model.FontPath, Properties.Resources.TIMCYR);

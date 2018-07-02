@@ -53,7 +53,12 @@ namespace TestService.Implementations
             {
                 Total = rec.Total,
                 Right = rec.Right,
-                PatternName = rec.Pattern.Name
+                PatternName = rec.Pattern.Name,
+                UserName = rec.User.FIO,
+                Mark = (int)((double)rec.Right / rec.Total * 100),
+                DateCreate = SqlFunctions.DateName("dd", rec.DateCreate) + " " +
+                                            SqlFunctions.DateName("mm", rec.DateCreate) + " " +
+                                            SqlFunctions.DateName("yyyy", rec.DateCreate)
             }).ToListAsync();
         }
 
@@ -86,7 +91,8 @@ namespace TestService.Implementations
                         Mark = (int)((double)rec.Right / rec.Total * 100),
                         DateCreate = SqlFunctions.DateName("dd", rec.DateCreate) + " " +
                                             SqlFunctions.DateName("mm", rec.DateCreate) + " " +
-                                            SqlFunctions.DateName("yyyy", rec.DateCreate)
+                                            SqlFunctions.DateName("yyyy", rec.DateCreate),
+                        UserName = rec.User.FIO,
                     }).ToListAsync();
                 }
                 return await context.Stats.Where(rec => rec.UserId == model.UserId)
@@ -99,7 +105,8 @@ namespace TestService.Implementations
                         Mark = (int)((double)rec.Right / rec.Total * 100),
                         DateCreate = SqlFunctions.DateName("dd", rec.DateCreate) + " " +
                                             SqlFunctions.DateName("mm", rec.DateCreate) + " " +
-                                            SqlFunctions.DateName("yyyy", rec.DateCreate)
+                                            SqlFunctions.DateName("yyyy", rec.DateCreate),
+                        UserName = rec.User.FIO
                     }).ToListAsync();
             }
             return await context.Stats.Where(rec => rec.UserId == model.UserId)/*.Skip(model.Skip).Take(model.Take)*/.Include(rec => rec.Pattern).Select(rec => new StatViewModel
@@ -107,7 +114,11 @@ namespace TestService.Implementations
                 PatternName = rec.Pattern.Name,
                 Right = rec.Right,
                 Total = rec.Total,
-                Mark = (int)((double)rec.Right / rec.Total * 100)
+                Mark = (int)((double)rec.Right / rec.Total * 100),
+                UserName = rec.User.FIO,
+                DateCreate = SqlFunctions.DateName("dd", rec.DateCreate) + " " +
+                                            SqlFunctions.DateName("mm", rec.DateCreate) + " " +
+                                            SqlFunctions.DateName("yyyy", rec.DateCreate),
             }).ToListAsync();
         }
 
@@ -253,16 +264,23 @@ namespace TestService.Implementations
             BaseFont baseFont = (model.FontPath != null && model.FontPath != string.Empty) ?
                 BaseFont.CreateFont(model.FontPath, BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED) : BaseFont.CreateFont();
 
+            await loadList;
             //вставляем заголовок
-            var phraseTitle = new Phrase("Отчет по тестам пользователя" + context.Users.FirstOrDefault(rec => rec.Id.Equals(model.UserId)).FIO, // оптимизация
-                new iTextSharp.text.Font(baseFont, 16, iTextSharp.text.Font.BOLD));
-            iTextSharp.text.Paragraph paragraph = new iTextSharp.text.Paragraph(phraseTitle)
+            iTextSharp.text.Paragraph paragraph;
+            string title = "Отчет по тестам пользователя";
+            if (list != null && list.Count > 0)
             {
-                Alignment = Element.ALIGN_CENTER,
-                SpacingAfter = 12
-            };
-            doc.Add(paragraph);
-
+                title += list[0].UserName;
+            }
+            var phraseTitle = new Phrase(title, // оптимизация
+                    new iTextSharp.text.Font(baseFont, 16, iTextSharp.text.Font.BOLD));
+                paragraph = new iTextSharp.text.Paragraph(phraseTitle)
+                {
+                    Alignment = Element.ALIGN_CENTER,
+                    SpacingAfter = 12
+                };
+                doc.Add(paragraph);
+            
             if (model.DateFrom.HasValue && model.DateTo.HasValue)
             {
                 var phrasePeriod = new Phrase("c " + model.DateFrom.Value.ToShortDateString() +
@@ -302,8 +320,6 @@ namespace TestService.Implementations
                 HorizontalAlignment = Element.ALIGN_CENTER
             });
             var fontForCells = new iTextSharp.text.Font(baseFont, 10);
-
-            await loadList;
 
             if (list == null)
             {

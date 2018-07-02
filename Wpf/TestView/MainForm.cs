@@ -189,5 +189,34 @@ namespace TestView
                                 DarkTheme = !DarkTheme;
             }
         }
+
+        private async void buttonSaveToPdf_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog
+            {
+                Filter = "pdf|*.pdf"
+            };
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                string fileName = sfd.FileName;
+                try
+                {
+                    Task task = Task.Run(() => ApiClient.PostRequestData("api/stat/SaveToPdf", new ReportBindingModel
+                    {
+                        FilePath = fileName,
+                    }));
+                    await task;
+                    MessageBox.Show("Файл успешно сохранен", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    while (ex.InnerException != null)
+                    {
+                        ex = ex.InnerException;
+                    }
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
     }
 }

@@ -38,7 +38,8 @@ namespace TestView
                 }
 
             labelMark.Text = result.Mark.ToString();
-
+            label2.Text = result.Total.ToString();
+            label6.Text = result.Mark.ToString();
             if (result.Mark>border) {
                 labelResult.Text = "Успешно";
                 labelResult.ForeColor = Color.Green;

@@ -72,14 +72,14 @@
             this.answerGroupBoxCheckButtons.Controls.Add(this.answer3);
             this.answerGroupBoxCheckButtons.Controls.Add(this.answer2);
             this.answerGroupBoxCheckButtons.Controls.Add(this.answer1);
-            this.answerGroupBoxCheckButtons.Enabled = false;
+            this.answerGroupBoxCheckButtons.Enabled = true;
             this.answerGroupBoxCheckButtons.Location = new System.Drawing.Point(37, 187);
             this.answerGroupBoxCheckButtons.Name = "answerGroupBoxCheckButtons";
             this.answerGroupBoxCheckButtons.Size = new System.Drawing.Size(708, 165);
             this.answerGroupBoxCheckButtons.TabIndex = 3;
             this.answerGroupBoxCheckButtons.TabStop = false;
             this.answerGroupBoxCheckButtons.Text = "Варианты ответов:";
-            this.answerGroupBoxCheckButtons.Visible = false;
+            this.answerGroupBoxCheckButtons.Visible = true;
             // 
             // answerGroupBoxRadioButtons
             // 

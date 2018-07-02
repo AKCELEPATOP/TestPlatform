@@ -14,6 +14,9 @@ namespace TestService.ViewModels
         public List<StatCategoryViewModel> StatCategories { get; set; }
 
         [DataMember]
+        public string PatternName { get; set; }
+
+        [DataMember]
         public int Total { get; set; }
 
         [DataMember]
@@ -21,9 +24,6 @@ namespace TestService.ViewModels
 
         [DataMember]
         public int Mark { get; set; }
-
-        [DataMember]
-        public string PatternName { get; set; }
 
         [DataMember]
         public string DateCreate { get; set; }

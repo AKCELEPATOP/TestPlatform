@@ -88,6 +88,7 @@ namespace TestView
 
         private async void EndTest()
         {
+            GetAnswer();
             List<QuestionResponseModel> UserAnswers = model.Questions.Select(rec => new QuestionResponseModel
             {
                 QuestionId = rec.Id,
@@ -156,7 +157,7 @@ namespace TestView
 
         private void SetNextQuestion()
         {
-            questionGroupBox.Text = "Вопрос № " + (listBoxQuestions.SelectedIndex +1);//чекать
+            questionGroupBox.Text = "Вопрос № " + (listBoxQuestions.SelectedIndex + 1);//чекать
 
             IdQuestions = listBoxQuestions.SelectedIndex;
 
@@ -236,9 +237,12 @@ namespace TestView
 
         private void nextQuestion_Click(object sender, EventArgs e)
         {
-
-            GetAnswer();
-            SetNextQuestion();
+            if (listBoxQuestions.SelectedIndex < model.Questions.Count)
+            {
+                listBoxQuestions.SelectedIndex++;
+                GetAnswer();
+                SetNextQuestion();
+            }
 
         }
 
@@ -266,6 +270,7 @@ namespace TestView
             {
                 GetAnswer();
                 SetNextQuestion();
+                listBoxQuestions.Refresh();
             }
         }
 

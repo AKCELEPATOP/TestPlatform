@@ -39,7 +39,8 @@ namespace TestView
                     dataGridView1.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
                 List<StatViewModel> listC =
-                    Task.Run(() => ApiClient.PostRequestData<GetListModel,List<StatViewModel>>("api/Stat/GetList",new GetListModel {
+                    Task.Run(() => ApiClient.PostRequestData<GetListModel, List<StatViewModel>>("api/Stat/GetList", new GetListModel
+                    {
                         Skip = 0,
                         Take = 20
                     })).Result;
@@ -59,7 +60,7 @@ namespace TestView
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-            //подготовить тест шаблон
+        //подготовить тест шаблон
         private void button3_Click(object sender, EventArgs e)
         {
             var form = new FormTestTemplate();
@@ -150,11 +151,34 @@ namespace TestView
                 Initialize();
             }
         }
-    
-        //сохранить в файл
-        private void button4_Click(object sender, EventArgs e)
-        {
 
+        //сохранить в файл
+        private async void button4_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog
+            {
+                Filter = "pdf|*.pdf"
+            };
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                string fileName = sfd.FileName;
+                try
+                {
+                    await Task.Run(() => ApiClient.PostRequestData("api/stat/SaveToPdfAdmin",new ReportBindingModel
+                    {
+                        FilePath = fileName,
+                    }));
+                    MessageBox.Show("Файл успешно сохранен", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch(Exception ex)
+                {
+                    while (ex.InnerException != null)
+                    {
+                        ex = ex.InnerException;
+                    }
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
         //выход
         private void button1_Click(object sender, EventArgs e)
