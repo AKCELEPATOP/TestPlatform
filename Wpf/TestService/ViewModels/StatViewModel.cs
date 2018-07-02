@@ -17,6 +17,9 @@ namespace TestService.ViewModels
         public string PatternName { get; set; }
 
         [DataMember]
+        public string UserName { get; set; }
+
+        [DataMember]
         public int Total { get; set; }
 
         [DataMember]
@@ -27,9 +30,6 @@ namespace TestService.ViewModels
 
         [DataMember]
         public string DateCreate { get; set; }
-
-        [DataMember]
-        public string UserName { get; set; }
 
         [DataMember]
         public string Email { get; set; }
