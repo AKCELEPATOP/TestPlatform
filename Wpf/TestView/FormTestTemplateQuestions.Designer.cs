@@ -119,6 +119,7 @@
             this.dataGridViewTestQuestions.Size = new System.Drawing.Size(318, 174);
             this.dataGridViewTestQuestions.TabIndex = 18;
             this.dataGridViewTestQuestions.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
+            this.dataGridViewTestQuestions.AllowUserToAddRows = false;
             // 
             // dataGridViewCategories
             // 
@@ -133,6 +134,7 @@
             this.dataGridViewCategories.TabIndex = 17;
             this.dataGridViewCategories.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCategories_CellContentClick);
             this.dataGridViewCategories.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
+            this.dataGridViewCategories.AllowUserToAddRows = false;
             // 
             // buttonCancel
             // 

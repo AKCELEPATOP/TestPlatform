@@ -62,6 +62,7 @@
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
+            this.dataGridView1.AllowUserToAddRows = false;
             // 
             // groupBox1
             // 
@@ -170,6 +171,7 @@
             this.dataGridView2.Size = new System.Drawing.Size(503, 338);
             this.dataGridView2.TabIndex = 0;
             this.dataGridView2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
+            this.dataGridView2.AllowUserToAddRows = false;
             // 
             // button10
             // 

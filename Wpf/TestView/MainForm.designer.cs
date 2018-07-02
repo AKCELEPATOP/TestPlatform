@@ -67,6 +67,7 @@
             this.dataGridViewAvailablePatterns.Size = new System.Drawing.Size(303, 279);
             this.dataGridViewAvailablePatterns.TabIndex = 0;
             this.dataGridViewAvailablePatterns.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
+            this.dataGridViewAvailablePatterns.AllowUserToAddRows = false;
             // 
             // label1
             // 
@@ -164,6 +165,7 @@
             this.dataGridViewPassedTests.Size = new System.Drawing.Size(397, 279);
             this.dataGridViewPassedTests.TabIndex = 23;
             this.dataGridViewPassedTests.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
+            this.dataGridViewPassedTests.AllowUserToAddRows = false;
             // 
             // label2
             // 

@@ -165,6 +165,7 @@
             this.dataGridView1.Size = new System.Drawing.Size(240, 174);
             this.dataGridView1.TabIndex = 5;
             this.dataGridView1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
+            this.dataGridView1.AllowUserToAddRows = false;
             // 
             // dataGridView2
             // 
@@ -181,6 +182,7 @@
             this.dataGridView2.TabIndex = 6;
             this.dataGridView2.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             this.dataGridView2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
+            this.dataGridView2.AllowUserToAddRows = false;
             // 
             // button1
             // 
