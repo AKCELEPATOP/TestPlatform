@@ -9,8 +9,6 @@ namespace TestView
 {
     public partial class FormMain : Form
     {
-        public static bool DarkTheme { get; set; }
-
         public string UserLogin { get; set; }
 
         private FormAuthorization parent;
@@ -54,7 +52,6 @@ namespace TestView
                 }
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
             comboBoxFontSize.Text = "8";
         }
 
@@ -65,6 +62,8 @@ namespace TestView
             {
                 TestingForm Testing = new TestingForm();
                 Testing.Id = Convert.ToInt32(dataGridViewAvailablePatterns.SelectedRows[0].Cells[0].Value);
+                Design.SetBackColor(Testing);
+                Design.SetFontColor(Testing);
                 Testing.Show();
             }
         }
@@ -77,6 +76,8 @@ namespace TestView
         private void buttonChangeUser_Click(object sender, EventArgs e)
         {
             parent.Show();
+            Design.SetBackColor(parent);
+            Design.SetFontColor(parent);
             parent = null;
             Close();
         }
@@ -91,6 +92,8 @@ namespace TestView
         private void buttonStatistic_Click(object sender, EventArgs e)
         {
             StatisticForm statisticForm = new StatisticForm();
+            Design.SetBackColor(statisticForm);
+            Design.SetFontColor(statisticForm);
             statisticForm.Show();
         }
 
@@ -115,7 +118,7 @@ namespace TestView
             {
                 colorBack = cd.Color;
             }
-            this.BackColor = colorBack;
+            Design.SetDefaultBackColor(cd.Color);
         }
         private void buttonChangeFont_Click(object sender, EventArgs e)
         {
@@ -124,7 +127,7 @@ namespace TestView
             {
                 colorFont = cd.Color;
             }
-            this.ForeColor = colorFont;
+            Design.SetDefaultFontColor(cd.Color);
         }
         private async void buttonSaveToPdf_Click(object sender, EventArgs e)
         {
@@ -153,29 +156,30 @@ namespace TestView
                 }
             }
         }
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void comboBoxFontSize_SelectedIndexChanged(object sender, EventArgs e)
         {
-            label1.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(comboBoxFontSize.SelectedItem));
-            label2.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(comboBoxFontSize.SelectedItem));
-            label3.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(comboBoxFontSize.SelectedItem));
-            label4.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(comboBoxFontSize.SelectedItem));
-            label5.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(comboBoxFontSize.SelectedItem));
-            label6.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(comboBoxFontSize.SelectedItem));
-            label7.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(comboBoxFontSize.SelectedItem));
-            groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(comboBoxFontSize.SelectedItem));
-            contextMenuStrip1.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(comboBoxFontSize.SelectedItem));
-            dataGridViewAvailablePatterns.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(comboBoxFontSize.SelectedItem));
-            dataGridViewPassedTests.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(comboBoxFontSize.SelectedItem));
-            textBoxCurrentUser.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(comboBoxFontSize.SelectedItem));
-            textBoxGroupUser.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(comboBoxFontSize.SelectedItem));
-            обновитьToolStripMenuItem.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(comboBoxFontSize.SelectedItem));
-            SaveToPDF.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(comboBoxFontSize.SelectedItem));
-            buttonChangeColorBack.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(comboBoxFontSize.SelectedItem));
-            buttonBeginTest.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(comboBoxFontSize.SelectedItem));
-            buttonChangeFont.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(comboBoxFontSize.SelectedItem));
-            buttonChangeUser.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(comboBoxFontSize.SelectedItem));
-            buttonExit.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(comboBoxFontSize.SelectedItem));
-            buttonStatistic.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(comboBoxFontSize.SelectedItem));
+            Design.FontSize = Convert.ToInt32(comboBoxFontSize.SelectedItem);
+            label1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            label2.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            label3.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            label4.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            label5.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            label6.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            label7.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            contextMenuStrip1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            dataGridViewAvailablePatterns.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            dataGridViewPassedTests.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            textBoxCurrentUser.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            textBoxGroupUser.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            обновитьToolStripMenuItem.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            SaveToPDF.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            buttonChangeColorBack.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            buttonBeginTest.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            buttonChangeFont.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            buttonChangeUser.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            buttonExit.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            buttonStatistic.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
         }
     }
 }

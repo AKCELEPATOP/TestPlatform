@@ -78,7 +78,8 @@ namespace TestView
         {
 
             var form = new FormCategoryEdit();
-
+            Design.SetBackColor(form);
+            Design.SetFontColor(form);
             if (form.ShowDialog() == DialogResult.OK)
             {
                 Initialize();
@@ -91,6 +92,8 @@ namespace TestView
             if (dataGridView1.SelectedRows.Count == 1)
             {
                 var form = new FormCategoryEdit();
+                Design.SetBackColor(form);
+                Design.SetFontColor(form);
                 form.Id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
                 if (form.ShowDialog() == DialogResult.OK)
                 {
@@ -129,6 +132,8 @@ namespace TestView
             if (dataGridView1.SelectedRows.Count == 1)
             {
                 var form = new FormQuestionEditor();
+                Design.SetBackColor(form);
+                Design.SetFontColor(form);
                 form.IdCat = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
                 if (form.ShowDialog() == DialogResult.OK)
                 {
@@ -154,6 +159,8 @@ namespace TestView
             if (dataGridView1.SelectedRows.Count == 1)
             {
                 var form = new FormQuestionEditor();
+                Design.SetBackColor(form);
+                Design.SetFontColor(form);
                 form.IdCat = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
                 form.Id = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells[0].Value);
                 if (form.ShowDialog() == DialogResult.OK)
@@ -196,6 +203,24 @@ namespace TestView
         private void Form_Load(object sender, EventArgs e)
         {
             Initialize();
+            button1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            button10.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            button2.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            button3.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            button4.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            button5.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            button6.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            contextMenuStrip1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            dataGridView1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            dataGridView2.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            обновитьToolStripMenuItem.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

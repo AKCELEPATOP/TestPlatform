@@ -21,6 +21,10 @@ namespace TestView
         public FormGroupEdit()
         {
             InitializeComponent();
+            button1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            button2.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            label1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
         }
 
         private async void Initialize() {

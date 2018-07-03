@@ -253,6 +253,30 @@ namespace TestView
         private void Form_Load(object sender, EventArgs e)
         {
             Initialize();
+            label1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            label2.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            label3.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            label4.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            label5.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            label6.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            label8.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            label9.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            button1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            button2.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            button3.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            checkBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            checkBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            checkBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            checkBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            maskedTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            textBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
         }
 
         private void button3_Click(object sender, EventArgs e)
