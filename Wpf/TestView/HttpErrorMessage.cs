@@ -27,6 +27,6 @@ namespace TestView
         public string Error { get; set; }
 
         [DataMember]
-        public ModelStateDictionary ModelState { get; set; }
+        public Dictionary<string,string[]> ModelState { get; set; }
     }
 }
