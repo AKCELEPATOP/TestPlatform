@@ -22,21 +22,21 @@ namespace TestView
         public FormUserEdit()
         {
             InitializeComponent();
- 
- 
- 
+
+
+
             if (FormStatisticsMain.DarkTheme)
             {
- 
+
                 label1.ForeColor = Color.White;
                 label2.ForeColor = Color.White;
                 label3.ForeColor = Color.White;
                 label4.ForeColor = Color.White;
-                label5.ForeColor = Color.White;            
+                label5.ForeColor = Color.White;
             }
             else
             {
- 
+
                 label1.ForeColor = Color.Black;
                 label2.ForeColor = Color.Black;
                 label3.ForeColor = Color.Black;
@@ -45,7 +45,8 @@ namespace TestView
             }
         }
 
-        private async void Initialize() {
+        private async void Initialize()
+        {
             try
             {
                 var groups = await ApiClient.GetRequestData<List<GroupViewModel>>("api/Group/GetList");
@@ -59,7 +60,7 @@ namespace TestView
                 comboBoxGroups.DataSource = groups;
                 comboBoxGroups.SelectedItem = groups[0];
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 while (ex.InnerException != null)
                 {
@@ -76,7 +77,8 @@ namespace TestView
                     textBoxFIO.Text = user.FIO;
                     textBoxUserName.Text = user.UserName;
                     textBoxEmail.Text = user.Email;
-                    if(user.GroupId !=null) {
+                    if (user.GroupId != null)
+                    {
                         comboBoxGroups.SelectedValue = user.GroupId;
                     }
                 }
@@ -93,34 +95,41 @@ namespace TestView
         //сохранить
         private async void button1_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(textBoxFIO.Text))
-            {
-                MessageBox.Show("Заполните ФИО", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (string.IsNullOrEmpty(textBoxUserName.Text))
-            {
-                MessageBox.Show("Заполните Логин", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if(string.IsNullOrEmpty(id) && string.IsNullOrEmpty(textBoxPassword.Text))
-            {
-                MessageBox.Show("Заполните Пароль", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            
+            string message = string.Empty;
             string fio = textBoxFIO.Text;
             string username = textBoxUserName.Text;
             string password = textBoxPassword.Text;
             string mail = textBoxEmail.Text;
+            if (string.IsNullOrEmpty(textBoxFIO.Text))
+            {
+                message += "Заполните ФИО";
+            }
+            if (string.IsNullOrEmpty(textBoxUserName.Text))
+            {
+                message += "Заполните Логин";
+            }
+            if (string.IsNullOrEmpty(id) && string.IsNullOrEmpty(textBoxPassword.Text))
+            {
+                message += "Заполните Пароль";
+                return;
+            }
+            if (!Regex.IsMatch(password, @"(?=.*[a-z])(?=.*[0-9])^[a-zA-Z0-9]{5,}$"/*@"^(?=.*[0-9]$)(?=.*[a-zA-Z]){5,}"*/))
+            {
+                message += " Пароль должен быть не короче 5 символов, содержать хотя бы одну лат букву в ниж регистре и одну цифру.";
+            }
             if (!string.IsNullOrEmpty(mail))
             {
                 if (!Regex.IsMatch(mail, @"^(?("")(""[^""]+?""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
                 @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-\w]*[0-9a-z]*\.)+[a-z0-9]{2,17}))$"))
                 {
-                    MessageBox.Show("Неверный формат для электронной почты", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    message += "Неверный формат для электронной почты";
                     return;
                 }
+            }
+            if (!string.IsNullOrEmpty(message))
+            {
+                MessageBox.Show(message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
             try
             {
