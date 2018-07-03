@@ -349,7 +349,7 @@ namespace TestService.Implementations
                 if (countComplex > 0)
                 {
                     result.Questions.AddRange(context.Questions.Where(rec => rec.CategoryId == patternCategory.CategoryId &&
-                    rec.Complexity.Equals(QuestionComplexity.Difficult) && rec.Active && !questionIds.Contains(rec.Id)).OrderBy(a => Guid.NewGuid())
+                    rec.Complexity == QuestionComplexity.Difficult && rec.Active && !questionIds.Contains(rec.Id)).OrderBy(a => Guid.NewGuid())
                         .Take(countComplex).Select(rec => new QuestionViewModel
                         {
                             Id = rec.Id,
@@ -374,7 +374,7 @@ namespace TestService.Implementations
                 if (countMiddle > 0)
                 {
                     result.Questions.AddRange(context.Questions.Where(rec => rec.CategoryId == patternCategory.CategoryId &&
-                    rec.Complexity.Equals(QuestionComplexity.Middle) && rec.Active && !questionIds.Contains(rec.Id)).OrderBy(a => Guid.NewGuid())
+                    rec.Complexity == QuestionComplexity.Middle && rec.Active && !questionIds.Contains(rec.Id)).OrderBy(a => Guid.NewGuid())
                         .Take(countMiddle).Select(rec => new QuestionViewModel
                         {
                             Id = rec.Id,
@@ -399,7 +399,7 @@ namespace TestService.Implementations
                 if (countEasy > 0)
                 {
                     result.Questions.AddRange(context.Questions.Where(rec => rec.CategoryId == patternCategory.CategoryId &&
-                    rec.Complexity.Equals(QuestionComplexity.Easy) && rec.Active && !questionIds.Contains(rec.Id)).OrderBy(a => Guid.NewGuid())
+                    rec.Complexity == QuestionComplexity.Easy && rec.Active && !questionIds.Contains(rec.Id)).OrderBy(a => Guid.NewGuid())
                         .Take(countEasy).Select(rec => new QuestionViewModel
                         {
                             Id = rec.Id,
