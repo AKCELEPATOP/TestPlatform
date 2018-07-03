@@ -64,7 +64,8 @@ namespace TestView
             // 
             // sign_In
             // 
-            this.sign_In.Location = new System.Drawing.Point(100, 113);
+            this.sign_In.AutoSize = true;
+            this.sign_In.Location = new System.Drawing.Point(101, 109);
             this.sign_In.Name = "sign_In";
             this.sign_In.Size = new System.Drawing.Size(90, 23);
             this.sign_In.TabIndex = 2;
@@ -74,7 +75,8 @@ namespace TestView
             // 
             // sign_Up
             // 
-            this.sign_Up.Location = new System.Drawing.Point(100, 152);
+            this.sign_Up.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.sign_Up.Location = new System.Drawing.Point(101, 150);
             this.sign_Up.Name = "sign_Up";
             this.sign_Up.Size = new System.Drawing.Size(90, 23);
             this.sign_Up.TabIndex = 3;
