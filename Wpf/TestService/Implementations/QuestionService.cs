@@ -153,7 +153,7 @@ namespace TestService.Implementations
                 Active = rec.Active,
                 CategoryId = rec.CategoryId,
                 ComplexityName = rec.Complexity.ToString(),
-                Time = rec.Time
+                Time = rec.Time,
             }).FirstOrDefaultAsync();
 
             if (result == null)

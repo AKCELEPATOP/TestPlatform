@@ -246,6 +246,8 @@ namespace TestView
 
         private void button3_Click(object sender, EventArgs e)
         {
+            
+
             attachment = new List<AttachmentBindingModel>();
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
             openFileDialog1.Filter = "png files (*.png)|*.png|All files (*.*)|*.*";
@@ -255,10 +257,20 @@ namespace TestView
                 {
                     // string path = Path.GetFileName(openFileDialog1.FileName);
                     byte[] attachmentForQuestion = System.IO.File.ReadAllBytes(openFileDialog1.FileName);
-                    attachment.Add(new AttachmentBindingModel
+                    if (attachment.Count < 1)
                     {
-                        Image = Convert.ToBase64String(attachmentForQuestion)
-                    });
+                        attachment.Add(new AttachmentBindingModel
+                        {
+                            Image = Convert.ToBase64String(attachmentForQuestion)
+                        });
+                    }
+                    else {
+                        attachment.Insert(0, new AttachmentBindingModel
+                        {
+                            Image = Convert.ToBase64String(attachmentForQuestion)
+                        });
+                    }
+                    MessageBox.Show("Изображение добавлено", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
                 {
