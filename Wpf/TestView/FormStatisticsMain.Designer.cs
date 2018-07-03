@@ -115,9 +115,9 @@ namespace TestView
             // button10
             // 
             this.button10.AutoSize = true;
-            this.button10.Location = new System.Drawing.Point(195, 180);
+            this.button10.Location = new System.Drawing.Point(199, 189);
             this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(178, 23);
+            this.button10.Size = new System.Drawing.Size(188, 36);
             this.button10.TabIndex = 3;
             this.button10.Text = "Изменить";
             this.button10.UseVisualStyleBackColor = true;
@@ -126,9 +126,9 @@ namespace TestView
             // button9
             // 
             this.button9.AutoSize = true;
-            this.button9.Location = new System.Drawing.Point(379, 180);
+            this.button9.Location = new System.Drawing.Point(393, 189);
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(178, 23);
+            this.button9.Size = new System.Drawing.Size(188, 36);
             this.button9.TabIndex = 2;
             this.button9.Text = "Удалить";
             this.button9.UseVisualStyleBackColor = true;
@@ -154,9 +154,9 @@ namespace TestView
             // button3
             // 
             this.button3.AutoSize = true;
-            this.button3.Location = new System.Drawing.Point(11, 180);
+            this.button3.Location = new System.Drawing.Point(5, 189);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(178, 23);
+            this.button3.Size = new System.Drawing.Size(188, 36);
             this.button3.TabIndex = 1;
             this.button3.Text = "Подготовить тест";
             this.button3.UseVisualStyleBackColor = true;
@@ -193,7 +193,7 @@ namespace TestView
             this.groupBox3.Controls.Add(this.button2);
             this.groupBox3.Location = new System.Drawing.Point(616, 73);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(225, 168);
+            this.groupBox3.Size = new System.Drawing.Size(265, 168);
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Управление";
@@ -201,9 +201,9 @@ namespace TestView
             // buttonAdmins
             // 
             this.buttonAdmins.AutoSize = true;
-            this.buttonAdmins.Location = new System.Drawing.Point(26, 100);
+            this.buttonAdmins.Location = new System.Drawing.Point(26, 126);
             this.buttonAdmins.Name = "buttonAdmins";
-            this.buttonAdmins.Size = new System.Drawing.Size(180, 36);
+            this.buttonAdmins.Size = new System.Drawing.Size(214, 36);
             this.buttonAdmins.TabIndex = 4;
             this.buttonAdmins.Text = "Управление администраторами";
             this.buttonAdmins.UseVisualStyleBackColor = true;
@@ -212,9 +212,9 @@ namespace TestView
             // button8
             // 
             this.button8.AutoSize = true;
-            this.button8.Location = new System.Drawing.Point(26, 58);
+            this.button8.Location = new System.Drawing.Point(26, 72);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(178, 36);
+            this.button8.Size = new System.Drawing.Size(214, 36);
             this.button8.TabIndex = 3;
             this.button8.Text = "Управление пользователями";
             this.button8.UseVisualStyleBackColor = true;
@@ -225,7 +225,7 @@ namespace TestView
             this.button2.AutoSize = true;
             this.button2.Location = new System.Drawing.Point(26, 20);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(178, 32);
+            this.button2.Size = new System.Drawing.Size(214, 32);
             this.button2.TabIndex = 0;
             this.button2.Text = "Категории и вопросы";
             this.button2.UseVisualStyleBackColor = true;
@@ -234,7 +234,7 @@ namespace TestView
             // button4
             // 
             this.button4.AutoSize = true;
-            this.button4.Location = new System.Drawing.Point(26, 19);
+            this.button4.Location = new System.Drawing.Point(47, 19);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(178, 28);
             this.button4.TabIndex = 2;
@@ -245,7 +245,7 @@ namespace TestView
             // button1
             // 
             this.button1.AutoSize = true;
-            this.button1.Location = new System.Drawing.Point(702, 579);
+            this.button1.Location = new System.Drawing.Point(750, 579);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(106, 37);
             this.button1.TabIndex = 5;
@@ -264,7 +264,7 @@ namespace TestView
             this.groupBox4.Location = new System.Drawing.Point(616, 315);
             this.groupBox4.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(194, 259);
+            this.groupBox4.Size = new System.Drawing.Size(228, 259);
             this.groupBox4.TabIndex = 6;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Настройка цветов";
@@ -272,7 +272,7 @@ namespace TestView
             // buttonChangeFont
             // 
             this.buttonChangeFont.AutoSize = true;
-            this.buttonChangeFont.Location = new System.Drawing.Point(19, 139);
+            this.buttonChangeFont.Location = new System.Drawing.Point(36, 140);
             this.buttonChangeFont.Margin = new System.Windows.Forms.Padding(2);
             this.buttonChangeFont.Name = "buttonChangeFont";
             this.buttonChangeFont.Size = new System.Drawing.Size(170, 34);
@@ -284,7 +284,7 @@ namespace TestView
             // buttonChangeColorBack
             // 
             this.buttonChangeColorBack.AutoSize = true;
-            this.buttonChangeColorBack.Location = new System.Drawing.Point(19, 55);
+            this.buttonChangeColorBack.Location = new System.Drawing.Point(36, 56);
             this.buttonChangeColorBack.Margin = new System.Windows.Forms.Padding(2);
             this.buttonChangeColorBack.Name = "buttonChangeColorBack";
             this.buttonChangeColorBack.Size = new System.Drawing.Size(170, 34);
@@ -296,7 +296,7 @@ namespace TestView
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(26, 196);
+            this.label7.Location = new System.Drawing.Point(47, 196);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(134, 13);
             this.label7.TabIndex = 23;
@@ -323,7 +323,7 @@ namespace TestView
             "10",
             "12",
             "14"});
-            this.comboBoxFontSize.Location = new System.Drawing.Point(42, 223);
+            this.comboBoxFontSize.Location = new System.Drawing.Point(67, 223);
             this.comboBoxFontSize.Name = "comboBoxFontSize";
             this.comboBoxFontSize.Size = new System.Drawing.Size(100, 21);
             this.comboBoxFontSize.TabIndex = 22;
@@ -332,7 +332,7 @@ namespace TestView
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(64, 30);
+            this.label6.Location = new System.Drawing.Point(80, 30);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(78, 13);
@@ -365,7 +365,7 @@ namespace TestView
             this.groupBox5.Controls.Add(this.button4);
             this.groupBox5.Location = new System.Drawing.Point(619, 253);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(225, 57);
+            this.groupBox5.Size = new System.Drawing.Size(262, 57);
             this.groupBox5.TabIndex = 10;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Статистика";
@@ -399,7 +399,7 @@ namespace TestView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(855, 621);
+            this.ClientSize = new System.Drawing.Size(899, 621);
             this.Controls.Add(this.labelUserName);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.button7);
