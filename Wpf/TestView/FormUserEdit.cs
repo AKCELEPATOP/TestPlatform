@@ -87,14 +87,11 @@ namespace TestView
             {
                 message += "Заполните Логин";
             }
-            if (string.IsNullOrEmpty(id) && string.IsNullOrEmpty(textBoxPassword.Text))
-            {
-                message += "Заполните Пароль";
-                return;
-            }
-            if (!Regex.IsMatch(password, @"(?=.*[a-z])(?=.*[0-9])^[a-zA-Z0-9]{5,}$"/*@"^(?=.*[0-9]$)(?=.*[a-zA-Z]){5,}"*/))
-            {
-                message += " Пароль должен быть не короче 5 символов, содержать хотя бы одну лат букву в ниж регистре и одну цифру.";
+            if (!string.IsNullOrEmpty(password)) {
+                if (!Regex.IsMatch(password, @"(?=.*[a-z])(?=.*[0-9])^[a-zA-Z0-9]{5,}$"/*@"^(?=.*[0-9]$)(?=.*[a-zA-Z]){5,}"*/))
+                {
+                    message += " Пароль должен быть не короче 5 символов, содержать хотя бы одну лат букву в ниж регистре и одну цифру.";
+                }
             }
             if (!string.IsNullOrEmpty(mail))
             {
