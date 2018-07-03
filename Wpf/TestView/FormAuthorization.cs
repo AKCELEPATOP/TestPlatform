@@ -27,7 +27,13 @@ namespace TestView
             try
             {
                 ApiClient.Login(textBoxLogin.Text, textBoxPassword.Text);
-                if (ApiClient.Role.Equals(ApplicationRoles.Admin) || ApiClient.Role.Equals(ApplicationRoles.SuperAdmin))
+                if (ApiClient.Role.Equals(ApplicationRoles.SuperAdmin) && textBoxPassword.Text.Equals("Admin777")) {
+                    FormChangedGlavAdmin formMainAdmin = new FormChangedGlavAdmin(this);
+                    formMainAdmin.Show();
+                    Hide();
+                }
+
+                if (ApiClient.Role.Equals(ApplicationRoles.Admin) || ApiClient.Role.Equals(ApplicationRoles.SuperAdmin) && !textBoxPassword.Text.Equals("Admin777"))
                 {
                     FormStatisticsMain formMainAdmin = new FormStatisticsMain(this);
                     formMainAdmin.Show();
