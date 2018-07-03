@@ -46,18 +46,16 @@ namespace TestService.Implementations
         public async Task DelElement(int id)
         {
             UserGroup element = await context.UserGroups.FirstOrDefaultAsync(rec => rec.Id == id);
-            if (element != null && element.Users.Count == 0)
-            {
-                context.UserGroups.Remove(element);
-                await context.SaveChangesAsync();
-            }
-            else if(element.Users.Count != 0)  {
-                throw new Exception("Удалите всех пользователей из группы");
-            }
-            else
+            if (element == null)
             {
                 throw new Exception("Элемент не найден");
             }
+            if(element.Users.Count != 0)  {
+                throw new Exception("Удалите всех пользователей из группы");
+            }
+            context.Patterns.RemoveRange(context.Patterns.Where(rec => rec.UserGroupId == id));
+            context.UserGroups.Remove(element);
+            await context.SaveChangesAsync();
         }
 
         public async Task<GroupViewModel> GetElement(int id)
