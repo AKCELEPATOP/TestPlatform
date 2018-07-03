@@ -58,7 +58,7 @@
             this.textBoxFIO.Name = "textBoxFIO";
             this.textBoxFIO.Size = new System.Drawing.Size(177, 20);
             this.textBoxFIO.TabIndex = 1;
-            this.textBoxFIO.MaxLength = 16;
+            this.textBoxFIO.MaxLength = 32;
             // 
             // textBoxEmail
             // 
