@@ -32,16 +32,9 @@ namespace TestView
                 {
                     dataGridView1.DataSource = list;
                     dataGridView1.Columns[0].Visible = false;
+                    dataGridView1.Columns[3].Visible = false;
                     dataGridView1.Columns[5].Visible = false;
                     dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                }
-                List<GroupViewModel> listC = await ApiClient.GetRequestData<List<GroupViewModel>>("api/Group/GetList");
-                if (listC != null)
-                {
-                    comboBox1.DataSource = listC;
-                    comboBox1.DisplayMember = "Name";
-                    comboBox1.ValueMember = "Id";
-                    comboBox1.SelectedItem = null;
                 }
             }
             catch (Exception ex)
@@ -109,34 +102,6 @@ namespace TestView
             if (form.ShowDialog() == DialogResult.OK)
             {
                 Initialize();
-            }
-        }
-
-        private async void button1_Click(object sender, EventArgs e)
-        {
-            if (dataGridView1.SelectedRows.Count == 1 && comboBox1.SelectedValue !=null)
-            { 
-                string user_id = Convert.ToString(dataGridView1.SelectedRows[0].Cells[0].Value);
-                int Grou_id = Convert.ToInt32(comboBox1.SelectedValue);
-                try
-                {
-                    await ApiClient.PostRequestData("api/User/SetGroup", new UserBindingModel
-                    {
-                        Id = user_id,
-                        GroupId = Grou_id
-                    });
-                    
-                        MessageBox.Show("Группа установлена", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        Initialize();
-                   
-                }catch(Exception ex)
-                {
-                    while (ex.InnerException != null)
-                    {
-                        ex = ex.InnerException;
-                    }
-                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
             }
         }
 

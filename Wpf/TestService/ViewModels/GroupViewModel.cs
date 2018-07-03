@@ -12,7 +12,7 @@ namespace TestService.ViewModels
     public class GroupViewModel
     {
         [DataMember]
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         [DataMember]
         public string Name { get; set; }
