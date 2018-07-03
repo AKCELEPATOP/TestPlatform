@@ -25,5 +25,10 @@ namespace TestService.BindingModels
 
         public override Stream InputStream { get; }
 
+        public override void SaveAs(string filename)
+        {
+            File.WriteAllBytes(filename, fileBytes);
+        }
+
     }
 }

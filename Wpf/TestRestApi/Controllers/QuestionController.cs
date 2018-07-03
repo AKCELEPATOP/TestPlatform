@@ -58,13 +58,13 @@ namespace TestRestApi.Controllers
 
         private string GetImagePath()
         {
-            imagesPath = System.Web.Hosting.HostingEnvironment.MapPath("~/Images");
+            imagesPath = System.Web.Hosting.HostingEnvironment.MapPath("~/Images/");
 
-            if (!System.IO.File.Exists(imagesPath))
-            {
-                System.IO.File.Create(imagesPath);
-            }
-            imagesPath += "/";
+            //if (!System.IO.File.Exists(imagesPath))
+            //{
+            //    System.IO.File.Create(imagesPath);
+            //}
+            //imagesPath += "/";
             return imagesPath;
         }
 
@@ -73,7 +73,7 @@ namespace TestRestApi.Controllers
         [HttpPost]
         public async Task AddElement(QuestionBindingModel model)
         {
-            //model.ImagesPath = ImagesPath;
+            model.ImagesPath = ImagesPath;
             await Service.AddElement(model);
         }
 

@@ -84,9 +84,9 @@ namespace TestService.Implementations
                                     await context.SaveChangesAsync();
                                 }
                             }
-                            catch
+                            catch(Exception ex)
                             {
-                                throw new Exception("Не удалось добавить изображение");
+                                throw ex;
                             }
                         }
                     }

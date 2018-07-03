@@ -131,7 +131,8 @@ namespace TestView
             }
             string[] timestr = maskedTextBox1.Text.ToString().Split(':');
             long time = Convert.ToInt32(timestr[0]) * 60 + Convert.ToInt32(timestr[1]);
-            if (time < 30) {
+            if (time < 30)
+            {
                 MessageBox.Show("Нужно больше времени", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -208,7 +209,7 @@ namespace TestView
                     else
                     {
                         await ApiClient.PostRequestData("api/Question/AddElement", new QuestionBindingModel
-                        {                           
+                        {
                             Text = text,
                             Complexity = complexity,
                             Active = active,
@@ -245,30 +246,26 @@ namespace TestView
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Stream myStream = null;
+            attachment = new List<AttachmentBindingModel>();
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
             openFileDialog1.Filter = "png files (*.png)|*.png|All files (*.*)|*.*";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 try
                 {
-                    if ((myStream = openFileDialog1.OpenFile()) != null)
+                    // string path = Path.GetFileName(openFileDialog1.FileName);
+                    byte[] attachmentForQuestion = System.IO.File.ReadAllBytes(openFileDialog1.FileName);
+                    attachment.Add(new AttachmentBindingModel
                     {
-                        using (myStream)
-                        {
-                            string path = Path.GetDirectoryName(openFileDialog1.FileName);
-                            byte[] attachmentForQuestion = System.IO.File.ReadAllBytes(path);
-                            attachment[0].Image = Convert.ToBase64String(attachmentForQuestion);
-                            attachment[0].Id = 1;
-                        }
-                    }
+                        Image = Convert.ToBase64String(attachmentForQuestion)
+                    });
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
                 }
             }
-            
+
         }
     }
 }

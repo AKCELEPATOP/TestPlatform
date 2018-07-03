@@ -115,7 +115,6 @@ namespace TestView
             tmrShow.Stop();
             tmrShow.Dispose();
             Close();
-
         }
 
         private async void Initialize()
