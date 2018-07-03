@@ -11,6 +11,8 @@ namespace TestView
             InitializeComponent();
         }
 
+
+
         private void button2_Click(object sender, EventArgs e)
         {
             Form formRegistration = new RegistrationForm();
@@ -50,6 +52,5 @@ namespace TestView
             textBoxLogin.Text = "";
             textBoxPassword.Text = "";
         }
-
     }
 }

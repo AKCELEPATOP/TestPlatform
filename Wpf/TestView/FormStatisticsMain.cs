@@ -1,4 +1,4 @@
-﻿ 
+﻿
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -47,7 +47,7 @@ namespace TestView
 
                     }
                 }
-                List<StatViewModel> listC = await ApiClient.PostRequestData<GetListModel, List<StatViewModel>>("api/Stat/GetList", new GetListModel{});
+                List<StatViewModel> listC = await ApiClient.PostRequestData<GetListModel, List<StatViewModel>>("api/Stat/GetList", new GetListModel { });
                 if (listC != null)
                 {
                     dataGridView2.DataSource = listC;
@@ -63,6 +63,7 @@ namespace TestView
                 }
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            comboBoxFontSize.Text = "8";
         }
         //подготовить тест шаблон
         private void button3_Click(object sender, EventArgs e)
@@ -101,7 +102,7 @@ namespace TestView
                         MessageBox.Show("Запись удалена. Обновите список", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Initialize();
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
                         while (ex.InnerException != null)
                         {
@@ -125,7 +126,7 @@ namespace TestView
         {
             Initialize();
         }
-       
+
         //сменить пользователя
         private void button7_Click(object sender, EventArgs e)
         {
@@ -188,13 +189,13 @@ namespace TestView
                 string fileName = sfd.FileName;
                 try
                 {
-                    await Task.Run(() => ApiClient.PostRequestData("api/stat/SaveToPdfAdmin",new ReportBindingModel
+                    await Task.Run(() => ApiClient.PostRequestData("api/stat/SaveToPdfAdmin", new ReportBindingModel
                     {
                         FilePath = fileName,
                     }));
                     MessageBox.Show("Файл успешно сохранен", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     while (ex.InnerException != null)
                     {
@@ -232,7 +233,7 @@ namespace TestView
             {
                 Initialize();
             }
-            
+
         }
 
         private async void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -253,6 +254,42 @@ namespace TestView
                     MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void comboBoxFontSize_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            label1.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(comboBoxFontSize.SelectedItem));
+            labelUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(comboBoxFontSize.SelectedItem));
+            label4.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(comboBoxFontSize.SelectedItem));
+            label5.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(comboBoxFontSize.SelectedItem));
+            label6.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(comboBoxFontSize.SelectedItem));
+            label7.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(comboBoxFontSize.SelectedItem));
+            contextMenuStrip1.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(comboBoxFontSize.SelectedItem));
+            dataGridView1.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(comboBoxFontSize.SelectedItem));
+            dataGridView2.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(comboBoxFontSize.SelectedItem));
+            button1.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(comboBoxFontSize.SelectedItem));
+            button10.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(comboBoxFontSize.SelectedItem));
+            обновитьToolStripMenuItem.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(comboBoxFontSize.SelectedItem));
+            button2.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(comboBoxFontSize.SelectedItem));
+            buttonChangeColorBack.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(comboBoxFontSize.SelectedItem));
+            button3.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(comboBoxFontSize.SelectedItem));
+            buttonChangeFont.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(comboBoxFontSize.SelectedItem));
+            button4.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(comboBoxFontSize.SelectedItem));
+            button7.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(comboBoxFontSize.SelectedItem));
+            button8.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(comboBoxFontSize.SelectedItem));
+            button9.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(comboBoxFontSize.SelectedItem));
+            buttonAdmins.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(comboBoxFontSize.SelectedItem));
+            groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(comboBoxFontSize.SelectedItem));
+            groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(comboBoxFontSize.SelectedItem));
+            groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(comboBoxFontSize.SelectedItem));
+            groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(comboBoxFontSize.SelectedItem));
+            groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(comboBoxFontSize.SelectedItem));
+            dataGridViewPatternStat.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(comboBoxFontSize.SelectedItem));
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
