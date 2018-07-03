@@ -170,6 +170,7 @@
             this.comboBoxFontSize.Name = "comboBoxFontSize";
             this.comboBoxFontSize.Size = new System.Drawing.Size(100, 21);
             this.comboBoxFontSize.TabIndex = 24;
+            this.comboBoxFontSize.SelectedIndexChanged += new System.EventHandler(this.comboBoxFontSize_SelectedIndexChanged);
             // 
             // label5
             // 

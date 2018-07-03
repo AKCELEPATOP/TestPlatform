@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TestService.BindingModels;
 using TestService.ViewModels;
 
 namespace TestView
@@ -20,13 +21,14 @@ namespace TestView
             Initialize();
         }
 
-        private void Initialize()
+        private async void Initialize()
         {
             try
             {
+                var model = new GetListModel { };
                 // Переделать или удалить
-                List<TestViewModel> list =
-                    Task.Run(() => ApiClient.GetRequestData<List<TestViewModel>>("api/Stat/GetUserChart")).Result;
+                StatChartViewModel list =
+                         await ApiClient.PostRequestData<GetListModel, StatChartViewModel>("api/Stat/GetUserChart", model);
                 if (list != null)
                 {
                     dataGridView1.DataSource = list;
@@ -53,7 +55,7 @@ namespace TestView
         public int centrX, centrY;
         public int x, y;
         public int funkcii;
-        public void DrawOs()
+        public async void DrawOs()
         {
             float wX;
             float hX;
@@ -78,9 +80,10 @@ namespace TestView
 
             try
             {
+                var model = new GetListModel { };
                 // График
                 StatChartViewModel stat =
-                        Task.Run(() => ApiClient.GetRequestData<StatChartViewModel>("api/Stat/GetUserChart")).Result;
+                        await ApiClient.PostRequestData<GetListModel, StatChartViewModel>("api/Stat/GetUserChart", model);
 
                 if (stat.Results != null)
                 {
@@ -101,9 +104,8 @@ namespace TestView
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Произошла ошибка при загрузке графика/nОшибка:"+ex.Message, "Ошибка",
+                MessageBox.Show("Произошла ошибка при загрузке графика Ошибка:"+ex.Message, "Ошибка",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Close();
             }
 
 
@@ -112,8 +114,10 @@ namespace TestView
 
         private async void button1_Click(object sender, EventArgs e)
         {
+            var model = new GetListModel { };
+
             StatChartViewModel stat =
-                        Task.Run(() => ApiClient.GetRequestData<StatChartViewModel>("api/Stat/GetUserChart")).Result;
+                        await ApiClient.PostRequestData<GetListModel, StatChartViewModel>("api/Stat/GetUserChart", model);
             StatViewModel result;
             try
             {
@@ -123,7 +127,7 @@ namespace TestView
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Произошла ошибка загрузки данных/nОшибка: "+ex.Message,"Ошибка",
+                MessageBox.Show("Произошла ошибка загрузки данных"+'\n'+"Ошибка: "+ex.Message,"Ошибка",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

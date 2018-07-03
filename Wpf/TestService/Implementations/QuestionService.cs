@@ -72,7 +72,7 @@ namespace TestService.Implementations
                             {
                                 if (objFile != null && objFile.ContentLength > 0)
                                 {
-                                    string path = model.ImagesPath + ((string.IsNullOrEmpty(objFile.FileName)) ? string.Format("{0}.{1}.png", element.Id, 1) : objFile.FileName);
+                                    string path = model.ImagesPath + $@"{DateTime.Now.Ticks}.png";
 
                                     objFile.SaveAs(path);
 
@@ -102,6 +102,7 @@ namespace TestService.Implementations
 
         public async Task DelElement(int id)
         {
+            List<string> pathsToDelete = new List<string>();
             using (var transaction = context.Database.BeginTransaction())
             {
                 try
@@ -112,13 +113,14 @@ namespace TestService.Implementations
                         context.Answers.RemoveRange(context.Answers.Where(rec => rec.QuestionId == element.Id));
 
                         var list = await context.Attachments.Where(rec => rec.QuestionId == element.Id).ToListAsync();
-
-                        foreach (var el in list)
+                        if (list.Count > 0)
                         {
-                            System.IO.File.Delete(el.Path);
+                            foreach (var el in list)
+                            {
+                                pathsToDelete.Add(el.Path);
+                            }
+                            context.Attachments.RemoveRange(list);
                         }
-                        context.Attachments.RemoveRange(list);
-
                         context.Questions.Remove(element);
                         await context.SaveChangesAsync();
                     }
@@ -133,6 +135,10 @@ namespace TestService.Implementations
                     transaction.Rollback();
                     throw;
                 }
+            }
+            for(int i = 0; i < pathsToDelete.Count; i++)
+            {
+                System.IO.File.Delete(pathsToDelete[i]);
             }
         }
 
@@ -188,6 +194,7 @@ namespace TestService.Implementations
 
         public async Task UpdElement(QuestionBindingModel model)
         {
+            List<string> pathsToDelete = new List<string>();
             using (var transaction = context.Database.BeginTransaction())
             {
                 try
@@ -267,8 +274,12 @@ namespace TestService.Implementations
                                 throw new Exception("Не удалось обновить изображение");
                             }
                         }
-
-                        context.Attachments.RemoveRange(context.Attachments.Where(rec => rec.QuestionId == model.Id && !attachIds.Contains(rec.Id)));
+                        var removeAttachments = context.Attachments.Where(rec => rec.QuestionId == model.Id && !attachIds.Contains(rec.Id));
+                        foreach(var el in removeAttachments)
+                        {
+                            pathsToDelete.Add(el.Path);
+                        }
+                        context.Attachments.RemoveRange(removeAttachments);
 
                         await context.SaveChangesAsync();
 
@@ -286,7 +297,7 @@ namespace TestService.Implementations
                             {
                                 if (objFile != null && objFile.ContentLength > 0)
                                 {
-                                    string path = model.ImagesPath + ((string.IsNullOrEmpty(objFile.FileName)) ? string.Format("{0}.{1}.png", element.Id, 1) : objFile.FileName);
+                                    string path = model.ImagesPath + $@"{DateTime.Now.Ticks}.png";
 
                                     objFile.SaveAs(path);
 
@@ -311,6 +322,10 @@ namespace TestService.Implementations
                 {
                     transaction.Rollback();
                     throw;
+                }
+                foreach(var path in pathsToDelete)
+                {
+                    System.IO.File.Delete(path);
                 }
             }
 

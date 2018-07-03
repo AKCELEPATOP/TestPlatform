@@ -53,6 +53,7 @@
             this.checkBox5 = new System.Windows.Forms.CheckBox();
             this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.buttonShow = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -260,7 +261,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(297, 370);
+            this.button2.Location = new System.Drawing.Point(274, 370);
             this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(119, 48);
@@ -281,12 +282,12 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(721, 370);
+            this.button3.Location = new System.Drawing.Point(498, 370);
             this.button3.Margin = new System.Windows.Forms.Padding(4);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(199, 48);
             this.button3.TabIndex = 14;
-            this.button3.Text = "Доп. информация";
+            this.button3.Text = "Загрузить изображение";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -318,12 +319,25 @@
             this.comboBox1.Size = new System.Drawing.Size(143, 24);
             this.comboBox1.TabIndex = 17;
             // 
+            // buttonShow
+            // 
+            this.buttonShow.Enabled = false;
+            this.buttonShow.Location = new System.Drawing.Point(718, 370);
+            this.buttonShow.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonShow.Name = "buttonShow";
+            this.buttonShow.Size = new System.Drawing.Size(199, 48);
+            this.buttonShow.TabIndex = 18;
+            this.buttonShow.Text = "Просмотреть изображение";
+            this.buttonShow.UseVisualStyleBackColor = true;
+            this.buttonShow.Click += new System.EventHandler(this.buttonShow_Click);
+            // 
             // FormQuestionEditor
             // 
             this.AcceptButton = this.button1;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(935, 434);
+            this.Controls.Add(this.buttonShow);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.maskedTextBox1);
             this.Controls.Add(this.checkBox5);
@@ -376,5 +390,6 @@
         private System.Windows.Forms.CheckBox checkBox5;
         private System.Windows.Forms.MaskedTextBox maskedTextBox1;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button buttonShow;
     }
 }

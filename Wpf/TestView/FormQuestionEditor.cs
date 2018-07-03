@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Web;
 using System.Windows.Forms;
 using TestModels;
 using TestService.BindingModels;
@@ -56,6 +58,15 @@ namespace TestView
                         question.Answers[2].Id,
                         question.Answers[3].Id
                     };
+                    if (question.Images != null && question.Images.Count > 0)
+                    {
+                        attachment = question.Images.Select(rec => new AttachmentBindingModel
+                        {
+                            Id = rec.Id,
+                            Image = rec.Image
+                        }).ToList();
+                        buttonShow.Enabled = true;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -270,11 +281,11 @@ namespace TestView
 
         private void button3_Click(object sender, EventArgs e)
         {
-            
+
 
             attachment = new List<AttachmentBindingModel>();
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            openFileDialog1.Filter = "png files (*.png)|*.png|All files (*.*)|*.*";
+            openFileDialog1.Filter = "Image files (*.jpg, *.jpeg, *.png) | *.jpg; *.jpeg; *.png";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 try
@@ -288,13 +299,15 @@ namespace TestView
                             Image = Convert.ToBase64String(attachmentForQuestion)
                         });
                     }
-                    else {
+                    else
+                    {
                         attachment.Insert(0, new AttachmentBindingModel
                         {
                             Image = Convert.ToBase64String(attachmentForQuestion)
                         });
                     }
                     MessageBox.Show("Изображение добавлено", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    buttonShow.Enabled = true;
                 }
                 catch (Exception ex)
                 {
@@ -302,6 +315,22 @@ namespace TestView
                 }
             }
 
+        }
+
+        private void buttonShow_Click(object sender, EventArgs e)
+        {
+            if (attachment != null && attachment.Count > 0)
+            {
+                var buffer = Convert.FromBase64String(attachment[0].Image);
+                HttpPostedFileBase objFile = (HttpPostedFileBase)new MemoryPostedFile(buffer);
+                var image = ImageProcessing.ResizeImage(Image.FromStream(objFile.InputStream, true, true),
+                    SystemInformation.VirtualScreen.Width / 2, (int)(SystemInformation.VirtualScreen.Height / 1.5));
+                AppendixForm appendixForm = new AppendixForm(image)
+                {
+                    Size = new Size(image.Width, image.Height)
+                };
+                appendixForm.Show();
+            }
         }
     }
 }

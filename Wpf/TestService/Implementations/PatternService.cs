@@ -327,7 +327,8 @@ namespace TestService.Implementations
                         {
                             Image = r.Path
 
-                        }).ToList()
+                        }).ToList(),
+                        Id = rec.QuestionId
                     }).ToList()
                 }).FirstOrDefaultAsync();
             TestViewModel result = new TestViewModel

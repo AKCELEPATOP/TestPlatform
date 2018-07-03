@@ -114,8 +114,18 @@ namespace TestRestApi.Controllers
         }
 
         [HttpGet]
-        [Route("GetUserChartLast")]
-        public async Task<IHttpActionResult> GetUserChartLast(GetListModel model)
+        public async Task<IHttpActionResult> GetUserChartLast(int id)
+        {
+            var element = await Service.GetUserChartLast(id);
+            if (element == null)
+            {
+                InternalServerError(new Exception("Нет данных"));
+            }
+            return Ok(element);
+        }
+
+        [HttpPost]
+        public async Task<IHttpActionResult> GetUserChart(GetListModel model)
         {
             model.UserId = User.Identity.GetUserId();
             var element = await Service.GetUserChart(model);

@@ -50,7 +50,7 @@ namespace TestView
             if (login.IndexOf(" ") !=-1) {
                 message += "В логине не должно быть пробелов";
             }
-            if (!Regex.IsMatch(login, @"\w{8,}"))
+            if (!Regex.IsMatch(login, @"^[a-zA-Z0-9]{5,30}$"))
             {
                 message += " Логин должен быть не меньше 8 символов.";
             }
