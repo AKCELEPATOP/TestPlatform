@@ -40,6 +40,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.buttonChangeColorBack = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.comboBoxFontSize = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.buttonChangeFont = new System.Windows.Forms.Button();
             this.buttonExit = new System.Windows.Forms.Button();
@@ -52,8 +54,6 @@
             this.SaveToPDF = new System.Windows.Forms.Button();
             this.textBoxCurrentUser = new System.Windows.Forms.Label();
             this.textBoxGroupUser = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.comboBoxFontSize = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAvailablePatterns)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPassedTests)).BeginInit();
@@ -78,7 +78,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(25, 64);
+            this.label1.Location = new System.Drawing.Point(23, 51);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(116, 13);
             this.label1.TabIndex = 1;
@@ -86,9 +86,9 @@
             // 
             // buttonBeginTest
             // 
-            this.buttonBeginTest.Location = new System.Drawing.Point(86, 365);
+            this.buttonBeginTest.Location = new System.Drawing.Point(77, 365);
             this.buttonBeginTest.Name = "buttonBeginTest";
-            this.buttonBeginTest.Size = new System.Drawing.Size(134, 28);
+            this.buttonBeginTest.Size = new System.Drawing.Size(153, 44);
             this.buttonBeginTest.TabIndex = 10;
             this.buttonBeginTest.Text = "Начать тест";
             this.buttonBeginTest.UseVisualStyleBackColor = true;
@@ -96,9 +96,9 @@
             // 
             // buttonChangeUser
             // 
-            this.buttonChangeUser.Location = new System.Drawing.Point(665, 37);
+            this.buttonChangeUser.Location = new System.Drawing.Point(639, 10);
             this.buttonChangeUser.Name = "buttonChangeUser";
-            this.buttonChangeUser.Size = new System.Drawing.Size(73, 22);
+            this.buttonChangeUser.Size = new System.Drawing.Size(94, 35);
             this.buttonChangeUser.TabIndex = 12;
             this.buttonChangeUser.Text = "Сменить";
             this.buttonChangeUser.UseVisualStyleBackColor = true;
@@ -107,7 +107,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(363, 41);
+            this.label4.Location = new System.Drawing.Point(338, 21);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(132, 13);
             this.label4.TabIndex = 11;
@@ -116,7 +116,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(35, 19);
+            this.label6.Location = new System.Drawing.Point(35, 25);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(78, 13);
             this.label6.TabIndex = 17;
@@ -124,9 +124,9 @@
             // 
             // buttonChangeColorBack
             // 
-            this.buttonChangeColorBack.Location = new System.Drawing.Point(30, 35);
+            this.buttonChangeColorBack.Location = new System.Drawing.Point(14, 54);
             this.buttonChangeColorBack.Name = "buttonChangeColorBack";
-            this.buttonChangeColorBack.Size = new System.Drawing.Size(101, 30);
+            this.buttonChangeColorBack.Size = new System.Drawing.Size(170, 34);
             this.buttonChangeColorBack.TabIndex = 16;
             this.buttonChangeColorBack.Text = "Сменить";
             this.buttonChangeColorBack.UseVisualStyleBackColor = true;
@@ -142,15 +142,39 @@
             this.groupBox2.Controls.Add(this.buttonChangeColorBack);
             this.groupBox2.Location = new System.Drawing.Point(764, 105);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(162, 177);
+            this.groupBox2.Size = new System.Drawing.Size(194, 254);
             this.groupBox2.TabIndex = 18;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Настройка цветов";
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(35, 189);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(134, 13);
+            this.label7.TabIndex = 25;
+            this.label7.Text = "Сменить размер шрифта";
+            // 
+            // comboBoxFontSize
+            // 
+            this.comboBoxFontSize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxFontSize.FormattingEnabled = true;
+            this.comboBoxFontSize.Items.AddRange(new object[] {
+            "8",
+            "9",
+            "10",
+            "12",
+            "14"});
+            this.comboBoxFontSize.Location = new System.Drawing.Point(50, 216);
+            this.comboBoxFontSize.Name = "comboBoxFontSize";
+            this.comboBoxFontSize.Size = new System.Drawing.Size(100, 21);
+            this.comboBoxFontSize.TabIndex = 24;
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(20, 72);
+            this.label5.Location = new System.Drawing.Point(35, 106);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(119, 13);
             this.label5.TabIndex = 19;
@@ -158,9 +182,9 @@
             // 
             // buttonChangeFont
             // 
-            this.buttonChangeFont.Location = new System.Drawing.Point(30, 88);
+            this.buttonChangeFont.Location = new System.Drawing.Point(14, 135);
             this.buttonChangeFont.Name = "buttonChangeFont";
-            this.buttonChangeFont.Size = new System.Drawing.Size(101, 30);
+            this.buttonChangeFont.Size = new System.Drawing.Size(170, 34);
             this.buttonChangeFont.TabIndex = 18;
             this.buttonChangeFont.Text = "Сменить";
             this.buttonChangeFont.UseVisualStyleBackColor = true;
@@ -168,7 +192,7 @@
             // 
             // buttonExit
             // 
-            this.buttonExit.Location = new System.Drawing.Point(839, 393);
+            this.buttonExit.Location = new System.Drawing.Point(861, 399);
             this.buttonExit.Name = "buttonExit";
             this.buttonExit.Size = new System.Drawing.Size(87, 28);
             this.buttonExit.TabIndex = 19;
@@ -194,7 +218,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(338, 64);
+            this.label2.Location = new System.Drawing.Point(386, 51);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(107, 13);
             this.label2.TabIndex = 24;
@@ -203,7 +227,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(751, 41);
+            this.label3.Location = new System.Drawing.Point(739, 21);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(45, 13);
             this.label3.TabIndex = 26;
@@ -211,9 +235,9 @@
             // 
             // buttonStatistic
             // 
-            this.buttonStatistic.Location = new System.Drawing.Point(778, 321);
+            this.buttonStatistic.Location = new System.Drawing.Point(369, 365);
             this.buttonStatistic.Name = "buttonStatistic";
-            this.buttonStatistic.Size = new System.Drawing.Size(134, 28);
+            this.buttonStatistic.Size = new System.Drawing.Size(153, 44);
             this.buttonStatistic.TabIndex = 28;
             this.buttonStatistic.Text = "Общая статистика";
             this.buttonStatistic.UseVisualStyleBackColor = true;
@@ -236,9 +260,9 @@
             // 
             // SaveToPDF
             // 
-            this.SaveToPDF.Location = new System.Drawing.Point(778, 355);
+            this.SaveToPDF.Location = new System.Drawing.Point(556, 365);
             this.SaveToPDF.Name = "SaveToPDF";
-            this.SaveToPDF.Size = new System.Drawing.Size(134, 28);
+            this.SaveToPDF.Size = new System.Drawing.Size(153, 44);
             this.SaveToPDF.TabIndex = 29;
             this.SaveToPDF.Text = "Сохранить PDF";
             this.SaveToPDF.UseVisualStyleBackColor = true;
@@ -247,7 +271,7 @@
             // textBoxCurrentUser
             // 
             this.textBoxCurrentUser.AutoSize = true;
-            this.textBoxCurrentUser.Location = new System.Drawing.Point(495, 41);
+            this.textBoxCurrentUser.Location = new System.Drawing.Point(522, 21);
             this.textBoxCurrentUser.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.textBoxCurrentUser.Name = "textBoxCurrentUser";
             this.textBoxCurrentUser.Size = new System.Drawing.Size(0, 13);
@@ -256,41 +280,17 @@
             // textBoxGroupUser
             // 
             this.textBoxGroupUser.AutoSize = true;
-            this.textBoxGroupUser.Location = new System.Drawing.Point(800, 41);
+            this.textBoxGroupUser.Location = new System.Drawing.Point(811, 21);
             this.textBoxGroupUser.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.textBoxGroupUser.Name = "textBoxGroupUser";
             this.textBoxGroupUser.Size = new System.Drawing.Size(0, 13);
             this.textBoxGroupUser.TabIndex = 31;
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(19, 129);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(134, 13);
-            this.label7.TabIndex = 25;
-            this.label7.Text = "Сменить размер шрифта";
-            // 
-            // comboBoxFontSize
-            // 
-            this.comboBoxFontSize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxFontSize.FormattingEnabled = true;
-            this.comboBoxFontSize.Items.AddRange(new object[] {
-            "8",
-            "9",
-            "10",
-            "12",
-            "14"});
-            this.comboBoxFontSize.Location = new System.Drawing.Point(30, 150);
-            this.comboBoxFontSize.Name = "comboBoxFontSize";
-            this.comboBoxFontSize.Size = new System.Drawing.Size(100, 21);
-            this.comboBoxFontSize.TabIndex = 24;
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(954, 432);
+            this.ClientSize = new System.Drawing.Size(971, 450);
             this.Controls.Add(this.textBoxGroupUser);
             this.Controls.Add(this.textBoxCurrentUser);
             this.Controls.Add(this.SaveToPDF);

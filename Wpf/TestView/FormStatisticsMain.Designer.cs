@@ -50,18 +50,18 @@ namespace TestView
             this.button4 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.buttonChangeFont = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
             this.buttonChangeColorBack = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.comboBoxFontSize = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.button7 = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.обновитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.labelUserName = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.comboBoxFontSize = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPatternStat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -245,7 +245,7 @@ namespace TestView
             // button1
             // 
             this.button1.AutoSize = true;
-            this.button1.Location = new System.Drawing.Point(670, 481);
+            this.button1.Location = new System.Drawing.Point(702, 579);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(106, 37);
             this.button1.TabIndex = 5;
@@ -255,63 +255,89 @@ namespace TestView
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.buttonChangeFont);
+            this.groupBox4.Controls.Add(this.buttonChangeColorBack);
             this.groupBox4.Controls.Add(this.label7);
             this.groupBox4.Controls.Add(this.label5);
             this.groupBox4.Controls.Add(this.comboBoxFontSize);
-            this.groupBox4.Controls.Add(this.buttonChangeFont);
             this.groupBox4.Controls.Add(this.label6);
-            this.groupBox4.Controls.Add(this.buttonChangeColorBack);
             this.groupBox4.Location = new System.Drawing.Point(616, 315);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(225, 153);
+            this.groupBox4.Size = new System.Drawing.Size(194, 259);
             this.groupBox4.TabIndex = 6;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Настройка цветов";
             // 
+            // buttonChangeFont
+            // 
+            this.buttonChangeFont.AutoSize = true;
+            this.buttonChangeFont.Location = new System.Drawing.Point(19, 139);
+            this.buttonChangeFont.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonChangeFont.Name = "buttonChangeFont";
+            this.buttonChangeFont.Size = new System.Drawing.Size(170, 34);
+            this.buttonChangeFont.TabIndex = 22;
+            this.buttonChangeFont.Text = "Сменить";
+            this.buttonChangeFont.UseVisualStyleBackColor = true;
+            this.buttonChangeFont.Click += new System.EventHandler(this.buttonChangeFont_Click_1);
+            // 
+            // buttonChangeColorBack
+            // 
+            this.buttonChangeColorBack.AutoSize = true;
+            this.buttonChangeColorBack.Location = new System.Drawing.Point(19, 55);
+            this.buttonChangeColorBack.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonChangeColorBack.Name = "buttonChangeColorBack";
+            this.buttonChangeColorBack.Size = new System.Drawing.Size(170, 34);
+            this.buttonChangeColorBack.TabIndex = 20;
+            this.buttonChangeColorBack.Text = "Сменить";
+            this.buttonChangeColorBack.UseVisualStyleBackColor = true;
+            this.buttonChangeColorBack.Click += new System.EventHandler(this.buttonChangeColorBack_Click_1);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(26, 196);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(134, 13);
+            this.label7.TabIndex = 23;
+            this.label7.Text = "Сменить размер шрифта";
+            this.label7.Click += new System.EventHandler(this.label7_Click);
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(34, 60);
+            this.label5.Location = new System.Drawing.Point(39, 106);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(119, 13);
             this.label5.TabIndex = 23;
             this.label5.Text = "Сменить цвет шрифта";
             // 
-            // buttonChangeFont
+            // comboBoxFontSize
             // 
-            this.buttonChangeFont.AutoSize = true;
-            this.buttonChangeFont.Location = new System.Drawing.Point(42, 73);
-            this.buttonChangeFont.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.buttonChangeFont.Name = "buttonChangeFont";
-            this.buttonChangeFont.Size = new System.Drawing.Size(76, 24);
-            this.buttonChangeFont.TabIndex = 22;
-            this.buttonChangeFont.Text = "Сменить";
-            this.buttonChangeFont.UseVisualStyleBackColor = true;
-            this.buttonChangeFont.Click += new System.EventHandler(this.buttonChangeFont_Click_1);
+            this.comboBoxFontSize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxFontSize.FormattingEnabled = true;
+            this.comboBoxFontSize.Items.AddRange(new object[] {
+            "8",
+            "9",
+            "10",
+            "12",
+            "14"});
+            this.comboBoxFontSize.Location = new System.Drawing.Point(42, 223);
+            this.comboBoxFontSize.Name = "comboBoxFontSize";
+            this.comboBoxFontSize.Size = new System.Drawing.Size(100, 21);
+            this.comboBoxFontSize.TabIndex = 22;
+            this.comboBoxFontSize.SelectedIndexChanged += new System.EventHandler(this.comboBoxFontSize_SelectedIndexChanged);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(46, 17);
+            this.label6.Location = new System.Drawing.Point(64, 30);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(78, 13);
             this.label6.TabIndex = 21;
             this.label6.Text = "Сменить тему";
-            // 
-            // buttonChangeColorBack
-            // 
-            this.buttonChangeColorBack.AutoSize = true;
-            this.buttonChangeColorBack.Location = new System.Drawing.Point(42, 30);
-            this.buttonChangeColorBack.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.buttonChangeColorBack.Name = "buttonChangeColorBack";
-            this.buttonChangeColorBack.Size = new System.Drawing.Size(76, 24);
-            this.buttonChangeColorBack.TabIndex = 20;
-            this.buttonChangeColorBack.Text = "Сменить";
-            this.buttonChangeColorBack.UseVisualStyleBackColor = true;
-            this.buttonChangeColorBack.Click += new System.EventHandler(this.buttonChangeColorBack_Click_1);
             // 
             // label4
             // 
@@ -369,37 +395,11 @@ namespace TestView
             this.labelUserName.Size = new System.Drawing.Size(0, 17);
             this.labelUserName.TabIndex = 11;
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(43, 105);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(134, 13);
-            this.label7.TabIndex = 23;
-            this.label7.Text = "Сменить размер шрифта";
-            this.label7.Click += new System.EventHandler(this.label7_Click);
-            // 
-            // comboBoxFontSize
-            // 
-            this.comboBoxFontSize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxFontSize.FormattingEnabled = true;
-            this.comboBoxFontSize.Items.AddRange(new object[] {
-            "8",
-            "9",
-            "10",
-            "12",
-            "14"});
-            this.comboBoxFontSize.Location = new System.Drawing.Point(54, 126);
-            this.comboBoxFontSize.Name = "comboBoxFontSize";
-            this.comboBoxFontSize.Size = new System.Drawing.Size(100, 21);
-            this.comboBoxFontSize.TabIndex = 22;
-            this.comboBoxFontSize.SelectedIndexChanged += new System.EventHandler(this.comboBoxFontSize_SelectedIndexChanged);
-            // 
             // FormStatisticsMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(855, 571);
+            this.ClientSize = new System.Drawing.Size(855, 621);
             this.Controls.Add(this.labelUserName);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.button7);

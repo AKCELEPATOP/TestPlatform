@@ -216,15 +216,6 @@ namespace TestView
             Initialize();
         }
 
-        private void buttonChangeColorBack_Click(object sender, EventArgs e)
-        {
-
-        }
-        private void buttonChangeFont_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void buttonAdmins_Click(object sender, EventArgs e)
         {
             var form = new FormAdminsControl();
