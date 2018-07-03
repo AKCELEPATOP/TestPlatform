@@ -40,7 +40,7 @@ namespace TestView
             {
                 // Переделать или удалить
                 List<TestViewModel> list =
-                    Task.Run(() => ApiClient.GetRequestData<List<TestViewModel>>("api/PassedTests/GetList")).Result;
+                    Task.Run(() => ApiClient.GetRequestData<List<TestViewModel>>("api/Stat/GetUserChart")).Result;
                 if (list != null)
                 {
                     dataGridView1.DataSource = list;
@@ -150,23 +150,6 @@ namespace TestView
         private void back_Click(object sender, EventArgs e)
         {
             Close();
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (dataGridView1.SelectedRows.Count == 1)
-            {
-                // Переделать или удалить
-                int Id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
-                List<TestViewModel> list =
-                Task.Run(() => ApiClient.GetRequestData<List<TestViewModel>>("api/PassedTests/GetList/" + Id)).Result;
-                if (list != null)
-                {
-                    dataGridView1.DataSource = list;
-                    dataGridView1.Columns[0].Visible = false;
-                    dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                }
-            }
         }
     }
 }
