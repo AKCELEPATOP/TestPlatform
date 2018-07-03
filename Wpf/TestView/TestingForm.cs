@@ -33,43 +33,6 @@ namespace TestView
         public TestingForm()
         {
             InitializeComponent();
-
-
-
-            if (FormMain.DarkTheme)
-            {
-
-                label1.ForeColor = Color.White;
-                labelTime.ForeColor = Color.White;
-                TextBoxQuestion.ForeColor = Color.White;
-                answerGroupBoxCheckButtons.ForeColor = Color.White;
-                answer1.ForeColor = Color.White;
-                answer2.ForeColor = Color.White;
-                answer3.ForeColor = Color.White;
-                answer4.ForeColor = Color.White;
-                radioButton1.ForeColor = Color.White;
-                radioButton2.ForeColor = Color.White;
-                radioButton3.ForeColor = Color.White;
-                radioButton4.ForeColor = Color.White;
-                answerGroupBoxRadioButtons.ForeColor = Color.White;
-            }
-            else
-            {
-
-                label1.ForeColor = Color.Black;
-                labelTime.ForeColor = Color.Black;
-                TextBoxQuestion.ForeColor = Color.Black;
-                answerGroupBoxCheckButtons.ForeColor = Color.Black;
-                answer1.ForeColor = Color.Black;
-                answer2.ForeColor = Color.Black;
-                answer3.ForeColor = Color.Black;
-                answer4.ForeColor = Color.Black;
-                radioButton1.ForeColor = Color.Black;
-                radioButton2.ForeColor = Color.Black;
-                radioButton3.ForeColor = Color.Black;
-                radioButton4.ForeColor = Color.Black;
-                answerGroupBoxRadioButtons.ForeColor = Color.Black;
-            }
         }
 
 
