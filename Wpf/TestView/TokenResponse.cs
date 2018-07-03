@@ -21,5 +21,8 @@ namespace TestView
 
         [DataMember]
         public string UserRole { get; set; }
+
+        [DataMember]
+        public string UserGroup { get; set; }
     }
 }
