@@ -514,6 +514,7 @@ namespace TestService.Implementations
                 {
                     mailMessage.Attachments.Add(new System.Net.Mail.Attachment(path));
                 }
+                mailMessage.IsBodyHtml = true;
 
                 stmpClient = new SmtpClient("smtp.gmail.com", 587)
                 {
