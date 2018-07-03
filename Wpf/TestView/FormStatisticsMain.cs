@@ -15,14 +15,13 @@ namespace TestView
         private Color colorBack;
         private Color colorFont;
 
-        public static bool DarkTheme { get; set; }
+        public delegate void CallBack();
 
         public FormStatisticsMain(FormAuthorization parent)
         {
             this.parent = parent;
             InitializeComponent();
             labelUserName.Text = ApiClient.UserName;
-            Initialize();
         }
         private async void Initialize()
         {
@@ -147,6 +146,7 @@ namespace TestView
         //управление пользователями 
         private void button8_Click(object sender, EventArgs e)
         {
+            CallBack call = new CallBack(Initialize);
             var form = new FormUserControl();
 
             if (form.ShowDialog() == DialogResult.OK)

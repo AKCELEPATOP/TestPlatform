@@ -15,14 +15,12 @@ namespace TestView
 {
     public partial class FormUserControl : Form
     {
+        private FormStatisticsMain.CallBack call;
 
-        public FormUserControl()
+        public FormUserControl(FormStatisticsMain.CallBack call)
         {
             InitializeComponent();
- 
- 
- 
-            Initialize();
+            this.call = call;
         }
         private async void Initialize() {
             try
@@ -97,7 +95,7 @@ namespace TestView
 
         private void button5_Click(object sender, EventArgs e)
         {
-            var form = new FormGroupControl();
+            var form = new FormGroupControl(call);
             
             if (form.ShowDialog() == DialogResult.OK)
             {

@@ -14,10 +14,12 @@ namespace TestView
 {
     public partial class FormGroupControl : Form
     {
-        public FormGroupControl()
+        private FormStatisticsMain.CallBack call;
+
+        public FormGroupControl(FormStatisticsMain.CallBack call)
         {
             InitializeComponent();
- 
+            this.call = call;
         }
 
         private async void Initialize() {
@@ -60,6 +62,7 @@ namespace TestView
             if (form.ShowDialog() == DialogResult.OK)
             {
                 Initialize();
+                call.Invoke();
             }
         }
 
@@ -87,6 +90,7 @@ namespace TestView
                         await ApiClient.PostRequest("api/Group/DelElement/" + id);
                         MessageBox.Show("Запись удалена. Обновите список", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Initialize();
+                        call.Invoke();
                     }
                     catch(Exception ex)
                     {
