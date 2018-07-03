@@ -91,9 +91,9 @@ namespace TestView
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            //textBoxCurrentUser.Text = ;
-            //textBoxGroupUser.Text = ;
             Initialize();
+            textBoxCurrentUser.Text = ApiClient.UserName;
+            textBoxGroupUser.Text = ApiClient.UserGroup;
         }
 
         private void buttonStatistic_Click(object sender, EventArgs e)
@@ -112,11 +112,6 @@ namespace TestView
         }
 
         private void обновитьToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-            Initialize();
-        }
-
-        private void Form_Load(object sender, EventArgs e)
         {
             Initialize();
         }
