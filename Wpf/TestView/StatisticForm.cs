@@ -137,7 +137,7 @@ namespace TestView
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Произошла ошибка загрузки данных/nОшибка: "+ex.Message,"Ошибка",
+                MessageBox.Show("Произошла ошибка загрузки данных"+'\n'+"Ошибка: "+ex.Message,"Ошибка",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
