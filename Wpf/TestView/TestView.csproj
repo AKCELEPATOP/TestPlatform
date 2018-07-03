@@ -151,6 +151,7 @@
       <DependentUpon>FormUserEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="HttpErrorMessage.cs" />
+    <Compile Include="ImageProcessing.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
