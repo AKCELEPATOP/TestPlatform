@@ -68,7 +68,6 @@ namespace TestView
                 radioButton4.ForeColor = Color.Black;
                 answerGroupBoxRadioButtons.ForeColor = Color.Black;
             }
-            textBoxTime.Enabled = false;
         }
 
 
@@ -137,8 +136,7 @@ namespace TestView
                 tmrShow = new Timer();
                 tmrShow.Interval = 1000;
                 tmrShow.Tick += tmrShow_Tick;
-                tmrShow.Enabled = true;
-                label1.Text = "Категория " + model.Questions[0].CategoryName;    
+                tmrShow.Enabled = true;    
 
                 SetNextQuestion();
 

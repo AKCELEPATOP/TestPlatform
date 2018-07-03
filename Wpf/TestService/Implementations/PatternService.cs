@@ -318,7 +318,8 @@ namespace TestService.Implementations
                             Id = r.Id,
                             Text = r.Text
                         }).ToList(),
-                        Multi = (rec.Question.Answers.Where(r => r.True).Count() > 1)
+                        Multi = (rec.Question.Answers.Where(r => r.True).Count() > 1),
+                        CategoryName = rec.Question.Category.Name
                     }).ToList()
                 }).FirstOrDefaultAsync();
             TestViewModel result = new TestViewModel
@@ -351,7 +352,8 @@ namespace TestService.Implementations
                                 Id = r.Id,
                                 Text = r.Text
                             }).ToList(),
-                            Multi = (rec.Answers.Where(r => r.True).Count() > 1)
+                            Multi = (rec.Answers.Where(r => r.True).Count() > 1),
+                            CategoryName = rec.Category.Name
                         }));
                 }
                 //добавление средних
@@ -370,7 +372,8 @@ namespace TestService.Implementations
                                 Id = r.Id,
                                 Text = r.Text
                             }).ToList(),
-                            Multi = (rec.Answers.Where(r => r.True).Count() > 1)
+                            Multi = (rec.Answers.Where(r => r.True).Count() > 1),
+                            CategoryName = rec.Category.Name
                         }));
                 }
                 //добавление легких
@@ -389,7 +392,8 @@ namespace TestService.Implementations
                                 Id = r.Id,
                                 Text = r.Text
                             }).ToList(),
-                            Multi = (rec.Answers.Where(r => r.True).Count() > 1)
+                            Multi = (rec.Answers.Where(r => r.True).Count() > 1),
+                            CategoryName = rec.Category.Name
                         }));
                 }
             }
