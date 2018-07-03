@@ -35,7 +35,7 @@ namespace TestView
                 }
             }
             else {
-                message += " введите емайл";
+                message += " Введите email.";
             }
             string login = textBoxLogin.Text;
             if (!Regex.IsMatch(login, @"\w{8,}"))
@@ -44,7 +44,7 @@ namespace TestView
             }
 
             string password = textBoxPassword1.Text;
-            if (!Regex.IsMatch(password, @"^(?=.*[0-9]$)(?=.*[a-zA-Z])"))
+            if (!Regex.IsMatch(password, @"[a-z][0-9]"/*@"^(?=.*[0-9]$)(?=.*[a-zA-Z]){5,}"*/))
             {
                 message += " Пароль должен быть не короче 5 символов, содержать хотя бы одну лат букву в ниж регистре и одну цифру.";
             }

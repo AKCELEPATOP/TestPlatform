@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity.Owin;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -106,8 +107,20 @@ namespace TestRestApi.Controllers
             {
                 throw new Exception("Пользователь уже является администратором");
             }
-            await UserManager.AddToRoleAsync(id, ApplicationRoles.Admin);
-            await UserManager.RemoveFromRoleAsync(id, ApplicationRoles.User);
+            using(var transaction = Context.Database.BeginTransaction())
+            {
+                try
+                {
+                    await UserManager.RemoveFromRoleAsync(id, ApplicationRoles.User);
+                    await UserManager.AddToRoleAsync(id, ApplicationRoles.Admin);
+                    transaction.Commit();
+                }
+                catch(Exception)
+                {
+                    transaction.Rollback();
+                    throw;
+                }
+            }       
         }
 
         [HttpPost]
@@ -117,8 +130,21 @@ namespace TestRestApi.Controllers
             {
                 throw new Exception("Пользователь не является администратором");
             }
-            await UserManager.AddToRoleAsync(id, ApplicationRoles.User);
-            await UserManager.RemoveFromRoleAsync(id, ApplicationRoles.Admin);
+            using (var transaction = Context.Database.BeginTransaction())
+            {
+                try
+                {
+                    await UserManager.AddToRoleAsync(id, ApplicationRoles.User);
+                    await UserManager.RemoveFromRoleAsync(id, ApplicationRoles.Admin);
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    transaction.Rollback();
+                    throw;
+                }
+            }
+            
         }
     }
 }
