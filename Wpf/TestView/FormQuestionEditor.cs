@@ -130,6 +130,10 @@ namespace TestView
             }
             string[] timestr = maskedTextBox1.Text.ToString().Split(':');
             long time = Convert.ToInt32(timestr[0]) * 60 + Convert.ToInt32(timestr[1]);
+            if (time < 30) {
+                MessageBox.Show("Нужно больше времени", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             QuestionComplexity complexity = (QuestionComplexity)Enum.Parse(typeof(QuestionComplexity), comboBox1.SelectedItem.ToString(), true);
             List<AnswerBindingModel> answers = new List<AnswerBindingModel>(4);
             for (int i = 0; i < answersString.Count; i++)
