@@ -84,6 +84,7 @@
             this.textBoxLogin.Size = new System.Drawing.Size(221, 22);
             this.textBoxLogin.TabIndex = 4;
             this.toolTip1.SetToolTip(this.textBoxLogin, "8 символов и как минимум один буквенный");
+            this.textBoxLogin.MaxLength = 32;
             // 
             // textBoxPassword1
             // 
@@ -96,6 +97,7 @@
             this.toolTip1.SetToolTip(this.textBoxPassword1, "как минимум 5 символов, хотя бы 1 буква верхнего и нижнего регистра");
             this.textBoxPassword1.UseSystemPasswordChar = true;
             this.textBoxPassword1.TextChanged += new System.EventHandler(this.textBoxPassword1_TextChanged);
+            this.textBoxPassword1.MaxLength = 32;
             // 
             // label3
             // 
@@ -118,6 +120,7 @@
             this.textBoxPassword2.TabIndex = 7;
             this.textBoxPassword2.UseSystemPasswordChar = true;
             this.textBoxPassword2.TextChanged += new System.EventHandler(this.textBoxPassword2_TextChanged);
+            this.textBoxPassword2.MaxLength = 32;
             // 
             // label4
             // 
@@ -138,6 +141,7 @@
             this.textBoxFIO.Size = new System.Drawing.Size(221, 22);
             this.textBoxFIO.TabIndex = 9;
             this.toolTip1.SetToolTip(this.textBoxFIO, "Должны быть имя, фамилия, и отчество только буквенными символами");
+            this.textBoxFIO.MaxLength = 32;
             // 
             // label5
             // 
@@ -167,6 +171,7 @@
             this.textBoxEmail.Name = "textBoxEmail";
             this.textBoxEmail.Size = new System.Drawing.Size(221, 22);
             this.textBoxEmail.TabIndex = 13;
+            this.textBoxEmail.MaxLength = 32;
             // 
             // toolTip1
             // 
