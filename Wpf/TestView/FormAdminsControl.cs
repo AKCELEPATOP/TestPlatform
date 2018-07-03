@@ -17,7 +17,7 @@ namespace TestView
         public FormAdminsControl()
         {
             InitializeComponent();
-            Initialize();
+            Initialize();           
         }
         private void Initialize()
         {

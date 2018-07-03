@@ -30,43 +30,6 @@ namespace TestView
         public TestingForm()
         {
             InitializeComponent();
-
-
-
-            if (FormMain.DarkTheme)
-            {
-
-                label1.ForeColor = Color.White;
-                labelTime.ForeColor = Color.White;
-                TextBoxQuestion.ForeColor = Color.White;
-                answerGroupBoxCheckButtons.ForeColor = Color.White;
-                answer1.ForeColor = Color.White;
-                answer2.ForeColor = Color.White;
-                answer3.ForeColor = Color.White;
-                answer4.ForeColor = Color.White;
-                radioButton1.ForeColor = Color.White;
-                radioButton2.ForeColor = Color.White;
-                radioButton3.ForeColor = Color.White;
-                radioButton4.ForeColor = Color.White;
-                answerGroupBoxRadioButtons.ForeColor = Color.White;
-            }
-            else
-            {
-
-                label1.ForeColor = Color.Black;
-                labelTime.ForeColor = Color.Black;
-                TextBoxQuestion.ForeColor = Color.Black;
-                answerGroupBoxCheckButtons.ForeColor = Color.Black;
-                answer1.ForeColor = Color.Black;
-                answer2.ForeColor = Color.Black;
-                answer3.ForeColor = Color.Black;
-                answer4.ForeColor = Color.Black;
-                radioButton1.ForeColor = Color.Black;
-                radioButton2.ForeColor = Color.Black;
-                radioButton3.ForeColor = Color.Black;
-                radioButton4.ForeColor = Color.Black;
-                answerGroupBoxRadioButtons.ForeColor = Color.Black;
-            }
         }
 
 
@@ -102,6 +65,8 @@ namespace TestView
                     QuestionResponses = UserAnswers
                 });
                 FormResultOfTest resultsForm = new FormResultOfTest(result);
+                Design.SetBackColor(resultsForm);
+                Design.SetFontColor(resultsForm);
                 resultsForm.Show();
             }
             catch (Exception ex)
@@ -266,6 +231,18 @@ namespace TestView
         private void Form_Load(object sender, EventArgs e)
         {
             Initialize();
+            label1.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
+            labelTime.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
+            answerGroupBoxRadioButtons.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
+            answerGroupBoxCheckButtons.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
+            appendixForQestion.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
+            contextMenuStrip1.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
+            endTest.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
+            listBoxQuestions.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
+            nextQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
+            questionGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
+            textBoxTime.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
+            обновитьToolStripMenuItem.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
         }
 
         private void listBoxQuestions_SelectedIndexChanged(object sender, EventArgs e)

@@ -48,7 +48,8 @@ namespace TestView
         private void button2_Click(object sender, EventArgs e)
         {
             var form = new FormUserEdit();
-
+            Design.SetBackColor(form);
+            Design.SetFontColor(form);
             if (form.ShowDialog() == DialogResult.OK)
             {
                 Initialize();
@@ -60,6 +61,8 @@ namespace TestView
             if (dataGridView1.SelectedRows.Count == 1)
             {
                 var form = new FormUserEdit();
+                Design.SetBackColor(form);
+                Design.SetFontColor(form);
                 form.Id = Convert.ToString(dataGridView1.SelectedRows[0].Cells[0].Value);
                 if (form.ShowDialog() == DialogResult.OK)
                 {
@@ -96,7 +99,8 @@ namespace TestView
         private void button5_Click(object sender, EventArgs e)
         {
             var form = new FormGroupControl(call);
-            
+            Design.SetBackColor(form);
+            Design.SetFontColor(form);
             if (form.ShowDialog() == DialogResult.OK)
             {
                 Initialize();
@@ -119,6 +123,15 @@ namespace TestView
         private void Form_Load(object sender, EventArgs e)
         {
             Initialize();
+            button2.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
+            button3.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
+            button4.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
+            button5.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
+            buttonSetAdmin.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
+            contextMenuStrip1.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
+            dataGridView1.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
+            groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
+            обновитьToolStripMenuItem.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
         }
 
         private async void buttonSetAdmin_Click(object sender, EventArgs e)

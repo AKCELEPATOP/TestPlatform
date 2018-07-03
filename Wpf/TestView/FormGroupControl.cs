@@ -30,9 +30,7 @@ namespace TestView
                 {
                     dataGridView1.DataSource = list;
                     dataGridView1.Columns[0].Visible = false;
-                    dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-
-                    
+                    dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;    
                 }
             }
             catch (Exception ex)
@@ -107,6 +105,13 @@ namespace TestView
         private void Form_Load(object sender, EventArgs e)
         {
             Initialize();
+            groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            button1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            button5.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            button7.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            contextMenuStrip1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            dataGridView1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            обновитьToolStripMenuItem.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
         }
     }
 }

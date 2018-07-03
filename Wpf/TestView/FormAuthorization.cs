@@ -9,7 +9,6 @@ namespace TestView
         public FormAuthorization()
         {
             InitializeComponent();
-
         }
 
 
@@ -17,9 +16,9 @@ namespace TestView
         private void button2_Click(object sender, EventArgs e)
         {
             Form formRegistration = new RegistrationForm();
+            Design.SetBackColor(formRegistration);
+            Design.SetFontColor(formRegistration);
             formRegistration.Show();
-            
-           
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -60,6 +59,10 @@ namespace TestView
         {
             textBoxLogin.Text = "";
             textBoxPassword.Text = "";
+            label1.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
+            label2.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
+            sign_In.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
+            sign_Up.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
         }
     }
 }

@@ -90,6 +90,11 @@ namespace TestView
         private void FormCategoryEdit_Load(object sender, EventArgs e)
         {
             Initialize();
+            label1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            button1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            button2.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            checkBoxNotActive.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
         }
     }
 }

@@ -14,23 +14,9 @@ namespace TestView
     public partial class StatisticForm : Form
     {
 
-        public static bool DarkTheme { get { return DarkTheme; } set { DarkTheme = false; } }
         public StatisticForm()
         {
             InitializeComponent();
-
-
-
-            if (FormMain.DarkTheme)
-            {
-
-                label5.ForeColor = Color.White;
-            }
-            else
-            {
-
-                label5.ForeColor = Color.Black;
-            }
             Initialize();
         }
 
@@ -145,6 +131,9 @@ namespace TestView
         private void Form_Load(object sender, EventArgs e)
         {
             Initialize();
+            back.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
+            button1.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
+            dataGridView1.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
         }
 
         private void back_Click(object sender, EventArgs e)

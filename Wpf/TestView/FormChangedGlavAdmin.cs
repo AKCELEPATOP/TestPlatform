@@ -20,7 +20,14 @@ namespace TestView
         {
             this.parent = parent;
             InitializeComponent();
-
+            label1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            label2.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            label3.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            button1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            button2.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
