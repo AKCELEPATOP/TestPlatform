@@ -159,6 +159,7 @@
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(731, 22);
             this.textBox5.TabIndex = 7;
+            this.textBox5.MaxLength = 64;
             // 
             // textBox4
             // 
@@ -167,6 +168,7 @@
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(731, 22);
             this.textBox4.TabIndex = 6;
+            this.textBox4.MaxLength = 64;
             // 
             // textBox3
             // 
@@ -175,6 +177,7 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(731, 22);
             this.textBox3.TabIndex = 5;
+            this.textBox3.MaxLength = 64;
             // 
             // textBox2
             // 
@@ -183,6 +186,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(731, 22);
             this.textBox2.TabIndex = 4;
+            this.textBox2.MaxLength = 64;
             // 
             // label6
             // 
@@ -231,6 +235,7 @@
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(808, 22);
             this.textBox6.TabIndex = 5;
+            this.textBox1.MaxLength = 256;
             // 
             // button1
             // 
