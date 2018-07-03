@@ -87,6 +87,7 @@
             this.textBoxCount.Size = new System.Drawing.Size(13, 13);
             this.textBoxCount.TabIndex = 22;
             this.textBoxCount.Text = "0";
+            
             // 
             // label8
             // 
@@ -105,6 +106,7 @@
             this.textBoxDif.TabIndex = 12;
             this.textBoxDif.Text = "0";
             this.textBoxDif.TextChanged += new System.EventHandler(this.textBoxDif_TextChanged);
+            this.textBoxDif.MaxLength = 4;
             // 
             // textBoxMid
             // 
@@ -114,6 +116,7 @@
             this.textBoxMid.TabIndex = 11;
             this.textBoxMid.Text = "0";
             this.textBoxMid.TextChanged += new System.EventHandler(this.textBoxMid_TextChanged);
+            this.textBoxMid.MaxLength = 4;
             // 
             // textBoxEasy
             // 
@@ -123,6 +126,7 @@
             this.textBoxEasy.TabIndex = 10;
             this.textBoxEasy.Text = "0";
             this.textBoxEasy.TextChanged += new System.EventHandler(this.textBoxEasy_TextChanged);
+            this.textBoxEasy.MaxLength = 4;
             // 
             // label3
             // 
@@ -212,6 +216,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(232, 20);
             this.textBox1.TabIndex = 9;
+            this.textBoxDif.MaxLength = 16;
             // 
             // label4
             // 

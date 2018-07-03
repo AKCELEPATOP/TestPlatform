@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.ModelBinding;
 
 namespace TestView
 {
@@ -24,5 +25,8 @@ namespace TestView
 
         [DataMember]
         public string Error { get; set; }
+
+        [DataMember]
+        public Dictionary<string,string[]> ModelState { get; set; }
     }
 }

@@ -90,6 +90,7 @@ namespace TestView
             this.textBoxLogin.Name = "textBoxLogin";
             this.textBoxLogin.Size = new System.Drawing.Size(167, 20);
             this.textBoxLogin.TabIndex = 4;
+            this.textBoxLogin.MaxLength = 16;
             // 
             // textBoxPassword
             // 
@@ -98,6 +99,7 @@ namespace TestView
             this.textBoxPassword.Size = new System.Drawing.Size(167, 20);
             this.textBoxPassword.TabIndex = 5;
             this.textBoxPassword.UseSystemPasswordChar = true;
+            this.textBoxPassword.MaxLength = 16;
             // 
             // FormAuthorization
             // 
