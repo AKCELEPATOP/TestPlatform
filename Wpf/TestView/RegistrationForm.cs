@@ -44,7 +44,7 @@ namespace TestView
             }
 
             string password = textBoxPassword1.Text;
-            if (!Regex.IsMatch(password, @"[a-z][0-9]"/*@"^(?=.*[0-9]$)(?=.*[a-zA-Z]){5,}"*/))
+            if (!Regex.IsMatch(password, @"(?=.*[a-z])(?=.*[0-9])^[a-zA-Z0-9]{5,}$"/*@"^(?=.*[0-9]$)(?=.*[a-zA-Z]){5,}"*/))
             {
                 message += " Пароль должен быть не короче 5 символов, содержать хотя бы одну лат букву в ниж регистре и одну цифру.";
             }
