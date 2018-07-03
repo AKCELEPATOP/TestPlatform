@@ -147,7 +147,7 @@ namespace TestView
         private void button8_Click(object sender, EventArgs e)
         {
             CallBack call = new CallBack(Initialize);
-            var form = new FormUserControl();
+            var form = new FormUserControl(call);
 
             if (form.ShowDialog() == DialogResult.OK)
             {

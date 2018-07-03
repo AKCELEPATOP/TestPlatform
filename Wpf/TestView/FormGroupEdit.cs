@@ -21,19 +21,6 @@ namespace TestView
         public FormGroupEdit()
         {
             InitializeComponent();
- 
- 
- 
-            if (FormStatisticsMain.DarkTheme)
-            {
- 
-                label1.ForeColor = Color.White;
-            }
-            else
-            {
- 
-                label1.ForeColor = Color.Black;
-            }
         }
 
         private async void Initialize() {
