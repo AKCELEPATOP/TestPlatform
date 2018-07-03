@@ -270,6 +270,7 @@ namespace TestView
                             Image = Convert.ToBase64String(attachmentForQuestion)
                         });
                     }
+                    MessageBox.Show("Изображение добавлено", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
                 {
