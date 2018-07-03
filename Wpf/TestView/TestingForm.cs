@@ -101,6 +101,8 @@ namespace TestView
                     PatternId = model.PatternId,
                     QuestionResponses = UserAnswers
                 });
+                FormResultOfTest resultsForm = new FormResultOfTest(result);
+                resultsForm.Show();
             }
             catch (Exception ex)
             {
@@ -110,9 +112,9 @@ namespace TestView
                 }
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            FormResultOfTest resultsForm = new FormResultOfTest(result);
+            tmrShow.Dispose();
             Close();
-            resultsForm.Show();
+            
         }
 
         private async void Initialize()
