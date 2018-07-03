@@ -18,6 +18,8 @@ namespace TestView
 
         public static string UserName { get; set; }
 
+        public static string UserGroup { get; set; }
+
         public static void Connect()
         {
             client.BaseAddress = new Uri(ConfigurationManager.AppSettings["IPAddress"]);
@@ -46,6 +48,7 @@ namespace TestView
             }
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", tokenResponse.Access_token);
             Role = tokenResponse.UserRole;
+            UserGroup = tokenResponse.UserGroup;
             UserName = tokenResponse.UserName;
         }
 
@@ -80,7 +83,16 @@ namespace TestView
 
         private static async Task<HttpResponseMessage> PostRequest<T>(string requestUrl, T model)
         {
-            return await client.PostAsJsonAsync(requestUrl, model);
+            HttpResponseMessage response = await client.PostAsJsonAsync(requestUrl, model);
+            if (!response.IsSuccessStatusCode)
+            {
+                string error = response.Content.ReadAsStringAsync().Result;
+                var errorMessage = JsonConvert.DeserializeObject<HttpErrorMessage>(error);
+                throw new Exception(errorMessage.Message + " " + (errorMessage.MessageDetail ?? "") +
+                    " " + (errorMessage.ExceptionMessage ?? "") + " " + (errorMessage.Error ?? "")
+                    + (errorMessage.Error_description ?? ""));
+            }
+            return response;
         }
 
         public static async Task<T> GetRequestData<T>(string requestUrl)
@@ -122,14 +134,24 @@ namespace TestView
             {
                 string error = response.Content.ReadAsStringAsync().Result;
                 var errorMessage = JsonConvert.DeserializeObject<HttpErrorMessage>(error);
-                throw new Exception(errorMessage.Message + " " + errorMessage.MessageDetail ?? "" +
-                    " " + errorMessage.ExceptionMessage ?? "");
+                throw new Exception(errorMessage.Message + " " + (errorMessage.MessageDetail ?? "") +
+                    " " + (errorMessage.ExceptionMessage ?? "") + " " + (errorMessage.Error ?? "")
+                    + (errorMessage.Error_description ?? ""));
             }
         }
 
         public async static Task<HttpResponseMessage> PostRequest(string requestUrl)
         {
-            return await client.PostAsync(requestUrl, null);
+            HttpResponseMessage response =  await client.PostAsync(requestUrl, null);
+            if (!response.IsSuccessStatusCode)
+            {
+                string error = response.Content.ReadAsStringAsync().Result;
+                var errorMessage = JsonConvert.DeserializeObject<HttpErrorMessage>(error);
+                throw new Exception(errorMessage.Message + " " + (errorMessage.MessageDetail ?? "") +
+                    " " + (errorMessage.ExceptionMessage ?? "") + " " + (errorMessage.Error ?? "")
+                    + (errorMessage.Error_description ?? ""));
+            }
+            return response;
         }
 
         public async static void Logout()

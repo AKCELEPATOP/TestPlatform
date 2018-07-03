@@ -18,6 +18,7 @@
                 components.Dispose();
             }
             base.Dispose(disposing);
+            tmrShow.Dispose();
         }
 
         #region Код, автоматически созданный конструктором форм Windows
@@ -47,10 +48,10 @@
             this.endTest = new System.Windows.Forms.Button();
             this.labelTime = new System.Windows.Forms.Label();
             this.appendixForQestion = new System.Windows.Forms.Button();
-            this.textBoxTime = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.обновитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listBoxQuestions = new System.Windows.Forms.ListBox();
+            this.textBoxTime = new System.Windows.Forms.Label();
             this.answerGroupBoxCheckButtons.SuspendLayout();
             this.answerGroupBoxRadioButtons.SuspendLayout();
             this.questionGroupBox.SuspendLayout();
@@ -59,9 +60,10 @@
             // 
             // TextBoxQuestion
             // 
-            this.TextBoxQuestion.Location = new System.Drawing.Point(6, 29);
+            this.TextBoxQuestion.Location = new System.Drawing.Point(8, 36);
+            this.TextBoxQuestion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.TextBoxQuestion.Name = "TextBoxQuestion";
-            this.TextBoxQuestion.Size = new System.Drawing.Size(696, 75);
+            this.TextBoxQuestion.Size = new System.Drawing.Size(928, 92);
             this.TextBoxQuestion.TabIndex = 2;
             this.TextBoxQuestion.Text = resources.GetString("TextBoxQuestion.Text");
             // 
@@ -72,9 +74,11 @@
             this.answerGroupBoxCheckButtons.Controls.Add(this.answer3);
             this.answerGroupBoxCheckButtons.Controls.Add(this.answer2);
             this.answerGroupBoxCheckButtons.Controls.Add(this.answer1);
-            this.answerGroupBoxCheckButtons.Location = new System.Drawing.Point(38, 171);
+            this.answerGroupBoxCheckButtons.Location = new System.Drawing.Point(51, 210);
+            this.answerGroupBoxCheckButtons.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.answerGroupBoxCheckButtons.Name = "answerGroupBoxCheckButtons";
-            this.answerGroupBoxCheckButtons.Size = new System.Drawing.Size(708, 165);
+            this.answerGroupBoxCheckButtons.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.answerGroupBoxCheckButtons.Size = new System.Drawing.Size(944, 203);
             this.answerGroupBoxCheckButtons.TabIndex = 3;
             this.answerGroupBoxCheckButtons.TabStop = false;
             this.answerGroupBoxCheckButtons.Text = "Варианты ответов:";
@@ -87,8 +91,10 @@
             this.answerGroupBoxRadioButtons.Controls.Add(this.radioButton1);
             this.answerGroupBoxRadioButtons.Enabled = false;
             this.answerGroupBoxRadioButtons.Location = new System.Drawing.Point(0, 0);
+            this.answerGroupBoxRadioButtons.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.answerGroupBoxRadioButtons.Name = "answerGroupBoxRadioButtons";
-            this.answerGroupBoxRadioButtons.Size = new System.Drawing.Size(708, 165);
+            this.answerGroupBoxRadioButtons.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.answerGroupBoxRadioButtons.Size = new System.Drawing.Size(944, 203);
             this.answerGroupBoxRadioButtons.TabIndex = 4;
             this.answerGroupBoxRadioButtons.TabStop = false;
             this.answerGroupBoxRadioButtons.Text = "Варианты ответов:";
@@ -97,9 +103,10 @@
             // radioButton4
             // 
             this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(27, 127);
+            this.radioButton4.Location = new System.Drawing.Point(36, 156);
+            this.radioButton4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(113, 17);
+            this.radioButton4.Size = new System.Drawing.Size(146, 21);
             this.radioButton4.TabIndex = 7;
             this.radioButton4.TabStop = true;
             this.radioButton4.Text = "Вариант ответа 4";
@@ -108,9 +115,10 @@
             // radioButton3
             // 
             this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(27, 92);
+            this.radioButton3.Location = new System.Drawing.Point(36, 113);
+            this.radioButton3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(113, 17);
+            this.radioButton3.Size = new System.Drawing.Size(146, 21);
             this.radioButton3.TabIndex = 6;
             this.radioButton3.TabStop = true;
             this.radioButton3.Text = "Вариант ответа 3";
@@ -119,9 +127,10 @@
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(27, 60);
+            this.radioButton2.Location = new System.Drawing.Point(36, 74);
+            this.radioButton2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(113, 17);
+            this.radioButton2.Size = new System.Drawing.Size(146, 21);
             this.radioButton2.TabIndex = 5;
             this.radioButton2.TabStop = true;
             this.radioButton2.Text = "Вариант ответа 2";
@@ -130,9 +139,10 @@
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(27, 29);
+            this.radioButton1.Location = new System.Drawing.Point(36, 36);
+            this.radioButton1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(113, 17);
+            this.radioButton1.Size = new System.Drawing.Size(146, 21);
             this.radioButton1.TabIndex = 4;
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Вариант ответа 1";
@@ -141,9 +151,10 @@
             // answer4
             // 
             this.answer4.AutoSize = true;
-            this.answer4.Location = new System.Drawing.Point(27, 128);
+            this.answer4.Location = new System.Drawing.Point(36, 158);
+            this.answer4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.answer4.Name = "answer4";
-            this.answer4.Size = new System.Drawing.Size(114, 17);
+            this.answer4.Size = new System.Drawing.Size(147, 21);
             this.answer4.TabIndex = 3;
             this.answer4.Text = "Вариант ответа 4";
             this.answer4.UseVisualStyleBackColor = true;
@@ -151,9 +162,10 @@
             // answer3
             // 
             this.answer3.AutoSize = true;
-            this.answer3.Location = new System.Drawing.Point(27, 93);
+            this.answer3.Location = new System.Drawing.Point(36, 114);
+            this.answer3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.answer3.Name = "answer3";
-            this.answer3.Size = new System.Drawing.Size(114, 17);
+            this.answer3.Size = new System.Drawing.Size(147, 21);
             this.answer3.TabIndex = 2;
             this.answer3.Text = "Вариант ответа 3";
             this.answer3.UseVisualStyleBackColor = true;
@@ -161,9 +173,10 @@
             // answer2
             // 
             this.answer2.AutoSize = true;
-            this.answer2.Location = new System.Drawing.Point(27, 61);
+            this.answer2.Location = new System.Drawing.Point(36, 75);
+            this.answer2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.answer2.Name = "answer2";
-            this.answer2.Size = new System.Drawing.Size(114, 17);
+            this.answer2.Size = new System.Drawing.Size(147, 21);
             this.answer2.TabIndex = 1;
             this.answer2.Text = "Вариант ответа 2";
             this.answer2.UseVisualStyleBackColor = true;
@@ -171,18 +184,20 @@
             // answer1
             // 
             this.answer1.AutoSize = true;
-            this.answer1.Location = new System.Drawing.Point(27, 29);
+            this.answer1.Location = new System.Drawing.Point(36, 36);
+            this.answer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.answer1.Name = "answer1";
-            this.answer1.Size = new System.Drawing.Size(114, 17);
+            this.answer1.Size = new System.Drawing.Size(147, 21);
             this.answer1.TabIndex = 0;
             this.answer1.Text = "Вариант ответа 1";
             this.answer1.UseVisualStyleBackColor = true;
             // 
             // nextQuestion
             // 
-            this.nextQuestion.Location = new System.Drawing.Point(324, 356);
+            this.nextQuestion.Location = new System.Drawing.Point(432, 438);
+            this.nextQuestion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.nextQuestion.Name = "nextQuestion";
-            this.nextQuestion.Size = new System.Drawing.Size(134, 27);
+            this.nextQuestion.Size = new System.Drawing.Size(179, 33);
             this.nextQuestion.TabIndex = 5;
             this.nextQuestion.Text = "Следующий вопрос";
             this.nextQuestion.UseVisualStyleBackColor = true;
@@ -192,9 +207,11 @@
             // 
             this.questionGroupBox.Controls.Add(this.label1);
             this.questionGroupBox.Controls.Add(this.TextBoxQuestion);
-            this.questionGroupBox.Location = new System.Drawing.Point(38, 54);
+            this.questionGroupBox.Location = new System.Drawing.Point(51, 66);
+            this.questionGroupBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.questionGroupBox.Name = "questionGroupBox";
-            this.questionGroupBox.Size = new System.Drawing.Size(708, 111);
+            this.questionGroupBox.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.questionGroupBox.Size = new System.Drawing.Size(944, 137);
             this.questionGroupBox.TabIndex = 6;
             this.questionGroupBox.TabStop = false;
             this.questionGroupBox.Text = "Вопрос №";
@@ -202,17 +219,19 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(509, 0);
+            this.label1.Location = new System.Drawing.Point(679, 0);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(66, 13);
+            this.label1.Size = new System.Drawing.Size(85, 17);
             this.label1.TabIndex = 3;
             this.label1.Text = "Категория: ";
             // 
             // endTest
             // 
-            this.endTest.Location = new System.Drawing.Point(583, 356);
+            this.endTest.Location = new System.Drawing.Point(777, 438);
+            this.endTest.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.endTest.Name = "endTest";
-            this.endTest.Size = new System.Drawing.Size(134, 27);
+            this.endTest.Size = new System.Drawing.Size(179, 33);
             this.endTest.TabIndex = 7;
             this.endTest.Text = "Завершить тест";
             this.endTest.UseVisualStyleBackColor = true;
@@ -221,29 +240,23 @@
             // labelTime
             // 
             this.labelTime.AutoSize = true;
-            this.labelTime.Location = new System.Drawing.Point(321, 14);
+            this.labelTime.Location = new System.Drawing.Point(428, 17);
+            this.labelTime.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTime.Name = "labelTime";
-            this.labelTime.Size = new System.Drawing.Size(43, 13);
+            this.labelTime.Size = new System.Drawing.Size(54, 17);
             this.labelTime.TabIndex = 8;
             this.labelTime.Text = "Время:";
             // 
             // appendixForQestion
             // 
-            this.appendixForQestion.Location = new System.Drawing.Point(80, 355);
+            this.appendixForQestion.Location = new System.Drawing.Point(107, 437);
+            this.appendixForQestion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.appendixForQestion.Name = "appendixForQestion";
-            this.appendixForQestion.Size = new System.Drawing.Size(134, 28);
+            this.appendixForQestion.Size = new System.Drawing.Size(179, 34);
             this.appendixForQestion.TabIndex = 9;
             this.appendixForQestion.Text = "Приложения к вопросу";
             this.appendixForQestion.UseVisualStyleBackColor = true;
             this.appendixForQestion.Click += new System.EventHandler(this.appendixForQestion_Click);
-            // 
-            // textBoxTime
-            // 
-            this.textBoxTime.Location = new System.Drawing.Point(370, 11);
-            this.textBoxTime.Name = "textBoxTime";
-            this.textBoxTime.ReadOnly = true;
-            this.textBoxTime.Size = new System.Drawing.Size(109, 20);
-            this.textBoxTime.TabIndex = 10;
             // 
             // contextMenuStrip1
             // 
@@ -251,12 +264,12 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.обновитьToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(129, 26);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(148, 28);
             // 
             // обновитьToolStripMenuItem
             // 
             this.обновитьToolStripMenuItem.Name = "обновитьToolStripMenuItem";
-            this.обновитьToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.обновитьToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
             this.обновитьToolStripMenuItem.Text = "Обновить";
             // 
             // listBoxQuestions
@@ -264,30 +277,39 @@
             this.listBoxQuestions.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.listBoxQuestions.FormattingEnabled = true;
             this.listBoxQuestions.ItemHeight = 16;
-            this.listBoxQuestions.Location = new System.Drawing.Point(751, 30);
-            this.listBoxQuestions.Margin = new System.Windows.Forms.Padding(2);
+            this.listBoxQuestions.Location = new System.Drawing.Point(1001, 37);
+            this.listBoxQuestions.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listBoxQuestions.Name = "listBoxQuestions";
-            this.listBoxQuestions.Size = new System.Drawing.Size(230, 356);
+            this.listBoxQuestions.Size = new System.Drawing.Size(305, 436);
             this.listBoxQuestions.TabIndex = 11;
             this.listBoxQuestions.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.listBoxQuestions_DrawItem);
             this.listBoxQuestions.SelectedIndexChanged += new System.EventHandler(this.listBoxQuestions_SelectedIndexChanged);
             // 
+            // textBoxTime
+            // 
+            this.textBoxTime.AutoSize = true;
+            this.textBoxTime.Location = new System.Drawing.Point(489, 17);
+            this.textBoxTime.Name = "textBoxTime";
+            this.textBoxTime.Size = new System.Drawing.Size(0, 17);
+            this.textBoxTime.TabIndex = 12;
+            // 
             // TestingForm
             // 
             this.AcceptButton = this.nextQuestion;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 397);
-            this.Controls.Add(this.listBoxQuestions);
+            this.ClientSize = new System.Drawing.Size(1312, 489);
             this.Controls.Add(this.textBoxTime);
+            this.Controls.Add(this.listBoxQuestions);
             this.Controls.Add(this.appendixForQestion);
             this.Controls.Add(this.labelTime);
             this.Controls.Add(this.answerGroupBoxCheckButtons);
             this.Controls.Add(this.endTest);
             this.Controls.Add(this.questionGroupBox);
             this.Controls.Add(this.nextQuestion);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "TestingForm";
-            this.Padding = new System.Windows.Forms.Padding(15, 49, 15, 16);
+            this.Padding = new System.Windows.Forms.Padding(20, 60, 20, 20);
             this.Text = "Теститрование";
             this.Load += new System.EventHandler(this.Form_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
@@ -321,10 +343,10 @@
         private System.Windows.Forms.RadioButton radioButton3;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.TextBox textBoxTime;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem обновитьToolStripMenuItem;
         private System.Windows.Forms.ListBox listBoxQuestions;
+        private System.Windows.Forms.Label textBoxTime;
     }
 }
 

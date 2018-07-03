@@ -49,10 +49,15 @@ namespace TestView
             try
             {
                 var groups = await ApiClient.GetRequestData<List<GroupViewModel>>("api/Group/GetList");
+                groups.Insert(0, new GroupViewModel
+                {
+                    Id = null,
+                    Name = "Общая"
+                });
                 comboBoxGroups.DisplayMember = "Name";
                 comboBoxGroups.ValueMember = "Id";
                 comboBoxGroups.DataSource = groups;
-                comboBoxGroups.SelectedItem = null;
+                comboBoxGroups.SelectedItem = groups[0];
             }
             catch(Exception ex)
             {

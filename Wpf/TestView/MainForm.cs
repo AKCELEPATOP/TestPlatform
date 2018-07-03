@@ -15,7 +15,7 @@ namespace TestView
 {
     public partial class FormMain : Form
     {
-        public static bool DarkTheme { get; set; } 
+        public static bool DarkTheme { get; set; }
 
         public string UserLogin { get; set; }
 
@@ -27,9 +27,9 @@ namespace TestView
         {
             this.parent = parent;
             InitializeComponent();
- 
- 
- 
+
+
+
         }
 
         private async void Initialize()
@@ -45,16 +45,16 @@ namespace TestView
                     dataGridViewAvailablePatterns.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
 
-                List<TestViewModel> listС = await ApiClient.PostRequestData<GetListModel,List<TestViewModel>>("api/Stat/GetUserList",new GetListModel{});
+                List<StatViewModel> listС = await ApiClient.PostRequestData<GetListModel, List<StatViewModel>>("api/Stat/GetUserList", new GetListModel { });
                 if (listС != null)
                 {
                     dataGridViewPassedTests.DataSource = listС;
                     dataGridViewPassedTests.Columns[1].Visible = false;
-                    dataGridViewPassedTests.Columns[2].Visible = false;
+                    dataGridViewPassedTests.Columns[6].Visible = false;
                     dataGridViewPassedTests.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
             }
-                     
+
             catch (Exception ex)
             {
                 while (ex.InnerException != null)
@@ -91,9 +91,9 @@ namespace TestView
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            //textBoxCurrentUser.Text = ;
-            //textBoxGroupUser.Text = ;
             Initialize();
+            textBoxCurrentUser.Text = ApiClient.UserName;
+            textBoxGroupUser.Text = ApiClient.UserGroup;
         }
 
         private void buttonStatistic_Click(object sender, EventArgs e)
@@ -112,11 +112,6 @@ namespace TestView
         }
 
         private void обновитьToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-            Initialize();
-        }
-
-        private void Form_Load(object sender, EventArgs e)
         {
             Initialize();
         }

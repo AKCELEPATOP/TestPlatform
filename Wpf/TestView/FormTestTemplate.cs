@@ -76,7 +76,7 @@ namespace TestView
                     var pattern = await ApiClient.GetRequestData<PatternViewModel>("api/Pattern/Get/" + id.Value);
                     textBox1.Text = pattern.Name;
                     listPC = pattern.PatternCategories;
-                    comboBox1.SelectedItem = pattern.UserGroupId;
+                    comboBox1.SelectedValue = pattern.UserGroupId;
                     //if (pattern.PatternCategories.Count > 0)
                     //{
                     //    textBoxEasy.Text = pattern.PatternCategories[0].Easy.ToString();
@@ -159,7 +159,7 @@ namespace TestView
                             Easy = listPC[i].Easy
                         });
                     }
-                    if (listQuestions != null && listQuestions.Count != 0)
+                    if (comboBox1.SelectedValue!=null)
                     {
 
                         for (int i = 0; i < listQuestions.Count; i++)
@@ -171,8 +171,9 @@ namespace TestView
                             Id = id.Value,
                             Name = name,
                             PatternCategories = bin,
-                            PatternQuestions = listQuestions
-                        });
+                            PatternQuestions = listQuestions,
+                            UserGroupId = Convert.ToInt32(comboBox1.SelectedValue)
+                    });
                     }
                     else
                     {
@@ -180,7 +181,8 @@ namespace TestView
                         {
                             Id = id.Value,
                             Name = name,
-                            PatternCategories = bin
+                            PatternCategories = bin,
+                            PatternQuestions = listQuestions
                         });
                     }
                 }
@@ -200,14 +202,14 @@ namespace TestView
 
                         });
                     }
-                    if (listQuestions != null && listQuestions.Count != 0)
+                    if (comboBox1.SelectedValue != null)
                     {
                         await ApiClient.PostRequestData("api/Pattern/AddElement", new PatternBindingModel
                         {
                             Name = name,
                             PatternCategories = bin,
-                            PatternQuestions = listQuestions
-
+                            PatternQuestions = listQuestions,
+                            UserGroupId = Convert.ToInt32(comboBox1.SelectedValue)
                         });
                     }
                     else
@@ -215,12 +217,14 @@ namespace TestView
                         await ApiClient.PostRequestData("api/Pattern/AddElement", new PatternBindingModel
                         {
                             Name = name,
-                            PatternCategories = bin
+                            PatternCategories = bin,
+                            PatternQuestions = listQuestions
                         });
                     }
 
                 }
                 MessageBox.Show("Сохранение прошло успешно. Обновите список", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DialogResult = DialogResult.OK;
             }
             catch(Exception ex)
             {

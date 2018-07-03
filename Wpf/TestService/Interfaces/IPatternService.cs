@@ -22,7 +22,7 @@ namespace TestService.Interfaces
 
         Task<List<PatternViewModel>> GetUserList(string id);
 
-        Task<List<PatternViewModel>> GetGroupList(int id);
+        Task<List<PatternViewModel>> GetGroupList(int? id);
 
         Task<TestViewModel> CreateTest(int patternId);
 

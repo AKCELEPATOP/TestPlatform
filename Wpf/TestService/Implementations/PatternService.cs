@@ -18,6 +18,8 @@ namespace TestService.Implementations
     {
         private ApplicationDbContext context;
 
+        private int min = 60;
+
         public PatternService(ApplicationDbContext context)
         {
             this.context = context;
@@ -204,7 +206,7 @@ namespace TestService.Implementations
                         updateCategory.Easy = model.PatternCategories.FirstOrDefault(rec => rec.CategoryId == updateCategory.CategoryId).Easy;
                         await context.SaveChangesAsync();
                     }
-                    
+
 
                     context.PatternCategories.RemoveRange(
                         context.PatternCategories.Where(rec => rec.PatternId == model.Id && !categoriesIds.Contains(rec.CategoryId)));
@@ -318,7 +320,8 @@ namespace TestService.Implementations
                             Id = r.Id,
                             Text = r.Text
                         }).ToList(),
-                        Multi = (rec.Question.Answers.Where(r=>r.True).Count()>1)
+                        Multi = (rec.Question.Answers.Where(r => r.True).Count() > 1),
+                        CategoryName = rec.Question.Category.Name
                     }).ToList()
                 }).FirstOrDefaultAsync();
             TestViewModel result = new TestViewModel
@@ -351,7 +354,8 @@ namespace TestService.Implementations
                                 Id = r.Id,
                                 Text = r.Text
                             }).ToList(),
-                            Multi = (rec.Answers.Where(r => r.True).Count() > 1)
+                            Multi = (rec.Answers.Where(r => r.True).Count() > 1),
+                            CategoryName = rec.Category.Name
                         }));
                 }
                 //добавление средних
@@ -370,7 +374,8 @@ namespace TestService.Implementations
                                 Id = r.Id,
                                 Text = r.Text
                             }).ToList(),
-                            Multi = (rec.Answers.Where(r => r.True).Count() > 1)
+                            Multi = (rec.Answers.Where(r => r.True).Count() > 1),
+                            CategoryName = rec.Category.Name
                         }));
                 }
                 //добавление легких
@@ -389,7 +394,8 @@ namespace TestService.Implementations
                                 Id = r.Id,
                                 Text = r.Text
                             }).ToList(),
-                            Multi = (rec.Answers.Where(r => r.True).Count() > 1)
+                            Multi = (rec.Answers.Where(r => r.True).Count() > 1),
+                            CategoryName = rec.Category.Name
                         }));
                 }
             }
@@ -399,12 +405,12 @@ namespace TestService.Implementations
 
         public async Task<StatViewModel> CheakTest(TestResponseModel model)
         {
-                var user = context.Users.Where(rec => rec.Id.Equals(model.UserId)).Select(rec => new UserViewModel
-                {
-                    FIO = rec.FIO,
-                    Email = rec.Email
-                }).FirstOrDefault();
-            if(user == null)
+            var user = context.Users.Where(rec => rec.Id.Equals(model.UserId)).Select(rec => new UserViewModel
+            {
+                FIO = rec.FIO,
+                Email = rec.Email
+            }).FirstOrDefault();
+            if (user == null)
             {
                 throw new Exception("Данный пользователь не существует");
             }
@@ -417,7 +423,7 @@ namespace TestService.Implementations
 
             var questionCount = context.Patterns.FirstOrDefault(rec => rec.Id == model.PatternId)
                 .PatternCategories.Select(rec => rec.Easy + rec.Complex + rec.Middle).DefaultIfEmpty(0).Sum();
-            
+
 
             result.StatCategories.AddRange(context.PatternCategories.Where(rec => rec.PatternId == model.PatternId).Include(rec => rec.Category)
                 .Select(rec => new StatCategoryViewModel
@@ -473,7 +479,7 @@ namespace TestService.Implementations
             });
             await context.SaveChangesAsync();
 
-            Task task = Task.Run(async() => await SendMail(result.Email, "Вы прошли тест!", CreateMessage(result)));
+            Task task = Task.Run(async () => await SendMail(result.Email, "Вы прошли тест!", CreateMessage(result)));
             //отправка
             return result;
         }
@@ -510,6 +516,7 @@ namespace TestService.Implementations
                 {
                     mailMessage.Attachments.Add(new System.Net.Mail.Attachment(path));
                 }
+                mailMessage.IsBodyHtml = true;
 
                 stmpClient = new SmtpClient("smtp.gmail.com", 587)
                 {
@@ -535,66 +542,65 @@ namespace TestService.Implementations
 
         private string CreateMessage(StatViewModel model)
         {
-            return string.Format("<div style=\"max-width:640px;margin:0 auto;border-radius:4px;overflow:hidden\"><div style=\"margin:0px auto;max-width:640px;background:#ffffff\"><table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" style=\"font-size:0px;width:100%;background:#ffffff\" align=\"center\" border=\"0\"><tbody><tr><td style=\"text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:40px 40px 0px\"><div aria-labelledby=\"mj-column-per-100\" class=\"m_-5457715721865842861mj-column-per-100 m_-5457715721865842861outlook-group-fix\" style=\"vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%\"><table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" border=\"0\"><tbody><tr><td style=\"word-break:break-word;font-size:0px;padding:0px\" align=\"left\"><table cellpadding=\"0\" cellspacing=\"0\" style=\"color:#000;font-family:Whitney,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;font-size:13px;line-height:22px;table-layout:auto\" width=\"100%\" border=\"0\">\n" +
-        "            <tbody><tr>\n" +
-        "              <td>\n" +
-        "                <div style=\"color:#4f545c;font-size:20px;line-height:24px\">\n" +
-        "                  <span style=\"font-weight:bold\">Привет {0},</span>\n" +
-        "                </div>\n" +
-        "                <div style=\"font-size:16px;line-height:22px;color:#737f8d;margin-top:12px\">\n" +
-        "                  {1}\n" +
-        "                </div>\n" +
-        "              </td>\n" +
-        "              <td width=\"78\" valign=\"top\" align=\"right\">\n" +
-        "                <table cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse:collapse;border-spacing:0px\" align=\"center\" border=\"0\">\n" +
-        "                  <tbody>\n" +
-        "                    <tr>\n" +
-        "                      <td style=\"width:58px;height:48px\">\n" +
-        "                        <img src=\"{2}\" width=\"64\" height=\"64\" style=\"border:none;display:block;outline:none;text-decoration:none\" alt=\"\" class=\"CToWUd\">\n" +
-        "                      </td>\n" +
-        "                    </tr>\n" +
-        "                  </tbody>\n" +
-        "                </table>\n" +
-        "              </td>\n" +
-        "            </tr>\n" +
-        "          </tbody></table></td></tr></tbody></table></div></td></tr></tbody></table></div>\n" +
-        "      <div style=\"margin:0px auto;max-width:640px;background:#ffffff\"><table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" style=\"font-size:0px;width:100%;background:#ffffff\" align=\"center\" border=\"0\"><tbody><tr><td style=\"text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:20px 40px 0px\"><div aria-labelledby=\"mj-column-per-100\" class=\"m_-5457715721865842861mj-column-per-100 m_-5457715721865842861outlook-group-fix\" style=\"vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%\"><table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" border=\"0\"><tbody><tr><td style=\"word-break:break-word;font-size:0px;padding:0px\"><p style=\"font-size:1px;margin:0px auto;border-top:1px solid #f0f2f4;width:100%\"></p></td></tr></tbody></table></div></td></tr></tbody></table></div>\n" +
-        "      <div style=\"margin:0px auto;max-width:640px;background:#ffffff\"><table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" style=\"font-size:0px;width:100%;background:#ffffff\" align=\"center\" border=\"0\"><tbody><tr><td style=\"text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:20px 40px 10px\"><div aria-labelledby=\"mj-column-per-100\" class=\"m_-5457715721865842861mj-column-per-100 m_-5457715721865842861outlook-group-fix\" style=\"vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%\"><table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" border=\"0\"><tbody><tr><td style=\"word-break:break-word;font-size:0px;padding:0px\" align=\"left\"><div style=\"color:#7289da;font-family:Whitney,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;font-size:16px;line-height:15px;text-align:left\">\n" +
-        "      <strong>\n" +
-        "       <span style=\"color:#7289da;font-size:14px\">{3}</span></strong>\n" +
-        "    </div></td></tr></tbody></table></div></td></tr></tbody></table></div>\n" +
-        "      <div style=\"margin:0px auto;max-width:640px;background:#ffffff\"><table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" style=\"font-size:0px;width:100%;background:#ffffff\" align=\"center\" border=\"0\"><tbody><tr><td style=\"text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:0px 40px 10px\"><div aria-labelledby=\"mj-column-per-100\" class=\"m_-5457715721865842861mj-column-per-100 m_-5457715721865842861outlook-group-fix\" style=\"vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%\"><table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" border=\"0\"><tbody><tr><td style=\"word-break:break-word;font-size:0px;padding:0px\" align=\"left\"><table cellpadding=\"0\" cellspacing=\"0\" style=\"color:#000;font-family:Whitney,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;font-size:13px;line-height:22px;table-layout:auto\" width=\"100%\" border=\"0\">\n" +
-        "      <tbody><tr>\n" +
-        "        <!--td width=\"20\">\n" +
-        "          &nbsp;\n" +
-        "        </td-->\n" +
-        "        <td valign=\"top\">\n" +
-        "          <div style=\"color:#2d3136;font-size:16px;line-height:20px\">{4}</div>\n" +
-        "          <div style=\"color:#737f8d;font-size:15px;line-height:17px;margin-top:3px\">\n" +
-        "             <!-- таблица результата-->\n" +
-        "             <table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" style=\"font-size:13px;width:100%;background:#ffffff\" align=\"center\" border=\"0\">\n" +
-        "             \t<tbody>\n" +
-        "             \t\t<tr style=\"color: #0083BE;font-size: 16px; font-weight: bold;\">\n" +
-        "             \t\t\t<td>\n" +
-        "             \t\t\t\tКатегория\n" +
-        "             \t\t\t</td>\n" +
-        "             \t\t\t<td>\n" +
-        "             \t\t\t\tВсего\n" +
-        "             \t\t\t</td>\n" +
-        "             \t\t\t<td>\n" +
-        "             \t\t\t\tРезультат\n" +
-        "             \t\t\t</td>\n" +
-        "             \t\t</tr>\n" +
-        "             \t\t{5}\n" +
-        "             \t</tbody>\n" +
-        "             </table>\n" +
-        "             {5}\n" +
-        "          </div>\n" +
-        "        </td>\n" +
-        "      </tr>\n" +
-        "    </tbody></table></td></tr></tbody></table></div></td></tr></tbody></table></div>\n" +
-        "      <div style=\"margin:0px auto;max-width:640px;background:#ffffff\"><table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" style=\"font-size:0px;width:100%;background:#ffffff\" align=\"center\" border=\"0\"><tbody><tr><td style=\"text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:20px 40px 0px\"></td></tr></tbody></table></div>\n" +
-        "      </div>", model.UserName, "Вы только что прошли тест", "https://cdn2.iconfinder.com/data/icons/social-buttons-2/512/mail-512.png", model.PatternName, model.Mark, FillStatTable(model.StatCategories));
+            return string.Format("<div style=\"max-width:640px;margin:0 auto;border-radius:4px;overflow:hidden\"><div style=\"margin:0px auto;max-width:640px;background:#ffffff\"><table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" style=\"font-size:0px;width:100%;background:#ffffff\" align=\"center\" border=\"0\"><tbody><tr><td style=\"text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:40px 40px 0px\"><div aria-labelledby=\"mj-column-per-100\" class=\"m_-5457715721865842861mj-column-per-100 m_-5457715721865842861outlook-group-fix\" style=\"vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%\"><table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" border=\"0\"><tbody><tr><td style=\"word-break:break-word;font-size:0px;padding:0px\" align=\"left\"><table cellpadding=\"0\" cellspacing=\"0\" style=\"color:#000;font-family:Whitney,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;font-size:13px;line-height:22px;table-layout:auto\" width=\"100%\" border=\"0\">" +
+"<tbody><tr>" +
+"<td>" +
+"<div style=\"color:#4f545c;font-size:20px;line-height:24px\">" +
+"<span style=\"font-weight:bold\">Привет {0},</span>" +
+"</div>" +
+"<div style=\"font-size:16px;line-height:22px;color:#737f8d;margin-top:12px\">" +
+"{1}" +
+"</div>" +
+"</td>" +
+"<td width=\"78\" valign=\"top\" align=\"right\">" +
+"<table cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse:collapse;border-spacing:0px\" align=\"center\" border=\"0\">" +
+"<tbody>" +
+"<tr>" +
+"<td style=\"width:58px;height:48px\">" +
+"<img src=\"https://cdn2.iconfinder.com/data/icons/social-buttons-2/512/mail-512.png\" width=\"64\" height=\"64\" style=\"border:none;display:block;outline:none;text-decoration:none\" alt=\"\" class=\"CToWUd\">" +
+"</td>" +
+"</tr>" +
+"</tbody>" +
+"</table>" +
+"</td>" +
+"</tr>" +
+"</tbody></table></td></tr></tbody></table></div></td></tr></tbody></table></div>" +
+"<div style=\"margin:0px auto;max-width:640px;background:#ffffff\"><table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" style=\"font-size:0px;width:100%;background:#ffffff\" align=\"center\" border=\"0\"><tbody><tr><td style=\"text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:20px 40px 0px\"><div aria-labelledby=\"mj-column-per-100\" class=\"m_-5457715721865842861mj-column-per-100 m_-5457715721865842861outlook-group-fix\" style=\"vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%\"><table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" border=\"0\"><tbody><tr><td style=\"word-break:break-word;font-size:0px;padding:0px\"><p style=\"font-size:1px;margin:0px auto;border-top:1px solid #f0f2f4;width:100%\"></p></td></tr></tbody></table></div></td></tr></tbody></table></div>" +
+"<div style=\"margin:0px auto;max-width:640px;background:#ffffff\"><table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" style=\"font-size:0px;width:100%;background:#ffffff\" align=\"center\" border=\"0\"><tbody><tr><td style=\"text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:20px 40px 10px\"><div aria-labelledby=\"mj-column-per-100\" class=\"m_-5457715721865842861mj-column-per-100 m_-5457715721865842861outlook-group-fix\" style=\"vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%\"><table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" border=\"0\"><tbody><tr><td style=\"word-break:break-word;font-size:0px;padding:0px\" align=\"left\"><div style=\"color:#7289da;font-family:Whitney,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;font-size:16px;line-height:15px;text-align:left\">" +
+"<strong>" +
+" <span style=\"color:#7289da;font-size:14px\">{3}</span></strong>" +
+"</div></td></tr></tbody></table></div></td></tr></tbody></table></div>" +
+"<div style=\"margin:0px auto;max-width:640px;background:#ffffff\"><table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" style=\"font-size:0px;width:100%;background:#ffffff\" align=\"center\" border=\"0\"><tbody><tr><td style=\"text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:0px 40px 10px\"><div aria-labelledby=\"mj-column-per-100\" class=\"m_-5457715721865842861mj-column-per-100 m_-5457715721865842861outlook-group-fix\" style=\"vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%\"><table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" border=\"0\"><tbody><tr><td style=\"word-break:break-word;font-size:0px;padding:0px\" align=\"left\"><table cellpadding=\"0\" cellspacing=\"0\" style=\"color:#000;font-family:Whitney,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;font-size:13px;line-height:22px;table-layout:auto\" width=\"100%\" border=\"0\">" +
+"<tbody><tr>" +
+"<!--td width=\"20\">" +
+"&nbsp;" +
+"</td-->" +
+"<td valign=\"top\">" +
+"<div style=\"color:#2d3136;font-size:16px;line-height:20px\">{4}</div>" +
+"<div style=\"color:#737f8d;font-size:15px;line-height:17px;margin-top:3px\">" +
+" <!-- таблица результата-->" +
+" <table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" style=\"font-size:13px;width:100%;background:#ffffff\" align=\"center\" border=\"0\">" +
+" <tbody>" +
+" <tr style=\"color: #0083BE;font-size: 16px; font-weight: bold;\">" +
+" <td>" +
+" Категория" +
+" </td>" +
+" <td>" +
+" Всего" +
+" </td>" +
+" <td>" +
+" Результат" +
+" </td>" +
+" </tr>" +
+" {5}" +
+" </tbody>" +
+" </table>" +
+"</div>" +
+"</td>" +
+"</tr>" +
+"</tbody></table></td></tr></tbody></table></div></td></tr></tbody></table></div>" +
+"<div style=\"margin:0px auto;max-width:640px;background:#ffffff\"><table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" style=\"font-size:0px;width:100%;background:#ffffff\" align=\"center\" border=\"0\"><tbody><tr><td style=\"text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:20px 40px 0px\"></td></tr></tbody></table></div>" +
+"</div>", model.UserName, "Вы только что прошли тест", "https://cdn2.iconfinder.com/data/icons/social-buttons-2/512/mail-512.png", model.PatternName, GetMarkField(model.Mark), FillStatTable(model.StatCategories));
         }
 
         private string FillStatTable(List<StatCategoryViewModel> list)
@@ -602,40 +608,45 @@ namespace TestService.Implementations
             StringBuilder builder = new StringBuilder();
             foreach (var elem in list)
             {
-                builder.AppendFormat("<tr>/n<td>/n{0}/n</td>/n<td>/n{1}/n</td>/n<td>/n{2}/n</td></tr>", elem.CategoryName, elem.Total, elem.Right);
+                builder.AppendFormat("<tr><td>{0}</td><td>{1}</td><td>{2}</td></tr>", elem.CategoryName, elem.Total, elem.Right);
             }
             return builder.ToString();
         }
 
+        private string GetMarkField(int mark)
+        {
+            return string.Format("<b style=\"color: {0}; font-size: 20px\">{1}%</b>", (mark >= min) ? "#2FC74B" : "#DB141E", mark);
+        }
+
         public async Task<List<PatternViewModel>> GetUserList(string id)
         {
-            int groupId = (await context.Users.FirstOrDefaultAsync(rec => rec.Id == id)).UserGroupId ?? -1;
+            int? groupId = (await context.Users.FirstOrDefaultAsync(rec => rec.Id == id)).UserGroupId;
             return await GetGroupList(groupId);
         }
 
-        public async Task<List<PatternViewModel>> GetGroupList(int id)
+        public async Task<List<PatternViewModel>> GetGroupList(int? id)
         {
-            if (id != -1)
+            if (id.HasValue)
             {
-                return await context.Patterns.Where(rec => rec.UserGroupId == id)
+                return await context.Patterns.Where(rec => rec.UserGroupId == id || rec.UserGroup == null)
                     .Where(rec => !(rec.PatternCategories.Select(r => r.Category).Any(r => !r.Active))).Select(rec => new PatternViewModel
                     {
                         Id = rec.Id,
                         Name = rec.Name,
-                        UserGroupId = rec.UserGroupId.Value,
-                        UserGroupName = rec.UserGroup.Name
+                        UserGroupId = rec.UserGroupId,
+                        UserGroupName = rec.UserGroup.Name ?? "Общий"
                     }).ToListAsync();
             }
             else
             {
                 //не знаю будет ли работать
-                return await context.Patterns.Where(rec => !rec.UserGroupId.HasValue)
+                return await context.Patterns.Where(rec => rec.UserGroup == null)
                     .Where(rec => !(rec.PatternCategories.Select(r => r.Category).Any(r => !r.Active))).Select(rec => new PatternViewModel
-                {
-                    Id = rec.Id,
-                    Name = rec.Name,
-                    UserGroupName = "Общий"
-                }).ToListAsync();
+                    {
+                        Id = rec.Id,
+                        Name = rec.Name,
+                        UserGroupName = "Общий"
+                    }).ToListAsync();
             }
         }
     }

@@ -68,7 +68,6 @@ namespace TestView
                 radioButton4.ForeColor = Color.Black;
                 answerGroupBoxRadioButtons.ForeColor = Color.Black;
             }
-            textBoxTime.Enabled = false;
         }
 
 
@@ -102,6 +101,8 @@ namespace TestView
                     PatternId = model.PatternId,
                     QuestionResponses = UserAnswers
                 });
+                FormResultOfTest resultsForm = new FormResultOfTest(result);
+                resultsForm.Show();
             }
             catch (Exception ex)
             {
@@ -111,9 +112,9 @@ namespace TestView
                 }
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            FormResultOfTest resultsForm = new FormResultOfTest(result);
+            tmrShow.Dispose();
             Close();
-            resultsForm.Show();
+            
         }
 
         private async void Initialize()
@@ -137,8 +138,7 @@ namespace TestView
                 tmrShow = new Timer();
                 tmrShow.Interval = 1000;
                 tmrShow.Tick += tmrShow_Tick;
-                tmrShow.Enabled = true;
-                label1.Text = "Категория " + model.Questions[0].CategoryName;    
+                tmrShow.Enabled = true;    
 
                 SetNextQuestion();
 

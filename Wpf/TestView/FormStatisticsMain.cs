@@ -44,9 +44,7 @@ namespace TestView
                         dataGridViewPatternStat.DataSource = listPS;
                         dataGridViewPatternStat.Columns[0].Visible = false;
                         dataGridViewPatternStat.Columns[6].Visible = false;
-                        //dataGridViewPatternStat.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                        //dataGridViewPatternStat.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                        //dataGridViewPatternStat.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
                     }
                 }
                 List<StatViewModel> listC = await ApiClient.PostRequestData<GetListModel, List<StatViewModel>>("api/Stat/GetList", new GetListModel{});
@@ -228,7 +226,13 @@ namespace TestView
 
         private void buttonAdmins_Click(object sender, EventArgs e)
         {
-            //сделайте
+            var form = new FormAdminsControl();
+
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                Initialize();
+            }
+            
         }
 
         private async void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)

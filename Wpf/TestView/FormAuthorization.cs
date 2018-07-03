@@ -9,9 +9,6 @@ namespace TestView
         public FormAuthorization()
         {
             InitializeComponent();
- 
- 
- 
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -38,10 +35,13 @@ namespace TestView
                     formMainUser.UserLogin = ApiClient.UserName;
                     Hide();
                 }
+                textBoxLogin.Clear();
+                textBoxPassword.Clear();
             }
             catch (Exception ex)
             {
                 DialogResult result = MessageBox.Show("Произошла ошибка авторизации\nОшибка:" + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBoxPassword.Clear();
             }
         }
 

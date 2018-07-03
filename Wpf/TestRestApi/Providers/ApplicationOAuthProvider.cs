@@ -45,7 +45,8 @@ namespace TestRestApi.Providers
             ClaimsIdentity cookiesIdentity = await user.GenerateUserIdentityAsync(userManager,
                 CookieAuthenticationDefaults.AuthenticationType);
 
-            AuthenticationProperties properties = CreateProperties(user.UserName, userManager.GetRoles(user.Id).FirstOrDefault());//возможна ошибка получения роли
+            AuthenticationProperties properties = CreateProperties(user.UserName, userManager.GetRoles(user.Id).FirstOrDefault(), 
+                (user.UserGroup != null) ? user.UserGroup.Name : "Общая");//возможна ошибка получения роли
             AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);
             context.Validated(ticket);
             context.Request.Context.Authentication.SignIn(cookiesIdentity);
@@ -87,12 +88,13 @@ namespace TestRestApi.Providers
             return Task.FromResult<object>(null);
         }
 
-        public static AuthenticationProperties CreateProperties(string userName, string userRole)
+        public static AuthenticationProperties CreateProperties(string userName, string userRole, string userGroup)
         {
             IDictionary<string, string> data = new Dictionary<string, string>
             {
                 { "userName", userName },
-                { "userRole", userRole }
+                { "userRole", userRole },
+                { "userGroup", userGroup }
             };
             return new AuthenticationProperties(data);
         }
