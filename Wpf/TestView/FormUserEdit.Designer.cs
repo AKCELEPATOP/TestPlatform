@@ -58,6 +58,7 @@
             this.textBoxFIO.Name = "textBoxFIO";
             this.textBoxFIO.Size = new System.Drawing.Size(177, 20);
             this.textBoxFIO.TabIndex = 1;
+            this.textBoxFIO.MaxLength = 16;
             // 
             // textBoxEmail
             // 
@@ -65,6 +66,7 @@
             this.textBoxEmail.Name = "textBoxEmail";
             this.textBoxEmail.Size = new System.Drawing.Size(153, 20);
             this.textBoxEmail.TabIndex = 9;
+            this.textBoxEmail.MaxLength = 32;
             // 
             // label4
             // 
@@ -100,6 +102,7 @@
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.Size = new System.Drawing.Size(153, 20);
             this.textBoxPassword.TabIndex = 15;
+            this.textBoxPassword.MaxLength = 16;
             // 
             // label3
             // 
@@ -116,6 +119,7 @@
             this.textBoxUserName.Name = "textBoxUserName";
             this.textBoxUserName.Size = new System.Drawing.Size(153, 20);
             this.textBoxUserName.TabIndex = 13;
+            this.textBoxUserName.MaxLength = 16;
             // 
             // label2
             // 

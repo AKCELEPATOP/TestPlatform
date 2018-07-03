@@ -13,10 +13,6 @@ namespace TestView
         public RegistrationForm()
         {
             InitializeComponent();
- 
- 
- 
-
            
         }
         private async void registrate_Click(object sender, EventArgs e)
@@ -81,6 +77,30 @@ namespace TestView
             }
         }
 
+        private void textBoxPassword1_TextChanged(object sender, EventArgs e)
+        {
+            string password = textBoxPassword1.Text;
+            if (Regex.IsMatch(password, @"(?=.*[a-z])(?=.*[0-9])^[a-zA-Z0-9]{5,}$"/*@"^(?=.*[0-9]$)(?=.*[a-zA-Z]){5,}"*/))
+            {
+                textBoxPassword1.BackColor = System.Drawing.Color.Green; 
+            }
+            else {
+                textBoxPassword1.BackColor = System.Drawing.Color.IndianRed;
+            }
+        }
 
+        private void textBoxPassword2_TextChanged(object sender, EventArgs e)
+        {
+            string password2 = textBoxPassword2.Text;
+            string password1 = textBoxPassword1.Text;
+            if (password1.Equals(password2) && !string.IsNullOrEmpty(password1) && !string.IsNullOrEmpty(password2))
+            {
+                textBoxPassword2.BackColor = System.Drawing.Color.Green;
+            }
+            else
+            {
+                textBoxPassword2.BackColor = System.Drawing.Color.IndianRed;
+            }
+        }
     }
 }
