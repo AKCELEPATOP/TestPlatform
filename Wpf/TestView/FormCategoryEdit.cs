@@ -17,20 +17,6 @@ namespace TestView
         {
             InitializeComponent();
  
- 
- 
-            if (FormStatisticsMain.DarkTheme)
-            {
- 
-                label1.ForeColor = Color.White;
-                checkBoxNotActive.ForeColor = Color.White;
-            }
-            else
-            {
- 
-                label1.ForeColor = Color.Black;
-                checkBoxNotActive.ForeColor = Color.Black;
-            }
         }
         private async void Initialize()
         {

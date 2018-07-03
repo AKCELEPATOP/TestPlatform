@@ -29,35 +29,6 @@ namespace TestView
         public FormTestTemplate()
         {
             InitializeComponent();
- 
- 
- 
-            if (FormStatisticsMain.DarkTheme)
-            {
- 
-                label1.ForeColor = Color.White;
-                label2.ForeColor = Color.White;
-                label3.ForeColor = Color.White;
-                label4.ForeColor = Color.White;
-                label5.ForeColor = Color.White;
-                label6.ForeColor = Color.White;
-                label7.ForeColor = Color.White;
-                label8.ForeColor = Color.White;
-                groupBox1.ForeColor = Color.White;
-            }
-            else
-            {
- 
-                label1.ForeColor = Color.Black;
-                label2.ForeColor = Color.Black;
-                label3.ForeColor = Color.Black;
-                label4.ForeColor = Color.Black;
-                label5.ForeColor = Color.Black;
-                label6.ForeColor = Color.Black;
-                label7.ForeColor = Color.Black;
-                label8.ForeColor = Color.Black;
-                groupBox1.ForeColor = Color.Black;
-            }
         }
         private async void Initialize()
         {

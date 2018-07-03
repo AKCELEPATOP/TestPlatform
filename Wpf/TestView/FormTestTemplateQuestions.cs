@@ -26,24 +26,6 @@ namespace TestView
             sourcePQ = new BindingSource();
             sourceQ = new BindingSource();
             InitializeComponent();
- 
- 
- 
-
-            if (FormStatisticsMain.DarkTheme)
-            {
- 
-                label1.ForeColor = Color.White;
-                label5.ForeColor = Color.White;
-                label6.ForeColor = Color.White;
-            }
-            else
-            {
- 
-                label1.ForeColor = Color.Black;
-                label5.ForeColor = Color.Black;
-                label6.ForeColor = Color.Black;
-            }
 
         }
         private async void Initialize()

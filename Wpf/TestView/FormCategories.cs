@@ -13,24 +13,6 @@ namespace TestView
         public FormCategories()
         {
             InitializeComponent();
- 
- 
- 
-            if (FormStatisticsMain.DarkTheme)
-            {
- 
-                groupBox1.ForeColor = Color.White;
-                groupBox2.ForeColor = Color.White;
-            }
-            else
-            {
- 
-                groupBox1.ForeColor = Color.Black;
-                groupBox2.ForeColor = Color.Black;
-            }
-            
-            Initialize();
-
         }
 
         private async void Initialize()
