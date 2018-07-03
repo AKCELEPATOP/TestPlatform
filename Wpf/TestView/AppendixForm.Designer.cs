@@ -39,9 +39,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.Location = new System.Drawing.Point(25, 18);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(267, 24);
+            this.label1.Size = new System.Drawing.Size(222, 24);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Приложение к вопросу № # :";
+            this.label1.Text = "Приложение к вопросу:";
             // 
             // pictureBox1
             // 

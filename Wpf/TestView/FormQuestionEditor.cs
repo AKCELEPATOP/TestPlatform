@@ -22,50 +22,19 @@ namespace TestView
 
         private List<int> answerIds;
 
+        List<AttachmentBindingModel> attachment;
+
+
+
         public FormQuestionEditor()
         {
             InitializeComponent();
- 
- 
- 
-            if (FormStatisticsMain.DarkTheme)
-            {
- 
-                label1.ForeColor = Color.White;
-                label2.ForeColor = Color.White;
-                label3.ForeColor = Color.White;
-                label4.ForeColor = Color.White;
-                label5.ForeColor = Color.White;
-                label6.ForeColor = Color.White;
-                label8.ForeColor = Color.White;
-                label9.ForeColor = Color.White;
-                checkBox1.ForeColor = Color.White;
-                checkBox2.ForeColor = Color.White;
-                checkBox3.ForeColor = Color.White;
-                checkBox4.ForeColor = Color.White;
-                checkBox5.ForeColor = Color.White;
-            }
-            else
-            {
- 
-                label1.ForeColor = Color.Black;
-                label2.ForeColor = Color.Black;
-                label3.ForeColor = Color.Black;
-                label4.ForeColor = Color.Black;
-                label5.ForeColor = Color.Black;
-                label6.ForeColor = Color.Black;
-                label8.ForeColor = Color.Black;
-                label9.ForeColor = Color.Black;
-                checkBox1.ForeColor = Color.Black;
-                checkBox2.ForeColor = Color.Black;
-                checkBox3.ForeColor = Color.Black;
-                checkBox4.ForeColor = Color.Black;
-                checkBox5.ForeColor = Color.Black;
-            }
         }
 
-        public async void Initialize() {
-            if (id.HasValue) {
+        public async void Initialize()
+        {
+            if (id.HasValue)
+            {
                 try
                 {
                     var question = await ApiClient.GetRequestData<QuestionViewModel>("api/Question/Get/" + id.Value);
@@ -96,7 +65,8 @@ namespace TestView
                     MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            if (idCat.HasValue) {
+            if (idCat.HasValue)
+            {
                 try
                 {
                     var category = await ApiClient.GetRequestData<CategoryViewModel>("api/Category/Get/" + idCat.Value);
@@ -119,9 +89,9 @@ namespace TestView
             {
             QuestionComplexity.Easy.ToString(), QuestionComplexity.Middle.ToString(), QuestionComplexity.Difficult.ToString()
             };
-            comboBox1.Items.AddRange (source);
-            comboBox1.Text=QuestionComplexity.Easy.ToString();
-         //   comboBox1.e
+            comboBox1.Items.AddRange(source);
+            comboBox1.Text = QuestionComplexity.Easy.ToString();
+            //   comboBox1.e
         }
 
         private async void button1_Click(object sender, EventArgs e)
@@ -153,7 +123,7 @@ namespace TestView
                 return;
             }
             bool active = !checkBox5.Checked;
-            if (!Regex.IsMatch(maskedTextBox1.Text.ToString(), @"\d{2}[:]\d{2}") || maskedTextBox1.Text ==null)
+            if (!Regex.IsMatch(maskedTextBox1.Text.ToString(), @"\d{2}[:]\d{2}") || maskedTextBox1.Text == null)
             {
                 MessageBox.Show("Формат времени неверный", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -186,36 +156,67 @@ namespace TestView
             {
                 if (id.HasValue)
                 {
-                    await ApiClient.PostRequestData("api/Question/UpdElement", new QuestionBindingModel
+                    if (attachment != null)
                     {
-                        Id = id.Value,
-                        Text = text,
-                        Complexity = complexity,
-                        Active = active,
-                        Time = time,
-                        Answers = answers,
-                        CategoryId = idCat.Value
-                    });
+                        await ApiClient.PostRequestData("api/Question/UpdElement", new QuestionBindingModel
+                        {
+                            Id = id.Value,
+                            Text = text,
+                            Complexity = complexity,
+                            Active = active,
+                            Time = time,
+                            Answers = answers,
+                            CategoryId = idCat.Value,
+                            Attachments = attachment
+                        });
+                    }
+                    else
+                    {
+                        await ApiClient.PostRequestData("api/Question/UpdElement", new QuestionBindingModel
+                        {
+                            Id = id.Value,
+                            Text = text,
+                            Complexity = complexity,
+                            Active = active,
+                            Time = time,
+                            Answers = answers,
+                            CategoryId = idCat.Value
+                        });
+                    }
                 }
                 else
                 {
-                    await ApiClient.PostRequestData("api/Question/AddElement", new QuestionBindingModel
+                    if (attachment != null)
                     {
+                        await ApiClient.PostRequestData("api/Question/AddElement", new QuestionBindingModel
+                        {
 
-                        Text = text,
-                        Complexity = complexity,
-                        Active = active,
-                        Time = time,
-                        Answers = answers,
-                        CategoryId = idCat.Value
-
-                    });
-
+                            Text = text,
+                            Complexity = complexity,
+                            Active = active,
+                            Time = time,
+                            Answers = answers,
+                            CategoryId = idCat.Value,
+                            Attachments = attachment
+                        });
+                    }
+                    else
+                    {
+                        await ApiClient.PostRequestData("api/Question/AddElement", new QuestionBindingModel
+                        {                           
+                            Text = text,
+                            Complexity = complexity,
+                            Active = active,
+                            Time = time,
+                            Answers = answers,
+                            CategoryId = idCat.Value
+                        });
+                    }
                 }
                 MessageBox.Show("Сохранение прошло успешно. Обновите список", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 while (ex.InnerException != null)
                 {
@@ -239,7 +240,11 @@ namespace TestView
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+            folderBrowserDialog.ShowDialog();
+            byte[] attachmentForQuestion = System.IO.File.ReadAllBytes(folderBrowserDialog.SelectedPath);
+            attachment[0].Image = Convert.ToBase64String(attachmentForQuestion);
+            attachment[0].Id = 1;
         }
     }
 }

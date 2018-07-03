@@ -137,7 +137,7 @@ namespace TestView
                 tmrShow = new Timer();
                 tmrShow.Interval = 1000;
                 tmrShow.Tick += tmrShow_Tick;
-                tmrShow.Enabled = true;    
+                tmrShow.Enabled = true;
 
                 SetNextQuestion();
 
@@ -151,6 +151,11 @@ namespace TestView
                     ex = ex.InnerException;
                 }
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            if (model.Questions[IdQuestions].Images != null)
+            {
+                appendixForQestion.Enabled = true;
             }
         }
 
@@ -199,9 +204,8 @@ namespace TestView
 
         private void appendixForQestion_Click(object sender, EventArgs e)
         {
-            // Пока не реализовано
-            AppendixForm appendixForm = new AppendixForm();
-            appendixForm.Show();
+                AppendixForm appendixForm = new AppendixForm(model.Questions[IdQuestions].Images.First());
+                appendixForm.Show();
         }
 
         private void endTest_Click(object sender, EventArgs e)
