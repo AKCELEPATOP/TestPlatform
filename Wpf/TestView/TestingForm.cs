@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -208,12 +210,46 @@ namespace TestView
         {
             var buffer = Convert.FromBase64String(model.Questions[IdQuestions].Images.First().Image);
             HttpPostedFileBase objFile = (HttpPostedFileBase)new MemoryPostedFile(buffer);
-            var image = Image.FromStream(objFile.InputStream, true, true);
+            var image = ResizeImage(Image.FromStream(objFile.InputStream, true, true),
+                SystemInformation.VirtualScreen.Width/2, (int)(SystemInformation.VirtualScreen.Height/1.5));
             AppendixForm appendixForm = new AppendixForm(image)
             {
                 Size = new Size(image.Width, image.Height)
             };
             appendixForm.Show();
+        }
+
+        private Bitmap ResizeImage(Image image, int width, int height)
+        {
+            if (image.Height >image.Width)
+            {
+                width = (int)(height * (double)image.Width / image.Height);
+            }
+            else
+            {
+                height = (int)(width * (double)image.Height / image.Width);
+            }
+            var destRect = new Rectangle(0, 0, width, height);
+            var destImage = new Bitmap(width, height);
+
+            destImage.SetResolution(image.HorizontalResolution, image.VerticalResolution);
+
+            using (var graphics = Graphics.FromImage(destImage))
+            {
+                graphics.CompositingMode = CompositingMode.SourceCopy;
+                graphics.CompositingQuality = CompositingQuality.HighQuality;
+                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                graphics.SmoothingMode = SmoothingMode.HighQuality;
+                graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
+
+                using (var wrapMode = new ImageAttributes())
+                {
+                    wrapMode.SetWrapMode(WrapMode.TileFlipXY);
+                    graphics.DrawImage(image, destRect, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, wrapMode);
+                }
+            }
+
+            return destImage;
         }
 
         private void endTest_Click(object sender, EventArgs e)
