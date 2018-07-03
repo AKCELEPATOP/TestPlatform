@@ -126,7 +126,7 @@ namespace TestView
             {
 
                 model = await ApiClient.GetRequestData<TestViewModel>("api/Pattern/CreateTest/" + id);
-                
+
                 if (model == null)
                 {
                     MessageBox.Show("Произошла ошибка", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -209,7 +209,7 @@ namespace TestView
                     radioButton4.Checked = question.Answers[3].True;
                 }
                 TextBoxQuestion.Text = question.Text;
-                if(question.Images!=null && question.Images.Count > 0)
+                if (question.Images != null && question.Images.Count > 0)
                 {
                     appendixForQestion.Enabled = true;
                 }
@@ -224,18 +224,21 @@ namespace TestView
 
         private void appendixForQestion_Click(object sender, EventArgs e)
         {
-            var buffer = Convert.FromBase64String(model.Questions[IdQuestions].Images.First().Image);
-            HttpPostedFileBase objFile = (HttpPostedFileBase)new MemoryPostedFile(buffer);
-            var image = ImageProcessing.ResizeImage(Image.FromStream(objFile.InputStream, true, true),
-                SystemInformation.VirtualScreen.Width/2, (int)(SystemInformation.VirtualScreen.Height/1.5));
-            AppendixForm appendixForm = new AppendixForm(image)
+            if (model.Questions[IdQuestions].Images != null && model.Questions[IdQuestions].Images.Count > 0)
             {
-                Size = new Size(image.Width, image.Height)
-            };
-            appendixForm.Show();
+                var buffer = Convert.FromBase64String(model.Questions[IdQuestions].Images.First().Image);
+                HttpPostedFileBase objFile = (HttpPostedFileBase)new MemoryPostedFile(buffer);
+                var image = ImageProcessing.ResizeImage(Image.FromStream(objFile.InputStream, true, true),
+                    SystemInformation.VirtualScreen.Width / 2, (int)(SystemInformation.VirtualScreen.Height / 1.5));
+                AppendixForm appendixForm = new AppendixForm(image)
+                {
+                    Size = new Size(image.Width, image.Height)
+                };
+                appendixForm.Show();
+            }
         }
 
-        
+
 
         private void endTest_Click(object sender, EventArgs e)
         {
