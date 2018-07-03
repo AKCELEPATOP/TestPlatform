@@ -9,12 +9,15 @@ namespace TestView
         public FormAuthorization()
         {
             InitializeComponent();
+
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             Form formRegistration = new RegistrationForm();
             formRegistration.Show();
+            
+           
         }
 
         private void button1_Click(object sender, EventArgs e)
