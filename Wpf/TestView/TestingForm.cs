@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Windows.Forms;
 using TestService.BindingModels;
 using TestService.ViewModels;
@@ -205,7 +206,13 @@ namespace TestView
 
         private void appendixForQestion_Click(object sender, EventArgs e)
         {
-            AppendixForm appendixForm = new AppendixForm(model.Questions[IdQuestions].Images.First());
+            var buffer = Convert.FromBase64String(model.Questions[IdQuestions].Images.First().Image);
+            HttpPostedFileBase objFile = (HttpPostedFileBase)new MemoryPostedFile(buffer);
+            var image = Image.FromStream(objFile.InputStream, true, true);
+            AppendixForm appendixForm = new AppendixForm(image)
+            {
+                Size = new Size(image.Width, image.Height)
+            };
             appendixForm.Show();
         }
 

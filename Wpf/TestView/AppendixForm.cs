@@ -10,27 +10,18 @@ namespace TestView
     public partial class AppendixForm : Form
     {
 
-        AttachmentViewModel attachment;
-        public AppendixForm(AttachmentViewModel model)
+        private Image image;
+
+
+        public AppendixForm(Image image)
         {
             InitializeComponent();
-            this.attachment = model;
-            Initialize();
+            this.image = image;
         }
 
         private void Initialize()
         {
-            try
-            {
-                var buffer = Convert.FromBase64String(attachment.Image);
-                HttpPostedFileBase objFile = (HttpPostedFileBase)new MemoryPostedFile(buffer);
-                var image = Image.FromStream(objFile.InputStream, true, true);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Произошла ошибка"+'\n'+"Ошибка: "+ex.Message, "Ошибка", 
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }            
+                pictureBox1.Image = image;         
         }
 
         private void Form_Load(object sender, EventArgs e)
