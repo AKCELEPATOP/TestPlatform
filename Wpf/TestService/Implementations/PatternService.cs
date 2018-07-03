@@ -18,6 +18,8 @@ namespace TestService.Implementations
     {
         private ApplicationDbContext context;
 
+        private int min = 60;
+
         public PatternService(ApplicationDbContext context)
         {
             this.context = context;
@@ -598,7 +600,7 @@ namespace TestService.Implementations
 "</tr>" +
 "</tbody></table></td></tr></tbody></table></div></td></tr></tbody></table></div>" +
 "<div style=\"margin:0px auto;max-width:640px;background:#ffffff\"><table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" style=\"font-size:0px;width:100%;background:#ffffff\" align=\"center\" border=\"0\"><tbody><tr><td style=\"text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:20px 40px 0px\"></td></tr></tbody></table></div>" +
-"</div>", model.UserName, "Вы только что прошли тест", "https://cdn2.iconfinder.com/data/icons/social-buttons-2/512/mail-512.png", model.PatternName, model.Mark, FillStatTable(model.StatCategories));
+"</div>", model.UserName, "Вы только что прошли тест", "https://cdn2.iconfinder.com/data/icons/social-buttons-2/512/mail-512.png", model.PatternName, GetMarkField(model.Mark), FillStatTable(model.StatCategories));
         }
 
         private string FillStatTable(List<StatCategoryViewModel> list)
@@ -609,6 +611,11 @@ namespace TestService.Implementations
                 builder.AppendFormat("<tr><td>{0}</td><td>{1}</td><td>{2}</td></tr>", elem.CategoryName, elem.Total, elem.Right);
             }
             return builder.ToString();
+        }
+
+        private string GetMarkField(int mark)
+        {
+            return string.Format("<b style=\"color: {0}; font-size: 20px\">{1}%</b>", (mark >= min) ? "#2FC74B" : "#DB141E", mark);
         }
 
         public async Task<List<PatternViewModel>> GetUserList(string id)
