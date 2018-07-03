@@ -11,6 +11,7 @@ using System.Data.Entity;
 using System.Net.Mail;
 using System.Configuration;
 using System.Net;
+using System.IO;
 
 namespace TestService.Implementations
 {
@@ -321,7 +322,12 @@ namespace TestService.Implementations
                             Text = r.Text
                         }).ToList(),
                         Multi = (rec.Question.Answers.Where(r => r.True).Count() > 1),
-                        CategoryName = rec.Question.Category.Name
+                        CategoryName = rec.Question.Category.Name,
+                        Images = rec.Question.Attachments.Select(r => new AttachmentViewModel
+                        {
+                            Image = r.Path
+
+                        }).ToList()
                     }).ToList()
                 }).FirstOrDefaultAsync();
             TestViewModel result = new TestViewModel
@@ -355,7 +361,12 @@ namespace TestService.Implementations
                                 Text = r.Text
                             }).ToList(),
                             Multi = (rec.Answers.Where(r => r.True).Count() > 1),
-                            CategoryName = rec.Category.Name
+                            CategoryName = rec.Category.Name,
+                            Images = rec.Attachments.Select(r => new AttachmentViewModel
+                            {
+                                Image = r.Path
+
+                            }).ToList()
                         }));
                 }
                 //добавление средних
@@ -375,7 +386,12 @@ namespace TestService.Implementations
                                 Text = r.Text
                             }).ToList(),
                             Multi = (rec.Answers.Where(r => r.True).Count() > 1),
-                            CategoryName = rec.Category.Name
+                            CategoryName = rec.Category.Name,
+                            Images = rec.Attachments.Select(r => new AttachmentViewModel
+                            {
+                                Image = r.Path
+
+                            }).ToList()
                         }));
                 }
                 //добавление легких
@@ -395,10 +411,30 @@ namespace TestService.Implementations
                                 Text = r.Text
                             }).ToList(),
                             Multi = (rec.Answers.Where(r => r.True).Count() > 1),
-                            CategoryName = rec.Category.Name
+                            CategoryName = rec.Category.Name,
+                            Images = rec.Attachments.Select(r => new AttachmentViewModel
+                            {
+                                Image = r.Path
+
+                            }).ToList()
                         }));
                 }
             }
+
+            foreach (var question in result.Questions)
+            {
+                for (int i = 0; i < question.Images.Count; i++)
+                {
+                    try
+                    {
+                        question.Images[i].Image = Convert.ToBase64String(File.ReadAllBytes(question.Images[i].Image));
+                    }
+                    catch (Exception ex) {
+                        question.Images[i].Image = ex.Message;
+                    }
+                }
+            }
+
             result.Time = result.Questions.Select(rec => rec.Time).DefaultIfEmpty(0).Sum();
             return result;
         }
