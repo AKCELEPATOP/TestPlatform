@@ -236,6 +236,7 @@ namespace TestView
                     PatternQuestions = new List<PatternQuestionViewModel>(el.PatternQuestions)
                 });
             }
+            SaveCategory();
             if (form.ShowDialog() == DialogResult.OK)
             {
                 listPC = form.listPC;

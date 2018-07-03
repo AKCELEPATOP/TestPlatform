@@ -77,8 +77,9 @@ namespace TestView
                 Time--;
                 textBoxTime.Text = (Time / 60) + " минут " + (Time % 60) + " секунд ";
             }
-            else
+            else if(Time==0)
             {
+                Time--;
                 MessageBox.Show("Время вышло", "Тест завершён", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 EndTest();
             }
@@ -111,6 +112,7 @@ namespace TestView
                 }
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            tmrShow.Stop();
             tmrShow.Dispose();
             Close();
             
