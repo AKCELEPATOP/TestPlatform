@@ -421,9 +421,6 @@ namespace TestService.Implementations
                 StatCategories = new List<StatCategoryViewModel>()
             };
 
-            var questionCount = context.Patterns.FirstOrDefault(rec => rec.Id == model.PatternId)
-                .PatternCategories.Select(rec => rec.Easy + rec.Complex + rec.Middle).DefaultIfEmpty(0).Sum();
-
 
             result.StatCategories.AddRange(context.PatternCategories.Where(rec => rec.PatternId == model.PatternId).Include(rec => rec.Category)
                 .Select(rec => new StatCategoryViewModel

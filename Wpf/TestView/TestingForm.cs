@@ -24,7 +24,6 @@ namespace TestView
         int IdQuestions = 0;
 
         int Time;
-        
 
         private TestViewModel model;
 

@@ -126,7 +126,7 @@ namespace TestView
 
         public static async Task<U> PostRequestData<T, U>(string requestUrl, T model)
         {
-            HttpResponseMessage response = Task.Run(() => PostRequest(requestUrl, model)).Result;
+            HttpResponseMessage response = await PostRequest(requestUrl, model);
             if (response.IsSuccessStatusCode)
             {
                 return await response.Content.ReadAsAsync<U>();
