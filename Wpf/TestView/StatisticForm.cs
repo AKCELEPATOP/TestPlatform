@@ -39,6 +39,7 @@ namespace TestView
         {
             try
             {
+                var model = new GetListModel { };
                 // Переделать или удалить
                 StatChartViewModel list =
                          await ApiClient.PostRequestData<GetListModel, StatChartViewModel>("api/Stat/GetUserChart", model);
@@ -127,6 +128,8 @@ namespace TestView
 
         private async void button1_Click(object sender, EventArgs e)
         {
+            var model = new GetListModel { };
+
             StatChartViewModel stat =
                         await ApiClient.PostRequestData<GetListModel, StatChartViewModel>("api/Stat/GetUserChart", model);
             StatViewModel result;
