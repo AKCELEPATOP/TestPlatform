@@ -250,7 +250,7 @@ namespace TestView
 
             attachment = new List<AttachmentBindingModel>();
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            openFileDialog1.Filter = "png files (*.png)|*.png|All files (*.*)|*.*";
+            openFileDialog1.Filter = "Image files (*.jpg, *.jpeg, *.png) | *.jpg; *.jpeg; *.png";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 try

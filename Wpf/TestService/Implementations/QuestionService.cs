@@ -72,7 +72,7 @@ namespace TestService.Implementations
                             {
                                 if (objFile != null && objFile.ContentLength > 0)
                                 {
-                                    string path = model.ImagesPath + ((string.IsNullOrEmpty(objFile.FileName)) ? string.Format("{0}.{1}.png", element.Id, 1) : objFile.FileName);
+                                    string path = model.ImagesPath + $@"{DateTime.Now.Ticks}.png"; ;
 
                                     objFile.SaveAs(path);
 
@@ -153,7 +153,7 @@ namespace TestService.Implementations
                 Active = rec.Active,
                 CategoryId = rec.CategoryId,
                 ComplexityName = rec.Complexity.ToString(),
-                Time = rec.Time,
+                Time = rec.Time
             }).FirstOrDefaultAsync();
 
             if (result == null)

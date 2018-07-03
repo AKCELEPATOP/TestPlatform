@@ -114,7 +114,6 @@ namespace TestRestApi.Controllers
         }
 
         [HttpGet]
-        [Route("GetUserChartLast")]
         public async Task<IHttpActionResult> GetUserChartLast(GetListModel model)
         {
             model.UserId = User.Identity.GetUserId();
