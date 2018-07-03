@@ -19,8 +19,11 @@
             }
             base.Dispose(disposing);
             Time = -1;
-            tmrShow.Stop();
-            tmrShow.Dispose();
+            if (tmrShow != null)
+            {
+                tmrShow.Stop();
+                tmrShow.Dispose();
+            }
         }
 
         #region Код, автоматически созданный конструктором форм Windows

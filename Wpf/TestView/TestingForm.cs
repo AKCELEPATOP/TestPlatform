@@ -120,19 +120,26 @@ namespace TestView
             Close();
         }
 
-        private async void Initialize()
+        private async Task<bool> Initialize()
         {
             try
             {
 
                 model = await ApiClient.GetRequestData<TestViewModel>("api/Pattern/CreateTest/" + id);
-                if (model != null)
+                
+                if (model == null)
                 {
-                    listBoxQuestions.DataSource = model.Questions;
-                    listBoxQuestions.DisplayMember = "Text";
-                    listBoxQuestions.ValueMember = "Id";
+                    MessageBox.Show("Произошла ошибка", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
                 }
-
+                listBoxQuestions.DataSource = model.Questions;
+                listBoxQuestions.DisplayMember = "Text";
+                listBoxQuestions.ValueMember = "Id";
+                if (model.Questions.Count < 1)
+                {
+                    MessageBox.Show("В тесте отсутствуют вопросы", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
 
                 Time += Convert.ToInt32(model.Time);
 
@@ -161,6 +168,7 @@ namespace TestView
             {
                 appendixForQestion.Enabled = true;
             }
+            return true;
         }
 
         private void SetNextQuestion()
@@ -275,9 +283,12 @@ namespace TestView
 
         }
 
-        private void Form_Load(object sender, EventArgs e)
+        private async void Form_Load(object sender, EventArgs e)
         {
-            Initialize();
+            if (!await Initialize())
+            {
+                Close();
+            }
         }
 
         private void listBoxQuestions_SelectedIndexChanged(object sender, EventArgs e)
