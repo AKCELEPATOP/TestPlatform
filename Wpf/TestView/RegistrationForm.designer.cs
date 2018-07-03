@@ -83,7 +83,7 @@
             this.textBoxLogin.Name = "textBoxLogin";
             this.textBoxLogin.Size = new System.Drawing.Size(221, 22);
             this.textBoxLogin.TabIndex = 4;
-            this.toolTip1.SetToolTip(this.textBoxLogin, "8 символов и как минимум один буквенный и без спец символов");
+            this.toolTip1.SetToolTip(this.textBoxLogin, "8 символов и как минимум один буквенный");
             this.textBoxLogin.MaxLength = 32;
             // 
             // textBoxPassword1
