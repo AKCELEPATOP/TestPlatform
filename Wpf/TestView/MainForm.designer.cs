@@ -63,6 +63,7 @@
             this.dataGridViewAvailablePatterns.AllowUserToAddRows = false;
             this.dataGridViewAvailablePatterns.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridViewAvailablePatterns.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewAvailablePatterns.ColumnHeadersVisible = false;
             this.dataGridViewAvailablePatterns.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridViewAvailablePatterns.Location = new System.Drawing.Point(15, 98);
             this.dataGridViewAvailablePatterns.Margin = new System.Windows.Forms.Padding(4);
@@ -188,6 +189,7 @@
             this.dataGridViewPassedTests.AllowUserToAddRows = false;
             this.dataGridViewPassedTests.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridViewPassedTests.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewPassedTests.ColumnHeadersVisible = false;
             this.dataGridViewPassedTests.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridViewPassedTests.Location = new System.Drawing.Point(455, 98);
             this.dataGridViewPassedTests.Margin = new System.Windows.Forms.Padding(4);
