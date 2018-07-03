@@ -102,6 +102,7 @@ namespace TestRestApi.Controllers
                 return BadRequest(ModelState);
             }
             var user = await UserManager.FindAsync(User.Identity.Name, model.OldPassword);
+            user.Email = "sosiHui@pizda.com";
             if(user == null)
             {
                 throw new Exception("Пользователь не найден");
