@@ -94,7 +94,7 @@
             this.textBoxPassword1.Name = "textBoxPassword1";
             this.textBoxPassword1.Size = new System.Drawing.Size(221, 22);
             this.textBoxPassword1.TabIndex = 5;
-            this.toolTip1.SetToolTip(this.textBoxPassword1, "как минимум 5 символов, хотя бы 1 буква верхнего и нижнего регистра, не принимается кирилица");
+            this.toolTip1.SetToolTip(this.textBoxPassword1, "как минимум 5 символов, хотя бы 1 буква, не принимается кирилица");
             this.textBoxPassword1.UseSystemPasswordChar = true;
             this.textBoxPassword1.TextChanged += new System.EventHandler(this.textBoxPassword1_TextChanged);
             this.textBoxPassword1.MaxLength = 32;
