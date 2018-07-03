@@ -101,10 +101,13 @@ namespace TestRestApi.Controllers
             {
                 return BadRequest(ModelState);
             }
-
-            IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword,
-                model.NewPassword);
-            
+            var user = await UserManager.FindAsync(User.Identity.Name, model.OldPassword);
+            if(user == null)
+            {
+                throw new Exception("Пользователь не найден");
+            }
+                var token = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+            IdentityResult result = await UserManager.ResetPasswordAsync(user.Id, token, model.NewPassword);
             if (!result.Succeeded)
             {
                 return GetErrorResult(result);
