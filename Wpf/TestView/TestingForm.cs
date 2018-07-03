@@ -80,6 +80,8 @@ namespace TestView
             else
             {
                 MessageBox.Show("Время вышло", "Тест завершён", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                tmrShow.Dispose();
+                tmrShow.Enabled = false;
                 EndTest();
             }
         }
@@ -112,6 +114,8 @@ namespace TestView
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             tmrShow.Dispose();
+            tmrShow.Stop();
+
             Close();
             
         }
