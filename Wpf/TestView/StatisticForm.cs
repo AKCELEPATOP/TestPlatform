@@ -15,6 +15,8 @@ namespace TestView
     public partial class StatisticForm : Form
     {
 
+        public StatChartViewModel stat;
+
         public StatisticForm()
         {
             InitializeComponent();
@@ -25,13 +27,12 @@ namespace TestView
         {
             try
             {
-                var model = new GetListModel { };
+                var model = new GetListModel { Take = 50 };
                 // Переделать или удалить
-                StatChartViewModel list =
-                         await ApiClient.PostRequestData<GetListModel, StatChartViewModel>("api/Stat/GetUserChart", model);
-                if (list != null)
+                stat = await ApiClient.PostRequestData<GetListModel, StatChartViewModel>("api/Stat/GetUserChart", model);
+                if (stat != null)
                 {
-                    dataGridView1.DataSource = list;
+                    dataGridView1.DataSource = stat;
                     dataGridView1.Columns[0].Visible = false;
                     dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
@@ -55,7 +56,7 @@ namespace TestView
         public int centrX, centrY;
         public int x, y;
         public int funkcii;
-        public async void DrawOs()
+        public void DrawOs()
         {
             float wX;
             float hX;
@@ -79,18 +80,14 @@ namespace TestView
             OSIGraphics.DrawLine(myPen, 10, 0, 15, 15);
 
             try
-            {
-                var model = new GetListModel { };
-                // График
-                StatChartViewModel stat =
-                        await ApiClient.PostRequestData<GetListModel, StatChartViewModel>("api/Stat/GetUserChart", model);
+            { 
 
                 if (stat.Results != null)
                 {
-                    if (stat.Results.Count > 50)
+                    /*if (stat.Results.Count > 50)
                     {
                         stat.Results.RemoveRange(0, stat.Results.Count - 50);
-                    }
+                    }*/
                     for (step = 0; step <= stat.Results.Count; step++)
                     {
                         xF = (step * 25) + (int)(wX / 2);
