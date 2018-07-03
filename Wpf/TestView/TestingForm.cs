@@ -209,6 +209,14 @@ namespace TestView
                     radioButton4.Checked = question.Answers[3].True;
                 }
                 TextBoxQuestion.Text = question.Text;
+                if(question.Images!=null && question.Images.Count > 0)
+                {
+                    appendixForQestion.Enabled = true;
+                }
+                else
+                {
+                    appendixForQestion.Enabled = false;
+                }
             }
 
         }
