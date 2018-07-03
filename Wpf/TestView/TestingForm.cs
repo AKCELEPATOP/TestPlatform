@@ -30,12 +30,12 @@ namespace TestView
         public TestingForm()
         {
             InitializeComponent();
- 
- 
- 
+
+
+
             if (FormMain.DarkTheme)
             {
- 
+
                 label1.ForeColor = Color.White;
                 labelTime.ForeColor = Color.White;
                 TextBoxQuestion.ForeColor = Color.White;
@@ -52,7 +52,7 @@ namespace TestView
             }
             else
             {
- 
+
                 label1.ForeColor = Color.Black;
                 labelTime.ForeColor = Color.Black;
                 TextBoxQuestion.ForeColor = Color.Black;
@@ -77,12 +77,10 @@ namespace TestView
                 Time--;
                 textBoxTime.Text = (Time / 60) + " минут " + (Time % 60) + " секунд ";
             }
-            else if(Time==0)
+            else if (Time == 0)
             {
                 Time--;
                 MessageBox.Show("Время вышло", "Тест завершён", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                tmrShow.Dispose();
-                tmrShow.Enabled = false;
                 EndTest();
             }
         }
@@ -116,10 +114,8 @@ namespace TestView
             }
             tmrShow.Stop();
             tmrShow.Dispose();
-            tmrShow.Stop();
-
             Close();
-            
+
         }
 
         private async void Initialize()
@@ -210,8 +206,8 @@ namespace TestView
 
         private void appendixForQestion_Click(object sender, EventArgs e)
         {
-                AppendixForm appendixForm = new AppendixForm(model.Questions[IdQuestions].Images.First());
-                appendixForm.Show();
+            AppendixForm appendixForm = new AppendixForm(model.Questions[IdQuestions].Images.First());
+            appendixForm.Show();
         }
 
         private void endTest_Click(object sender, EventArgs e)
@@ -246,7 +242,7 @@ namespace TestView
 
         private void nextQuestion_Click(object sender, EventArgs e)
         {
-            if (listBoxQuestions.SelectedIndex < model.Questions.Count-1)
+            if (listBoxQuestions.SelectedIndex < model.Questions.Count - 1)
             {
                 listBoxQuestions.SelectedIndex++;
                 GetAnswer();

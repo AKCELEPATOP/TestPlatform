@@ -18,6 +18,8 @@
                 components.Dispose();
             }
             base.Dispose(disposing);
+            Time = -1;
+            tmrShow.Stop();
             tmrShow.Dispose();
         }
 
