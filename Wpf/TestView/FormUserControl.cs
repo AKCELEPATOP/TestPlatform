@@ -15,14 +15,12 @@ namespace TestView
 {
     public partial class FormUserControl : Form
     {
+        private FormStatisticsMain.CallBack call;
 
-        public FormUserControl()
+        public FormUserControl(FormStatisticsMain.CallBack call)
         {
             InitializeComponent();
- 
- 
- 
-            Initialize();
+            this.call = call;
         }
         private async void Initialize() {
             try
@@ -74,7 +72,7 @@ namespace TestView
         {
             if (dataGridView1.SelectedRows.Count == 1)
             {
-                if (MessageBox.Show("Удалить запись", "Вопрос", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Удалить запись /n Вместе с пользователем удалится вся его статистика", "Вопрос", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     string id = Convert.ToString(dataGridView1.SelectedRows[0].Cells[0].Value);
                     try
@@ -97,7 +95,7 @@ namespace TestView
 
         private void button5_Click(object sender, EventArgs e)
         {
-            var form = new FormGroupControl();
+            var form = new FormGroupControl(call);
             
             if (form.ShowDialog() == DialogResult.OK)
             {

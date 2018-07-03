@@ -74,6 +74,7 @@ namespace TestService.Implementations
             {
                 throw new Exception("Элемент не является Пользователем");
             }
+            context.Stats.RemoveRange(context.Stats.Where(rec => rec.UserId == id));
             context.Users.Remove(element);
             await context.SaveChangesAsync();
         }

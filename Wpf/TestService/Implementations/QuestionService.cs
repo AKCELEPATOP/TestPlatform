@@ -138,9 +138,25 @@ namespace TestService.Implementations
 
         public async Task<QuestionViewModel> GetElement(int id)
         {
-            Question element = await context.Questions.FirstOrDefaultAsync(rec => rec.Id == id);
+            var result = await context.Questions.Where(rec => rec.Id == id).Select(rec=>new QuestionViewModel
+            {
+                Id = rec.Id,
+                Text = rec.Text,
+                Answers = rec.Answers.Select(recQ => new AnswerViewModel
+                {
+                    Id = recQ.Id,
+                    Text = recQ.Text,
+                    True = recQ.True
+                }).ToList(),
+                Complexity = rec.Complexity,
+                CategoryName = rec.Category.Name,
+                Active = rec.Active,
+                CategoryId = rec.CategoryId,
+                ComplexityName = rec.Complexity.ToString(),
+                Time = rec.Time
+            }).FirstOrDefaultAsync();
 
-            if (element == null)
+            if (result == null)
             {
                 throw new Exception("Элемент не найден");
             }
@@ -148,7 +164,7 @@ namespace TestService.Implementations
             {
                 List<AttachmentViewModel> attachments = new List<AttachmentViewModel>();
 
-                var list = await context.Attachments.Where(rec => rec.QuestionId == element.Id).ToListAsync();
+                var list = await context.Attachments.Where(rec => rec.QuestionId == result.Id).ToListAsync();
 
                 foreach (var el in list)
                 {
@@ -160,25 +176,10 @@ namespace TestService.Implementations
                         Id = el.Id
                     });
                 }
-
-                QuestionViewModel result = new QuestionViewModel
+                if (attachments.Count > 0)
                 {
-                    Id = element.Id,
-                    Text = element.Text,
-                    Answers = element.Answers.Select(recQ => new AnswerViewModel
-                    {
-                        Id = recQ.Id,
-                        Text = recQ.Text,
-                        True = recQ.True
-                    }).ToList(),
-                    Complexity = element.Complexity,
-                    CategoryName = element.Category.Name,
-                    Active = element.Active,
-                    CategoryId = element.CategoryId,
-                    ComplexityName = element.Complexity.ToString(),
-                    Time = element.Time,
-                    Images = attachments
-                };
+                    result.Images = attachments;
+                }
                 return result;
             }
 

@@ -14,10 +14,12 @@ namespace TestView
 {
     public partial class FormGroupControl : Form
     {
-        public FormGroupControl()
+        private FormStatisticsMain.CallBack call;
+
+        public FormGroupControl(FormStatisticsMain.CallBack call)
         {
             InitializeComponent();
- 
+            this.call = call;
         }
 
         private async void Initialize() {
@@ -60,6 +62,7 @@ namespace TestView
             if (form.ShowDialog() == DialogResult.OK)
             {
                 Initialize();
+                call.Invoke();
             }
         }
 
@@ -79,7 +82,7 @@ namespace TestView
         {
             if (dataGridView1.SelectedRows.Count == 1)
             {
-                if (MessageBox.Show("Удалить запись", "Вопрос", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Удалить запись /n При удалении группы  удаляются сделанные для нее шаблоны!", "Вопрос", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     int id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
                     try
@@ -87,6 +90,7 @@ namespace TestView
                         await ApiClient.PostRequest("api/Group/DelElement/" + id);
                         MessageBox.Show("Запись удалена. Обновите список", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Initialize();
+                        call.Invoke();
                     }
                     catch(Exception ex)
                     {
