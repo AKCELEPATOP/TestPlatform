@@ -225,6 +225,7 @@ namespace TestView
             var form = new FormTestTemplateQuestions();
             Design.SetBackColor(form);
             Design.SetFontColor(form);
+            SaveCategory();
             foreach (var el in listPC)
             {
                 form.listPC.Add(new PatternCategoryViewModel
@@ -238,7 +239,6 @@ namespace TestView
                     PatternQuestions = new List<PatternQuestionViewModel>(el.PatternQuestions)
                 });
             }
-            SaveCategory();
             if (form.ShowDialog() == DialogResult.OK)
             {
                 listPC = form.listPC;
