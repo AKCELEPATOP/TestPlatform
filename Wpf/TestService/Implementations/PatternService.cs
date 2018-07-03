@@ -337,20 +337,19 @@ namespace TestService.Implementations
                 PatternId = patternId,
                 Questions = new List<QuestionViewModel>()
             };
+            if (model.Questions != null && model.Questions.Count > 0)
+            {
+                result.Questions.AddRange(model.Questions);
+            }
+            var questionIds = result.Questions.Select(r => r.Id);
             foreach (var patternCategory in model.PatternCategories)
             {
-                List<QuestionViewModel> list = model.Questions.Where(rec => rec.CategoryId == patternCategory.CategoryId).ToList();
-                if (list != null)
-                {
-                    result.Questions.AddRange(list);
-                }
                 //добавление сложных
-                var questionIds = result.Questions.Select(r => r.Id);
-                int countComplex = patternCategory.Complex - list.Where(rec => rec.Complexity.Equals(QuestionComplexity.Difficult)).Count();
+                int countComplex = patternCategory.Complex - model.Questions.Where(rec => rec.Complexity.Equals(QuestionComplexity.Difficult)).Count();
                 if (countComplex > 0)
                 {
                     result.Questions.AddRange(context.Questions.Where(rec => rec.CategoryId == patternCategory.CategoryId &&
-                    rec.Complexity == QuestionComplexity.Difficult && rec.Active && !questionIds.Contains(rec.Id)).OrderBy(a => Guid.NewGuid())
+                    rec.Complexity.Equals(QuestionComplexity.Difficult) && rec.Active && !questionIds.Contains(rec.Id)).OrderBy(a => Guid.NewGuid())
                         .Take(countComplex).Select(rec => new QuestionViewModel
                         {
                             Id = rec.Id,
@@ -371,11 +370,11 @@ namespace TestService.Implementations
                         }));
                 }
                 //добавление средних
-                int countMiddle = patternCategory.Middle - list.Where(rec => rec.Complexity.Equals(QuestionComplexity.Middle)).Count();
+                int countMiddle = patternCategory.Middle - model.Questions.Where(rec => rec.Complexity.Equals(QuestionComplexity.Middle)).Count();
                 if (countMiddle > 0)
                 {
                     result.Questions.AddRange(context.Questions.Where(rec => rec.CategoryId == patternCategory.CategoryId &&
-                    rec.Complexity == QuestionComplexity.Middle && rec.Active && !questionIds.Contains(rec.Id)).OrderBy(a => Guid.NewGuid())
+                    rec.Complexity.Equals(QuestionComplexity.Middle) && rec.Active && !questionIds.Contains(rec.Id)).OrderBy(a => Guid.NewGuid())
                         .Take(countMiddle).Select(rec => new QuestionViewModel
                         {
                             Id = rec.Id,
@@ -396,11 +395,11 @@ namespace TestService.Implementations
                         }));
                 }
                 //добавление легких
-                int countEasy = patternCategory.Easy - list.Where(rec => rec.Complexity.Equals(QuestionComplexity.Easy)).Count();
+                int countEasy = patternCategory.Easy - model.Questions.Where(rec => rec.Complexity.Equals(QuestionComplexity.Easy)).Count();
                 if (countEasy > 0)
                 {
                     result.Questions.AddRange(context.Questions.Where(rec => rec.CategoryId == patternCategory.CategoryId &&
-                    rec.Complexity == QuestionComplexity.Easy && rec.Active && !questionIds.Contains(rec.Id)).OrderBy(a => Guid.NewGuid())
+                    rec.Complexity.Equals(QuestionComplexity.Easy) && rec.Active && !questionIds.Contains(rec.Id)).OrderBy(a => Guid.NewGuid())
                         .Take(countEasy).Select(rec => new QuestionViewModel
                         {
                             Id = rec.Id,
@@ -430,7 +429,8 @@ namespace TestService.Implementations
                     {
                         question.Images[i].Image = Convert.ToBase64String(File.ReadAllBytes(question.Images[i].Image));
                     }
-                    catch (Exception ex) {
+                    catch (Exception ex)
+                    {
                         question.Images[i].Image = ex.Message;
                     }
                 }
