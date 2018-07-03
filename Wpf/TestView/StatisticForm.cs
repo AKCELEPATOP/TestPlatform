@@ -18,17 +18,17 @@ namespace TestView
         public StatisticForm()
         {
             InitializeComponent();
- 
- 
- 
+
+
+
             if (FormMain.DarkTheme)
             {
- 
+
                 label5.ForeColor = Color.White;
             }
             else
             {
- 
+
                 label5.ForeColor = Color.Black;
             }
             Initialize();
@@ -69,10 +69,10 @@ namespace TestView
         public int funkcii;
         public void DrawOs()
         {
-            int wX;
-            int hX;
+            float wX;
+            float hX;
             double xF, yF;
-            double step;
+            int step;
 
             wX = pictureBox1.Width;  //Значение ширины
             hX = pictureBox1.Height; //Значение высоты
@@ -90,22 +90,56 @@ namespace TestView
             OSIGraphics.DrawLine(myPen, 10, 0, 5, 15);
             OSIGraphics.DrawLine(myPen, 10, 0, 15, 15);
 
-
-            // График (тестовый)
-            for (step = 0; step <= 2 * Math.PI; step += 0.001)
+            try
             {
-                xF = (step * 25) + (int)(wX / 2);
-                double tmp = Math.Sin(step);
-                tmp *= 50;
-                yF = (int)(hX / 2) - tmp;
-                graph.SetPixel((int)xF, (int)yF, Color.Red);
+                // График
+                StatChartViewModel stat =
+                        Task.Run(() => ApiClient.GetRequestData<StatChartViewModel>("api/Stat/GetUserChart")).Result;
+
+                if (stat.Results != null)
+                {
+                    if (stat.Results.Count > 50)
+                    {
+                        stat.Results.RemoveRange(0, stat.Results.Count - 50);
+                    }
+                    for (step = 0; step <= stat.Results.Count; step++)
+                    {
+                        xF = (step * 25) + (int)(wX / 2);
+                        double tmp = stat.Results[step];
+                        tmp *= 50;
+                        yF = (int)(hX / 2) - tmp;
+                        graph.SetPixel((int)xF, (int)yF, Color.Red);
+
+                    }
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Произошла ошибка при загрузке графика/nОшибка:"+ex.Message, "Ошибка",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Close();
+            }
+
+
             pictureBox1.Image = graph;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
+            StatChartViewModel stat =
+                        Task.Run(() => ApiClient.GetRequestData<StatChartViewModel>("api/Stat/GetUserChart")).Result;
+            StatViewModel result;
+            try
+            {
+                result = await ApiClient.GetRequestData<StatViewModel>("api/Stat/GetUserChartLast/" + (stat.Results.Count-1).ToString());
 
+                FormResultOfTest resultOfLastTest = new FormResultOfTest(result);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Произошла ошибка загрузки данных/nОшибка: "+ex.Message,"Ошибка",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void Form_Load(object sender, EventArgs e)

@@ -41,6 +41,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.buttonChangeColorBack = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.buttonChangeFont = new System.Windows.Forms.Button();
             this.buttonExit = new System.Windows.Forms.Button();
             this.dataGridViewPassedTests = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
@@ -51,8 +53,6 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.обновитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SaveToPDF = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.buttonChangeFont = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAvailablePatterns)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPassedTests)).BeginInit();
@@ -61,13 +61,14 @@
             // 
             // dataGridViewAvailablePatterns
             // 
+            this.dataGridViewAvailablePatterns.AllowUserToAddRows = false;
+            this.dataGridViewAvailablePatterns.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridViewAvailablePatterns.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewAvailablePatterns.Location = new System.Drawing.Point(11, 80);
             this.dataGridViewAvailablePatterns.Name = "dataGridViewAvailablePatterns";
             this.dataGridViewAvailablePatterns.Size = new System.Drawing.Size(303, 279);
             this.dataGridViewAvailablePatterns.TabIndex = 0;
             this.dataGridViewAvailablePatterns.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
-            this.dataGridViewAvailablePatterns.AllowUserToAddRows = false;
             // 
             // label1
             // 
@@ -147,6 +148,25 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Настройка цветов";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(20, 72);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(119, 13);
+            this.label5.TabIndex = 19;
+            this.label5.Text = "Сменить цвет шрифта";
+            // 
+            // buttonChangeFont
+            // 
+            this.buttonChangeFont.Location = new System.Drawing.Point(30, 88);
+            this.buttonChangeFont.Name = "buttonChangeFont";
+            this.buttonChangeFont.Size = new System.Drawing.Size(101, 30);
+            this.buttonChangeFont.TabIndex = 18;
+            this.buttonChangeFont.Text = "Сменить";
+            this.buttonChangeFont.UseVisualStyleBackColor = true;
+            this.buttonChangeFont.Click += new System.EventHandler(this.buttonChangeFont_Click);
+            // 
             // buttonExit
             // 
             this.buttonExit.Location = new System.Drawing.Point(839, 369);
@@ -159,13 +179,14 @@
             // 
             // dataGridViewPassedTests
             // 
+            this.dataGridViewPassedTests.AllowUserToAddRows = false;
+            this.dataGridViewPassedTests.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridViewPassedTests.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewPassedTests.Location = new System.Drawing.Point(341, 80);
             this.dataGridViewPassedTests.Name = "dataGridViewPassedTests";
             this.dataGridViewPassedTests.Size = new System.Drawing.Size(397, 279);
             this.dataGridViewPassedTests.TabIndex = 23;
             this.dataGridViewPassedTests.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
-            this.dataGridViewPassedTests.AllowUserToAddRows = false;
             // 
             // label2
             // 
@@ -236,25 +257,6 @@
             this.SaveToPDF.Text = "Сохранить PDF";
             this.SaveToPDF.UseVisualStyleBackColor = true;
             this.SaveToPDF.Click += new System.EventHandler(this.buttonSaveToPdf_Click);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(20, 72);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(119, 13);
-            this.label5.TabIndex = 19;
-            this.label5.Text = "Сменить цвет шрифта";
-            // 
-            // buttonChangeFont
-            // 
-            this.buttonChangeFont.Location = new System.Drawing.Point(30, 88);
-            this.buttonChangeFont.Name = "buttonChangeFont";
-            this.buttonChangeFont.Size = new System.Drawing.Size(101, 30);
-            this.buttonChangeFont.TabIndex = 18;
-            this.buttonChangeFont.Text = "Сменить";
-            this.buttonChangeFont.UseVisualStyleBackColor = true;
-            this.buttonChangeFont.Click += new System.EventHandler(this.buttonChangeFont_Click);
             // 
             // FormMain
             // 

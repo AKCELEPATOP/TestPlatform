@@ -274,13 +274,13 @@ namespace TestService.Implementations
             }
             var phraseTitle = new Phrase(title, // оптимизация
                     new iTextSharp.text.Font(baseFont, 16, iTextSharp.text.Font.BOLD));
-                paragraph = new iTextSharp.text.Paragraph(phraseTitle)
-                {
-                    Alignment = Element.ALIGN_CENTER,
-                    SpacingAfter = 12
-                };
-                doc.Add(paragraph);
-            
+            paragraph = new iTextSharp.text.Paragraph(phraseTitle)
+            {
+                Alignment = Element.ALIGN_CENTER,
+                SpacingAfter = 12
+            };
+            doc.Add(paragraph);
+
             if (model.DateFrom.HasValue && model.DateTo.HasValue)
             {
                 var phrasePeriod = new Phrase("c " + model.DateFrom.Value.ToShortDateString() +
@@ -371,6 +371,19 @@ namespace TestService.Implementations
                                             SqlFunctions.DateName("mm", rec.DateCreate) + " " +
                                             SqlFunctions.DateName("yyyy", rec.DateCreate)
             }).ToListAsync();
+        }
+
+        public async Task<StatViewModel> GetUserChartLast(int id)
+        {
+            var element = await context.Stats.FirstOrDefaultAsync(rec => rec.Id == id);
+            var stat = new StatViewModel
+            {
+                PatternName = element.Pattern.Name,
+                DateCreate = element.DateCreate.ToString(),
+                Right = element.Right,
+                Total = element.Total
+            };
+            return  stat;
         }
     }
 }

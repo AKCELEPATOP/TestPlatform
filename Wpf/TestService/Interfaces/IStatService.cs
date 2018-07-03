@@ -21,5 +21,7 @@ namespace TestService.Interfaces
         Task SaveToPdf(ReportBindingModel model);
 
         Task SaveToPdfAdmin(ReportBindingModel model);
+
+        Task<StatViewModel> GetUserChartLast(int id);
     }
 }
