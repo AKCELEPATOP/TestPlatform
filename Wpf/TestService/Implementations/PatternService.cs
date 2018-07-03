@@ -420,7 +420,7 @@ namespace TestService.Implementations
                         }));
                 }
             }
-
+            result.Questions = result.Questions.GroupBy(p => p.Id).Select(p => p.First()).ToList();
             foreach (var question in result.Questions)
             {
                 for (int i = 0; i < question.Images.Count; i++)
