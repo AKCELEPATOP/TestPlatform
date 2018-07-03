@@ -126,8 +126,8 @@ namespace TestView
 
         private async void button1_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(textBox2.Text) && string.IsNullOrEmpty(textBox3.Text) && string.IsNullOrEmpty(textBox4.Text) && string.IsNullOrEmpty(textBox5.Text)
-                && string.IsNullOrEmpty(textBox6.Text))
+            if (string.IsNullOrEmpty(textBox2.Text) || string.IsNullOrEmpty(textBox3.Text) || string.IsNullOrEmpty(textBox4.Text) || string.IsNullOrEmpty(textBox5.Text)
+                || string.IsNullOrEmpty(textBox6.Text))
             {
                 MessageBox.Show("Заполните все поля", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
