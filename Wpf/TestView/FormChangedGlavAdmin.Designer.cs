@@ -49,6 +49,7 @@
             this.button1.Text = "Сохранить";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+
             // 
             // label1
             // 
@@ -75,6 +76,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(177, 22);
             this.textBox1.TabIndex = 3;
+            this.textBox1.UseSystemPasswordChar = true;
             this.toolTip1.SetToolTip(this.textBox1, "как минимум 5 символов, хотя бы 1 буква верхнего и нижнего регистра");
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             this.textBox1.MaxLength = 32;
@@ -86,6 +88,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(177, 22);
             this.textBox2.TabIndex = 4;
+            this.textBox2.UseSystemPasswordChar = true;
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             this.textBox2.MaxLength = 32;
             // 
@@ -126,11 +129,13 @@
             this.textBox3.MaxLength = 32;
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(177, 22);
+            this.textBox3.UseSystemPasswordChar = true;
             this.textBox3.TabIndex = 7;
             this.textBox3.MaxLength = 32;
             // 
             // FormChangedGlavAdmin
             // 
+            this.AcceptButton = this.button1;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(342, 176);
