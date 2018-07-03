@@ -75,7 +75,7 @@ namespace TestRestApi.Controllers
             }
             return Ok(list);
         }
-         
+
         [HttpPost]
         [Route("GetUserList")]
         public async Task<IHttpActionResult> GetUserList(GetListModel model)
@@ -87,19 +87,6 @@ namespace TestRestApi.Controllers
                 InternalServerError(new Exception("Нет данных"));
             }
             return Ok(list);
-        }
-
-        [HttpPost]
-        [Route("GetUserChart")]
-        public async Task<IHttpActionResult> GetUserChart(GetListModel model)
-        {
-            model.UserId = User.Identity.GetUserId();
-            var element = await Service.GetUserChart(model);
-            if (element == null || element.Results == null)
-            {
-                InternalServerError(new Exception("Нет данных"));
-            }
-            return Ok(element);
         }
 
         [HttpPost]
@@ -125,6 +112,20 @@ namespace TestRestApi.Controllers
             }
             await Service.SaveToPdfAdmin(model);
         }
+
+        [HttpGet]
+        [Route("GetUserChartLast")]
+        public async Task<IHttpActionResult> GetUserChartLast(GetListModel model)
+        {
+            model.UserId = User.Identity.GetUserId();
+            var element = await Service.GetUserChart(model);
+            if (element == null || element.Results == null)
+            {
+                InternalServerError(new Exception("Нет данных"));
+            }
+            return Ok(element);
+        }
+
 
         [HttpGet]
         [Authorize(Roles = ApplicationRoles.SuperAdmin + "," + ApplicationRoles.Admin)]
