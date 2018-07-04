@@ -79,6 +79,8 @@ namespace TestView
 
                     series1.Points.AddXY(xF, yF);
                 }
+                chart1.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
+                chart1.ChartAreas[0].AxisY.MajorGrid.Enabled = false;
                 //Добавляем созданный набор точек в Chart
                 chart1.Series.Add(series1);
 
