@@ -62,29 +62,31 @@
             // 
             this.TextBoxQuestion.Location = new System.Drawing.Point(6, 29);
             this.TextBoxQuestion.Name = "TextBoxQuestion";
-            this.TextBoxQuestion.Size = new System.Drawing.Size(696, 75);
+            this.TextBoxQuestion.Size = new System.Drawing.Size(653, 75);
             this.TextBoxQuestion.TabIndex = 2;
             this.TextBoxQuestion.Text = resources.GetString("TextBoxQuestion.Text");
             // 
             // answerGroupBoxCheckButtons
             // 
+            this.answerGroupBoxCheckButtons.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.answerGroupBoxCheckButtons.Controls.Add(this.answerGroupBoxRadioButtons);
             this.answerGroupBoxCheckButtons.Controls.Add(this.answer4);
             this.answerGroupBoxCheckButtons.Controls.Add(this.answer3);
             this.answerGroupBoxCheckButtons.Controls.Add(this.answer2);
             this.answerGroupBoxCheckButtons.Controls.Add(this.answer1);
-            this.answerGroupBoxCheckButtons.Location = new System.Drawing.Point(38, 171);
+            this.answerGroupBoxCheckButtons.Location = new System.Drawing.Point(38, 213);
             this.answerGroupBoxCheckButtons.Name = "answerGroupBoxCheckButtons";
-            this.answerGroupBoxCheckButtons.Size = new System.Drawing.Size(708, 165);
+            this.answerGroupBoxCheckButtons.Size = new System.Drawing.Size(683, 165);
             this.answerGroupBoxCheckButtons.TabIndex = 3;
             this.answerGroupBoxCheckButtons.TabStop = false;
             this.answerGroupBoxCheckButtons.Text = "Варианты ответов:";
             // 
             // answerGroupBoxRadioButtons
             // 
-            this.answerGroupBoxRadioButtons.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.answerGroupBoxRadioButtons.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.answerGroupBoxRadioButtons.Controls.Add(this.radioButton4);
             this.answerGroupBoxRadioButtons.Controls.Add(this.radioButton3);
             this.answerGroupBoxRadioButtons.Controls.Add(this.radioButton2);
@@ -92,7 +94,7 @@
             this.answerGroupBoxRadioButtons.Enabled = false;
             this.answerGroupBoxRadioButtons.Location = new System.Drawing.Point(0, 0);
             this.answerGroupBoxRadioButtons.Name = "answerGroupBoxRadioButtons";
-            this.answerGroupBoxRadioButtons.Size = new System.Drawing.Size(708, 165);
+            this.answerGroupBoxRadioButtons.Size = new System.Drawing.Size(683, 165);
             this.answerGroupBoxRadioButtons.TabIndex = 4;
             this.answerGroupBoxRadioButtons.TabStop = false;
             this.answerGroupBoxRadioButtons.Text = "Варианты ответов:";
@@ -184,11 +186,10 @@
             // 
             // nextQuestion
             // 
-            this.nextQuestion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.nextQuestion.Location = new System.Drawing.Point(300, 349);
+            this.nextQuestion.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.nextQuestion.Location = new System.Drawing.Point(258, 406);
             this.nextQuestion.Name = "nextQuestion";
-            this.nextQuestion.Size = new System.Drawing.Size(198, 41);
+            this.nextQuestion.Size = new System.Drawing.Size(235, 41);
             this.nextQuestion.TabIndex = 5;
             this.nextQuestion.Text = "Следующий вопрос";
             this.nextQuestion.UseVisualStyleBackColor = true;
@@ -203,7 +204,7 @@
             this.questionGroupBox.Controls.Add(this.TextBoxQuestion);
             this.questionGroupBox.Location = new System.Drawing.Point(38, 54);
             this.questionGroupBox.Name = "questionGroupBox";
-            this.questionGroupBox.Size = new System.Drawing.Size(708, 111);
+            this.questionGroupBox.Size = new System.Drawing.Size(683, 142);
             this.questionGroupBox.TabIndex = 6;
             this.questionGroupBox.TabStop = false;
             this.questionGroupBox.Text = "Вопрос №";
@@ -219,11 +220,10 @@
             // 
             // endTest
             // 
-            this.endTest.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.endTest.Location = new System.Drawing.Point(542, 349);
+            this.endTest.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.endTest.Location = new System.Drawing.Point(511, 406);
             this.endTest.Name = "endTest";
-            this.endTest.Size = new System.Drawing.Size(198, 41);
+            this.endTest.Size = new System.Drawing.Size(235, 41);
             this.endTest.TabIndex = 7;
             this.endTest.Text = "Завершить тест";
             this.endTest.UseVisualStyleBackColor = true;
@@ -231,6 +231,9 @@
             // 
             // labelTime
             // 
+            this.labelTime.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.labelTime.AutoSize = true;
             this.labelTime.Location = new System.Drawing.Point(311, 14);
             this.labelTime.Name = "labelTime";
@@ -240,12 +243,11 @@
             // 
             // appendixForQestion
             // 
-            this.appendixForQestion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.appendixForQestion.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.appendixForQestion.Enabled = false;
-            this.appendixForQestion.Location = new System.Drawing.Point(56, 349);
+            this.appendixForQestion.Location = new System.Drawing.Point(7, 406);
             this.appendixForQestion.Name = "appendixForQestion";
-            this.appendixForQestion.Size = new System.Drawing.Size(198, 41);
+            this.appendixForQestion.Size = new System.Drawing.Size(235, 41);
             this.appendixForQestion.TabIndex = 9;
             this.appendixForQestion.Text = "Приложения к вопросу";
             this.appendixForQestion.UseVisualStyleBackColor = true;
@@ -267,20 +269,25 @@
             // 
             // listBoxQuestions
             // 
-            this.listBoxQuestions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.listBoxQuestions.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listBoxQuestions.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.listBoxQuestions.FormattingEnabled = true;
             this.listBoxQuestions.ItemHeight = 16;
-            this.listBoxQuestions.Location = new System.Drawing.Point(751, 30);
+            this.listBoxQuestions.Location = new System.Drawing.Point(751, -1);
             this.listBoxQuestions.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.listBoxQuestions.Name = "listBoxQuestions";
-            this.listBoxQuestions.Size = new System.Drawing.Size(230, 340);
+            this.listBoxQuestions.Size = new System.Drawing.Size(208, 468);
             this.listBoxQuestions.TabIndex = 11;
             this.listBoxQuestions.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.listBoxQuestions_DrawItem);
             this.listBoxQuestions.SelectedIndexChanged += new System.EventHandler(this.listBoxQuestions_SelectedIndexChanged);
             // 
             // textBoxTime
             // 
+            this.textBoxTime.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxTime.AutoSize = true;
             this.textBoxTime.Location = new System.Drawing.Point(381, 14);
             this.textBoxTime.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -293,7 +300,7 @@
             this.AcceptButton = this.nextQuestion;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 397);
+            this.ClientSize = new System.Drawing.Size(959, 466);
             this.Controls.Add(this.textBoxTime);
             this.Controls.Add(this.listBoxQuestions);
             this.Controls.Add(this.appendixForQestion);
