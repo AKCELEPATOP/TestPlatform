@@ -15,7 +15,6 @@ namespace TestView
     public partial class StatisticForm : Form
     {
 
-        public StatChartViewModel stat;
 
         public StatisticForm()
         {
@@ -33,8 +32,13 @@ namespace TestView
         public int centrX, centrY;
         public int x, y;
         public int funkcii;
-        public void DrawOs()
+        public async void DrawOs()
         {
+
+            var model = new GetListModel { Take = 50 };
+            StatChartViewModel stat =
+                        await ApiClient.PostRequestData<GetListModel, StatChartViewModel>("api/Stat/GetUserChart", model);
+
             float wX;
             float hX;
             double xF, yF;
@@ -65,7 +69,7 @@ namespace TestView
                     {
                         stat.Results.RemoveRange(0, stat.Results.Count - 50);
                     }*/
-                    for (step = 0; step <= stat.Results.Count; step++)
+                    for (step = 0; step < stat.Results.Count; step++)
                     {
                         xF = (step * 25) + (int)(wX / 2);
                         double tmp = stat.Results[step];
@@ -80,6 +84,7 @@ namespace TestView
             {
                 MessageBox.Show("Произошла ошибка при загрузке графика Ошибка:"+ex.Message, "Ошибка",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
             }
 
 
@@ -95,13 +100,15 @@ namespace TestView
             try
             {
                 result = await ApiClient.GetRequestData<StatViewModel>("api/Stat/GetUserChartLast/" + (stat.Results.Count-1).ToString());
-
+                
                 FormResultOfTest resultOfLastTest = new FormResultOfTest(result);
+                this.Hide();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Произошла ошибка загрузки данных"+'\n'+"Ошибка: "+ex.Message,"Ошибка",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
             }
         }
 
