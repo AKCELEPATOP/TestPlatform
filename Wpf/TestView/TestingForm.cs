@@ -32,8 +32,10 @@ namespace TestView
 
         public TestingForm()
         {
-            InitializeComponent();
 
+
+            InitializeComponent();
+          
             appendixForQestion.BackColor = Design.Invert(this.ForeColor);
             endTest.BackColor = Design.Invert(this.ForeColor);
             nextQuestion.BackColor = Design.Invert(this.ForeColor);
@@ -111,6 +113,27 @@ namespace TestView
             tmrShow. Stop();
             tmrShow.Dispose();
             Close();
+        }
+
+        private void TestingForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //при попытке закрытия программы пользователем
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                //устанавливает флаг отмены события в истину
+                e.Cancel = true;
+                //спрашивает стоит ли завершится
+                if (MessageBox.Show("Вам отказано в доступе, завершите тест", "Ошибка", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    this.FormClosing -= TestingForm_FormClosing;
+                    EndTest();
+                    
+                    this.Close();
+                }
+                else {
+                    return;
+                }
+            }
         }
 
         private async Task<bool> Initialize()
