@@ -22,7 +22,7 @@ namespace TestView
 
         private int? id;
 
-        private Timer tmrShow;
+        private static Timer tmrShow;
 
         private int IdQuestions = 0;
 
@@ -35,7 +35,7 @@ namespace TestView
 
 
             InitializeComponent();
-          
+
             appendixForQestion.BackColor = Design.Invert(this.ForeColor);
             endTest.BackColor = Design.Invert(this.ForeColor);
             nextQuestion.BackColor = Design.Invert(this.ForeColor);
@@ -68,21 +68,36 @@ namespace TestView
 
         private void tmrShow_Tick(object sender, EventArgs e)
         {
-            if (Time > 0)
+            lock (tmrShow)
             {
-                Time--;
-                textBoxTime.Text = (Time / 60) + " минут " + (Time % 60) + " секунд ";
+                if (Time > 0)
+                {
+                    Time--;
+                    textBoxTime.Text = (Time / 60) + " минут " + (Time % 60) + " секунд ";
+                }
+                else
+                {
+                    DisposeTimer();
+                    MessageBox.Show("Время вышло", "Тест завершен", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    EndTest();
+                }
             }
-            else if (Time == 0)
+        }
+
+        private void DisposeTimer()
+        {
+            if (tmrShow != null)
             {
-                Time--;
-                MessageBox.Show("Время вышло", "Тест завершён", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                EndTest();
+                tmrShow.Tick -= tmrShow_Tick;
+                tmrShow.Stop();
+                tmrShow.Dispose();
+                tmrShow = null;
             }
         }
 
         private async void EndTest()
         {
+            DisposeTimer();
             GetAnswer();
             List<QuestionResponseModel> UserAnswers = model.Questions.Select(rec => new QuestionResponseModel
             {
@@ -110,30 +125,29 @@ namespace TestView
                 }
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            tmrShow. Stop();
-            tmrShow.Dispose();
             Close();
         }
 
         private void TestingForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //при попытке закрытия программы пользователем
-            if (e.CloseReason == CloseReason.UserClosing)
-            {
-                //устанавливает флаг отмены события в истину
-                e.Cancel = true;
-                //спрашивает стоит ли завершится
-                if (MessageBox.Show("Вам отказано в доступе, завершите тест", "Ошибка", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-                    this.FormClosing -= TestingForm_FormClosing;
-                    EndTest();
-                    
-                    this.Close();
-                }
-                else {
-                    return;
-                }
-            }
+            DisposeTimer();
+            ////при попытке закрытия программы пользователем
+            //if (e.CloseReason == CloseReason.UserClosing)
+            //{
+            //    //устанавливает флаг отмены события в истину
+            //    e.Cancel = true;
+            //    //спрашивает стоит ли завершится
+            //    if (MessageBox.Show("Вам отказано в доступе, завершите тест", "Ошибка", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            //    {
+            //        this.FormClosing -= TestingForm_FormClosing;
+            //        EndTest();
+
+            //        this.Close();
+            //    }
+            //    else {
+            //        return;
+            //    }
+            //}
         }
 
         private async Task<bool> Initialize()
@@ -157,7 +171,7 @@ namespace TestView
                     return false;
                 }
 
-                Time += Convert.ToInt32(model.Time);
+                Time = Convert.ToInt32(model.Time);
 
                 textBoxTime.Text = (Time / 60) + " минут " + (Time % 60) + " секунд ";
 
@@ -365,7 +379,7 @@ namespace TestView
                 g.FillRectangle(backgroundBrush, e.Bounds);
 
                 SolidBrush foregroundBrush = (selected) ? reportsForegroundBrushSelected : reportsForegroundBrush;
-                g.DrawString(text, new Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize)), foregroundBrush, 
+                g.DrawString(text, new Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize)), foregroundBrush,
                     listBoxQuestions.GetItemRectangle(index).Location);
                 e.DrawFocusRectangle();
             }
