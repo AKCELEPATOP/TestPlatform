@@ -76,7 +76,6 @@ namespace TestView
 
                 if (MessageBox.Show("Вы не можете выйти пока не завершите тест.Завершить тест?", "Вопрос", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) {
                     DisposeTimer();
-                    this.FormClosing -= Forml_FormClosing;
                     EndTest();
                 }
             }
@@ -139,6 +138,7 @@ namespace TestView
                 }
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            this.FormClosing -= Forml_FormClosing;
             Close();
         }
 
