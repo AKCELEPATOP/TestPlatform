@@ -20,33 +20,10 @@ namespace TestView
         public StatisticForm()
         {
             InitializeComponent();
-            Initialize();
         }
 
-        private async void Initialize()
+        private void Initialize()
         {
-            try
-            {
-                var model = new GetListModel { Take = 50 };
-                // Переделать или удалить
-                stat = await ApiClient.PostRequestData<GetListModel, StatChartViewModel>("api/Stat/GetUserChart", model);
-                if (stat != null)
-                {
-                    dataGridView1.DataSource = stat;
-                    dataGridView1.Columns[0].Visible = false;
-                    dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                }
-            }
-
-            catch (Exception ex)
-            {
-                while (ex.InnerException != null)
-                {
-                    ex = ex.InnerException;
-                }
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
             DrawOs();
         }
 
@@ -111,8 +88,7 @@ namespace TestView
 
         private async void button1_Click(object sender, EventArgs e)
         {
-            var model = new GetListModel { };
-
+            var model = new GetListModel { Take = 50 };
             StatChartViewModel stat =
                         await ApiClient.PostRequestData<GetListModel, StatChartViewModel>("api/Stat/GetUserChart", model);
             StatViewModel result;
@@ -129,12 +105,12 @@ namespace TestView
             }
         }
 
+
+
         private void Form_Load(object sender, EventArgs e)
         {
             Initialize();
             back.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
-            button1.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
-            dataGridView1.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
         }
 
         private void back_Click(object sender, EventArgs e)
