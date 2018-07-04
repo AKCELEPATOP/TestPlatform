@@ -68,7 +68,19 @@ namespace TestView
             обновитьToolStripMenuItem.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
         }
 
+        private void Forml_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            { 
+                e.Cancel = true;
 
+                if (MessageBox.Show("Вы не можете выйти пока не завершите тест.Завершить тест?", "Вопрос", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) {
+                    DisposeTimer();
+                    this.FormClosing -= Forml_FormClosing;
+                    EndTest();
+                }
+            }
+        }
         private void tmrShow_Tick(object sender, EventArgs e)
         {
             if (Time > 0)
@@ -365,9 +377,6 @@ namespace TestView
             }
         }
 
-        private void TestingForm_FormClosing_1(object sender, FormClosingEventArgs e)
-        {
-            DisposeTimer();
-        }
+
     }
 }
