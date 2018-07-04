@@ -48,6 +48,10 @@ namespace TestView
             comboBox1.DataSource = list;
            
             DrawOs();
+
+            back.BackColor = Design.Invert(this.ForeColor);
+            comboBox1.BackColor = Design.Invert(this.ForeColor);
+            label1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
         }
 
 

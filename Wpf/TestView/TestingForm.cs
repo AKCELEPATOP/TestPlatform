@@ -45,6 +45,9 @@ namespace TestView
             listBoxQuestions.BackColor = Design.Invert(this.ForeColor);
             answerGroupBoxCheckButtons.BackColor = Design.Invert(this.ForeColor);
             answerGroupBoxRadioButtons.BackColor = Design.Invert(this.ForeColor);
+            questionGroupBox.BackColor = Design.Invert(this.ForeColor);
+            
+
             answer1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
             answer2.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
             answer3.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
@@ -66,6 +69,7 @@ namespace TestView
             TextBoxQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
             textBoxTime.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
             обновитьToolStripMenuItem.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+
         }
 
 

@@ -144,6 +144,7 @@ namespace TestView
             button4.BackColor = Design.Invert(this.ForeColor);
             button5.BackColor = Design.Invert(this.ForeColor);
             buttonSetAdmin.BackColor = Design.Invert(this.ForeColor);
+            dataGridView1.BackColor = Design.Invert(this.ForeColor);
         }
 
         private async void buttonSetAdmin_Click(object sender, EventArgs e)

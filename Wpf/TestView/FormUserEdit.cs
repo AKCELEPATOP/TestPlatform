@@ -70,6 +70,12 @@ namespace TestView
                     MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+            buttonCancel.BackColor = Design.Invert(this.ForeColor);
+            buttonSave.BackColor = Design.Invert(this.ForeColor);
+            comboBoxGroups.BackColor = Design.Invert(this.ForeColor);
+            buttonCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            buttonSave.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            comboBoxGroups.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
         }
         //сохранить
         private async void button1_Click(object sender, EventArgs e)

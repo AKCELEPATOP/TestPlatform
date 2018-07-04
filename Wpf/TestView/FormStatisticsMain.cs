@@ -183,6 +183,21 @@ namespace TestView
             }
             Design.SetDefaultFontColor(cd.Color);
             this.ForeColor = colorFont;
+            button1.BackColor = Design.Invert(this.ForeColor);
+            button10.BackColor = Design.Invert(this.ForeColor);
+            button2.BackColor = Design.Invert(this.ForeColor);
+            button3.BackColor = Design.Invert(this.ForeColor);
+            button4.BackColor = Design.Invert(this.ForeColor);
+            button7.BackColor = Design.Invert(this.ForeColor);
+            button8.BackColor = Design.Invert(this.ForeColor);
+            button9.BackColor = Design.Invert(this.ForeColor);
+            buttonAdmins.BackColor = Design.Invert(this.ForeColor);
+            buttonChangeColorBack.BackColor = Design.Invert(this.ForeColor);
+            buttonChangeFont.BackColor = Design.Invert(this.ForeColor);
+            comboBoxFontSize.BackColor = Design.Invert(this.ForeColor);
+            dataGridView1.BackColor = Design.Invert(this.ForeColor);
+            dataGridView2.BackColor = Design.Invert(this.ForeColor);
+            dataGridViewPatternStat.BackColor = Design.Invert(this.ForeColor);
         }
 
 
@@ -301,6 +316,9 @@ namespace TestView
             buttonChangeColorBack.BackColor = Design.Invert(this.ForeColor);
             buttonChangeFont.BackColor = Design.Invert(this.ForeColor);
             comboBoxFontSize.BackColor = Design.Invert(this.ForeColor);
+            dataGridView1.BackColor = Design.Invert(this.ForeColor);
+            dataGridView2.BackColor = Design.Invert(this.ForeColor);
+            dataGridViewPatternStat.BackColor = Design.Invert(this.ForeColor);
         }
 
         private void label7_Click(object sender, EventArgs e)

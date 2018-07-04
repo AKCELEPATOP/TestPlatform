@@ -60,10 +60,11 @@ namespace TestView
             contextMenuStrip1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
             dataGridView1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
             groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
-            обновитьToolStripMenuItem.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            обновитьToolStripMenuItem.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize); 
 
             buttonDelete.BackColor = Design.Invert(this.ForeColor);
             buttonRemoveAdminStatus.BackColor = Design.Invert(this.ForeColor);
+            dataGridView1.BackColor = Design.Invert(this.ForeColor);
         }
         // ПКМ -> Обновить
         private void MouseDown_Form(object sender, MouseEventArgs e)
