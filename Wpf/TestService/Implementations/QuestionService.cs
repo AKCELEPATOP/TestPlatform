@@ -329,10 +329,14 @@ namespace TestService.Implementations
                     transaction.Rollback();
                     throw;
                 }
-                foreach (var path in pathsToDelete)
+                try
                 {
-                    System.IO.File.Delete(path);
+                    foreach (var path in pathsToDelete)
+                    {
+                        System.IO.File.Delete(path);
+                    }
                 }
+                catch (Exception) { }
             }
 
         }
