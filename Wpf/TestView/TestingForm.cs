@@ -24,9 +24,9 @@ namespace TestView
 
         private Timer tmrShow;
 
-        int IdQuestions = 0;
+        private int IdQuestions = 0;
 
-        int Time;
+        private int Time;
 
         private TestViewModel model;
 
@@ -108,7 +108,7 @@ namespace TestView
                 }
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            tmrShow.Stop();
+            tmrShow. Stop();
             tmrShow.Dispose();
             Close();
         }
@@ -142,6 +142,8 @@ namespace TestView
                 tmrShow.Interval = 1000;
                 tmrShow.Tick += tmrShow_Tick;
                 tmrShow.Enabled = true;
+
+                appendixForQestion.Enabled = false;
 
                 SetNextQuestion();
 

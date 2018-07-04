@@ -341,11 +341,12 @@ namespace TestService.Implementations
             {
                 result.Questions.AddRange(model.Questions);
             }
-            var questionIds = result.Questions.Select(r => r.Id);
+            var questionIds = model.Questions.Select(r => r.Id).ToList();
             foreach (var patternCategory in model.PatternCategories)
             {
                 //добавление сложных
-                int countComplex = patternCategory.Complex - model.Questions.Where(rec => rec.Complexity==QuestionComplexity.Difficult).Count();
+                int countComplex = patternCategory.Complex - model.Questions.Where(rec => rec.CategoryId == patternCategory.CategoryId &&
+                rec.Complexity == QuestionComplexity.Difficult).Count();
                 if (countComplex > 0)
                 {
                     result.Questions.AddRange(context.Questions.Where(rec => rec.CategoryId == patternCategory.CategoryId &&
@@ -370,7 +371,8 @@ namespace TestService.Implementations
                         }));
                 }
                 //добавление средних
-                int countMiddle = patternCategory.Middle - model.Questions.Where(rec => rec.Complexity == QuestionComplexity.Middle).Count();
+                int countMiddle = patternCategory.Middle - model.Questions.Where(rec => rec.CategoryId == patternCategory.CategoryId &&
+                rec.Complexity == QuestionComplexity.Middle).Count();
                 if (countMiddle > 0)
                 {
                     result.Questions.AddRange(context.Questions.Where(rec => rec.CategoryId == patternCategory.CategoryId &&
@@ -395,7 +397,8 @@ namespace TestService.Implementations
                         }));
                 }
                 //добавление легких
-                int countEasy = patternCategory.Easy - model.Questions.Where(rec => rec.Complexity == QuestionComplexity.Easy).Count();
+                int countEasy = patternCategory.Easy - model.Questions.Where(rec => rec.CategoryId == patternCategory.CategoryId &&
+                rec.Complexity == QuestionComplexity.Easy).Count();
                 if (countEasy > 0)
                 {
                     result.Questions.AddRange(context.Questions.Where(rec => rec.CategoryId == patternCategory.CategoryId &&
@@ -420,6 +423,10 @@ namespace TestService.Implementations
                         }));
                 }
             }
+
+            result.Questions.RemoveAll(rec=>rec.Answers.Count == 0);
+
+
             //result.Questions = result.Questions.GroupBy(p => p.Id).Select(p => p.First()).ToList();
             foreach (var question in result.Questions)
             {
