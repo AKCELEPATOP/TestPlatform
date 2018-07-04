@@ -28,6 +28,9 @@ namespace TestView
             var manager = new Form.ControlCollection(owner);
             owner.ForeColor = FontColor;
         }
-
+        public static Color Invert(Color c)
+        {
+            return Color.FromArgb(c.A, 0xFF - c.R, 0xFF - c.G, 0xFF - c.B);
+        }
     }
 }

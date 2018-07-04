@@ -33,6 +33,34 @@ namespace TestView
         public TestingForm()
         {
             InitializeComponent();
+
+            appendixForQestion.BackColor = Design.Invert(this.ForeColor);
+            endTest.BackColor = Design.Invert(this.ForeColor);
+            nextQuestion.BackColor = Design.Invert(this.ForeColor);
+            listBoxQuestions.BackColor = Design.Invert(this.ForeColor);
+            answerGroupBoxCheckButtons.BackColor = Design.Invert(this.ForeColor);
+            answerGroupBoxRadioButtons.BackColor = Design.Invert(this.ForeColor);
+            answer1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            answer2.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            answer3.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            answer4.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            answerGroupBoxCheckButtons.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            answerGroupBoxRadioButtons.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            radioButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            radioButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            radioButton3.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            radioButton4.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            appendixForQestion.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            contextMenuStrip1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            endTest.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            label1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            labelTime.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            listBoxQuestions.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            nextQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            questionGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            TextBoxQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            textBoxTime.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            обновитьToolStripMenuItem.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
         }
 
 
@@ -68,6 +96,8 @@ namespace TestView
                     QuestionResponses = UserAnswers
                 });
                 FormResultOfTest resultsForm = new FormResultOfTest(result);
+                Design.SetBackColor(resultsForm);
+                Design.SetFontColor(resultsForm);
                 resultsForm.Show();
             }
             catch (Exception ex)
@@ -197,7 +227,7 @@ namespace TestView
                 {
                     Size = new Size(image.Width, image.Height)
                 };
-                appendixForm.ShowDialog();
+                appendixForm.Show();
             }
         }
 
