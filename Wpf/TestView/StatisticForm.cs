@@ -66,21 +66,21 @@ namespace TestView
                 //Создаем и настраиваем набор точек для рисования графика, в том
                 //не забыв указать имя области на которой хотим отобразить этот
                 //набор точек.
-                Series mySeriesOfPoint = new Series("Sinus");
-                mySeriesOfPoint.ChartType = SeriesChartType.Line;
-                mySeriesOfPoint.ChartArea = "Math functions";
+                Series series1 = new Series("График");
+                series1.ChartType = SeriesChartType.Column;
+                series1.ChartArea = "Результаты";
                 for (step = 0; step < stat.Results.Count; step++)
                 {
 
                     xF = (step * 25) + (int)(wX / 2);
                     double tmp = stat.Results[step];
                     tmp *= 50;
-                    yF = (int)(hX / 2) - tmp;
+                    yF = tmp;
 
-                    mySeriesOfPoint.Points.AddXY(xF, yF);
+                    series1.Points.AddXY(xF, yF);
                 }
                 //Добавляем созданный набор точек в Chart
-                chart1.Series.Add(mySeriesOfPoint);
+                chart1.Series.Add(series1);
 
             }
             catch (Exception ex)
