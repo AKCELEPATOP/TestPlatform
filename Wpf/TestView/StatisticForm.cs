@@ -72,17 +72,18 @@ namespace TestView
                 //Создаем и настраиваем набор точек для рисования графика, в том
                 //не забыв указать имя области на которой хотим отобразить этот
                 //набор точек.
+                
                 series1 = new Series("График");
                 series1.ChartType = SeriesChartType.Column;
                 series1.ChartArea = "График";
+
                 for (step = 0; step < stat.Results.Count; step++)
                 {
 
-                    xF = step;
                     double tmp = stat.Results[step];
                     yF = tmp;
-
-                    series1.Points.AddXY(xF, yF);
+ 
+                    series1.Points.AddXY(stat.Dates[step],yF);
                 }
                 chart1.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
                 chart1.ChartAreas[0].AxisY.MajorGrid.Enabled = false;
