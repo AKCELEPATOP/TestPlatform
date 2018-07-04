@@ -191,6 +191,15 @@ namespace TestView
             buttonChangeUser.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
             buttonExit.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
             buttonStatistic.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+
+            buttonBeginTest.BackColor = Design.Invert(this.ForeColor);
+            buttonChangeColorBack.BackColor = Design.Invert(this.ForeColor);
+            buttonChangeFont.BackColor = Design.Invert(this.ForeColor);
+            buttonChangeUser.BackColor = Design.Invert(this.ForeColor);
+            buttonExit.BackColor = Design.Invert(this.ForeColor);
+            buttonStatistic.BackColor = Design.Invert(this.ForeColor);
+            comboBoxFontSize.BackColor = Design.Invert(this.ForeColor);
+            SaveToPDF.BackColor = Design.Invert(this.ForeColor);
         }
     }
 }

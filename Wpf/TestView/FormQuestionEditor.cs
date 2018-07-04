@@ -279,6 +279,13 @@ namespace TestView
             textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
             textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
             textBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+
+            button1.BackColor = Design.Invert(this.ForeColor);
+            button2.BackColor = Design.Invert(this.ForeColor);
+            button3.BackColor = Design.Invert(this.ForeColor);
+            buttonShow.BackColor = Design.Invert(this.ForeColor);
+            comboBox1.BackColor = Design.Invert(this.ForeColor);
         }
 
         private void button3_Click(object sender, EventArgs e)

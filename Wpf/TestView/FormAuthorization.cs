@@ -9,6 +9,7 @@ namespace TestView
         public FormAuthorization()
         {
             InitializeComponent();
+
         }
 
 
@@ -63,6 +64,9 @@ namespace TestView
             label2.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
             sign_In.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
             sign_Up.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
+
+            sign_In.BackColor = Design.Invert(this.ForeColor);
+            sign_Up.BackColor = Design.Invert(this.ForeColor);
         }
     }
 }

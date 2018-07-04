@@ -28,6 +28,9 @@ namespace TestView
             textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
             button1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
             button2.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+
+            button1.BackColor = Design.Invert(this.ForeColor);
+            button2.BackColor = Design.Invert(this.ForeColor);
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

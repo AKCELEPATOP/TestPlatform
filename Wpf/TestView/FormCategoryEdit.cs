@@ -95,6 +95,9 @@ namespace TestView
             button1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
             button2.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
             checkBoxNotActive.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+
+            button1.BackColor = Design.Invert(this.ForeColor);
+            button2.BackColor = Design.Invert(this.ForeColor);
         }
     }
 }
