@@ -107,6 +107,8 @@
             // 
             // radioButton4
             // 
+            this.radioButton4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.radioButton4.AutoSize = true;
             this.radioButton4.Location = new System.Drawing.Point(36, 156);
             this.radioButton4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -119,6 +121,8 @@
             // 
             // radioButton3
             // 
+            this.radioButton3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.radioButton3.AutoSize = true;
             this.radioButton3.Location = new System.Drawing.Point(36, 113);
             this.radioButton3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -131,6 +135,8 @@
             // 
             // radioButton2
             // 
+            this.radioButton2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.radioButton2.AutoSize = true;
             this.radioButton2.Location = new System.Drawing.Point(36, 74);
             this.radioButton2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -143,6 +149,8 @@
             // 
             // radioButton1
             // 
+            this.radioButton1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.radioButton1.AutoSize = true;
             this.radioButton1.Location = new System.Drawing.Point(36, 36);
             this.radioButton1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -289,8 +297,7 @@
             // 
             // listBoxQuestions
             // 
-            this.listBoxQuestions.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.listBoxQuestions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listBoxQuestions.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.listBoxQuestions.FormattingEnabled = true;
