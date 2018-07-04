@@ -42,7 +42,8 @@ namespace TestView
            };
             comboBox1.Items.AddRange(source);
             comboBox1.Text = QuestionComplexity.Easy.ToString();
-
+            maskedTextBox1.Mask = "00:00";
+            maskedTextBox1.Text = "02:00";
             if (id.HasValue)
             {
                 try
@@ -59,6 +60,9 @@ namespace TestView
                     checkBox4.Checked = question.Answers[3].True;
                     checkBox5.Checked = !question.Active;
                     comboBox1.Text = question.ComplexityName;
+                    var min = (int)question.Time / 60.0;
+                    var sec = question.Time - min;
+                    maskedTextBox1.Text = string.Format("{0}:{1}", ((min > 9) ? min.ToString() : string.Format("0{0}", min)), ((sec > 9) ? sec.ToString() : string.Format("0{0}", sec)));
                     answerIds = new List<int>
                     {
                         question.Answers[0].Id,
@@ -102,9 +106,6 @@ namespace TestView
                     MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-
-            maskedTextBox1.Mask = "00:00";
-            maskedTextBox1.Text = "02:00";
             //   comboBox1.e
         }
 
