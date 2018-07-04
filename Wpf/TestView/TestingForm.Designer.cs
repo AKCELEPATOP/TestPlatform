@@ -232,7 +232,7 @@
             // labelTime
             // 
             this.labelTime.AutoSize = true;
-            this.labelTime.Location = new System.Drawing.Point(321, 14);
+            this.labelTime.Location = new System.Drawing.Point(311, 14);
             this.labelTime.Name = "labelTime";
             this.labelTime.Size = new System.Drawing.Size(43, 13);
             this.labelTime.TabIndex = 8;
@@ -282,7 +282,7 @@
             // textBoxTime
             // 
             this.textBoxTime.AutoSize = true;
-            this.textBoxTime.Location = new System.Drawing.Point(367, 14);
+            this.textBoxTime.Location = new System.Drawing.Point(381, 14);
             this.textBoxTime.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.textBoxTime.Name = "textBoxTime";
             this.textBoxTime.Size = new System.Drawing.Size(0, 13);
@@ -304,7 +304,7 @@
             this.Controls.Add(this.questionGroupBox);
             this.Name = "TestingForm";
             this.Padding = new System.Windows.Forms.Padding(15, 49, 15, 16);
-            this.Text = "Теститрование";
+            this.Text = "Тестирование";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TestingForm_FormClosing_1);
             this.Load += new System.EventHandler(this.Form_Load);
