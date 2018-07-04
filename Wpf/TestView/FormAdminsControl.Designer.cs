@@ -46,9 +46,9 @@ namespace TestView
             // 
             this.groupBox1.Controls.Add(this.dataGridView1);
             this.groupBox1.Location = new System.Drawing.Point(17, 16);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(337, 471);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
@@ -63,7 +63,7 @@ namespace TestView
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridView1.Location = new System.Drawing.Point(9, 23);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
@@ -75,12 +75,13 @@ namespace TestView
             // buttonDelete
             // 
             this.buttonDelete.Location = new System.Drawing.Point(383, 113);
-            this.buttonDelete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonDelete.Margin = new System.Windows.Forms.Padding(4);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(100, 28);
             this.buttonDelete.TabIndex = 6;
             this.buttonDelete.Text = "Удалить";
             this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Visible = false;
             this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             this.buttonDelete.Enabled = false;
             this.buttonDelete.Visible = false;
@@ -102,27 +103,24 @@ namespace TestView
             // 
             // buttonRemoveAdminStatus
             // 
-            if (ApiClient.Role.Equals(ApplicationRoles.SuperAdmin))
-            {
-                this.buttonRemoveAdminStatus.Location = new System.Drawing.Point(369, 188);
-                this.buttonRemoveAdminStatus.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-                this.buttonRemoveAdminStatus.Name = "buttonRemoveAdminStatus";
-                this.buttonRemoveAdminStatus.Size = new System.Drawing.Size(125, 69);
-                this.buttonRemoveAdminStatus.TabIndex = 7;
-                this.buttonRemoveAdminStatus.Text = "Назначить пользователем";
-                this.buttonRemoveAdminStatus.UseVisualStyleBackColor = true;
-                this.buttonRemoveAdminStatus.Click += new System.EventHandler(this.buttonRemoveAdminStatus_Click);
-                this.Controls.Add(this.buttonRemoveAdminStatus);
-            }
+            this.buttonRemoveAdminStatus.Location = new System.Drawing.Point(369, 188);
+            this.buttonRemoveAdminStatus.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonRemoveAdminStatus.Name = "buttonRemoveAdminStatus";
+            this.buttonRemoveAdminStatus.Size = new System.Drawing.Size(125, 69);
+            this.buttonRemoveAdminStatus.TabIndex = 7;
+            this.buttonRemoveAdminStatus.Text = "Назначить пользователем";
+            this.buttonRemoveAdminStatus.UseVisualStyleBackColor = true;
+            this.buttonRemoveAdminStatus.Click += new System.EventHandler(this.buttonRemoveAdminStatus_Click);
             // 
             // FormAdminsControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(511, 505);
+            this.Controls.Add(this.buttonRemoveAdminStatus);
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormAdminsControl";
             this.Text = "Администраторы";
             this.Load += new System.EventHandler(this.Form_Load);

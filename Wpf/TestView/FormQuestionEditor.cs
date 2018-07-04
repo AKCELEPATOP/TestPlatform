@@ -61,7 +61,7 @@ namespace TestView
                     checkBox5.Checked = !question.Active;
                     comboBox1.Text = question.ComplexityName;
                     var min = Math.Floor(question.Time / 60.0);
-                    var sec = question.Time %60;
+                    var sec = question.Time % 60;
                     maskedTextBox1.Text = string.Format("{0}:{1}", ((min > 9) ? min.ToString() : string.Format("0{0}", min)), ((sec > 9) ? sec.ToString() : string.Format("0{0}", sec)));
                     answerIds = new List<int>
                     {

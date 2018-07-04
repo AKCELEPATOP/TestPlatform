@@ -21,6 +21,11 @@ namespace TestView
         {
             InitializeComponent();
             this.call = call;
+            if (!ApiClient.Role.Equals(ApplicationRoles.SuperAdmin))
+            {
+                buttonSetAdmin.Enabled = false;
+                buttonSetAdmin.Visible = false;
+            }
         }
         private async void Initialize()
         {

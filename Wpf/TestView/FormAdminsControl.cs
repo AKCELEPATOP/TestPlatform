@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TestService;
 using TestService.BindingModels;
 using TestService.ViewModels;
 
@@ -17,8 +18,12 @@ namespace TestView
         public FormAdminsControl()
         {
             InitializeComponent();
-           
-            Initialize();           
+
+            if (!ApiClient.Role.Equals(ApplicationRoles.SuperAdmin))
+            {
+                buttonRemoveAdminStatus.Enabled = false;
+                buttonRemoveAdminStatus.Visible = false;
+            }
         }
         private void Initialize()
         {
