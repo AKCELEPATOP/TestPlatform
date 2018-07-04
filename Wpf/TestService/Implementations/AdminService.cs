@@ -45,6 +45,7 @@ namespace TestService.Implementations
             {
                 throw new Exception("Элемент не найден");
             }
+            context.Stats.RemoveRange(context.Stats.Where(rec => rec.UserId == id));
             context.Users.Remove(element);
             await context.SaveChangesAsync();
         }
