@@ -130,7 +130,30 @@ namespace TestView
                 colorFont = cd.Color;
             }
             Design.SetDefaultFontColor(cd.Color);
-            this.ForeColor = cd.Color;
+          
+
+            label1.ForeColor = cd.Color;
+            label2.ForeColor = cd.Color;
+            label3.ForeColor = cd.Color;
+            label4.ForeColor = cd.Color;
+            label5.ForeColor = cd.Color;
+            label6.ForeColor = cd.Color;
+            label7.ForeColor = cd.Color;
+            groupBox2.ForeColor = cd.Color;
+            contextMenuStrip1.ForeColor = cd.Color;
+            dataGridViewAvailablePatterns.ForeColor = cd.Color;
+            dataGridViewPassedTests.ForeColor = cd.Color;
+            textBoxCurrentUser.ForeColor = cd.Color;
+            textBoxGroupUser.ForeColor = cd.Color;
+            обновитьToolStripMenuItem.ForeColor = cd.Color;
+            SaveToPDF.ForeColor = cd.Color;
+            buttonChangeColorBack.ForeColor = cd.Color;
+            buttonBeginTest.ForeColor = cd.Color;
+            buttonChangeFont.ForeColor = cd.Color;
+            buttonChangeUser.ForeColor = cd.Color;
+            buttonExit.ForeColor = cd.Color;
+            buttonStatistic.ForeColor = cd.Color;
+
             buttonBeginTest.BackColor = Design.Invert(this.ForeColor);
             buttonChangeColorBack.BackColor = Design.Invert(this.ForeColor);
             buttonChangeFont.BackColor = Design.Invert(this.ForeColor);

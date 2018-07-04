@@ -10,6 +10,8 @@ namespace TestView
         {
             InitializeComponent();
 
+            sign_In.BackColor = Design.Invert(this.ForeColor);
+            sign_Up.BackColor = Design.Invert(this.ForeColor);
         }
 
 
@@ -65,8 +67,6 @@ namespace TestView
             sign_In.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
             sign_Up.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
 
-            sign_In.BackColor = Design.Invert(this.ForeColor);
-            sign_Up.BackColor = Design.Invert(this.ForeColor);
         }
     }
 }

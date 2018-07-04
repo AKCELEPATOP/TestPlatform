@@ -182,7 +182,35 @@ namespace TestView
                 colorFont = cd.Color;
             }
             Design.SetDefaultFontColor(cd.Color);
-            this.ForeColor = colorFont;
+            label1.ForeColor = cd.Color;
+            labelUserName.ForeColor = cd.Color;
+            label4.ForeColor = cd.Color;
+            label5.ForeColor = cd.Color;
+            label6.ForeColor = cd.Color;
+            label7.ForeColor = cd.Color;
+            contextMenuStrip1.ForeColor = cd.Color;
+            dataGridView1.ForeColor = cd.Color;
+            dataGridView2.ForeColor = cd.Color;
+            button1.ForeColor = cd.Color;
+            button10.ForeColor = cd.Color;
+            обновитьToolStripMenuItem.ForeColor = cd.Color;
+            button2.ForeColor = cd.Color;
+            buttonChangeColorBack.ForeColor = cd.Color;
+            button3.ForeColor = cd.Color;
+            buttonChangeFont.ForeColor = cd.Color;
+            button4.ForeColor = cd.Color;
+            button7.ForeColor = cd.Color;
+            button8.ForeColor = cd.Color;
+            button9.ForeColor = cd.Color;
+            buttonAdmins.ForeColor = cd.Color;
+            groupBox1.ForeColor = cd.Color;
+            groupBox2.ForeColor = cd.Color;
+            groupBox3.ForeColor = cd.Color;
+            groupBox4.ForeColor = cd.Color;
+            groupBox5.ForeColor = cd.Color;
+            dataGridViewPatternStat.ForeColor = cd.Color;
+            comboBoxFontSize.ForeColor = cd.Color;
+
             button1.BackColor = Design.Invert(this.ForeColor);
             button10.BackColor = Design.Invert(this.ForeColor);
             button2.BackColor = Design.Invert(this.ForeColor);
