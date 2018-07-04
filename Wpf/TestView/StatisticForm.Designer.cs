@@ -28,21 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.label5 = new System.Windows.Forms.Label();
             this.back = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(15, 94);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(565, 396);
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
             // 
             // label5
             // 
@@ -56,8 +50,8 @@
             // 
             // back
             // 
-            this.back.Location = new System.Drawing.Point(268, 506);
-            this.back.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.back.Location = new System.Drawing.Point(181, 525);
+            this.back.Margin = new System.Windows.Forms.Padding(4);
             this.back.Name = "back";
             this.back.Size = new System.Drawing.Size(179, 33);
             this.back.TabIndex = 10;
@@ -74,31 +68,41 @@
             this.label1.TabIndex = 11;
             this.label1.Text = "График";
             // 
+            // chart1
+            // 
+           
+            legend1.Name = "График";
+            this.chart1.Legends.Add(legend1);
+            this.chart1.Location = new System.Drawing.Point(15, 28);
+            this.chart1.Name = "chart1";
+            this.chart1.Size = new System.Drawing.Size(594, 343);
+            this.chart1.TabIndex = 12;
+            this.chart1.Text = "chart1";
+            // 
             // StatisticForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(629, 566);
+            this.Controls.Add(this.chart1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.back);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.pictureBox1);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "StatisticForm";
             this.Padding = new System.Windows.Forms.Padding(27, 74, 27, 25);
             this.Text = "Статистика тестов";
             this.Load += new System.EventHandler(this.Form_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button back;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
     }
 }

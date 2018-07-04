@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using TestService.BindingModels;
 using TestService.ViewModels;
 
@@ -36,59 +37,67 @@ namespace TestView
         {
 
             var model = new GetListModel { Take = 50 };
-            StatChartViewModel stat =
-                        await ApiClient.PostRequestData<GetListModel, StatChartViewModel>("api/Stat/GetUserChart", model);
-
-            float wX;
-            float hX;
-            double xF, yF;
-            int step;
-
-            wX = pictureBox1.Width;  //Значение ширины
-            hX = pictureBox1.Height; //Значение высоты
-
-            // Система Координат
-            Bitmap graph = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-            Graphics OSIGraphics = Graphics.FromImage(graph);
-            System.Drawing.Pen myPen;
-            myPen = new System.Drawing.Pen(System.Drawing.Color.Black);
-            OSIGraphics.DrawLine(myPen, 0, (int)(hX - 10), wX, (int)(hX - 10)); // Горизонталь
-            OSIGraphics.DrawLine(myPen, wX, (int)(hX - 10), wX - 10, (int)(hX - 15));
-            OSIGraphics.DrawLine(myPen, wX, (int)(hX - 10), wX - 10, (int)(hX - 5));
-
-            OSIGraphics.DrawLine(myPen, (int)(10), 0, (int)(10), hX); // Вертикаль
-            OSIGraphics.DrawLine(myPen, 10, 0, 5, 15);
-            OSIGraphics.DrawLine(myPen, 10, 0, 15, 15);
+            StatChartViewModel stat;
+                        
 
             try
-            { 
+            {
 
-                if (stat.Results != null)
+                stat =
+                        await ApiClient.PostRequestData<GetListModel, StatChartViewModel>("api/Stat/GetUserChart", model);
+
+                float wX;
+                float hX;
+                double xF, yF;
+                int step;
+
+                wX = chart1.Width;  //Значение ширины
+                hX = chart1.Height; //Значение высоты
+
+
+
+
+                //кладем его на форму и растягиваем на все окно.
+                chart1.Parent = this;
+                chart1.Dock = DockStyle.Fill;
+                //добавляем в Chart область для рисования графиков, их может быть
+                //много, поэтому даем ей имя.
+                chart1.ChartAreas.Add(new ChartArea("График"));
+                //Создаем и настраиваем набор точек для рисования графика, в том
+                //не забыв указать имя области на которой хотим отобразить этот
+                //набор точек.
+                Series series1 = new Series("График");
+                series1.ChartType = SeriesChartType.Column;
+                series1.ChartArea = "Результаты";
+                for (step = 0; step < stat.Results.Count; step++)
                 {
-                    /*if (stat.Results.Count > 50)
-                    {
-                        stat.Results.RemoveRange(0, stat.Results.Count - 50);
-                    }*/
-                    for (step = 0; step < stat.Results.Count; step++)
-                    {
-                        xF = (step * 25) + (int)(wX / 2);
-                        double tmp = stat.Results[step];
-                        tmp *= 50;
-                        yF = (int)(hX / 2) - tmp;
-                        graph.SetPixel((int)xF, (int)yF, Color.Red);
 
-                    }
+                    xF = (step * 25) + (int)(wX / 2);
+                    double tmp = stat.Results[step];
+                    tmp *= 50;
+                    yF = tmp;
+
+                    series1.Points.AddXY(xF, yF);
                 }
+                chart1.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
+                chart1.ChartAreas[0].AxisY.MajorGrid.Enabled = false;
+                //Добавляем созданный набор точек в Chart
+                chart1.Series.Add(series1);
+
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Произошла ошибка при загрузке графика Ошибка:"+ex.Message, "Ошибка",
+                MessageBox.Show("Произошла ошибка при загрузке графика Ошибка:" + ex.Message, "Ошибка",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.Close();
             }
 
+            
 
-            pictureBox1.Image = graph;
+           
+
+
+            
         }
 
         private async void button1_Click(object sender, EventArgs e)
