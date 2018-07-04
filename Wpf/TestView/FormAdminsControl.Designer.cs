@@ -82,6 +82,8 @@ namespace TestView
             this.buttonDelete.Text = "Удалить";
             this.buttonDelete.UseVisualStyleBackColor = true;
             this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
+            this.buttonDelete.Enabled = false;
+            this.buttonDelete.Visible = false;
             // 
             // contextMenuStrip1
             // 
