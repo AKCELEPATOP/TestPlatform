@@ -88,7 +88,6 @@ namespace TestView
             if (!response.IsSuccessStatusCode)
             {
                 string error = response.Content.ReadAsStringAsync().Result;
-                Console.WriteLine(error);
                 var errorMessage = JsonConvert.DeserializeObject<HttpErrorMessage>(error);
                 throw new Exception(errorMessage.Message + " " + (errorMessage.MessageDetail ?? "") +
                     " " + (errorMessage.ExceptionMessage ?? "") + " " + (errorMessage.Error ?? "")
@@ -107,7 +106,10 @@ namespace TestView
             else
             {
                 string error = response.Content.ReadAsStringAsync().Result;
-                throw new Exception(error);
+                var errorMessage = JsonConvert.DeserializeObject<HttpErrorMessage>(error);
+                throw new Exception(errorMessage.Message + " " + (errorMessage.MessageDetail ?? "") +
+                    " " + (errorMessage.ExceptionMessage ?? "") + " " + (errorMessage.Error ?? "")
+                    + (errorMessage.Error_description ?? "") + string.Join(". ", errorMessage.ModelState.Select(rec => string.Join(". ", rec.Value)).ToList()));
             }
         }
 
