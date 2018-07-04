@@ -80,6 +80,10 @@ namespace TestView
                 }
             }
         }
+        private void Forml_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            DisposeTimer();
+        }
         private void tmrShow_Tick(object sender, EventArgs e)
         {
             if (Time > 0)

@@ -324,6 +324,7 @@
             // TestingForm
             // 
             this.TopMost = true;
+            this.FormClosed += Forml_FormClosed;
             this.FormClosing += Forml_FormClosing;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.AcceptButton = this.nextQuestion;
