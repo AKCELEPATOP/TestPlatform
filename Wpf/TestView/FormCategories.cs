@@ -208,7 +208,7 @@ namespace TestView
 
         private void button10_Click(object sender, EventArgs e)
         {
-
+            Close();
         }
 
         private void Form_Load(object sender, EventArgs e)
