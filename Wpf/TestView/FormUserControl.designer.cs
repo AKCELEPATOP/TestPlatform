@@ -48,11 +48,9 @@ namespace TestView
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.dataGridView1);
-            this.groupBox1.Location = new System.Drawing.Point(21, 18);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox1.Location = new System.Drawing.Point(16, 15);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(422, 470);
+            this.groupBox1.Size = new System.Drawing.Size(316, 382);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
@@ -65,22 +63,20 @@ namespace TestView
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.ColumnHeadersVisible = false;
             this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dataGridView1.Location = new System.Drawing.Point(9, 22);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridView1.Location = new System.Drawing.Point(7, 18);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(405, 442);
+            this.dataGridView1.Size = new System.Drawing.Size(304, 359);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(451, 41);
-            this.button2.Margin = new System.Windows.Forms.Padding(4);
+            this.button2.Location = new System.Drawing.Point(359, 33);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(100, 28);
+            this.button2.Size = new System.Drawing.Size(134, 43);
             this.button2.TabIndex = 4;
             this.button2.Text = "Добавить";
             this.button2.UseVisualStyleBackColor = true;
@@ -88,10 +84,9 @@ namespace TestView
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(451, 78);
-            this.button3.Margin = new System.Windows.Forms.Padding(4);
+            this.button3.Location = new System.Drawing.Point(359, 82);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(100, 28);
+            this.button3.Size = new System.Drawing.Size(134, 43);
             this.button3.TabIndex = 5;
             this.button3.Text = "Изменить";
             this.button3.UseVisualStyleBackColor = true;
@@ -99,10 +94,9 @@ namespace TestView
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(451, 114);
-            this.button4.Margin = new System.Windows.Forms.Padding(4);
+            this.button4.Location = new System.Drawing.Point(359, 131);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(100, 28);
+            this.button4.Size = new System.Drawing.Size(134, 43);
             this.button4.TabIndex = 6;
             this.button4.Text = "Удалить";
             this.button4.UseVisualStyleBackColor = true;
@@ -110,10 +104,9 @@ namespace TestView
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(21, 496);
-            this.button5.Margin = new System.Windows.Forms.Padding(4);
+            this.button5.Location = new System.Drawing.Point(359, 287);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(177, 46);
+            this.button5.Size = new System.Drawing.Size(134, 96);
             this.button5.TabIndex = 7;
             this.button5.Text = "Управление группами";
             this.button5.UseVisualStyleBackColor = true;
@@ -125,20 +118,19 @@ namespace TestView
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.обновитьToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(148, 28);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(129, 26);
             // 
             // обновитьToolStripMenuItem
             // 
             this.обновитьToolStripMenuItem.Name = "обновитьToolStripMenuItem";
-            this.обновитьToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
+            this.обновитьToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.обновитьToolStripMenuItem.Text = "Обновить";
             // 
             // buttonSetAdmin
             // 
-            this.buttonSetAdmin.Location = new System.Drawing.Point(451, 150);
-            this.buttonSetAdmin.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonSetAdmin.Location = new System.Drawing.Point(359, 198);
             this.buttonSetAdmin.Name = "buttonSetAdmin";
-            this.buttonSetAdmin.Size = new System.Drawing.Size(100, 44);
+            this.buttonSetAdmin.Size = new System.Drawing.Size(134, 68);
             this.buttonSetAdmin.TabIndex = 8;
             this.buttonSetAdmin.Text = "Назначить админом";
             this.buttonSetAdmin.UseVisualStyleBackColor = true;
@@ -146,18 +138,17 @@ namespace TestView
             // 
             // FormUserControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(565, 556);
+            this.ClientSize = new System.Drawing.Size(513, 424);
             this.Controls.Add(this.buttonSetAdmin);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormUserControl";
-            this.Padding = new System.Windows.Forms.Padding(20, 74, 20, 20);
+            this.Padding = new System.Windows.Forms.Padding(15, 60, 15, 16);
             this.Text = "Пользователи";
             this.Load += new System.EventHandler(this.Form_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
