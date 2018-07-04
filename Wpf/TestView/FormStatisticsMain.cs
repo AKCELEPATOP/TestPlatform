@@ -21,7 +21,6 @@ namespace TestView
         {
             this.parent = parent;
             InitializeComponent();
-
             labelUserName.Text = ApiClient.UserName;
         }
         private async void Initialize()
@@ -288,6 +287,20 @@ namespace TestView
             groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
             groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
             dataGridViewPatternStat.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            comboBoxFontSize.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+
+            button1.BackColor = Design.Invert(this.ForeColor);
+            button10.BackColor = Design.Invert(this.ForeColor);
+            button2.BackColor = Design.Invert(this.ForeColor);
+            button3.BackColor = Design.Invert(this.ForeColor);
+            button4.BackColor = Design.Invert(this.ForeColor);
+            button7.BackColor = Design.Invert(this.ForeColor);
+            button8.BackColor = Design.Invert(this.ForeColor);
+            button9.BackColor = Design.Invert(this.ForeColor);
+            buttonAdmins.BackColor = Design.Invert(this.ForeColor);
+            buttonChangeColorBack.BackColor = Design.Invert(this.ForeColor);
+            buttonChangeFont.BackColor = Design.Invert(this.ForeColor);
+            comboBoxFontSize.BackColor = Design.Invert(this.ForeColor);
         }
 
         private void label7_Click(object sender, EventArgs e)

@@ -227,6 +227,14 @@ namespace TestView
             groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
             groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
             обновитьToolStripMenuItem.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+
+            button1.BackColor = Design.Invert(this.ForeColor);
+            button10.BackColor = Design.Invert(this.ForeColor);
+            button2.BackColor = Design.Invert(this.ForeColor);
+            button3.BackColor = Design.Invert(this.ForeColor);
+            button4.BackColor = Design.Invert(this.ForeColor);
+            button5.BackColor = Design.Invert(this.ForeColor);
+            button6.BackColor = Design.Invert(this.ForeColor);
         }
 
         private void button7_Click(object sender, EventArgs e)

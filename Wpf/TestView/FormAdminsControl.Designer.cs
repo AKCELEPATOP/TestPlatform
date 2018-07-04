@@ -1,4 +1,6 @@
-﻿namespace TestView
+﻿using TestService;
+
+namespace TestView
 {
     partial class FormAdminsControl
     {
@@ -98,21 +100,24 @@
             // 
             // buttonRemoveAdminStatus
             // 
-            this.buttonRemoveAdminStatus.Location = new System.Drawing.Point(369, 188);
-            this.buttonRemoveAdminStatus.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.buttonRemoveAdminStatus.Name = "buttonRemoveAdminStatus";
-            this.buttonRemoveAdminStatus.Size = new System.Drawing.Size(125, 69);
-            this.buttonRemoveAdminStatus.TabIndex = 7;
-            this.buttonRemoveAdminStatus.Text = "Назначить пользователем";
-            this.buttonRemoveAdminStatus.UseVisualStyleBackColor = true;
-            this.buttonRemoveAdminStatus.Click += new System.EventHandler(this.buttonRemoveAdminStatus_Click);
+            if (ApiClient.Role.Equals(ApplicationRoles.SuperAdmin))
+            {
+                this.buttonRemoveAdminStatus.Location = new System.Drawing.Point(369, 188);
+                this.buttonRemoveAdminStatus.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+                this.buttonRemoveAdminStatus.Name = "buttonRemoveAdminStatus";
+                this.buttonRemoveAdminStatus.Size = new System.Drawing.Size(125, 69);
+                this.buttonRemoveAdminStatus.TabIndex = 7;
+                this.buttonRemoveAdminStatus.Text = "Назначить пользователем";
+                this.buttonRemoveAdminStatus.UseVisualStyleBackColor = true;
+                this.buttonRemoveAdminStatus.Click += new System.EventHandler(this.buttonRemoveAdminStatus_Click);
+                this.Controls.Add(this.buttonRemoveAdminStatus);
+            }
             // 
             // FormAdminsControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(511, 505);
-            this.Controls.Add(this.buttonRemoveAdminStatus);
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.groupBox1);
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);

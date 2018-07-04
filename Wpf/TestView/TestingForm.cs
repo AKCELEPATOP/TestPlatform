@@ -340,7 +340,9 @@ namespace TestView
                 g.FillRectangle(backgroundBrush, e.Bounds);
 
                 SolidBrush foregroundBrush = (selected) ? reportsForegroundBrushSelected : reportsForegroundBrush;
-                g.DrawString(text, new Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize)), foregroundBrush, listBoxQuestions.GetItemRectangle(index).Location);
+                g.DrawString(text, new Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize)), foregroundBrush, 
+                    new PointF( listBoxQuestions.GetItemRectangle(index).Location.X, 
+                    listBoxQuestions.GetItemRectangle(index).Location.Y+Convert.ToInt32(Design.FontSize)-4));
                 e.DrawFocusRectangle();
             }
         }
