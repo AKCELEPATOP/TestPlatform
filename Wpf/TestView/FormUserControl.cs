@@ -75,7 +75,7 @@ namespace TestView
         {
             if (dataGridView1.SelectedRows.Count == 1)
             {
-                if (MessageBox.Show("Удалить запись /n Вместе с пользователем удалится вся его статистика", "Вопрос", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Удалить запись? Вместе с пользователем удалится вся его статистика", "Вопрос", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     string id = Convert.ToString(dataGridView1.SelectedRows[0].Cells[0].Value);
                     try
