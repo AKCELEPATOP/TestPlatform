@@ -33,6 +33,7 @@ namespace TestView
         public TestingForm()
         {
             InitializeComponent();
+            this.TopMost = true;
         }
 
 
