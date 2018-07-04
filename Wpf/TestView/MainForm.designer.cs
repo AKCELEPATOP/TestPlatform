@@ -63,32 +63,39 @@
             // dataGridViewAvailablePatterns
             // 
             this.dataGridViewAvailablePatterns.AllowUserToAddRows = false;
+            this.dataGridViewAvailablePatterns.AllowUserToResizeColumns = false;
+            this.dataGridViewAvailablePatterns.AllowUserToResizeRows = false;
             this.dataGridViewAvailablePatterns.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridViewAvailablePatterns.BackgroundColor = System.Drawing.Color.White;
             this.dataGridViewAvailablePatterns.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewAvailablePatterns.ColumnHeadersVisible = false;
             this.dataGridViewAvailablePatterns.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dataGridViewAvailablePatterns.Location = new System.Drawing.Point(11, 80);
+            this.dataGridViewAvailablePatterns.Location = new System.Drawing.Point(15, 98);
+            this.dataGridViewAvailablePatterns.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridViewAvailablePatterns.MultiSelect = false;
             this.dataGridViewAvailablePatterns.Name = "dataGridViewAvailablePatterns";
             this.dataGridViewAvailablePatterns.RowHeadersVisible = false;
             this.dataGridViewAvailablePatterns.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewAvailablePatterns.Size = new System.Drawing.Size(303, 279);
+            this.dataGridViewAvailablePatterns.Size = new System.Drawing.Size(404, 343);
             this.dataGridViewAvailablePatterns.TabIndex = 0;
             this.dataGridViewAvailablePatterns.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(23, 51);
+            this.label1.Location = new System.Drawing.Point(31, 63);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(116, 13);
+            this.label1.Size = new System.Drawing.Size(151, 17);
             this.label1.TabIndex = 1;
             this.label1.Text = "Доступные шаблоны:";
             // 
             // buttonBeginTest
             // 
-            this.buttonBeginTest.Location = new System.Drawing.Point(77, 365);
+            this.buttonBeginTest.Location = new System.Drawing.Point(103, 449);
+            this.buttonBeginTest.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonBeginTest.Name = "buttonBeginTest";
-            this.buttonBeginTest.Size = new System.Drawing.Size(153, 44);
+            this.buttonBeginTest.Size = new System.Drawing.Size(204, 54);
             this.buttonBeginTest.TabIndex = 10;
             this.buttonBeginTest.Text = "Начать тест";
             this.buttonBeginTest.UseVisualStyleBackColor = true;
@@ -96,9 +103,10 @@
             // 
             // buttonChangeUser
             // 
-            this.buttonChangeUser.Location = new System.Drawing.Point(639, 10);
+            this.buttonChangeUser.Location = new System.Drawing.Point(852, 12);
+            this.buttonChangeUser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonChangeUser.Name = "buttonChangeUser";
-            this.buttonChangeUser.Size = new System.Drawing.Size(94, 35);
+            this.buttonChangeUser.Size = new System.Drawing.Size(125, 43);
             this.buttonChangeUser.TabIndex = 12;
             this.buttonChangeUser.Text = "Сменить";
             this.buttonChangeUser.UseVisualStyleBackColor = true;
@@ -107,26 +115,29 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(301, 21);
+            this.label4.Location = new System.Drawing.Point(451, 26);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(132, 13);
+            this.label4.Size = new System.Drawing.Size(169, 17);
             this.label4.TabIndex = 11;
             this.label4.Text = "Текущий пользователь: ";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(11, 25);
+            this.label6.Location = new System.Drawing.Point(47, 31);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(78, 13);
+            this.label6.Size = new System.Drawing.Size(99, 17);
             this.label6.TabIndex = 17;
             this.label6.Text = "Сменить тему";
             // 
             // buttonChangeColorBack
             // 
-            this.buttonChangeColorBack.Location = new System.Drawing.Point(14, 54);
+            this.buttonChangeColorBack.Location = new System.Drawing.Point(19, 66);
+            this.buttonChangeColorBack.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonChangeColorBack.Name = "buttonChangeColorBack";
-            this.buttonChangeColorBack.Size = new System.Drawing.Size(170, 34);
+            this.buttonChangeColorBack.Size = new System.Drawing.Size(227, 42);
             this.buttonChangeColorBack.TabIndex = 16;
             this.buttonChangeColorBack.Text = "Сменить";
             this.buttonChangeColorBack.UseVisualStyleBackColor = true;
@@ -140,9 +151,11 @@
             this.groupBox2.Controls.Add(this.buttonChangeFont);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.buttonChangeColorBack);
-            this.groupBox2.Location = new System.Drawing.Point(764, 105);
+            this.groupBox2.Location = new System.Drawing.Point(1019, 129);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(194, 254);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Size = new System.Drawing.Size(259, 313);
             this.groupBox2.TabIndex = 18;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Настройка цветов";
@@ -150,9 +163,10 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(16, 188);
+            this.label7.Location = new System.Drawing.Point(47, 233);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(134, 13);
+            this.label7.Size = new System.Drawing.Size(173, 17);
             this.label7.TabIndex = 25;
             this.label7.Text = "Сменить размер шрифта";
             // 
@@ -166,26 +180,29 @@
             "10",
             "12",
             "14"});
-            this.comboBoxFontSize.Location = new System.Drawing.Point(50, 216);
+            this.comboBoxFontSize.Location = new System.Drawing.Point(67, 266);
+            this.comboBoxFontSize.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.comboBoxFontSize.Name = "comboBoxFontSize";
-            this.comboBoxFontSize.Size = new System.Drawing.Size(100, 21);
+            this.comboBoxFontSize.Size = new System.Drawing.Size(132, 24);
             this.comboBoxFontSize.TabIndex = 24;
             this.comboBoxFontSize.SelectedIndexChanged += new System.EventHandler(this.comboBoxFontSize_SelectedIndexChanged);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(11, 105);
+            this.label5.Location = new System.Drawing.Point(47, 130);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(119, 13);
+            this.label5.Size = new System.Drawing.Size(155, 17);
             this.label5.TabIndex = 19;
             this.label5.Text = "Сменить цвет шрифта";
             // 
             // buttonChangeFont
             // 
-            this.buttonChangeFont.Location = new System.Drawing.Point(14, 135);
+            this.buttonChangeFont.Location = new System.Drawing.Point(19, 166);
+            this.buttonChangeFont.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonChangeFont.Name = "buttonChangeFont";
-            this.buttonChangeFont.Size = new System.Drawing.Size(170, 34);
+            this.buttonChangeFont.Size = new System.Drawing.Size(227, 42);
             this.buttonChangeFont.TabIndex = 18;
             this.buttonChangeFont.Text = "Сменить";
             this.buttonChangeFont.UseVisualStyleBackColor = true;
@@ -193,9 +210,10 @@
             // 
             // buttonExit
             // 
-            this.buttonExit.Location = new System.Drawing.Point(861, 399);
+            this.buttonExit.Location = new System.Drawing.Point(1148, 491);
+            this.buttonExit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonExit.Name = "buttonExit";
-            this.buttonExit.Size = new System.Drawing.Size(87, 28);
+            this.buttonExit.Size = new System.Drawing.Size(116, 34);
             this.buttonExit.TabIndex = 19;
             this.buttonExit.Text = "Выход";
             this.buttonExit.UseVisualStyleBackColor = true;
@@ -204,41 +222,49 @@
             // dataGridViewPassedTests
             // 
             this.dataGridViewPassedTests.AllowUserToAddRows = false;
+            this.dataGridViewPassedTests.AllowUserToResizeColumns = false;
+            this.dataGridViewPassedTests.AllowUserToResizeRows = false;
             this.dataGridViewPassedTests.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridViewPassedTests.BackgroundColor = System.Drawing.Color.White;
             this.dataGridViewPassedTests.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewPassedTests.ColumnHeadersVisible = false;
             this.dataGridViewPassedTests.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dataGridViewPassedTests.Location = new System.Drawing.Point(341, 80);
+            this.dataGridViewPassedTests.Location = new System.Drawing.Point(455, 98);
+            this.dataGridViewPassedTests.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridViewPassedTests.MultiSelect = false;
             this.dataGridViewPassedTests.Name = "dataGridViewPassedTests";
             this.dataGridViewPassedTests.RowHeadersVisible = false;
             this.dataGridViewPassedTests.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewPassedTests.Size = new System.Drawing.Size(397, 279);
+            this.dataGridViewPassedTests.Size = new System.Drawing.Size(529, 343);
             this.dataGridViewPassedTests.TabIndex = 23;
             this.dataGridViewPassedTests.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(386, 51);
+            this.label2.Location = new System.Drawing.Point(515, 63);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(107, 13);
+            this.label2.Size = new System.Drawing.Size(139, 17);
             this.label2.TabIndex = 24;
             this.label2.Text = "Пройденные тесты:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(739, 21);
+            this.label3.Location = new System.Drawing.Point(985, 26);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(45, 13);
+            this.label3.Size = new System.Drawing.Size(59, 17);
             this.label3.TabIndex = 26;
             this.label3.Text = "Группа:";
             // 
             // buttonStatistic
             // 
-            this.buttonStatistic.Location = new System.Drawing.Point(369, 365);
+            this.buttonStatistic.Location = new System.Drawing.Point(492, 449);
+            this.buttonStatistic.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonStatistic.Name = "buttonStatistic";
-            this.buttonStatistic.Size = new System.Drawing.Size(153, 44);
+            this.buttonStatistic.Size = new System.Drawing.Size(204, 54);
             this.buttonStatistic.TabIndex = 28;
             this.buttonStatistic.Text = "Общая статистика";
             this.buttonStatistic.UseVisualStyleBackColor = true;
@@ -250,20 +276,21 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.обновитьToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(129, 26);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(148, 28);
             // 
             // обновитьToolStripMenuItem
             // 
             this.обновитьToolStripMenuItem.Name = "обновитьToolStripMenuItem";
-            this.обновитьToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.обновитьToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
             this.обновитьToolStripMenuItem.Text = "Обновить";
             this.обновитьToolStripMenuItem.Click += new System.EventHandler(this.обновитьToolStripMenuItem_Click_1);
             // 
             // SaveToPDF
             // 
-            this.SaveToPDF.Location = new System.Drawing.Point(556, 365);
+            this.SaveToPDF.Location = new System.Drawing.Point(741, 449);
+            this.SaveToPDF.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.SaveToPDF.Name = "SaveToPDF";
-            this.SaveToPDF.Size = new System.Drawing.Size(153, 44);
+            this.SaveToPDF.Size = new System.Drawing.Size(204, 54);
             this.SaveToPDF.TabIndex = 29;
             this.SaveToPDF.Text = "Сохранить PDF";
             this.SaveToPDF.UseVisualStyleBackColor = true;
@@ -272,26 +299,24 @@
             // textBoxCurrentUser
             // 
             this.textBoxCurrentUser.AutoSize = true;
-            this.textBoxCurrentUser.Location = new System.Drawing.Point(522, 21);
-            this.textBoxCurrentUser.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.textBoxCurrentUser.Location = new System.Drawing.Point(696, 26);
             this.textBoxCurrentUser.Name = "textBoxCurrentUser";
-            this.textBoxCurrentUser.Size = new System.Drawing.Size(0, 13);
+            this.textBoxCurrentUser.Size = new System.Drawing.Size(0, 17);
             this.textBoxCurrentUser.TabIndex = 30;
             // 
             // textBoxGroupUser
             // 
             this.textBoxGroupUser.AutoSize = true;
-            this.textBoxGroupUser.Location = new System.Drawing.Point(811, 21);
-            this.textBoxGroupUser.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.textBoxGroupUser.Location = new System.Drawing.Point(1081, 26);
             this.textBoxGroupUser.Name = "textBoxGroupUser";
-            this.textBoxGroupUser.Size = new System.Drawing.Size(0, 13);
+            this.textBoxGroupUser.Size = new System.Drawing.Size(0, 17);
             this.textBoxGroupUser.TabIndex = 31;
             // 
             // FormMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(971, 450);
+            this.ClientSize = new System.Drawing.Size(1295, 554);
             this.Controls.Add(this.textBoxGroupUser);
             this.Controls.Add(this.textBoxCurrentUser);
             this.Controls.Add(this.SaveToPDF);
@@ -306,8 +331,9 @@
             this.Controls.Add(this.buttonBeginTest);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridViewAvailablePatterns);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormMain";
-            this.Padding = new System.Windows.Forms.Padding(20, 60, 20, 20);
+            this.Padding = new System.Windows.Forms.Padding(27, 74, 27, 25);
             this.Text = "Главный экран";
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
