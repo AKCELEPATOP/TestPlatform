@@ -144,6 +144,11 @@ namespace TestView
                 return;
             }
             string[] timestr = maskedTextBox1.Text.ToString().Split(':');
+
+            if (Convert.ToInt32(timestr[1]) >= 60 || Convert.ToInt32(timestr[0]) >= 60) {
+                MessageBox.Show("Формат времени неверный", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             long time = Convert.ToInt32(timestr[0]) * 60 + Convert.ToInt32(timestr[1]);
             if (time < 30)
             {
