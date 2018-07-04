@@ -436,9 +436,10 @@ namespace TestService.Implementations
                     {
                         question.Images[i].Image = Convert.ToBase64String(File.ReadAllBytes(question.Images[i].Image));
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
-                        question.Images[i].Image = ex.Message;
+                        question.Images.RemoveAt(i);
+                        i--;
                     }
                 }
             }
