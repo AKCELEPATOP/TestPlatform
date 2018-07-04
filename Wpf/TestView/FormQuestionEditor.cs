@@ -60,8 +60,8 @@ namespace TestView
                     checkBox4.Checked = question.Answers[3].True;
                     checkBox5.Checked = !question.Active;
                     comboBox1.Text = question.ComplexityName;
-                    var min = (int)question.Time / 60.0;
-                    var sec = question.Time - min;
+                    var min = Math.Floor(question.Time / 60.0);
+                    var sec = question.Time %60;
                     maskedTextBox1.Text = string.Format("{0}:{1}", ((min > 9) ? min.ToString() : string.Format("0{0}", min)), ((sec > 9) ? sec.ToString() : string.Format("0{0}", sec)));
                     answerIds = new List<int>
                     {
@@ -144,6 +144,11 @@ namespace TestView
                 return;
             }
             string[] timestr = maskedTextBox1.Text.ToString().Split(':');
+
+            if (Convert.ToInt32(timestr[1]) >= 60) {
+                MessageBox.Show("Формат времени неверный", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             long time = Convert.ToInt32(timestr[0]) * 60 + Convert.ToInt32(timestr[1]);
             if (time < 30)
             {
