@@ -53,10 +53,9 @@
             // 
             // back
             // 
-            this.back.Location = new System.Drawing.Point(183, 549);
-            this.back.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.back.Location = new System.Drawing.Point(111, 447);
             this.back.Name = "back";
-            this.back.Size = new System.Drawing.Size(179, 33);
+            this.back.Size = new System.Drawing.Size(172, 38);
             this.back.TabIndex = 10;
             this.back.Text = "Готово";
             this.back.UseVisualStyleBackColor = true;

@@ -227,7 +227,7 @@ namespace TestView
                 {
                     Size = new Size(image.Width, image.Height)
                 };
-                appendixForm.Show();
+                appendixForm.ShowDialog();
             }
         }
 
@@ -339,10 +339,8 @@ namespace TestView
                     backgroundBrush = reportsBackgroundBrushNonActive;
                 g.FillRectangle(backgroundBrush, e.Bounds);
 
-
                 SolidBrush foregroundBrush = (selected) ? reportsForegroundBrushSelected : reportsForegroundBrush;
-                g.DrawString(text, e.Font, foregroundBrush, listBoxQuestions.GetItemRectangle(index).Location);
-
+                g.DrawString(text, new Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize)), foregroundBrush, listBoxQuestions.GetItemRectangle(index).Location);
                 e.DrawFocusRectangle();
             }
         }

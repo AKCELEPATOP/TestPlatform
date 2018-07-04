@@ -266,7 +266,7 @@
             this.listBoxQuestions.Location = new System.Drawing.Point(751, 30);
             this.listBoxQuestions.Margin = new System.Windows.Forms.Padding(2);
             this.listBoxQuestions.Name = "listBoxQuestions";
-            this.listBoxQuestions.Size = new System.Drawing.Size(230, 340);
+            this.listBoxQuestions.Size = new System.Drawing.Size(230, 356);
             this.listBoxQuestions.TabIndex = 11;
             this.listBoxQuestions.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.listBoxQuestions_DrawItem);
             this.listBoxQuestions.SelectedIndexChanged += new System.EventHandler(this.listBoxQuestions_SelectedIndexChanged);
