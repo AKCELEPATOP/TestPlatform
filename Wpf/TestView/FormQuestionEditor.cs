@@ -36,6 +36,13 @@ namespace TestView
 
         public async void Initialize()
         {
+            string[] source = new string[] //пофиксить
+           {
+            QuestionComplexity.Easy.ToString(), QuestionComplexity.Middle.ToString(), QuestionComplexity.Difficult.ToString()
+           };
+            comboBox1.Items.AddRange(source);
+            comboBox1.Text = QuestionComplexity.Easy.ToString();
+
             if (id.HasValue)
             {
                 try
@@ -51,6 +58,7 @@ namespace TestView
                     checkBox3.Checked = question.Answers[2].True;
                     checkBox4.Checked = question.Answers[3].True;
                     checkBox5.Checked = !question.Active;
+                    comboBox1.Text = question.ComplexityName;
                     answerIds = new List<int>
                     {
                         question.Answers[0].Id,
@@ -97,12 +105,6 @@ namespace TestView
 
             maskedTextBox1.Mask = "00:00";
             maskedTextBox1.Text = "02:00";
-            string[] source = new string[] //пофиксить
-            {
-            QuestionComplexity.Easy.ToString(), QuestionComplexity.Middle.ToString(), QuestionComplexity.Difficult.ToString()
-            };
-            comboBox1.Items.AddRange(source);
-            comboBox1.Text = QuestionComplexity.Easy.ToString();
             //   comboBox1.e
         }
 

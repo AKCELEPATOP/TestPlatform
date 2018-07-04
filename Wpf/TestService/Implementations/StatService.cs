@@ -67,7 +67,7 @@ namespace TestService.Implementations
             return new StatChartViewModel
             {
                 Results = await context.Stats.Where(rec => rec.UserId == model.UserId)
-                .Reverse()
+                .OrderByDescending(rec=>rec.DateCreate)
                 .Take(model.Take)
                 .Select(rec => (double)rec.Right / rec.Total)
                 .ToListAsync()

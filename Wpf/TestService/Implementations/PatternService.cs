@@ -90,7 +90,7 @@ namespace TestService.Implementations
                 catch (Exception ex)
                 {
                     transaction.Rollback();
-                    throw;
+                    throw ex;
                 }
             }
         }
@@ -345,7 +345,7 @@ namespace TestService.Implementations
             foreach (var patternCategory in model.PatternCategories)
             {
                 //добавление сложных
-                int countComplex = patternCategory.Complex - model.Questions.Where(rec => rec.Complexity.Equals(QuestionComplexity.Difficult)).Count();
+                int countComplex = patternCategory.Complex - model.Questions.Where(rec => rec.Complexity.Equals(QuestionComplexity.Difficult)).Count() + 1;
                 if (countComplex > 0)
                 {
                     result.Questions.AddRange(context.Questions.Where(rec => rec.CategoryId == patternCategory.CategoryId &&
@@ -370,7 +370,7 @@ namespace TestService.Implementations
                         }));
                 }
                 //добавление средних
-                int countMiddle = patternCategory.Middle - model.Questions.Where(rec => rec.Complexity.Equals(QuestionComplexity.Middle)).Count();
+                int countMiddle = patternCategory.Middle - model.Questions.Where(rec => rec.Complexity.Equals(QuestionComplexity.Middle)).Count() + 1;
                 if (countMiddle > 0)
                 {
                     result.Questions.AddRange(context.Questions.Where(rec => rec.CategoryId == patternCategory.CategoryId &&
@@ -395,7 +395,7 @@ namespace TestService.Implementations
                         }));
                 }
                 //добавление легких
-                int countEasy = patternCategory.Easy - model.Questions.Where(rec => rec.Complexity.Equals(QuestionComplexity.Easy)).Count();
+                int countEasy = patternCategory.Easy - model.Questions.Where(rec => rec.Complexity.Equals(QuestionComplexity.Easy)).Count() + 1;
                 if (countEasy > 0)
                 {
                     result.Questions.AddRange(context.Questions.Where(rec => rec.CategoryId == patternCategory.CategoryId &&
