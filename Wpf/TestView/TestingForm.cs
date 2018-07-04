@@ -139,6 +139,7 @@ namespace TestView
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             this.FormClosing -= Forml_FormClosing;
+            DisposeTimer();
             Close();
         }
 
