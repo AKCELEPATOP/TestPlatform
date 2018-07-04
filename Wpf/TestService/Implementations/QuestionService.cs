@@ -84,7 +84,7 @@ namespace TestService.Implementations
                                     await context.SaveChangesAsync();
                                 }
                             }
-                            catch(Exception ex)
+                            catch (Exception ex)
                             {
                                 throw ex;
                             }
@@ -136,7 +136,7 @@ namespace TestService.Implementations
                     throw;
                 }
             }
-            for(int i = 0; i < pathsToDelete.Count; i++)
+            for (int i = 0; i < pathsToDelete.Count; i++)
             {
                 System.IO.File.Delete(pathsToDelete[i]);
             }
@@ -144,7 +144,7 @@ namespace TestService.Implementations
 
         public async Task<QuestionViewModel> GetElement(int id)
         {
-            var result = await context.Questions.Where(rec => rec.Id == id).Select(rec=>new QuestionViewModel
+            var result = await context.Questions.Where(rec => rec.Id == id).Select(rec => new QuestionViewModel
             {
                 Id = rec.Id,
                 Text = rec.Text,
@@ -172,16 +172,22 @@ namespace TestService.Implementations
 
                 var list = await context.Attachments.Where(rec => rec.QuestionId == result.Id).ToListAsync();
 
+
                 foreach (var el in list)
                 {
-                    byte[] bytes = System.IO.File.ReadAllBytes(el.Path);
-
-                    attachments.Add(new AttachmentViewModel
+                    try
                     {
-                        Image = Convert.ToBase64String(bytes),
-                        Id = el.Id
-                    });
+                        byte[] bytes = System.IO.File.ReadAllBytes(el.Path);
+
+                        attachments.Add(new AttachmentViewModel
+                        {
+                            Image = Convert.ToBase64String(bytes),
+                            Id = el.Id
+                        });
+                    }
+                    catch (Exception){}
                 }
+
                 if (attachments.Count > 0)
                 {
                     result.Images = attachments;
@@ -275,7 +281,7 @@ namespace TestService.Implementations
                             }
                         }
                         var removeAttachments = context.Attachments.Where(rec => rec.QuestionId == model.Id && !attachIds.Contains(rec.Id));
-                        foreach(var el in removeAttachments)
+                        foreach (var el in removeAttachments)
                         {
                             pathsToDelete.Add(el.Path);
                         }
@@ -323,7 +329,7 @@ namespace TestService.Implementations
                     transaction.Rollback();
                     throw;
                 }
-                foreach(var path in pathsToDelete)
+                foreach (var path in pathsToDelete)
                 {
                     System.IO.File.Delete(path);
                 }
