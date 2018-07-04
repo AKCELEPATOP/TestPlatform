@@ -186,9 +186,9 @@
             // 
             // nextQuestion
             // 
-            this.nextQuestion.Location = new System.Drawing.Point(324, 356);
+            this.nextQuestion.Location = new System.Drawing.Point(300, 349);
             this.nextQuestion.Name = "nextQuestion";
-            this.nextQuestion.Size = new System.Drawing.Size(134, 27);
+            this.nextQuestion.Size = new System.Drawing.Size(198, 41);
             this.nextQuestion.TabIndex = 5;
             this.nextQuestion.Text = "Следующий вопрос";
             this.nextQuestion.UseVisualStyleBackColor = true;
@@ -208,7 +208,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(509, 0);
+            this.label1.Location = new System.Drawing.Point(375, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(66, 13);
             this.label1.TabIndex = 3;
@@ -216,9 +216,9 @@
             // 
             // endTest
             // 
-            this.endTest.Location = new System.Drawing.Point(583, 356);
+            this.endTest.Location = new System.Drawing.Point(542, 349);
             this.endTest.Name = "endTest";
-            this.endTest.Size = new System.Drawing.Size(134, 27);
+            this.endTest.Size = new System.Drawing.Size(198, 41);
             this.endTest.TabIndex = 7;
             this.endTest.Text = "Завершить тест";
             this.endTest.UseVisualStyleBackColor = true;
@@ -236,9 +236,9 @@
             // appendixForQestion
             // 
             this.appendixForQestion.Enabled = false;
-            this.appendixForQestion.Location = new System.Drawing.Point(80, 355);
+            this.appendixForQestion.Location = new System.Drawing.Point(56, 349);
             this.appendixForQestion.Name = "appendixForQestion";
-            this.appendixForQestion.Size = new System.Drawing.Size(134, 28);
+            this.appendixForQestion.Size = new System.Drawing.Size(198, 41);
             this.appendixForQestion.TabIndex = 9;
             this.appendixForQestion.Text = "Приложения к вопросу";
             this.appendixForQestion.UseVisualStyleBackColor = true;
@@ -264,7 +264,7 @@
             this.listBoxQuestions.FormattingEnabled = true;
             this.listBoxQuestions.ItemHeight = 16;
             this.listBoxQuestions.Location = new System.Drawing.Point(751, 30);
-            this.listBoxQuestions.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listBoxQuestions.Margin = new System.Windows.Forms.Padding(2);
             this.listBoxQuestions.Name = "listBoxQuestions";
             this.listBoxQuestions.Size = new System.Drawing.Size(230, 340);
             this.listBoxQuestions.TabIndex = 11;
@@ -289,11 +289,11 @@
             this.Controls.Add(this.textBoxTime);
             this.Controls.Add(this.listBoxQuestions);
             this.Controls.Add(this.appendixForQestion);
+            this.Controls.Add(this.endTest);
+            this.Controls.Add(this.nextQuestion);
             this.Controls.Add(this.labelTime);
             this.Controls.Add(this.answerGroupBoxCheckButtons);
-            this.Controls.Add(this.endTest);
             this.Controls.Add(this.questionGroupBox);
-            this.Controls.Add(this.nextQuestion);
             this.Name = "TestingForm";
             this.Padding = new System.Windows.Forms.Padding(15, 49, 15, 16);
             this.Text = "Теститрование";

@@ -119,7 +119,9 @@ namespace TestView
                 colorBack = cd.Color;
             }
             Design.SetDefaultBackColor(cd.Color);
+            this.BackColor = cd.Color;
         }
+
         private void buttonChangeFont_Click(object sender, EventArgs e)
         {
             ColorDialog cd = new ColorDialog();
@@ -128,6 +130,15 @@ namespace TestView
                 colorFont = cd.Color;
             }
             Design.SetDefaultFontColor(cd.Color);
+            this.ForeColor = cd.Color;
+            buttonBeginTest.BackColor = Design.Invert(this.ForeColor);
+            buttonChangeColorBack.BackColor = Design.Invert(this.ForeColor);
+            buttonChangeFont.BackColor = Design.Invert(this.ForeColor);
+            buttonChangeUser.BackColor = Design.Invert(this.ForeColor);
+            buttonExit.BackColor = Design.Invert(this.ForeColor);
+            buttonStatistic.BackColor = Design.Invert(this.ForeColor);
+            comboBoxFontSize.BackColor = Design.Invert(this.ForeColor);
+            SaveToPDF.BackColor = Design.Invert(this.ForeColor);
         }
         private async void buttonSaveToPdf_Click(object sender, EventArgs e)
         {

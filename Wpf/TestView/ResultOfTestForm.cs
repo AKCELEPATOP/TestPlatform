@@ -20,7 +20,8 @@ namespace TestView
         {
             this.result = result;
             InitializeComponent();
-
+            back.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
+            dataGridView1.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
             Initialize();
         }
 
@@ -68,8 +69,6 @@ namespace TestView
         private void Form_Load(object sender, EventArgs e)
         {
             Initialize();
-            back.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
-            dataGridView1.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
         }
     }
 }

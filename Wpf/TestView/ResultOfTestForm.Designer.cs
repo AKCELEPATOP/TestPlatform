@@ -52,9 +52,9 @@
             // 
             // back
             // 
-            this.back.Location = new System.Drawing.Point(137, 446);
+            this.back.Location = new System.Drawing.Point(111, 447);
             this.back.Name = "back";
-            this.back.Size = new System.Drawing.Size(134, 27);
+            this.back.Size = new System.Drawing.Size(172, 38);
             this.back.TabIndex = 10;
             this.back.Text = "Готово";
             this.back.UseVisualStyleBackColor = true;
@@ -88,14 +88,14 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(45, 101);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(311, 340);
             this.dataGridView1.TabIndex = 12;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             // 
             // labelMark
             // 
@@ -124,11 +124,11 @@
             this.label6.TabIndex = 15;
             // 
             // FormResultOfTest
-            //
+            // 
             this.AcceptButton = this.back;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(397, 486);
+            this.ClientSize = new System.Drawing.Size(397, 494);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.labelMark);
