@@ -16,12 +16,8 @@ namespace TestView
     public partial class StatisticForm : Form
     {
 
-        private StatChartViewModel stat;
         private  Series series1;
-        public StatisticForm()
-        {
-            InitializeComponent();
-        }
+        public StatisticForm() => InitializeComponent();
 
         private async void Initialize()
         {
@@ -29,7 +25,12 @@ namespace TestView
 
             StatChartViewModel stat1;
 
-
+            List<SeriesChartType> list = new List<SeriesChartType>() {
+                SeriesChartType.Column,SeriesChartType.FastLine,SeriesChartType.Line,SeriesChartType.StepLine, SeriesChartType.Area, SeriesChartType.Candlestick
+            };
+            series1 = new Series("График");
+            series1.ChartType = SeriesChartType.Column;
+            comboBox1.DataSource = list;
             stat1 = await ApiClient.PostRequestData<GetListModel, StatChartViewModel>("api/Stat/GetUserChart", model);
             DrawOs(stat1);
         }
@@ -55,9 +56,8 @@ namespace TestView
 
                 float wX;
                 float hX;
-                double xF, yF;
                 int step;
-
+                double yF;
                 wX = chart1.Width;  //Значение ширины
                 hX = chart1.Height; //Значение высоты
 
@@ -72,16 +72,17 @@ namespace TestView
                 //Создаем и настраиваем набор точек для рисования графика, в том
                 //не забыв указать имя области на которой хотим отобразить этот
                 //набор точек.
-                
-                series1 = new Series("График");
-                series1.ChartType = SeriesChartType.Column;
+
+               
                 series1.ChartArea = "График";
+                chart1.ChartAreas[0].AxisY.Maximum = 100;
+                chart1.ChartAreas[0].AxisY.Interval = 5;
 
                 for (step = 0; step < stat.Results.Count; step++)
                 {
 
                     double tmp = stat.Results[step];
-                    yF = tmp;
+                    yF = tmp*100;
  
                     series1.Points.AddXY(stat.Dates[step],yF);
                 }
@@ -106,9 +107,11 @@ namespace TestView
             
         }
 
-       
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            series1.ChartType =(SeriesChartType) comboBox1.SelectedValue;
+        }
 
-       
         private void Form_Load(object sender, EventArgs e)
         {
             Initialize();

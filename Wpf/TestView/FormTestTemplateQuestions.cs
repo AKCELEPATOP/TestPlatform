@@ -173,6 +173,13 @@ namespace TestView
             dataGridViewQuestions.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
             dataGridViewTestQuestions.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
             обновитьToolStripMenuItem.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
+            
+            buttonAdd.BackColor = Design.Invert(this.ForeColor);
+            buttonAddAll.BackColor = Design.Invert(this.ForeColor);
+            buttonCancel.BackColor = Design.Invert(this.ForeColor);
+            buttonDelAll.BackColor = Design.Invert(this.ForeColor);
+            buttonDel.BackColor = Design.Invert(this.ForeColor);
+            buttonSave.BackColor = Design.Invert(this.ForeColor);
         }
 
         private async void dataGridViewCategories_CellContentClick(object sender, DataGridViewCellEventArgs e)

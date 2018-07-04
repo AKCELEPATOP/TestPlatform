@@ -25,6 +25,9 @@ namespace TestView
             button2.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
             label1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
             textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+
+            button1.BackColor = Design.Invert(this.ForeColor);
+            button2.BackColor = Design.Invert(this.ForeColor);
         }
 
         private async void Initialize() {

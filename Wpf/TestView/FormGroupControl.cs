@@ -112,6 +112,10 @@ namespace TestView
             contextMenuStrip1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
             dataGridView1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
             обновитьToolStripMenuItem.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+
+            button1.BackColor = Design.Invert(this.ForeColor);
+            button5.BackColor = Design.Invert(this.ForeColor);
+            button7.BackColor = Design.Invert(this.ForeColor);
         }
     }
 }

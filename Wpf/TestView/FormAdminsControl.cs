@@ -17,6 +17,7 @@ namespace TestView
         public FormAdminsControl()
         {
             InitializeComponent();
+           
             Initialize();           
         }
         private void Initialize()
@@ -49,6 +50,15 @@ namespace TestView
         private void Form_Load(object sender, EventArgs e)
         {
             Initialize();
+            buttonDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            buttonRemoveAdminStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            contextMenuStrip1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            dataGridView1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            обновитьToolStripMenuItem.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+
+            buttonDelete.BackColor = Design.Invert(this.ForeColor);
+            buttonRemoveAdminStatus.BackColor = Design.Invert(this.ForeColor);
         }
         // ПКМ -> Обновить
         private void MouseDown_Form(object sender, MouseEventArgs e)

@@ -197,6 +197,9 @@ namespace TestView
             textBoxFIO.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
             textBoxPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
             textBoxUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
+
+            buttonCancel.BackColor = Design.Invert(this.ForeColor);
+            buttonSave.BackColor = Design.Invert(this.ForeColor);
         }
     }
 }

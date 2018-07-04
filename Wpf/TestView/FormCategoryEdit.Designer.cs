@@ -37,9 +37,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(16, 51);
+            this.button1.Location = new System.Drawing.Point(16, 79);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(110, 36);
             this.button1.TabIndex = 0;
             this.button1.Text = "Сохранить";
             this.button1.UseVisualStyleBackColor = true;
@@ -47,9 +47,9 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(203, 51);
+            this.button2.Location = new System.Drawing.Point(174, 79);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(110, 36);
             this.button2.TabIndex = 1;
             this.button2.Text = "Отмена";
             this.button2.UseVisualStyleBackColor = true;
@@ -67,15 +67,15 @@
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(76, 15);
+            this.textBox1.MaxLength = 16;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(208, 20);
             this.textBox1.TabIndex = 3;
-            this.textBox1.MaxLength = 16;
             // 
             // checkBoxNotActive
             // 
             this.checkBoxNotActive.AutoSize = true;
-            this.checkBoxNotActive.Location = new System.Drawing.Point(97, 55);
+            this.checkBoxNotActive.Location = new System.Drawing.Point(18, 41);
             this.checkBoxNotActive.Name = "checkBoxNotActive";
             this.checkBoxNotActive.Size = new System.Drawing.Size(88, 17);
             this.checkBoxNotActive.TabIndex = 4;
@@ -87,7 +87,7 @@
             this.AcceptButton = this.button1;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(296, 96);
+            this.ClientSize = new System.Drawing.Size(296, 128);
             this.Controls.Add(this.checkBoxNotActive);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);

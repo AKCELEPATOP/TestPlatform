@@ -466,6 +466,15 @@ namespace TestView
             textBoxEasy.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
             textBoxMid.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
             обновитьToolStripMenuItem.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
+
+            button1.BackColor = Design.Invert(this.ForeColor);
+            button2.BackColor = Design.Invert(this.ForeColor);
+            button3.BackColor = Design.Invert(this.ForeColor);
+            button4.BackColor = Design.Invert(this.ForeColor);
+            button5.BackColor = Design.Invert(this.ForeColor);
+            button6.BackColor = Design.Invert(this.ForeColor);
+            button7.BackColor = Design.Invert(this.ForeColor);
+            comboBox1.BackColor = Design.Invert(this.ForeColor);
         }
     }
 }

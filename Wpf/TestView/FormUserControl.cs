@@ -22,7 +22,8 @@ namespace TestView
             InitializeComponent();
             this.call = call;
         }
-        private async void Initialize() {
+        private async void Initialize()
+        {
             try
             {
                 List<UserViewModel> list = await ApiClient.GetRequestData<List<UserViewModel>>("api/User/GetList");
@@ -84,7 +85,7 @@ namespace TestView
                         MessageBox.Show("Запись удалена. Обновите список", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Initialize();
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
                         while (ex.InnerException != null)
                         {
@@ -132,6 +133,12 @@ namespace TestView
             dataGridView1.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
             groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
             обновитьToolStripMenuItem.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
+
+            button2.BackColor = Design.Invert(this.ForeColor);
+            button3.BackColor = Design.Invert(this.ForeColor);
+            button4.BackColor = Design.Invert(this.ForeColor);
+            button5.BackColor = Design.Invert(this.ForeColor);
+            buttonSetAdmin.BackColor = Design.Invert(this.ForeColor);
         }
 
         private async void buttonSetAdmin_Click(object sender, EventArgs e)
@@ -144,7 +151,7 @@ namespace TestView
                     MessageBox.Show("Пользователю выданы права админа", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Initialize();
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     while (ex.InnerException != null)
                     {
