@@ -15,38 +15,14 @@ namespace TestView
     public partial class StatisticForm : Form
     {
 
-        public StatChartViewModel stat;
 
         public StatisticForm()
         {
             InitializeComponent();
-            Initialize();
         }
 
-        private async void Initialize()
+        private void Initialize()
         {
-            try
-            {
-                var model = new GetListModel { Take = 50 };
-                // Переделать или удалить
-                stat = await ApiClient.PostRequestData<GetListModel, StatChartViewModel>("api/Stat/GetUserChart", model);
-                if (stat != null)
-                {
-                    dataGridView1.DataSource = stat;
-                    dataGridView1.Columns[0].Visible = false;
-                    dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                }
-            }
-
-            catch (Exception ex)
-            {
-                while (ex.InnerException != null)
-                {
-                    ex = ex.InnerException;
-                }
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
             DrawOs();
         }
 
@@ -56,8 +32,13 @@ namespace TestView
         public int centrX, centrY;
         public int x, y;
         public int funkcii;
-        public void DrawOs()
+        public async void DrawOs()
         {
+
+            var model = new GetListModel { Take = 50 };
+            StatChartViewModel stat =
+                        await ApiClient.PostRequestData<GetListModel, StatChartViewModel>("api/Stat/GetUserChart", model);
+
             float wX;
             float hX;
             double xF, yF;
@@ -88,7 +69,7 @@ namespace TestView
                     {
                         stat.Results.RemoveRange(0, stat.Results.Count - 50);
                     }*/
-                    for (step = 0; step <= stat.Results.Count; step++)
+                    for (step = 0; step < stat.Results.Count; step++)
                     {
                         xF = (step * 25) + (int)(wX / 2);
                         double tmp = stat.Results[step];
@@ -103,6 +84,7 @@ namespace TestView
             {
                 MessageBox.Show("Произошла ошибка при загрузке графика Ошибка:"+ex.Message, "Ошибка",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
             }
 
 
@@ -111,30 +93,31 @@ namespace TestView
 
         private async void button1_Click(object sender, EventArgs e)
         {
-            var model = new GetListModel { };
-
+            var model = new GetListModel { Take = 50 };
             StatChartViewModel stat =
                         await ApiClient.PostRequestData<GetListModel, StatChartViewModel>("api/Stat/GetUserChart", model);
             StatViewModel result;
             try
             {
                 result = await ApiClient.GetRequestData<StatViewModel>("api/Stat/GetUserChartLast/" + (stat.Results.Count-1).ToString());
-
+                
                 FormResultOfTest resultOfLastTest = new FormResultOfTest(result);
+                this.Hide();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Произошла ошибка загрузки данных"+'\n'+"Ошибка: "+ex.Message,"Ошибка",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
             }
         }
+
+
 
         private void Form_Load(object sender, EventArgs e)
         {
             Initialize();
             back.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
-            button1.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
-            dataGridView1.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
         }
 
         private void back_Click(object sender, EventArgs e)

@@ -64,7 +64,7 @@ namespace TestView
                 Testing.Id = Convert.ToInt32(dataGridViewAvailablePatterns.SelectedRows[0].Cells[0].Value);
                 Design.SetBackColor(Testing);
                 Design.SetFontColor(Testing);
-                Testing.Show();
+                Testing.ShowDialog();
             }
         }
 
@@ -94,7 +94,7 @@ namespace TestView
             StatisticForm statisticForm = new StatisticForm();
             Design.SetBackColor(statisticForm);
             Design.SetFontColor(statisticForm);
-            statisticForm.Show();
+            statisticForm.ShowDialog();
         }
 
         // ПКМ -> Обновить

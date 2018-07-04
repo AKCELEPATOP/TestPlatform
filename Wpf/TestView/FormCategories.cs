@@ -1,7 +1,8 @@
-﻿ 
+﻿
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TestService.ViewModels;
@@ -10,6 +11,8 @@ namespace TestView
 {
     public partial class FormCategories : Form
     {
+        private int currentCategory = 0;
+
         public FormCategories()
         {
             InitializeComponent();
@@ -41,6 +44,14 @@ namespace TestView
                             dataGridView2.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                         }
                     }
+                    if (list.Count > 0)
+                    {
+                        var row = dataGridView1.Rows.Cast<DataGridViewRow>().FirstOrDefault(r => r.Cells[0].Value.Equals(currentCategory));
+                        if (row != null)
+                        {
+                            dataGridView1.Rows[row.Index].Selected = true;
+                        }
+                    }
                 }
 
             }
@@ -58,8 +69,8 @@ namespace TestView
         {
             if (dataGridView1.SelectedRows.Count == 1)
             {
-                int Id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
-                List<QuestionViewModel> list = await ApiClient.GetRequestData<List<QuestionViewModel>>("api/Category/GetListQuestions/" + Id);
+                currentCategory = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
+                List<QuestionViewModel> list = await ApiClient.GetRequestData<List<QuestionViewModel>>("api/Category/GetListQuestions/" + currentCategory);
                 if (list != null)
                 {
                     dataGridView2.DataSource = list;
