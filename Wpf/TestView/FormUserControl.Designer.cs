@@ -49,9 +49,9 @@ namespace TestView
             // 
             this.groupBox1.Controls.Add(this.dataGridView1);
             this.groupBox1.Location = new System.Drawing.Point(21, 18);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(422, 470);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
@@ -59,12 +59,15 @@ namespace TestView
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToResizeColumns = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.ColumnHeadersVisible = false;
             this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridView1.Location = new System.Drawing.Point(9, 22);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -75,7 +78,7 @@ namespace TestView
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(451, 41);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(100, 28);
             this.button2.TabIndex = 4;
@@ -86,7 +89,7 @@ namespace TestView
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(451, 78);
-            this.button3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button3.Margin = new System.Windows.Forms.Padding(4);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(100, 28);
             this.button3.TabIndex = 5;
@@ -97,7 +100,7 @@ namespace TestView
             // button4
             // 
             this.button4.Location = new System.Drawing.Point(451, 114);
-            this.button4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button4.Margin = new System.Windows.Forms.Padding(4);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(100, 28);
             this.button4.TabIndex = 6;
@@ -108,7 +111,7 @@ namespace TestView
             // button5
             // 
             this.button5.Location = new System.Drawing.Point(21, 496);
-            this.button5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button5.Margin = new System.Windows.Forms.Padding(4);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(177, 46);
             this.button5.TabIndex = 7;
@@ -133,7 +136,7 @@ namespace TestView
             // buttonSetAdmin
             // 
             this.buttonSetAdmin.Location = new System.Drawing.Point(451, 150);
-            this.buttonSetAdmin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonSetAdmin.Margin = new System.Windows.Forms.Padding(4);
             this.buttonSetAdmin.Name = "buttonSetAdmin";
             this.buttonSetAdmin.Size = new System.Drawing.Size(100, 44);
             this.buttonSetAdmin.TabIndex = 8;
@@ -152,7 +155,7 @@ namespace TestView
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormUserControl";
             this.Padding = new System.Windows.Forms.Padding(20, 74, 20, 20);
             this.Text = "Пользователи";

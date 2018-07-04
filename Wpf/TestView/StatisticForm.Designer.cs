@@ -38,7 +38,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Location = new System.Drawing.Point(15, 94);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(565, 396);
             this.pictureBox1.TabIndex = 2;
@@ -56,8 +56,8 @@
             // 
             // back
             // 
-            this.back.Location = new System.Drawing.Point(175, 514);
-            this.back.Margin = new System.Windows.Forms.Padding(4);
+            this.back.Location = new System.Drawing.Point(268, 506);
+            this.back.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.back.Name = "back";
             this.back.Size = new System.Drawing.Size(179, 33);
             this.back.TabIndex = 10;

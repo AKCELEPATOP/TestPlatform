@@ -71,9 +71,11 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(13, 254);
+            this.groupBox1.Location = new System.Drawing.Point(17, 313);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(346, 186);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Size = new System.Drawing.Size(461, 229);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Соотношение сложности вопросов";
@@ -81,120 +83,132 @@
             // textBoxCount
             // 
             this.textBoxCount.AutoSize = true;
-            this.textBoxCount.Location = new System.Drawing.Point(306, 32);
-            this.textBoxCount.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.textBoxCount.Location = new System.Drawing.Point(408, 39);
             this.textBoxCount.Name = "textBoxCount";
-            this.textBoxCount.Size = new System.Drawing.Size(13, 13);
+            this.textBoxCount.Size = new System.Drawing.Size(16, 17);
             this.textBoxCount.TabIndex = 22;
             this.textBoxCount.Text = "0";
-            
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(191, 32);
+            this.label8.Location = new System.Drawing.Point(255, 39);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(117, 13);
+            this.label8.Size = new System.Drawing.Size(151, 17);
             this.label8.TabIndex = 21;
             this.label8.Text = "Количество вопросов";
             // 
             // textBoxDif
             // 
-            this.textBoxDif.Location = new System.Drawing.Point(68, 132);
+            this.textBoxDif.Location = new System.Drawing.Point(91, 162);
+            this.textBoxDif.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxDif.MaxLength = 16;
             this.textBoxDif.Name = "textBoxDif";
-            this.textBoxDif.Size = new System.Drawing.Size(85, 20);
+            this.textBoxDif.Size = new System.Drawing.Size(112, 22);
             this.textBoxDif.TabIndex = 12;
             this.textBoxDif.Text = "0";
             this.textBoxDif.TextChanged += new System.EventHandler(this.textBoxDif_TextChanged);
-            this.textBoxDif.MaxLength = 4;
             // 
             // textBoxMid
             // 
-            this.textBoxMid.Location = new System.Drawing.Point(68, 81);
+            this.textBoxMid.Location = new System.Drawing.Point(91, 100);
+            this.textBoxMid.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxMid.MaxLength = 4;
             this.textBoxMid.Name = "textBoxMid";
-            this.textBoxMid.Size = new System.Drawing.Size(85, 20);
+            this.textBoxMid.Size = new System.Drawing.Size(112, 22);
             this.textBoxMid.TabIndex = 11;
             this.textBoxMid.Text = "0";
             this.textBoxMid.TextChanged += new System.EventHandler(this.textBoxMid_TextChanged);
-            this.textBoxMid.MaxLength = 4;
             // 
             // textBoxEasy
             // 
-            this.textBoxEasy.Location = new System.Drawing.Point(68, 30);
+            this.textBoxEasy.Location = new System.Drawing.Point(91, 37);
+            this.textBoxEasy.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxEasy.MaxLength = 4;
             this.textBoxEasy.Name = "textBoxEasy";
-            this.textBoxEasy.Size = new System.Drawing.Size(85, 20);
+            this.textBoxEasy.Size = new System.Drawing.Size(112, 22);
             this.textBoxEasy.TabIndex = 10;
             this.textBoxEasy.Text = "0";
             this.textBoxEasy.TextChanged += new System.EventHandler(this.textBoxEasy_TextChanged);
-            this.textBoxEasy.MaxLength = 4;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(8, 132);
+            this.label3.Location = new System.Drawing.Point(11, 162);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(54, 13);
+            this.label3.Size = new System.Drawing.Size(68, 17);
             this.label3.TabIndex = 6;
             this.label3.Text = "Сложные";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(8, 81);
+            this.label2.Location = new System.Drawing.Point(11, 100);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(50, 13);
+            this.label2.Size = new System.Drawing.Size(65, 17);
             this.label2.TabIndex = 5;
             this.label2.Text = "Средние";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 30);
+            this.label1.Location = new System.Drawing.Point(8, 37);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(52, 13);
+            this.label1.Size = new System.Drawing.Size(66, 17);
             this.label1.TabIndex = 4;
             this.label1.Text = "Простые";
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToResizeColumns = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridView1.EnableHeadersVisualStyles = false;
-            this.dataGridView1.Location = new System.Drawing.Point(13, 74);
+            this.dataGridView1.Location = new System.Drawing.Point(17, 91);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(240, 174);
+            this.dataGridView1.Size = new System.Drawing.Size(320, 214);
             this.dataGridView1.TabIndex = 5;
             this.dataGridView1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             // 
             // dataGridView2
             // 
+            this.dataGridView2.AllowUserToAddRows = false;
+            this.dataGridView2.AllowUserToResizeColumns = false;
+            this.dataGridView2.AllowUserToResizeRows = false;
+            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridView2.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridView2.EnableHeadersVisualStyles = false;
-            this.dataGridView2.Location = new System.Drawing.Point(316, 74);
+            this.dataGridView2.Location = new System.Drawing.Point(421, 91);
+            this.dataGridView2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataGridView2.MultiSelect = false;
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersVisible = false;
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView2.Size = new System.Drawing.Size(240, 174);
+            this.dataGridView2.Size = new System.Drawing.Size(320, 214);
             this.dataGridView2.TabIndex = 6;
             this.dataGridView2.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             this.dataGridView2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
-            this.dataGridView2.AllowUserToAddRows = false;
-            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(262, 80);
+            this.button1.Location = new System.Drawing.Point(349, 98);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(43, 31);
+            this.button1.Size = new System.Drawing.Size(57, 38);
             this.button1.TabIndex = 7;
             this.button1.Text = ">";
             this.button1.UseVisualStyleBackColor = true;
@@ -202,9 +216,10 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(262, 208);
+            this.button2.Location = new System.Drawing.Point(349, 256);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(43, 31);
+            this.button2.Size = new System.Drawing.Size(57, 38);
             this.button2.TabIndex = 8;
             this.button2.Text = "<<";
             this.button2.UseVisualStyleBackColor = true;
@@ -212,44 +227,48 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(127, 20);
+            this.textBox1.Location = new System.Drawing.Point(169, 25);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(232, 20);
+            this.textBox1.Size = new System.Drawing.Size(308, 22);
             this.textBox1.TabIndex = 9;
-            this.textBoxDif.MaxLength = 16;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 23);
+            this.label4.Location = new System.Drawing.Point(17, 28);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(104, 13);
+            this.label4.Size = new System.Drawing.Size(135, 17);
             this.label4.TabIndex = 10;
             this.label4.Text = "Название шаблона";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(13, 58);
+            this.label5.Location = new System.Drawing.Point(17, 71);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(81, 13);
+            this.label5.Size = new System.Drawing.Size(103, 17);
             this.label5.TabIndex = 11;
             this.label5.Text = "Все категории";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(313, 58);
+            this.label6.Location = new System.Drawing.Point(417, 71);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(100, 13);
+            this.label6.Size = new System.Drawing.Size(129, 17);
             this.label6.TabIndex = 12;
             this.label6.Text = "Категории в тесте";
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(368, 411);
+            this.button3.Location = new System.Drawing.Point(491, 506);
+            this.button3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(89, 29);
+            this.button3.Size = new System.Drawing.Size(119, 36);
             this.button3.TabIndex = 13;
             this.button3.Text = "Сохранить";
             this.button3.UseVisualStyleBackColor = true;
@@ -257,9 +276,10 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(467, 411);
+            this.button4.Location = new System.Drawing.Point(623, 506);
+            this.button4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(89, 29);
+            this.button4.Size = new System.Drawing.Size(119, 36);
             this.button4.TabIndex = 14;
             this.button4.Text = "Отмена";
             this.button4.UseVisualStyleBackColor = true;
@@ -267,9 +287,10 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(262, 117);
+            this.button5.Location = new System.Drawing.Point(349, 144);
+            this.button5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(43, 31);
+            this.button5.Size = new System.Drawing.Size(57, 38);
             this.button5.TabIndex = 15;
             this.button5.Text = ">>";
             this.button5.UseVisualStyleBackColor = true;
@@ -277,9 +298,10 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(262, 171);
+            this.button6.Location = new System.Drawing.Point(349, 210);
+            this.button6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(43, 31);
+            this.button6.Size = new System.Drawing.Size(57, 38);
             this.button6.TabIndex = 16;
             this.button6.Text = "<";
             this.button6.UseVisualStyleBackColor = true;
@@ -287,9 +309,10 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(389, 350);
+            this.button7.Location = new System.Drawing.Point(519, 431);
+            this.button7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(134, 35);
+            this.button7.Size = new System.Drawing.Size(179, 43);
             this.button7.TabIndex = 17;
             this.button7.Text = "Настроить вопросы";
             this.button7.UseVisualStyleBackColor = true;
@@ -299,17 +322,19 @@
             // 
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(438, 17);
+            this.comboBox1.Location = new System.Drawing.Point(584, 21);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.Size = new System.Drawing.Size(160, 24);
             this.comboBox1.TabIndex = 18;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(365, 20);
+            this.label7.Location = new System.Drawing.Point(487, 25);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(67, 13);
+            this.label7.Size = new System.Drawing.Size(85, 17);
             this.label7.TabIndex = 19;
             this.label7.Text = "Для группы";
             // 
@@ -319,20 +344,20 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.обновитьToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(129, 26);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(148, 28);
             // 
             // обновитьToolStripMenuItem
             // 
             this.обновитьToolStripMenuItem.Name = "обновитьToolStripMenuItem";
-            this.обновитьToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.обновитьToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
             this.обновитьToolStripMenuItem.Text = "Обновить";
             // 
             // FormTestTemplate
             // 
             this.AcceptButton = this.button3;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(574, 460);
+            this.ClientSize = new System.Drawing.Size(765, 566);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.button7);
@@ -349,8 +374,9 @@
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.groupBox1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormTestTemplate";
-            this.Padding = new System.Windows.Forms.Padding(15, 60, 15, 16);
+            this.Padding = new System.Windows.Forms.Padding(20, 74, 20, 20);
             this.Text = "Шаблон теста";
             this.Load += new System.EventHandler(this.Form_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
