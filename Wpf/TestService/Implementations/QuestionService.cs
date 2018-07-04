@@ -136,9 +136,14 @@ namespace TestService.Implementations
                     throw;
                 }
             }
+
             for (int i = 0; i < pathsToDelete.Count; i++)
             {
-                System.IO.File.Delete(pathsToDelete[i]);
+                try
+                {
+                    System.IO.File.Delete(pathsToDelete[i]);
+                }
+                catch (Exception) { }
             }
         }
 
@@ -185,7 +190,7 @@ namespace TestService.Implementations
                             Id = el.Id
                         });
                     }
-                    catch (Exception){}
+                    catch (Exception) { }
                 }
 
                 if (attachments.Count > 0)
@@ -329,14 +334,16 @@ namespace TestService.Implementations
                     transaction.Rollback();
                     throw;
                 }
-                try
+
+                foreach (var path in pathsToDelete)
                 {
-                    foreach (var path in pathsToDelete)
+                    try
                     {
                         System.IO.File.Delete(path);
                     }
+                    catch (Exception) { }
                 }
-                catch (Exception) { }
+
             }
 
         }
