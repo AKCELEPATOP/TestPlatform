@@ -7,6 +7,7 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using System.Windows.Forms;
@@ -22,13 +23,15 @@ namespace TestView
 
         private int? id;
 
-        private static Timer tmrShow;
+        private static System.Windows.Forms.Timer tmrShow;
 
         private int IdQuestions = 0;
 
         private int Time;
 
         private TestViewModel model;
+
+        private static SemaphoreSlim semaphore = new SemaphoreSlim(1);
 
         public TestingForm()
         {
@@ -68,36 +71,35 @@ namespace TestView
 
         private void tmrShow_Tick(object sender, EventArgs e)
         {
-            lock (tmrShow)
+            if (Time > 0)
             {
-                if (Time > 0)
-                {
-                    Time--;
-                    textBoxTime.Text = (Time / 60) + " минут " + (Time % 60) + " секунд ";
-                }
-                else
-                {
-                    DisposeTimer();
-                    MessageBox.Show("Время вышло", "Тест завершен", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    EndTest();
-                }
+                Time--;
+                textBoxTime.Text = (Time / 60) + " минут " + (Time % 60) + " секунд ";
             }
+            else
+            {
+                DisposeTimer();
+                MessageBox.Show("Время вышло", "Тест завершен", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                EndTest();
+            }
+            
         }
 
         private void DisposeTimer()
         {
             if (tmrShow != null)
             {
+
                 tmrShow.Tick -= tmrShow_Tick;
                 tmrShow.Stop();
                 tmrShow.Dispose();
                 tmrShow = null;
             }
+
         }
 
         private async void EndTest()
         {
-            DisposeTimer();
             GetAnswer();
             List<QuestionResponseModel> UserAnswers = model.Questions.Select(rec => new QuestionResponseModel
             {
@@ -128,28 +130,6 @@ namespace TestView
             Close();
         }
 
-        private void TestingForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            DisposeTimer();
-            ////при попытке закрытия программы пользователем
-            //if (e.CloseReason == CloseReason.UserClosing)
-            //{
-            //    //устанавливает флаг отмены события в истину
-            //    e.Cancel = true;
-            //    //спрашивает стоит ли завершится
-            //    if (MessageBox.Show("Вам отказано в доступе, завершите тест", "Ошибка", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            //    {
-            //        this.FormClosing -= TestingForm_FormClosing;
-            //        EndTest();
-
-            //        this.Close();
-            //    }
-            //    else {
-            //        return;
-            //    }
-            //}
-        }
-
         private async Task<bool> Initialize()
         {
             try
@@ -171,14 +151,14 @@ namespace TestView
                     return false;
                 }
 
-                Time = Convert.ToInt32(model.Time);
+                Time = 10;//Convert.ToInt32(model.Time);
 
                 textBoxTime.Text = (Time / 60) + " минут " + (Time % 60) + " секунд ";
 
-                tmrShow = new Timer();
+                tmrShow = new System.Windows.Forms.Timer();
                 tmrShow.Interval = 1000;
                 tmrShow.Tick += tmrShow_Tick;
-                tmrShow.Enabled = true;
+                tmrShow.Start();
 
                 appendixForQestion.Enabled = false;
 
@@ -383,6 +363,11 @@ namespace TestView
                     listBoxQuestions.GetItemRectangle(index).Location);
                 e.DrawFocusRectangle();
             }
+        }
+
+        private void TestingForm_FormClosing_1(object sender, FormClosingEventArgs e)
+        {
+            DisposeTimer();
         }
     }
 }

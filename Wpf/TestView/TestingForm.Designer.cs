@@ -312,6 +312,7 @@
             this.Name = "TestingForm";
             this.Padding = new System.Windows.Forms.Padding(20, 60, 20, 20);
             this.Text = "Теститрование";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TestingForm_FormClosing_1);
             this.Load += new System.EventHandler(this.Form_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Form);
             this.answerGroupBoxCheckButtons.ResumeLayout(false);

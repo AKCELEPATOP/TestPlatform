@@ -274,7 +274,7 @@ namespace TestService.Implementations
             await loadList;
             //вставляем заголовок
             iTextSharp.text.Paragraph paragraph;
-            string title = "Отчет по тестам пользователя";
+            string title = "Отчет по тестам пользователя ";
             if (list != null && list.Count > 0)
             {
                 title += list[0].UserName;
