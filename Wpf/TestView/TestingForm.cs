@@ -197,7 +197,7 @@ namespace TestView
                 {
                     Size = new Size(image.Width, image.Height)
                 };
-                appendixForm.Show();
+                appendixForm.ShowDialog();
             }
         }
 

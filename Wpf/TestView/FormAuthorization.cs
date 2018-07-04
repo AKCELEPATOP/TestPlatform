@@ -18,7 +18,7 @@ namespace TestView
             Form formRegistration = new RegistrationForm();
             Design.SetBackColor(formRegistration);
             Design.SetFontColor(formRegistration);
-            formRegistration.Show();
+            formRegistration.ShowDialog();
         }
 
         private void button1_Click(object sender, EventArgs e)
