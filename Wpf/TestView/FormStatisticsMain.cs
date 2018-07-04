@@ -21,6 +21,7 @@ namespace TestView
         {
             this.parent = parent;
             InitializeComponent();
+
             labelUserName.Text = ApiClient.UserName;
         }
         private async void Initialize()
@@ -170,6 +171,7 @@ namespace TestView
             {
                 colorBack = cd.Color;
             }
+            Design.SetDefaultBackColor(cd.Color);
             this.BackColor = colorBack;
         }
 
@@ -180,6 +182,7 @@ namespace TestView
             {
                 colorFont = cd.Color;
             }
+            Design.SetDefaultFontColor(cd.Color);
             this.ForeColor = colorFont;
         }
 
@@ -221,33 +224,6 @@ namespace TestView
         private void Form_Load(object sender, EventArgs e)
         {
             Initialize();
-            label1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
-            labelUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
-            label4.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
-            label5.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
-            label6.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
-            label7.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
-            contextMenuStrip1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
-            dataGridView1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
-            dataGridView2.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
-            button1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
-            button10.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
-            обновитьToolStripMenuItem.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
-            button2.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
-            buttonChangeColorBack.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
-            button3.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
-            buttonChangeFont.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
-            button4.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
-            button7.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
-            button8.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
-            button9.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
-            buttonAdmins.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
-            groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
-            groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
-            groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
-            groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
-            groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
-            dataGridViewPatternStat.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
         }
 
         private void buttonAdmins_Click(object sender, EventArgs e)
@@ -284,7 +260,34 @@ namespace TestView
 
         private void comboBoxFontSize_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+            Design.FontSize = Convert.ToInt32(comboBoxFontSize.SelectedItem);
+            label1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            labelUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            label4.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            label5.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            label6.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            label7.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            contextMenuStrip1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            dataGridView1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            dataGridView2.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            button1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            button10.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            обновитьToolStripMenuItem.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            button2.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            buttonChangeColorBack.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            button3.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            buttonChangeFont.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            button4.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            button7.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            button8.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            button9.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            buttonAdmins.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+            dataGridViewPatternStat.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
         }
 
         private void label7_Click(object sender, EventArgs e)
