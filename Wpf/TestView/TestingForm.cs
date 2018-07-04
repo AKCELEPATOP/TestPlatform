@@ -151,7 +151,7 @@ namespace TestView
                     return false;
                 }
 
-                Time = 10;//Convert.ToInt32(model.Time);
+                Time = Convert.ToInt32(model.Time);
 
                 textBoxTime.Text = (Time / 60) + " минут " + (Time % 60) + " секунд ";
 
