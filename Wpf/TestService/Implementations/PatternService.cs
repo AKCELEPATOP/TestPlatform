@@ -171,7 +171,7 @@ namespace TestService.Implementations
                 Id = rec.Id,
                 Name = rec.Name,
                 UserGroupId = rec.UserGroupId ?? -1,
-                UserGroupName = rec.UserGroup.Name
+                UserGroupName = rec.UserGroup.Name ?? "Общая"
             }).ToListAsync();
         }
 
