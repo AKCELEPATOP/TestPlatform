@@ -12,5 +12,8 @@ namespace TestService.ViewModels
     {
         [DataMember]
         public List<double> Results { get; set; }
+
+        [DataMember]
+        public List<string> Dates { get; set; }
     }
 }

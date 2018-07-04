@@ -31,9 +31,10 @@ namespace TestView
             string fio = textBoxFIO.Text;
             string mail = textBoxEmail.Text;
             string message = string.Empty;
-            if (string.IsNullOrEmpty(fio) || !Regex.IsMatch(fio, @"\D{1,} \D{1,} \D{1,}"))
+            // || !Regex.IsMatch(fio, @"\D{1,} \D{1,} \D{1,}")
+            if (string.IsNullOrEmpty(fio))
             {
-                message += " Неверный формат для ФИО.";
+                message += " Введите фио.";
             }
             if (!string.IsNullOrEmpty(mail))
             {
@@ -52,12 +53,12 @@ namespace TestView
             }
             if (!Regex.IsMatch(login, @"^[a-zA-Z0-9]{5,30}$"))
             {
-                message += " Логин должен быть не меньше 8 символов.";
+                message += " Логин должен быть не меньше 8 символов и не больше 15";
             }
             string password = textBoxPassword1.Text;
             if (!Regex.IsMatch(password, @"(?=.*[a-z])(?=.*[0-9])^[a-zA-Z0-9]{5,}$"/*@"^(?=.*[0-9]$)(?=.*[a-zA-Z]){5,}"*/))
             {
-                message += " Пароль должен быть не короче 5 символов, содержать хотя бы одну лат букву в ниж регистре и одну цифру.";
+                message += " Пароль должен быть не короче 5 символов и не больше 32 символов, содержать хотя бы одну лат букву в ниж регистре и одну цифру.";
             }
             if (!password.Equals(textBoxPassword2.Text))
             {

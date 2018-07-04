@@ -70,6 +70,13 @@ namespace TestService.Implementations
                 .OrderByDescending(rec=>rec.DateCreate)
                 .Take(model.Take)
                 .Select(rec => (double)rec.Right / rec.Total)
+                .ToListAsync(),
+                Dates = await context.Stats.Where(rec => rec.UserId == model.UserId)
+                .OrderByDescending(rec => rec.DateCreate)
+                .Take(model.Take)
+                .Select(rec => SqlFunctions.DateName("dd", rec.DateCreate) + " " +
+                                            SqlFunctions.DateName("mm", rec.DateCreate) + " " +
+                                            SqlFunctions.DateName("yyyy", rec.DateCreate))
                 .ToListAsync()
             };
         }

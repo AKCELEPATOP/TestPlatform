@@ -28,9 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.label5 = new System.Windows.Forms.Label();
             this.back = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -50,7 +48,7 @@
             // 
             // back
             // 
-            this.back.Location = new System.Drawing.Point(181, 525);
+            this.back.Location = new System.Drawing.Point(634, 28);
             this.back.Margin = new System.Windows.Forms.Padding(4);
             this.back.Name = "back";
             this.back.Size = new System.Drawing.Size(179, 33);
@@ -70,12 +68,11 @@
             // 
             // chart1
             // 
-           
             legend1.Name = "График";
             this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(15, 28);
             this.chart1.Name = "chart1";
-            this.chart1.Size = new System.Drawing.Size(594, 343);
+            this.chart1.Size = new System.Drawing.Size(594, 510);
             this.chart1.TabIndex = 12;
             this.chart1.Text = "chart1";
             // 
@@ -83,7 +80,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(629, 566);
+            this.ClientSize = new System.Drawing.Size(833, 566);
             this.Controls.Add(this.chart1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.back);
