@@ -87,7 +87,7 @@ namespace TestView
             // textBoxLogin
             // 
             this.textBoxLogin.Location = new System.Drawing.Point(87, 29);
-            this.textBoxLogin.MaxLength = 16;
+            this.textBoxLogin.MaxLength = 32;
             this.textBoxLogin.Name = "textBoxLogin";
             this.textBoxLogin.Size = new System.Drawing.Size(167, 20);
             this.textBoxLogin.TabIndex = 4;
@@ -95,7 +95,7 @@ namespace TestView
             // textBoxPassword
             // 
             this.textBoxPassword.Location = new System.Drawing.Point(87, 65);
-            this.textBoxPassword.MaxLength = 16;
+            this.textBoxPassword.MaxLength = 32;
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.Size = new System.Drawing.Size(167, 20);
             this.textBoxPassword.TabIndex = 5;
