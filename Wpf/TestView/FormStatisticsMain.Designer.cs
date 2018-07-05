@@ -241,9 +241,9 @@ namespace TestView
             // button4
             // 
             this.button4.AutoSize = true;
-            this.button4.Location = new System.Drawing.Point(47, 19);
+            this.button4.Location = new System.Drawing.Point(23, 19);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(178, 28);
+            this.button4.Size = new System.Drawing.Size(229, 28);
             this.button4.TabIndex = 2;
             this.button4.Text = "Сохранить в файл";
             this.button4.UseVisualStyleBackColor = true;
@@ -269,7 +269,7 @@ namespace TestView
             this.groupBox4.Controls.Add(this.comboBoxFontSize);
             this.groupBox4.Controls.Add(this.label6);
             this.groupBox4.Location = new System.Drawing.Point(616, 315);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(228, 259);
             this.groupBox4.TabIndex = 6;
@@ -280,7 +280,7 @@ namespace TestView
             // 
             this.buttonChangeFont.AutoSize = true;
             this.buttonChangeFont.Location = new System.Drawing.Point(36, 140);
-            this.buttonChangeFont.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonChangeFont.Margin = new System.Windows.Forms.Padding(2);
             this.buttonChangeFont.Name = "buttonChangeFont";
             this.buttonChangeFont.Size = new System.Drawing.Size(170, 34);
             this.buttonChangeFont.TabIndex = 22;
@@ -292,7 +292,7 @@ namespace TestView
             // 
             this.buttonChangeColorBack.AutoSize = true;
             this.buttonChangeColorBack.Location = new System.Drawing.Point(36, 56);
-            this.buttonChangeColorBack.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonChangeColorBack.Margin = new System.Windows.Forms.Padding(2);
             this.buttonChangeColorBack.Name = "buttonChangeColorBack";
             this.buttonChangeColorBack.Size = new System.Drawing.Size(170, 34);
             this.buttonChangeColorBack.TabIndex = 20;
@@ -349,7 +349,7 @@ namespace TestView
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(497, 14);
+            this.label4.Location = new System.Drawing.Point(458, 14);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(129, 13);
             this.label4.TabIndex = 7;

@@ -65,9 +65,9 @@ namespace TestView
             // sign_In
             // 
             this.sign_In.AutoSize = true;
-            this.sign_In.Location = new System.Drawing.Point(101, 109);
+            this.sign_In.Location = new System.Drawing.Point(87, 106);
             this.sign_In.Name = "sign_In";
-            this.sign_In.Size = new System.Drawing.Size(90, 23);
+            this.sign_In.Size = new System.Drawing.Size(132, 29);
             this.sign_In.TabIndex = 2;
             this.sign_In.Text = "Войти";
             this.sign_In.UseVisualStyleBackColor = true;
@@ -76,9 +76,9 @@ namespace TestView
             // sign_Up
             // 
             this.sign_Up.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.sign_Up.Location = new System.Drawing.Point(101, 150);
+            this.sign_Up.Location = new System.Drawing.Point(87, 144);
             this.sign_Up.Name = "sign_Up";
-            this.sign_Up.Size = new System.Drawing.Size(90, 23);
+            this.sign_Up.Size = new System.Drawing.Size(132, 29);
             this.sign_Up.TabIndex = 3;
             this.sign_Up.Text = "Регистрация";
             this.sign_Up.UseVisualStyleBackColor = true;
@@ -87,19 +87,19 @@ namespace TestView
             // textBoxLogin
             // 
             this.textBoxLogin.Location = new System.Drawing.Point(87, 29);
+            this.textBoxLogin.MaxLength = 16;
             this.textBoxLogin.Name = "textBoxLogin";
             this.textBoxLogin.Size = new System.Drawing.Size(167, 20);
             this.textBoxLogin.TabIndex = 4;
-            this.textBoxLogin.MaxLength = 16;
             // 
             // textBoxPassword
             // 
             this.textBoxPassword.Location = new System.Drawing.Point(87, 65);
+            this.textBoxPassword.MaxLength = 16;
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.Size = new System.Drawing.Size(167, 20);
             this.textBoxPassword.TabIndex = 5;
             this.textBoxPassword.UseSystemPasswordChar = true;
-            this.textBoxPassword.MaxLength = 16;
             // 
             // FormAuthorization
             // 

@@ -235,6 +235,9 @@ namespace TestView
             button4.BackColor = Design.Invert(this.ForeColor);
             button5.BackColor = Design.Invert(this.ForeColor);
             button6.BackColor = Design.Invert(this.ForeColor);
+            dataGridView1.BackgroundColor = Design.Invert(this.ForeColor);
+            dataGridView2.BackgroundColor = Design.Invert(this.ForeColor);
+
         }
 
         private void button7_Click(object sender, EventArgs e)

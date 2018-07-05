@@ -50,7 +50,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.ColumnHeadersVisible = false;
             this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dataGridView1.Location = new System.Drawing.Point(6, 19);
+            this.dataGridView1.Location = new System.Drawing.Point(6, 27);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
@@ -67,14 +67,14 @@
             this.groupBox1.Controls.Add(this.button7);
             this.groupBox1.Location = new System.Drawing.Point(12, 21);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(413, 226);
+            this.groupBox1.Size = new System.Drawing.Size(413, 234);
             this.groupBox1.TabIndex = 30;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Список групп";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(275, 86);
+            this.button1.Location = new System.Drawing.Point(280, 106);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(120, 42);
             this.button1.TabIndex = 4;
@@ -84,7 +84,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(275, 157);
+            this.button5.Location = new System.Drawing.Point(280, 177);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(120, 42);
             this.button5.TabIndex = 2;
@@ -94,7 +94,7 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(275, 19);
+            this.button7.Location = new System.Drawing.Point(280, 39);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(120, 42);
             this.button7.TabIndex = 3;
@@ -121,7 +121,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(435, 256);
+            this.ClientSize = new System.Drawing.Size(435, 263);
             this.Controls.Add(this.groupBox1);
             this.Name = "FormGroupControl";
             this.Padding = new System.Windows.Forms.Padding(20, 60, 20, 20);

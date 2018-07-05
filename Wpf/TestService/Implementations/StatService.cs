@@ -71,6 +71,7 @@ namespace TestService.Implementations
                 .Take(model.Take)
                 .Select(rec => (double)rec.Right / rec.Total)
                 .ToListAsync(),
+                TestName = await context.Stats.Where(rec => rec.UserId == model.UserId).OrderByDescending(rec => rec.DateCreate).Take(model.Take).Select(rec=>rec.Pattern.Name).ToListAsync(),
                 Dates = await context.Stats.Where(rec => rec.UserId == model.UserId)
                 .OrderByDescending(rec => rec.DateCreate)
                 .Take(model.Take)

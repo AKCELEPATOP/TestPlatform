@@ -45,6 +45,9 @@ namespace TestView
             listBoxQuestions.BackColor = Design.Invert(this.ForeColor);
             answerGroupBoxCheckButtons.BackColor = Design.Invert(this.ForeColor);
             answerGroupBoxRadioButtons.BackColor = Design.Invert(this.ForeColor);
+            questionGroupBox.BackColor = Design.Invert(this.ForeColor);
+            
+
             answer1.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
             answer2.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
             answer3.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
@@ -66,9 +69,25 @@ namespace TestView
             TextBoxQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
             textBoxTime.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
             обновитьToolStripMenuItem.Font = new System.Drawing.Font("Microsoft Sans Serif", Design.FontSize);
+
         }
 
+        private void Forml_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            { 
+                e.Cancel = true;
 
+                if (MessageBox.Show("Вы не можете выйти пока не завершите тест.Завершить тест?", "Вопрос", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) {
+                    DisposeTimer();
+                    EndTest();
+                }
+            }
+        }
+        private void Forml_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            DisposeTimer();
+        }
         private void tmrShow_Tick(object sender, EventArgs e)
         {
             if (Time > 0)
@@ -127,6 +146,8 @@ namespace TestView
                 }
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            this.FormClosing -= Forml_FormClosing;
+            DisposeTimer();
             Close();
         }
 
@@ -365,9 +386,6 @@ namespace TestView
             }
         }
 
-        private void TestingForm_FormClosing_1(object sender, FormClosingEventArgs e)
-        {
-            DisposeTimer();
-        }
+
     }
 }
