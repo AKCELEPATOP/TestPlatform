@@ -116,7 +116,12 @@ namespace TestView
             button1.BackColor = Design.Invert(this.ForeColor);
             button5.BackColor = Design.Invert(this.ForeColor);
             button7.BackColor = Design.Invert(this.ForeColor);
+
+            dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.BackgroundColor = Design.Invert(this.ForeColor);
+            dataGridView1.BackColor = Design.Invert(this.ForeColor);
+            dataGridView1.RowsDefaultCellStyle.BackColor = Design.Invert(this.ForeColor);
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Design.Invert(this.ForeColor);
 
         }
     }
