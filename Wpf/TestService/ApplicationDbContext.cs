@@ -11,7 +11,7 @@ namespace TestService
 {
     public class ApplicationDbContext : IdentityDbContext<User>
     {
-        public ApplicationDbContext() : base("TestPlatform")
+        public ApplicationDbContext() : base("HuiPlatform1337")
         {
         }
 
