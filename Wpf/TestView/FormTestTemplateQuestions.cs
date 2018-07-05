@@ -180,9 +180,9 @@ namespace TestView
             buttonDelAll.BackColor = Design.Invert(this.ForeColor);
             buttonDel.BackColor = Design.Invert(this.ForeColor);
             buttonSave.BackColor = Design.Invert(this.ForeColor);
-            dataGridViewCategories.BackColor = Design.Invert(this.ForeColor);
-            dataGridViewQuestions.BackColor = Design.Invert(this.ForeColor);
-            dataGridViewTestQuestions.BackColor = Design.Invert(this.ForeColor);
+            dataGridViewCategories.BackgroundColor = Design.Invert(this.ForeColor);
+            dataGridViewQuestions.BackgroundColor = Design.Invert(this.ForeColor);
+            dataGridViewTestQuestions.BackgroundColor = Design.Invert(this.ForeColor);
         }
 
         private async void dataGridViewCategories_CellContentClick(object sender, DataGridViewCellEventArgs e)

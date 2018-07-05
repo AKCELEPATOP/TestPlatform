@@ -475,9 +475,9 @@ namespace TestView
             button6.BackColor = Design.Invert(this.ForeColor);
             button7.BackColor = Design.Invert(this.ForeColor);
             comboBox1.BackColor = Design.Invert(this.ForeColor);
-            dataGridView1.BackColor = Design.Invert(this.ForeColor);
-            dataGridView2.BackColor = Design.Invert(this.ForeColor);
-           
+            dataGridView1.BackgroundColor = Design.Invert(this.ForeColor);
+            dataGridView2.BackgroundColor = Design.Invert(this.ForeColor);
+
         }
     }
 }

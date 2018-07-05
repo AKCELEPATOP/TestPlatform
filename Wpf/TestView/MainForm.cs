@@ -162,8 +162,8 @@ namespace TestView
             buttonStatistic.BackColor = Design.Invert(this.ForeColor);
             comboBoxFontSize.BackColor = Design.Invert(this.ForeColor);
             SaveToPDF.BackColor = Design.Invert(this.ForeColor);
-            dataGridViewAvailablePatterns.BackColor = Design.Invert(this.ForeColor);
-            dataGridViewPassedTests.BackColor = Design.Invert(this.ForeColor);
+            dataGridViewAvailablePatterns.BackgroundColor = Design.Invert(this.ForeColor);
+            dataGridViewPassedTests.BackgroundColor = Design.Invert(this.ForeColor);
         }
         private async void buttonSaveToPdf_Click(object sender, EventArgs e)
         {
@@ -225,8 +225,8 @@ namespace TestView
             buttonStatistic.BackColor = Design.Invert(this.ForeColor);
             comboBoxFontSize.BackColor = Design.Invert(this.ForeColor);
             SaveToPDF.BackColor = Design.Invert(this.ForeColor);
-            dataGridViewAvailablePatterns.BackColor = Design.Invert(this.ForeColor);
-            dataGridViewPassedTests.BackColor = Design.Invert(this.ForeColor);
+            dataGridViewAvailablePatterns.BackgroundColor = Design.Invert(this.ForeColor);
+            dataGridViewPassedTests.BackgroundColor = Design.Invert(this.ForeColor);
         }
     }
 }

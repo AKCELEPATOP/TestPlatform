@@ -64,7 +64,7 @@ namespace TestView
 
             buttonDelete.BackColor = Design.Invert(this.ForeColor);
             buttonRemoveAdminStatus.BackColor = Design.Invert(this.ForeColor);
-            dataGridView1.BackColor = Design.Invert(this.ForeColor);
+            dataGridView1.BackgroundColor = Design.Invert(this.ForeColor);
         }
         // ПКМ -> Обновить
         private void MouseDown_Form(object sender, MouseEventArgs e)
