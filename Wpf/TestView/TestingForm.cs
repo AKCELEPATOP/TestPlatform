@@ -259,15 +259,19 @@ namespace TestView
         {
             if (model.Questions[IdQuestions].Images != null && model.Questions[IdQuestions].Images.Count > 0)
             {
-                var buffer = Convert.FromBase64String(model.Questions[IdQuestions].Images.First().Image);
-                HttpPostedFileBase objFile = (HttpPostedFileBase)new MemoryPostedFile(buffer);
-                var image = ImageProcessing.ResizeImage(Image.FromStream(objFile.InputStream, true, true),
-                    SystemInformation.VirtualScreen.Width / 2, (int)(SystemInformation.VirtualScreen.Height / 1.5));
-                AppendixForm appendixForm = new AppendixForm(image)
+                try
                 {
-                    Size = new Size(image.Width, image.Height)
-                };
-                appendixForm.ShowDialog();
+                    var buffer = Convert.FromBase64String(model.Questions[IdQuestions].Images.First().Image);
+                    HttpPostedFileBase objFile = (HttpPostedFileBase)new MemoryPostedFile(buffer);
+                    var image = ImageProcessing.ResizeImage(Image.FromStream(objFile.InputStream, true, true),
+                        SystemInformation.VirtualScreen.Width / 2, (int)(SystemInformation.VirtualScreen.Height / 1.5));
+                    AppendixForm appendixForm = new AppendixForm(image)
+                    {
+                        Size = new Size(image.Width, image.Height)
+                    };
+                    appendixForm.ShowDialog();
+                }
+                catch (Exception) { }
             }
         }
 
