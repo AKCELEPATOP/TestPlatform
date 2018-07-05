@@ -3,7 +3,7 @@ namespace TestService.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class bullshitMigration : DbMigration
+    public partial class huiMigration : DbMigration
     {
         public override void Up()
         {

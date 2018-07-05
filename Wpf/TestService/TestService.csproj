@@ -90,9 +90,9 @@
     <Compile Include="Interfaces\IStatService.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="Interfaces\IQuestion.cs" />
-    <Compile Include="Migrations\201807050927103_bullshitMigration.cs" />
-    <Compile Include="Migrations\201807050927103_bullshitMigration.Designer.cs">
-      <DependentUpon>201807050927103_bullshitMigration.cs</DependentUpon>
+    <Compile Include="Migrations\201807051543389_huiMigration.cs" />
+    <Compile Include="Migrations\201807051543389_huiMigration.Designer.cs">
+      <DependentUpon>201807051543389_huiMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -124,8 +124,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201807050927103_bullshitMigration.resx">
-      <DependentUpon>201807050927103_bullshitMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201807051543389_huiMigration.resx">
+      <DependentUpon>201807051543389_huiMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
