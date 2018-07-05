@@ -180,9 +180,30 @@ namespace TestView
             buttonDelAll.BackColor = Design.Invert(this.ForeColor);
             buttonDel.BackColor = Design.Invert(this.ForeColor);
             buttonSave.BackColor = Design.Invert(this.ForeColor);
+
+            dataGridViewCategories.EnableHeadersVisualStyles = false;
             dataGridViewCategories.BackgroundColor = Design.Invert(this.ForeColor);
+            dataGridViewCategories.BackColor = Design.Invert(this.ForeColor);
+            dataGridViewCategories.ForeColor = Design.Invert(this.ForeColor);
+            dataGridViewCategories.RowsDefaultCellStyle.BackColor = Design.Invert(this.ForeColor);
+            dataGridViewCategories.RowsDefaultCellStyle.ForeColor = Design.Invert(this.ForeColor);
+            dataGridViewCategories.ColumnHeadersDefaultCellStyle.BackColor = Design.Invert(this.ForeColor);
+
+            dataGridViewQuestions.EnableHeadersVisualStyles = false;
             dataGridViewQuestions.BackgroundColor = Design.Invert(this.ForeColor);
+            dataGridViewQuestions.BackColor = Design.Invert(this.ForeColor);
+            dataGridViewQuestions.ForeColor = Design.Invert(this.ForeColor);
+            dataGridViewQuestions.RowsDefaultCellStyle.BackColor = Design.Invert(this.ForeColor);
+            dataGridViewQuestions.RowsDefaultCellStyle.ForeColor = Design.Invert(this.ForeColor);
+            dataGridViewQuestions.ColumnHeadersDefaultCellStyle.BackColor = Design.Invert(this.ForeColor);
+
+            dataGridViewTestQuestions.EnableHeadersVisualStyles = false;
             dataGridViewTestQuestions.BackgroundColor = Design.Invert(this.ForeColor);
+            dataGridViewTestQuestions.BackColor = Design.Invert(this.ForeColor);
+            dataGridViewTestQuestions.ForeColor = Design.Invert(this.ForeColor);
+            dataGridViewTestQuestions.RowsDefaultCellStyle.BackColor = Design.Invert(this.ForeColor);
+            dataGridViewTestQuestions.RowsDefaultCellStyle.ForeColor = Design.Invert(this.ForeColor);
+            dataGridViewTestQuestions.ColumnHeadersDefaultCellStyle.BackColor = Design.Invert(this.ForeColor);
         }
 
         private async void dataGridViewCategories_CellContentClick(object sender, DataGridViewCellEventArgs e)

@@ -346,9 +346,29 @@ namespace TestView
             buttonChangeFont.BackColor = Design.Invert(this.ForeColor);
             comboBoxFontSize.BackColor = Design.Invert(this.ForeColor);
 
+            dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.BackgroundColor = Design.Invert(this.ForeColor);
+            dataGridView1.BackColor = Design.Invert(this.ForeColor);
+            dataGridView1.ForeColor = Design.Invert(this.ForeColor);
+            dataGridView1.RowsDefaultCellStyle.BackColor = Design.Invert(this.ForeColor);
+            dataGridView1.RowsDefaultCellStyle.ForeColor = Design.Invert(this.ForeColor);
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Design.Invert(this.ForeColor);
+
+            dataGridView2.EnableHeadersVisualStyles = false;
             dataGridView2.BackgroundColor = Design.Invert(this.ForeColor);
+            dataGridView2.BackColor = Design.Invert(this.ForeColor);
+            dataGridView2.ForeColor = Design.Invert(this.ForeColor);
+            dataGridView2.RowsDefaultCellStyle.BackColor = Design.Invert(this.ForeColor);
+            dataGridView2.RowsDefaultCellStyle.ForeColor = Design.Invert(this.ForeColor);
+            dataGridView2.ColumnHeadersDefaultCellStyle.BackColor = Design.Invert(this.ForeColor);
+
+            dataGridViewPatternStat.EnableHeadersVisualStyles = false;
             dataGridViewPatternStat.BackgroundColor = Design.Invert(this.ForeColor);
+            dataGridViewPatternStat.BackColor = Design.Invert(this.ForeColor);
+            dataGridViewPatternStat.ForeColor = Design.Invert(this.ForeColor);
+            dataGridViewPatternStat.RowsDefaultCellStyle.BackColor = Design.Invert(this.ForeColor);
+            dataGridViewPatternStat.RowsDefaultCellStyle.ForeColor = Design.Invert(this.ForeColor);
+            dataGridViewPatternStat.ColumnHeadersDefaultCellStyle.BackColor = Design.Invert(this.ForeColor);
 
         }
 

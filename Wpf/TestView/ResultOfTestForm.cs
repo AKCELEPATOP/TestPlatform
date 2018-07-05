@@ -23,6 +23,8 @@ namespace TestView
             back.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
             dataGridView1.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
             dataGridView1.BackgroundColor = Design.Invert(this.ForeColor);
+            dataGridView1.BackColor = Design.Invert(this.ForeColor);
+            dataGridView1.ForeColor = Design.Invert(this.ForeColor);
             Initialize();
         }
 

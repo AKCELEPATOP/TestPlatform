@@ -153,6 +153,7 @@ namespace TestView
             buttonChangeUser.ForeColor = cd.Color;
             buttonExit.ForeColor = cd.Color;
             buttonStatistic.ForeColor = cd.Color;
+            this.ForeColor = cd.Color;
 
             buttonBeginTest.BackColor = Design.Invert(this.ForeColor);
             buttonChangeColorBack.BackColor = Design.Invert(this.ForeColor);
@@ -162,8 +163,22 @@ namespace TestView
             buttonStatistic.BackColor = Design.Invert(this.ForeColor);
             comboBoxFontSize.BackColor = Design.Invert(this.ForeColor);
             SaveToPDF.BackColor = Design.Invert(this.ForeColor);
+
+            dataGridViewAvailablePatterns.EnableHeadersVisualStyles = false;
             dataGridViewAvailablePatterns.BackgroundColor = Design.Invert(this.ForeColor);
+            dataGridViewAvailablePatterns.BackColor = Design.Invert(this.ForeColor);
+            dataGridViewAvailablePatterns.ForeColor = Design.Invert(this.ForeColor);
+            dataGridViewAvailablePatterns.RowsDefaultCellStyle.BackColor = Design.Invert(this.ForeColor);
+            dataGridViewAvailablePatterns.RowsDefaultCellStyle.ForeColor = Design.Invert(this.ForeColor);
+            dataGridViewAvailablePatterns.ColumnHeadersDefaultCellStyle.BackColor = Design.Invert(this.ForeColor);
+
+            dataGridViewPassedTests.EnableHeadersVisualStyles = false;
             dataGridViewPassedTests.BackgroundColor = Design.Invert(this.ForeColor);
+            dataGridViewPassedTests.BackColor = Design.Invert(this.ForeColor);
+            dataGridViewPassedTests.ForeColor = Design.Invert(this.ForeColor);
+            dataGridViewPassedTests.RowsDefaultCellStyle.BackColor = Design.Invert(this.ForeColor);
+            dataGridViewPassedTests.RowsDefaultCellStyle.ForeColor = Design.Invert(this.ForeColor);
+            dataGridViewPassedTests.ColumnHeadersDefaultCellStyle.BackColor = Design.Invert(this.ForeColor);
         }
         private async void buttonSaveToPdf_Click(object sender, EventArgs e)
         {
