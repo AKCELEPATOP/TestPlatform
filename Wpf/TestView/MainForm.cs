@@ -167,17 +167,13 @@ namespace TestView
             dataGridViewAvailablePatterns.EnableHeadersVisualStyles = false;
             dataGridViewAvailablePatterns.BackgroundColor = Design.Invert(this.ForeColor);
             dataGridViewAvailablePatterns.BackColor = Design.Invert(this.ForeColor);
-            dataGridViewAvailablePatterns.ForeColor = Design.Invert(this.ForeColor);
             dataGridViewAvailablePatterns.RowsDefaultCellStyle.BackColor = Design.Invert(this.ForeColor);
-            dataGridViewAvailablePatterns.RowsDefaultCellStyle.ForeColor = Design.Invert(this.ForeColor);
             dataGridViewAvailablePatterns.ColumnHeadersDefaultCellStyle.BackColor = Design.Invert(this.ForeColor);
 
             dataGridViewPassedTests.EnableHeadersVisualStyles = false;
             dataGridViewPassedTests.BackgroundColor = Design.Invert(this.ForeColor);
             dataGridViewPassedTests.BackColor = Design.Invert(this.ForeColor);
-            dataGridViewPassedTests.ForeColor = Design.Invert(this.ForeColor);
             dataGridViewPassedTests.RowsDefaultCellStyle.BackColor = Design.Invert(this.ForeColor);
-            dataGridViewPassedTests.RowsDefaultCellStyle.ForeColor = Design.Invert(this.ForeColor);
             dataGridViewPassedTests.ColumnHeadersDefaultCellStyle.BackColor = Design.Invert(this.ForeColor);
         }
         private async void buttonSaveToPdf_Click(object sender, EventArgs e)

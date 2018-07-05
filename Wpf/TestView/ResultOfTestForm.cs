@@ -21,10 +21,14 @@ namespace TestView
             this.result = result;
             InitializeComponent();
             back.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
+
             dataGridView1.Font = new System.Drawing.Font("Microsoft Sans Serif", Convert.ToInt32(Design.FontSize));
+
+            dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.BackgroundColor = Design.Invert(this.ForeColor);
             dataGridView1.BackColor = Design.Invert(this.ForeColor);
-            dataGridView1.ForeColor = Design.Invert(this.ForeColor);
+            dataGridView1.RowsDefaultCellStyle.BackColor = Design.Invert(this.ForeColor);
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Design.Invert(this.ForeColor);
             Initialize();
         }
 

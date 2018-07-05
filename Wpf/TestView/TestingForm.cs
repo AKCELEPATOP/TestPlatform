@@ -45,7 +45,6 @@ namespace TestView
             listBoxQuestions.BackColor = Design.Invert(this.ForeColor);
             answerGroupBoxCheckButtons.BackColor = Design.Invert(this.ForeColor);
             answerGroupBoxRadioButtons.BackColor = Design.Invert(this.ForeColor);
-
             listBoxQuestions.BackColor =Design.Invert(this.ForeColor);
 
 
