@@ -57,8 +57,8 @@ namespace TestView
 
 
 
-        public int n; //Число участков графика   
-        public int uvel; // во сколько раз увеличить график
+        public int n;  
+        public int uvel; 
         public int centrX, centrY;
         public int x, y;
         public int funkcii;
@@ -83,16 +83,13 @@ namespace TestView
 
 
 
-                //кладем его на форму и растягиваем на все окно.
+                
                 chart1.Parent = this;
-                //добавляем в Chart область для рисования графиков, их может быть
-                //много, поэтому даем ей имя.
+         
                 chart1.ChartAreas.Add(new ChartArea("График"));
                 chart1.ChartAreas[0].AxisY.Maximum = 100;
                 chart1.ChartAreas[0].AxisY.Interval = 5;
-                //Создаем и настраиваем набор точек для рисования графика, в том
-                //не забыв указать имя области на которой хотим отобразить этот
-                //набор точек.
+              
               
                 
                 //if()
@@ -121,7 +118,7 @@ namespace TestView
                 
                 chart1.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
                 chart1.ChartAreas[0].AxisY.MajorGrid.Enabled = false;
-                //Добавляем созданный набор точек в Chart
+           
                 for (int i = 0; i < distinct.Count; i++)
                 {
                     chart1.Series.Add(seriesmas[i]);
