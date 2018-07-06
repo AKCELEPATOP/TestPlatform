@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestService", "TestService\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestRestApi", "TestRestApi\TestRestApi.csproj", "{4E1C100D-1E62-45B8-A4C9-B79D83461EBF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestView", "TestView\TestView.csproj", "{6F3527B7-03B4-4F91-BE58-CB634270F091}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestView", "TestView\TestView.csproj", "{6F0AFD0D-3A1F-4BF4-897F-D230E02E0A2A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{4E1C100D-1E62-45B8-A4C9-B79D83461EBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E1C100D-1E62-45B8-A4C9-B79D83461EBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E1C100D-1E62-45B8-A4C9-B79D83461EBF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6F3527B7-03B4-4F91-BE58-CB634270F091}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6F3527B7-03B4-4F91-BE58-CB634270F091}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6F3527B7-03B4-4F91-BE58-CB634270F091}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6F3527B7-03B4-4F91-BE58-CB634270F091}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F0AFD0D-3A1F-4BF4-897F-D230E02E0A2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F0AFD0D-3A1F-4BF4-897F-D230E02E0A2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F0AFD0D-3A1F-4BF4-897F-D230E02E0A2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F0AFD0D-3A1F-4BF4-897F-D230E02E0A2A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
