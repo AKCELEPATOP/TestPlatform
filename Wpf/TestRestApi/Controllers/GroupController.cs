@@ -14,7 +14,7 @@ using TestService.Interfaces;
 
 namespace TestRestApi.Controllers
 {
-    [Authorize(Roles = ApplicationRoles.SuperAdmin + "," + ApplicationRoles.Admin)]
+    //[Authorize(Roles = ApplicationRoles.SuperAdmin + "," + ApplicationRoles.Admin)]
     public class GroupController : ApiController
     {
         #region global
