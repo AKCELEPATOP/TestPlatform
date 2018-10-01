@@ -1,0 +1,274 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6F0AFD0D-3A1F-4BF4-897F-D230E02E0A2A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>TestView</RootNamespace>
+    <AssemblyName>TestView</AssemblyName>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.6\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApiClient.cs" />
+    <Compile Include="AppendixForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AppendixForm.designer.cs">
+      <DependentUpon>AppendixForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Design.cs" />
+    <Compile Include="FormAdminsControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAdminsControl.designer.cs">
+      <DependentUpon>FormAdminsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormAuthorization.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAuthorization.designer.cs">
+      <DependentUpon>FormAuthorization.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCategories.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCategories.designer.cs">
+      <DependentUpon>FormCategories.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCategoryEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCategoryEdit.designer.cs">
+      <DependentUpon>FormCategoryEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormChangedGlavAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormChangedGlavAdmin.designer.cs">
+      <DependentUpon>FormChangedGlavAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormGroupControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormGroupControl.designer.cs">
+      <DependentUpon>FormGroupControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormGroupEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormGroupEdit.designer.cs">
+      <DependentUpon>FormGroupEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormQuestionEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormQuestionEditor.designer.cs">
+      <DependentUpon>FormQuestionEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormStatisticsMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormStatisticsMain.designer.cs">
+      <DependentUpon>FormStatisticsMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormTestTemplate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTestTemplate.designer.cs">
+      <DependentUpon>FormTestTemplate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormTestTemplateQuestions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTestTemplateQuestions.designer.cs">
+      <DependentUpon>FormTestTemplateQuestions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormUserControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormUserControl.designer.cs">
+      <DependentUpon>FormUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormUserEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormUserEdit.designer.cs">
+      <DependentUpon>FormUserEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HttpErrorMessage.cs" />
+    <Compile Include="ImageProcessing.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegistrationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegistrationForm.designer.cs">
+      <DependentUpon>RegistrationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ResultOfTestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ResultOfTestForm.designer.cs">
+      <DependentUpon>ResultOfTestForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StatisticForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StatisticForm.designer.cs">
+      <DependentUpon>StatisticForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TestingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestingForm.designer.cs">
+      <DependentUpon>TestingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TokenResponse.cs" />
+    <EmbeddedResource Include="AppendixForm.resx">
+      <DependentUpon>AppendixForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAdminsControl.resx">
+      <DependentUpon>FormAdminsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAuthorization.resx">
+      <DependentUpon>FormAuthorization.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCategories.resx">
+      <DependentUpon>FormCategories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCategoryEdit.resx">
+      <DependentUpon>FormCategoryEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormChangedGlavAdmin.resx">
+      <DependentUpon>FormChangedGlavAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormGroupControl.resx">
+      <DependentUpon>FormGroupControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormGroupEdit.resx">
+      <DependentUpon>FormGroupEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormQuestionEditor.resx">
+      <DependentUpon>FormQuestionEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStatisticsMain.resx">
+      <DependentUpon>FormStatisticsMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTestTemplate.resx">
+      <DependentUpon>FormTestTemplate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTestTemplateQuestions.resx">
+      <DependentUpon>FormTestTemplateQuestions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUserControl.resx">
+      <DependentUpon>FormUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUserEdit.resx">
+      <DependentUpon>FormUserEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="RegistrationForm.resx">
+      <DependentUpon>RegistrationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResultOfTestForm.resx">
+      <DependentUpon>ResultOfTestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StatisticForm.resx">
+      <DependentUpon>StatisticForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TestingForm.resx">
+      <DependentUpon>TestingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TestModels\TestModels.csproj">
+      <Project>{39c94e8f-08d1-4af0-85b8-6b216872ed74}</Project>
+      <Name>TestModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestRestApi\TestRestApi.csproj">
+      <Project>{4e1c100d-1e62-45b8-a4c9-b79d83461ebf}</Project>
+      <Name>TestRestApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestService\TestService.csproj">
+      <Project>{c5a966f6-0932-4691-b1d5-3e7f0f21932f}</Project>
+      <Name>TestService</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
